@@ -17,12 +17,14 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_RATING = "0";
+    public static final String DEFAULT_FEEDBACK = "New employee";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Rating rating;
+    private Feedback feedback;
     private Set<Tag> tags;
 
     public PersonBuilder() {
@@ -31,6 +33,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         rating = new Rating(DEFAULT_RATING);
+        feedback = new Feedback(DEFAULT_FEEDBACK);
         tags = new HashSet<>();
     }
 
@@ -43,6 +46,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         rating = personToCopy.getRating();
+        feedback = personToCopy.getFeedback();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -59,6 +63,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Feedback) of the {@code Person} that we are building.
+     */
+    public PersonBuilder withFeedback(String feedback) {
+        this.feedback = new Feedback(feedback);
         return this;
     }
 
@@ -95,7 +107,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, rating, tags);
+        return new Person(name, phone, email, address, rating, feedback, tags);
     }
 
 }

@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,36 +17,45 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withRating("1")
+            .withPhone("94351253").withRating("5").withFeedback("Stop taking MC")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432").withRating("2")
+            .withEmail("johnd@example.com").withPhone("98765432").withRating("8")
+            .withFeedback("You are on your way to promotion")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").withRating("3").build();
+            .withEmail("heinz@example.com").withAddress("wall street").withRating("10")
+            .withFeedback("You have the potential to be the next CEO").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withRating("3").withTags("friends").build();
+            .withEmail("cornelia@example.com").withAddress("10th street").withRating("1")
+            .withFeedback("Please come for work or we will fire you").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").withRating("10").build();
+            .withEmail("werner@example.com").withAddress("michegan ave").withRating("7")
+            .withFeedback("Good job on your recent project").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").withRating("8").build();
+            .withEmail("lydia@example.com").withAddress("little tokyo").withRating("7")
+            .withFeedback("Good job on the latest deal sealed").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").withRating("6").build();
+            .withEmail("anna@example.com").withAddress("4th street").withRating("4")
+            .withFeedback("If only your last name was what you gave every time you come for work").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").withRating("7").build();
+            .withEmail("stefan@example.com").withAddress("little india").withRating("7")
+            .withFeedback("Hoon eats too much bee hoon").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").withRating("6").build();
+            .withEmail("hans@example.com").withAddress("chicago ave").withRating("6")
+            .withFeedback("Interesting character").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-            .withRating(VALID_RATING_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withRating(VALID_RATING_AMY).withFeedback(VALID_FEEDBACK_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-            .withRating(VALID_RATING_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withRating(VALID_RATING_BOB).withFeedback(VALID_FEEDBACK_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

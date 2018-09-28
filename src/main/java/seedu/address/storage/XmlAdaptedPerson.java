@@ -16,6 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Rating;
+import seedu.address.model.person.Feedback;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,6 +36,8 @@ public class XmlAdaptedPerson {
     private String address;
     @XmlElement(required = true)
     private String rating;
+    @XmlElement(required = true)
+    private String feedback;
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -49,12 +52,13 @@ public class XmlAdaptedPerson {
      * Constructs an {@code XmlAdaptedPerson} with the given person details.
      */
     public XmlAdaptedPerson(String name, String phone, String email, String address, String rating,
-                            List<XmlAdaptedTag> tagged) {
+                            String feedback, List<XmlAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.rating = rating;
+        this.feedback = feedback;
         if (tagged != null) {
             this.tagged = new ArrayList<>(tagged);
         }
@@ -71,6 +75,7 @@ public class XmlAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         rating = source.getRating().value;
+        feedback = source.getFeedback().feedback;
         tagged = source.getTags().stream()
                 .map(XmlAdaptedTag::new)
                 .collect(Collectors.toList());
@@ -123,12 +128,20 @@ public class XmlAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName()));
         }
         if (!Rating.isValidRating(rating)) {
-            throw new IllegalValueException(Address.MESSAGE_ADDRESS_CONSTRAINTS);
+            throw new IllegalValueException(Rating.MESSAGE_RATING_CONSTRAINTS);
         }
-        final Rating modelRating= new Rating(rating);
+        final Rating modelRating = new Rating(rating);
+
+        if (feedback == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Feedback.class.getSimpleName()));
+        }
+        if (!Feedback.isValidFeedback(feedback)) {
+            throw new IllegalValueException(Feedback.MESSAGE_FEEDBACK_CONSTRAINTS);
+        }
+        final Feedback modelFeedback = new Feedback(feedback);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRating, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRating, modelFeedback, modelTags);
     }
 
     @Override

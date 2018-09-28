@@ -20,6 +20,7 @@ public class PersonCardHandle extends NodeHandle<Node> {
     private static final String PHONE_FIELD_ID = "#phone";
     private static final String EMAIL_FIELD_ID = "#email";
     private static final String RATING_FIELD_ID = "#rating";
+    private static final String FEEDBACK_FIELD_ID = "#feedback";
     private static final String TAGS_FIELD_ID = "#tags";
 
     private final Label idLabel;
@@ -28,6 +29,7 @@ public class PersonCardHandle extends NodeHandle<Node> {
     private final Label phoneLabel;
     private final Label emailLabel;
     private final Label ratingLabel;
+    private final Label feedbackLabel;
     private final List<Label> tagLabels;
 
     public PersonCardHandle(Node cardNode) {
@@ -39,6 +41,7 @@ public class PersonCardHandle extends NodeHandle<Node> {
         phoneLabel = getChildNode(PHONE_FIELD_ID);
         emailLabel = getChildNode(EMAIL_FIELD_ID);
         ratingLabel = getChildNode(RATING_FIELD_ID);
+        feedbackLabel = getChildNode(FEEDBACK_FIELD_ID);
 
         Region tagsContainer = getChildNode(TAGS_FIELD_ID);
         tagLabels = tagsContainer
@@ -72,6 +75,10 @@ public class PersonCardHandle extends NodeHandle<Node> {
         return ratingLabel.getText();
     }
 
+    public String getFeedback() {
+        return feedbackLabel.getText();
+    }
+
     public List<String> getTags() {
         return tagLabels
                 .stream()
@@ -87,6 +94,8 @@ public class PersonCardHandle extends NodeHandle<Node> {
                 && getAddress().equals(person.getAddress().value)
                 && getPhone().equals(person.getPhone().value)
                 && getEmail().equals(person.getEmail().value)
+                && getRating().equals(person.getRating().value)
+                && getFeedback().equals(person.getFeedback().feedback)
                 && ImmutableMultiset.copyOf(getTags()).equals(ImmutableMultiset.copyOf(person.getTags().stream()
                         .map(tag -> tag.tagName)
                         .collect(Collectors.toList())));
