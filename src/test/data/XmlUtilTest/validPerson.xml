@@ -4,5 +4,7 @@
     <phone>9482424</phone>
     <email>hans@example</email>
     <address>4th street</address>
+    <rating>8</rating>
+    <feedback>jedi master</feedback>
     <tagged>friends</tagged>
 </person>
