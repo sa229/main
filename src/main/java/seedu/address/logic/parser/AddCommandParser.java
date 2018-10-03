@@ -102,7 +102,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * Throws a ParseException to tell user that the command format was entered wrongly.
      * @throws ParseException
      */
-    public void wrongFormat() throws ParseException {
+    public static void wrongFormat() throws ParseException {
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 
