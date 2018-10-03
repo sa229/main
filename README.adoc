@@ -16,11 +16,12 @@ image::images/Ui.png[width="600"]
 endif::[]
 
 * SSENISUB is a desktop application to assist the HR department of a company to manage its staff. On top of just assisting HR, this application also allows the staff themselves to view their workplace performance and improve themselves.
+* It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
 * SSENISUB also doubles as a contacts manager to allow staff to easily find the contact information of their superior or colleagues.
 * Features of SSENISUB:
 ** Allows a staff to view contact information of their superiors and coworkers.
 ** Allow managers to rate and feedback on their staff's performance.
-** Allows a staff to upload contact information.
+** Allows a HR staff to upload/edit contact information.
 
 == Site Map
 
