@@ -29,6 +29,8 @@ public class Email {
 
     public final String value;
 
+    public boolean isPrivate;
+
     /**
      * Constructs an {@code Email}.
      *
@@ -38,6 +40,7 @@ public class Email {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_EMAIL_CONSTRAINTS);
         value = email;
+        isPrivate = false;
     }
 
     /**
@@ -45,6 +48,18 @@ public class Email {
      */
     public static boolean isValidEmail(String test) {
         return test.matches(EMAIL_VALIDATION_REGEX);
+    }
+
+    /**
+     * Sets the isPrivate field to true or false depending on input
+     * @param input a "Y" or "N" for Yes or No.
+     */
+    public void setPrivate(String input) {
+        if (input.equals("Y")) {
+            isPrivate = true;
+        } else if (input.equals("N")) {
+            isPrivate = false;
+        }
     }
 
     @Override
