@@ -930,7 +930,7 @@ Use case ends
 Use case ends
 
 [discrete]
-=== Use case: edit an staff information
+=== Use case: edit a staff information
 
 *MSS*
 
@@ -1040,7 +1040,7 @@ Use case ends
 *MSS*
 
 1. Manager logs into SSENISUB
-2. Manager searches for an staff
+2. Manager searches for a staff
 3. SSENISUB shows the user the staff and the manager selects the staff
 4. Manager enters feedback for the staff and submits the feedback
 5. SSENISUB displays the feedback made and stores it
