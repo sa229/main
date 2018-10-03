@@ -34,7 +34,7 @@ image::Ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* *`list`* : lists all contacts
+* *`list`* : lists all staff
 * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Accounting m/Alice Tan` :
 adds a staff named `John Doe` to SSENISUB.
 * **`delete`**`3` : deletes the 3rd staff shown in the current list
@@ -60,35 +60,35 @@ adds a staff named `John Doe` to SSENISUB.
 
 Format: `help`
 
-=== Adding a person: `add`
+=== Adding a staff: `add`
 
 Adds a staff to the SSENISUB +
 Format: `add n/NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS d/DEPARTMENT m/MANAGER [t/TAG]...`
 
 [TIP]
-A person can have any number of tags (including 0)
+A staff can have any number of tags (including 0)
 
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Accounting m/Marcus Lim t/staff`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 d/Marketing m/Edmund Tan t/staff`
 
-=== Listing all persons : `list`
+=== Listing all staff : `list`
 
-Shows a list of all persons in the address book. +
+Shows a list of all staff in SSENISUB. +
 Format: `list`
 
-=== Editing a person : `edit`
+=== Editing a staff : `edit`
 
-Edits an existing person in the address book. +
+Edits an existing staff in SSENISUB. +
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SALARY] [d/DEPARTMENT] [m/MANAGER] [t/TAG]...`
 
 ****
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
+* Edits the staff at the specified `INDEX`. The index refers to the index number shown in the displayed staff list. The index *must be a positive integer* 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person's tags by typing `t/` without specifying any tags after it.
+* When editing tags, the existing tags of the staff will be removed i.e adding of tags is not cumulative.
+* You can remove all the staff's tags by typing `t/` without specifying any tags after it.
 ****
 
 Examples:
@@ -99,9 +99,9 @@ respectively.
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd staff to be `Betsy Crower` and clears all existing tags.
 
-=== Rating an employee: `rate`
+=== Rating a staff: `rate`
 
-Rates an existing employee in SSENISUB +
+Rates an existing staff in SSENISUB +
 Format: `rate INDEX r/8`
 
 Examples:
@@ -109,9 +109,9 @@ Examples:
 * `rate 3 r/8` +
 Rate the 3rd staff of a rating 8.
 
-=== Locating persons by name: `find`
+=== Locating staff by name: `find`
 
-Finds persons whose names contain any of the given keywords. +
+Finds staff whose names contain any of the given keywords. +
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 ****
@@ -119,7 +119,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Staff matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 ****
 
 Examples:
@@ -127,16 +127,16 @@ Examples:
 * `find John` +
 Returns `john` and `John Doe`
 * `find Betsy Tim John` +
-Returns any person having names `Betsy`, `Tim`, or `John`
+Returns any staff having names `Betsy`, `Tim`, or `John`
 
-=== Deleting a person : `delete`
+=== Deleting a staff : `delete`
 
-Deletes the specified person from SSENISUB. +
+Deletes the specified staff from SSENISUB. +
 Format: `delete INDEX`
 
 ****
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the staff at the specified `INDEX`.
+* The index refers to the index number shown in the displayed staff list.
 * The index *must be a positive integer* 1, 2, 3, ...
 ****
 
@@ -144,19 +144,19 @@ Examples:
 
 * `list` +
 `delete 2` +
-Deletes the 2nd person in SSENISUB.
+Deletes the 2nd staff in SSENISUB.
 * `find Betsy` +
 `delete 1` +
-Deletes the 1st person in the results of the `find` command.
+Deletes the 1st staff in the results of the `find` command.
 
-=== Selecting a person : `select`
+=== Selecting a staff : `select`
 
-Selects the person identified by the index number used in the displayed person list. +
+Selects the staff identified by the index number used in the displayed staff list. +
 Format: `select INDEX`
 
 ****
-* Selects the person and loads the Google search page the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Selects the staff and loads the Google search page the staff at the specified `INDEX`.
+* The index refers to the index number shown in the displayed staff list.
 * The index *must be a positive integer* `1, 2, 3, ...`
 ****
 
@@ -164,10 +164,10 @@ Examples:
 
 * `list` +
 `select 2` +
-Selects the 2nd person in SSENISUB.
+Selects the 2nd staff in SSENISUB.
 * `find Betsy` +
 `select 1` +
-Selects the 1st person in the results of the `find` command.
+Selects the 1st staff in the results of the `find` command.
 
 === Listing entered commands : `history`
 
