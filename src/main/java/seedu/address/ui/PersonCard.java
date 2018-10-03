@@ -44,21 +44,24 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        if (person.getPhone().isPrivate()) {
-            phone.setText("Private phone number");
-        } else {
-            phone.setText(person.getPhone().value);
-        }
-        if (person.getAddress().isPrivate()) {
-            address.setText("Private address");
-        } else {
-            address.setText(person.getAddress().value);
-        }
-        if (person.getEmail().isPrivate()) {
-            email.setText("Private email");
-        } else {
-            email.setText(person.getEmail().value);
-        }
+        phone.setText(person.getPhone().value);
+        address.setText(person.getAddress().value);
+        email.setText(person.getEmail().value);
+        //        if (person.getPhone().isPrivate()) {
+        //            phone.setText("Private phone number");
+        //        } else {
+        //            phone.setText(person.getPhone().value);
+        //        }
+        //        if (person.getAddress().isPrivate()) {
+        //            address.setText("Private address");
+        //        } else {
+        //            address.setText(person.getAddress().value);
+        //        }
+        //        if (person.getEmail().isPrivate()) {
+        //            email.setText("Private email");
+        //        } else {
+        //            email.setText(person.getEmail().value);
+        //        }
         person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
