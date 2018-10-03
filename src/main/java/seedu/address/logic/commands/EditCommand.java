@@ -53,7 +53,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
-    public final EditPersonDescriptor editPersonDescriptor;
+    private final EditPersonDescriptor editPersonDescriptor;
 
     /**
      * @param index of the person in the filtered person list to edit
