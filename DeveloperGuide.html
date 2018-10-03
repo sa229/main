@@ -76,7 +76,7 @@
 <li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
+<li><a href="#deleting-a-staff">G.2. Deleting a staff</a></li>
 <li><a href="#saving-data">G.3. Saving data</a></li>
 </ul>
 </li>
@@ -483,7 +483,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
 </li>
 <li>
-<p>The command execution can affect the <code>Model</code> (e.g. adding a person) and/or raise events.</p>
+<p>The command execution can affect the <code>Model</code> (e.g. adding a staff) and/or raise events.</p>
 </li>
 <li>
 <p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
@@ -621,7 +621,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th person in the address book. The <code>delete</code> command calls <code>Model#commitAddressBook()</code>, causing the modified state of the address book after the <code>delete 5</code> command executes to be saved in the <code>addressBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted address book state.</p>
+<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th staff in the address book. The <code>delete</code> command calls <code>Model#commitAddressBook()</code>, causing the modified state of the address book after the <code>delete 5</code> command executes to be saved in the <code>addressBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted address book state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -629,7 +629,7 @@ Additionally, it implements the following operations:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new person. The <code>add</code> command also calls <code>Model#commitAddressBook()</code>, causing another modified address book state to be saved into the <code>addressBookStateList</code>.</p>
+<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new staff. The <code>add</code> command also calls <code>Model#commitAddressBook()</code>, causing another modified address book state to be saved into the <code>addressBookStateList</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -649,7 +649,7 @@ If a command fails its execution, it will not call <code>Model#commitAddressBook
 </table>
 </div>
 <div class="paragraph">
-<p>Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoAddressBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores the address book to that state.</p>
+<p>Step 4. The user now decides that adding the staff was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoAddressBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores the address book to that state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -740,7 +740,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the person being deleted).</p>
+<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the staff being deleted).</p>
 </li>
 <li>
 <p>Cons: We must ensure that the implementation of each individual command are correct.</p>
@@ -1269,7 +1269,7 @@ Do take a look at <a href="#Design-Logic">Section 2.3, &#8220;Logic component&#8
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a shorthand equivalent alias for each of the individual commands. For example, besides typing <code>clear</code>, the user can also type <code>c</code> to remove all persons in the list.</p>
+<p>Add a shorthand equivalent alias for each of the individual commands. For example, besides typing <code>clear</code>, the user can also type <code>c</code> to remove all staff in the list.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -1358,7 +1358,7 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 <div class="ulist">
 <ul>
 <li>
-<p>Implement a <code>removeTag(Tag)</code> method in <a href="https://github.com/CS2103-AY1819S1-T13-2/main/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a>. Loop through each person, and remove the <code>tag</code> from each person.</p>
+<p>Implement a <code>removeTag(Tag)</code> method in <a href="https://github.com/CS2103-AY1819S1-T13-2/main/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a>. Loop through each staff, and remove the <code>tag</code> from each staff.</p>
 </li>
 <li>
 <p>Add a new API method <code>deleteTag(Tag)</code> in <a href="https://github.com/CS2103-AY1819S1-T13-2/main/src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a>. Your <a href="https://github.com/CS2103-AY1819S1-T13-2/main/src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a> should call <code>AddressBook#removeTag(Tag)</code>.</p>
@@ -2109,7 +2109,7 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">* *</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">HR User</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Have different authorization settings for people</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Employees can only use commands they should be able to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Staff can only use commands they should be able to</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">* * *</p></td>
@@ -2126,8 +2126,8 @@ for <code>RemarkCommandParser</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">* *</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">HR User</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set a salary for an employee</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Maintain a record of the employee’s payroll</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set a salary for a staff</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maintain a record of the staff’s payroll</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">* *</p></td>
@@ -2151,13 +2151,13 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">* *</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manager</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Set work ratings &amp; feedback for certain staff</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Evaluate the employees under me</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Evaluate the staff under me</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">* *</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manager</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Update work ratings &amp; feedback for certain staff</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Edit the employee’s rating under me</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Edit the staff’s rating under me</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">* *</p></td>
@@ -2168,7 +2168,7 @@ for <code>RemarkCommandParser</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">* *</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manager</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Search by employee tags</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Search by staff tags</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Find the people I require more conveniently</p></td>
 </tr>
 <tr>
@@ -2181,7 +2181,7 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">*</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Manager</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Receive notification of staff whose rating falls below average for 3 months consecutively under my supervision</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Better manage my employees and find out if they need any help</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Better manage my staff and find out if they need any help</p></td>
 </tr>
 </tbody>
 </table>
@@ -2193,7 +2193,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>AddressBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-delete-person" class="discrete">Use case: Delete person</h3>
+<h3 id="use-case-delete-person" class="discrete">Use case: delete person</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2249,10 +2249,10 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Employee logs into SSENISUB</p>
+<p>Staff logs into SSENISUB</p>
 </li>
 <li>
-<p>Employee inputs keyword to view his own ratings</p>
+<p>Staff inputs keyword to view his own ratings</p>
 </li>
 <li>
 <p>SSENISUB displays the current user’s ratings and feedback (if any)</p>
@@ -2302,7 +2302,7 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ol>
 </div>
-<h3 id="use-case-edit-an-employee-information" class="discrete">Use case: edit an employee information</h3>
+<h3 id="use-case-edit-a-staff-information" class="discrete">Use case: edit a staff information</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2315,7 +2315,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>HR staff searches for the staff to edit and selects it</p>
 </li>
 <li>
-<p>HR staff makes the necessary changes to the employee</p>
+<p>HR staff makes the necessary changes to the staff</p>
 </li>
 <li>
 <p>SSENISUB confirms with the HR staff the changes</p>
@@ -2334,27 +2334,27 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a.  No employees are being displayed by SSENISUB</p>
+<p>2a.  No staff are being displayed by SSENISUB</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
 </li>
 </ul>
 </div>
-<h3 id="use-case-search-for-employee" class="discrete">Use case: search for employee</h3>
+<h3 id="use-case-search-for-staff" class="discrete">Use case: search for staff</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Employee logs in to SSENISUB</p>
+<p>Staff logs in to SSENISUB</p>
 </li>
 <li>
-<p>Employee inputs the keyword to search followed by certain keywords pertaining to the employee.</p>
+<p>Staff inputs the keyword to search followed by certain keywords pertaining to the staff.</p>
 </li>
 <li>
-<p>SSENISUB displays the list of employees that matches the keywords supplied.</p>
+<p>SSENISUB displays the list of staff that matches the keywords supplied.</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
@@ -2367,14 +2367,14 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a. SSENISUB shows no employees with the matching keywords</p>
+<p>3a. SSENISUB shows no staff with the matching keywords</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
 </li>
 </ul>
 </div>
-<h3 id="use-case-add-employee" class="discrete">Use case: add employee</h3>
+<h3 id="use-case-add-staff" class="discrete">Use case: add staff</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2384,7 +2384,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>HR staff logs in to SSENISUB</p>
 </li>
 <li>
-<p>HR staff adds the Employee details into SSENISUB</p>
+<p>HR staff adds the staff details into SSENISUB</p>
 </li>
 <li>
 <p>SSENISUB shows success details of the add</p>
@@ -2406,14 +2406,14 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </li>
 <li>
-<p>2b. Employee details already exists, receives a warning</p>
+<p>2b. Staff details already exists, receives a warning</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2c. User does not have authorization to add Employees, receives warning</p>
+<p>2c. User does not have authorization to add staff, receives warning</p>
 <div class="paragraph">
 <p>Information of User gets sent to higher up in charge</p>
 </div>
@@ -2426,7 +2426,7 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-review-employee" class="discrete">Use case: review employee</h3>
+<h3 id="use-case-rate-staff" class="discrete">Use case: rate staff</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2436,16 +2436,16 @@ for <code>RemarkCommandParser</code>.</p>
 <p>Manager logs in to SSENISUB</p>
 </li>
 <li>
-<p>Manager requests to look for Employee</p>
+<p>Manager requests to look for staff</p>
 </li>
 <li>
-<p>SSENISUB shows a list of Employees</p>
+<p>SSENISUB shows a list of staff</p>
 </li>
 <li>
-<p>Manager requests to update review of a particular Employee</p>
+<p>Manager requests to update review of a particular staff</p>
 </li>
 <li>
-<p>SSENISUB updates review of Employee</p>
+<p>SSENISUB updates review of staff</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
@@ -2471,7 +2471,7 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-remove-employee" class="discrete">Use case: remove employee</h3>
+<h3 id="use-case-remove-staff" class="discrete">Use case: remove staff</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2484,13 +2484,13 @@ for <code>RemarkCommandParser</code>.</p>
 <p>HR staff searches for the particular staff to remove</p>
 </li>
 <li>
-<p>HR inputs command to remove the employee</p>
+<p>HR inputs command to remove the staff</p>
 </li>
 <li>
-<p>SSENISUB confirms with the HR staff before removing the employee</p>
+<p>SSENISUB confirms with the HR staff before removing the staff</p>
 </li>
 <li>
-<p>SSENISUB removes the employee and displays a success message</p>
+<p>SSENISUB removes the staff and displays a success message</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
@@ -2503,14 +2503,14 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a. The employee cannot be found</p>
+<p>3a. The staff cannot be found</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
 </li>
 </ul>
 </div>
-<h3 id="use-case-set-employees-feedback" class="discrete">Use case: set employees’ feedback</h3>
+<h3 id="use-case-set-staff-feedback" class="discrete">Use case: set staff’ feedback</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2520,13 +2520,13 @@ for <code>RemarkCommandParser</code>.</p>
 <p>Manager logs into SSENISUB</p>
 </li>
 <li>
-<p>Manager searches for an employee</p>
+<p>Manager searches for a staff</p>
 </li>
 <li>
-<p>SSENISUB shows the user the employee and the manager selects the employee</p>
+<p>SSENISUB shows the user the staff and the manager selects the staff</p>
 </li>
 <li>
-<p>Manager enters feedback for the employee and submits the feedback</p>
+<p>Manager enters feedback for the staff and submits the feedback</p>
 </li>
 <li>
 <p>SSENISUB displays the feedback made and stores it</p>
@@ -2542,14 +2542,14 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a. The employee cannot be found</p>
+<p>3a. The staff cannot be found</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
 </li>
 </ul>
 </div>
-<h3 id="use-case-sort-ratings-of-employees" class="discrete">Use case: sort ratings of employees</h3>
+<h3 id="use-case-sort-ratings-of-staff" class="discrete">Use case: sort ratings of staff</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2559,13 +2559,13 @@ for <code>RemarkCommandParser</code>.</p>
 <p>Manager logs into SSENISUB</p>
 </li>
 <li>
-<p>Manager displays all employees under him/her</p>
+<p>Manager displays all staff under him/her</p>
 </li>
 <li>
-<p>Manager inputs the command to sort the employees by their ratings</p>
+<p>Manager inputs the command to sort the staff by their ratings</p>
 </li>
 <li>
-<p>SSENISUB sorts the employees by the user’s preference and displays</p>
+<p>SSENISUB sorts the staff by the user’s preference and displays</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
@@ -2578,7 +2578,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. SSENISUB does not show any employees under the user</p>
+<p>2a. SSENISUB does not show any staff under the user</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
@@ -2596,7 +2596,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>Should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java <code>9</code> or higher installed.</p>
 </li>
 <li>
-<p>Should be able to hold up to 100,000 persons without a noticeable sluggishness in performance for typical usage.</p>
+<p>Should be able to hold up to 100,000 staff without a noticeable sluggishness in performance for typical usage.</p>
 </li>
 <li>
 <p>Should have a customizable personalized interface.</p>
@@ -2682,15 +2682,15 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.2. Deleting a person</a></h3>
+<h3 id="deleting-a-staff"><a class="link" href="#deleting-a-staff">G.2. Deleting a staff</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Deleting a person while all persons are listed</p>
+<p>Deleting a staff while all staff are listed</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<p>Prerequisites: List all staff using the <code>list</code> command. Multiple staff in the list.</p>
 </li>
 <li>
 <p>Test case: <code>delete 1</code><br>
@@ -2698,7 +2698,7 @@ Expected: First contact is deleted from the list. Details of the deleted contact
 </li>
 <li>
 <p>Test case: <code>delete 0</code><br>
-Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.</p>
+Expected: No staff is deleted. Error details shown in the status message. Status bar remains the same.</p>
 </li>
 <li>
 <p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
@@ -2734,4 +2734,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-03 14:58:17 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-03 15:25:08 UTC</div></div></div></body></html>
