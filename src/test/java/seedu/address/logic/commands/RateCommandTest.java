@@ -22,13 +22,6 @@ public class RateCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
-    public void execute_throwsError() {
-        Person personToRate = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        RateCommand rateCommand = new RateCommand(INDEX_FIRST_PERSON, new Rating("5"));
-        Assertions.assertThrows(CommandException.class, () -> rateCommand.execute(model, commandHistory));
-    }
-
-    @Test
     public void equals() {
         RateCommand rateFirstCommand = new RateCommand(INDEX_FIRST_PERSON, new Rating("1"));
         RateCommand rateSecondCommand = new RateCommand(INDEX_SECOND_PERSON, new Rating("10"));
