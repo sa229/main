@@ -41,4 +41,15 @@ public class AddressTest {
         //default address
         assertFalse(address.isPrivate());
     }
+
+    @Test
+    public void setPrivate() {
+        Address add = new Address("BL");
+        //set to private
+        add.setPrivate("Y");
+        assertTrue(add.isPrivate());
+        //set to not private
+        add.setPrivate("N");
+        assertFalse(add.isPrivate());
+    }
 }
