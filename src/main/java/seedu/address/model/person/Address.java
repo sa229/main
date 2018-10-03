@@ -20,7 +20,7 @@ public class Address {
 
     public final String value;
 
-    public boolean isPrivate;
+    private boolean isPrivate;
 
     /**
      * Constructs an {@code Address}.
@@ -39,6 +39,14 @@ public class Address {
      */
     public static boolean isValidAddress(String test) {
         return test.matches(ADDRESS_VALIDATION_REGEX);
+    }
+
+    /**
+     * Getter for isPrivate
+     * @return isPrivate
+     */
+    public boolean isPrivate() {
+        return isPrivate;
     }
 
     /**

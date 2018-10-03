@@ -37,31 +37,35 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRIVATE_PHONE, PREFIX_PHONE,
                         PREFIX_PRIVATE_EMAIL, PREFIX_EMAIL, PREFIX_PRIVATE_ADDRESS, PREFIX_ADDRESS, PREFIX_TAG);
 
-//        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PRIVATE_ADDRESS, PREFIX_PRIVATE_PHONE, PREFIX_PRIVATE_EMAIL)
-//                || !argMultimap.getPreamble().isEmpty()) {
-//            if (!arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
-//                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-//            }
-//        }
-
         if (argMultimap.getPreamble().isEmpty() && arePrefixesPresent(argMultimap, PREFIX_NAME)) {
-            if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_PHONE) || arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
-                if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_ADDRESS) || arePrefixesPresent(argMultimap, PREFIX_ADDRESS)) {
-                    if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_EMAIL) || arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
-                    } else wrongFormat();
-                } else wrongFormat();
-            } else wrongFormat();
-        } else wrongFormat();
+            if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_PHONE)
+                    || arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
+                if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_ADDRESS)
+                        || arePrefixesPresent(argMultimap, PREFIX_ADDRESS)) {
+                    if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_EMAIL)
+                            || arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
+                    } else {
+                        wrongFormat();
+                    }
+                } else {
+                    wrongFormat();
+                }
+            } else {
+                wrongFormat();
+            }
+        } else {
+            wrongFormat();
+        }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
         Phone phone;
-       if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_PHONE)) {
-           phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PRIVATE_PHONE).get());
-           phone.setPrivate("Y");
-       } else {
-           phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-       }
+        if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_PHONE)) {
+            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PRIVATE_PHONE).get());
+            phone.setPrivate("Y");
+        } else {
+            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        }
 
         Email email;
         if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_EMAIL)) {

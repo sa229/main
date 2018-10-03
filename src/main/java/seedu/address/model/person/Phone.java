@@ -14,7 +14,8 @@ public class Phone {
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String PHONE_VALIDATION_REGEX = "\\d{3,}";
     public final String value;
-    public boolean isPrivate;
+
+    private boolean isPrivate;
 
     /**
      * Constructs a {@code Phone}.
@@ -35,6 +36,13 @@ public class Phone {
         return test.matches(PHONE_VALIDATION_REGEX);
     }
 
+    /**
+     * Getter for isPrivate
+     * @return isPrivate
+     */
+    public boolean isPrivate() {
+        return isPrivate;
+    }
     /**
      * Sets the isPrivate field to true or false depending on input
      * @param input a "Y" or "N" for Yes or No.

@@ -29,7 +29,7 @@ public class Email {
 
     public final String value;
 
-    public boolean isPrivate;
+    private boolean isPrivate;
 
     /**
      * Constructs an {@code Email}.
@@ -48,6 +48,14 @@ public class Email {
      */
     public static boolean isValidEmail(String test) {
         return test.matches(EMAIL_VALIDATION_REGEX);
+    }
+
+    /**
+     * Getter for isPrivate
+     * @return isPrivate
+     */
+    public boolean isPrivate() {
+        return isPrivate;
     }
 
     /**
