@@ -28,7 +28,7 @@ public class RateCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_RATING + "RATING]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "5";
+            + "r/5";
 
     public static final String MESSAGE_RATING_PERSON_SUCCESS = "Rate updated for Person: %1$s";
     public static final String MESSAGE_RATING_UNCHANGED = "This person already has this rating.";

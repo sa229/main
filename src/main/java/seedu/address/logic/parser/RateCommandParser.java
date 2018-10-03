@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 
-import java.util.NoSuchElementException;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -28,18 +26,20 @@ public class RateCommandParser implements Parser<RateCommand> {
         Index index;
         String rating;
 
-        try {
-            rating = argMultimap.getValue(PREFIX_RATING).get();
-        } catch (NoSuchElementException nse) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE), nse);
+        if (!isPrefixPresent(argMultimap, PREFIX_RATING) || argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
         }
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE), pe);
-        }
+        rating = argMultimap.getValue(PREFIX_RATING).get();
+        index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
         return new RateCommand(index, new Rating(rating));
+    }
+
+    /**
+     * Returns true if prefix contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
+        return argumentMultimap.getValue(prefix).isPresent();
     }
 }

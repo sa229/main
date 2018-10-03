@@ -20,17 +20,44 @@ import seedu.address.model.person.Rating;
  */
 public class RateCommandParserTest {
 
+    private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE);
+
     private RateCommandParser parser = new RateCommandParser();
 
     @Test
-    public void parse_validArgs_returnsRateCommand() {
+    public void parse_validArgs_success() {
         assertParseSuccess(parser, "1 " + PREFIX_RATING + "5",
                 new RateCommand(INDEX_FIRST_PERSON, new Rating("5")));
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a " + PREFIX_RATING + "5",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
+    public void parse_invalidPreamble_failure() {
+        // negative index
+        assertParseFailure(parser, "-5" + PREFIX_RATING + "5", MESSAGE_INVALID_FORMAT);
+
+        // zero index
+        assertParseFailure(parser, "0" + PREFIX_RATING + "5", MESSAGE_INVALID_FORMAT);
+
+        // invalid arguments being parsed as preamble
+        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+
+        // invalid prefix being parsed as preamble
+        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_compulsoryFieldMissing_failure() {
+        // missing rating prefix
+        assertParseFailure(parser, PREFIX_RATING + "8", MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_invalidArgs_failure() {
+        // larger than 10
+        assertParseFailure(parser, PREFIX_RATING + "11", MESSAGE_INVALID_FORMAT);
+
+        // non-numeric argument
+        assertParseFailure(parser, PREFIX_RATING + "five", MESSAGE_INVALID_FORMAT);
     }
 }
