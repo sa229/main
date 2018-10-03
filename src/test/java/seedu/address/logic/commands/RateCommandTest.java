@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -23,7 +24,7 @@ public class RateCommandTest {
     @Test
     public void execute_throwsError() {
         Person personToRate = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        RateCommand rateCommand = new RateCommand(INDEX_FIRST_PERSON, new Rating("5") );
+        RateCommand rateCommand = new RateCommand(INDEX_FIRST_PERSON, new Rating("5"));
         Assertions.assertThrows(CommandException.class, () -> rateCommand.execute(model, commandHistory));
     }
 
