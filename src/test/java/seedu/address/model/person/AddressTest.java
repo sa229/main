@@ -34,4 +34,11 @@ public class AddressTest {
         assertTrue(Address.isValidAddress("-")); // one character
         assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
     }
+
+    @Test
+    public void isPrivate() {
+        Address address = new Address("Boon Lay");
+        //default address
+        assertFalse(address.isPrivate());
+    }
 }
