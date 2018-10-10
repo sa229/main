@@ -33,7 +33,7 @@ public class Salary {
     @Override
     public boolean equals(Object o) {
 
-        Salary s = (Salary)o;
+        Salary s = (Salary) o;
 
         if (this.getSalary() == s.getSalary()) {
             return true;
