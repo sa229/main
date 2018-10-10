@@ -26,6 +26,22 @@ public class Salary {
         return test.matches(SALARY_VALIDATION_REGEX);
     }
 
+    public int getSalary() {
+        return salary;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        Salary s = (Salary)o;
+
+        if (this.getSalary() == s.getSalary()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     @Override
     public String toString() {
         return String.valueOf(salary);
