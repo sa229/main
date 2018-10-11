@@ -40,6 +40,26 @@ public class RatingTest {
     }
 
     @Test
+    public void isValidInputRating() {
+        // null rating
+        Assert.assertThrows(NullPointerException.class, () -> Rating.isValidInputRating(null));
+
+        // invalid rating
+        assertFalse(Rating.isValidInputRating("")); // empty string
+        assertFalse(Rating.isValidInputRating(" ")); // spaces only
+        assertFalse(Rating.isValidInputRating("91")); // more than 10
+        assertFalse(Rating.isValidInputRating("0")); // less than 1
+        assertFalse(Rating.isValidInputRating("rating")); // non-numeric
+        assertFalse(Rating.isValidInputRating("9011p041")); // alphabets within digits
+        assertFalse(Rating.isValidInputRating("9312 1534")); // spaces within digits
+
+        // valid rating
+        assertTrue(Rating.isValidInputRating("1")); // between 1 to 10
+        assertTrue(Rating.isValidInputRating("10"));
+        assertTrue(Rating.isValidInputRating("5"));
+    }
+
+    @Test
     public void equals() {
         Rating zeroRating = new Rating("0");
         Rating fullRating = new Rating("10");
