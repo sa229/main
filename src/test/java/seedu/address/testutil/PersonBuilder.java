@@ -34,7 +34,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        rating = Rating.DEFAULT_INITIAL_RATING;
+        rating = new Rating("5");
         tags = new HashSet<>();
     }
 
