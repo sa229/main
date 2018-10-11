@@ -32,14 +32,14 @@ public class Rating {
      * Returns true if a given string is a valid rating number.
      */
     public static boolean isValidRating(String test) {
-        return test.matches(VALIDATION_INPUT_REGEX);
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**
      * Returns true if a given string is a valid rating number.
      */
     public static boolean isValidInputRating(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_INPUT_REGEX);
     }
 
     @Override
