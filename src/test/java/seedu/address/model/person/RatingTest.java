@@ -53,7 +53,7 @@ public class RatingTest {
         assertFalse(Rating.isValidInputRating("9011p041")); // alphabets within digits
         assertFalse(Rating.isValidInputRating("9312 1534")); // spaces within digits
 
-        // valid rating
+        // valid input rating
         assertTrue(Rating.isValidInputRating("1")); // between 1 to 10
         assertTrue(Rating.isValidInputRating("10"));
         assertTrue(Rating.isValidInputRating("5"));
