@@ -23,7 +23,7 @@ public class RateCommand extends Command {
     public static final String COMMAND_WORD = "rate";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Rates the person identified "
-            + "by the index number used in the displayed person list from 0 to 10. "
+            + "by the index number used in the displayed person list from 1 to 10. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_RATING + "RATING]\n"
