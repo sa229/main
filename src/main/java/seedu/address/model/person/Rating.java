@@ -11,9 +11,8 @@ public class Rating {
 
     public static final Rating DEFAULT_INITIAL_RATING = new Rating("0");
     public static final String MESSAGE_CONSTRAINTS =
-            "Ratings should only contain numbers, and it should be between 1 to 10";
+            "Ratings should only contain numbers, and it should be between 0 to 10";
     public static final String VALIDATION_REGEX = "[0-9]|10";
-    public static final String VALIDATION_INPUT_REGEX = "[1-9]|10";
     public final String value;
 
 
@@ -33,13 +32,6 @@ public class Rating {
      */
     public static boolean isValidRating(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns true if a given string is a valid rating number input.
-     */
-    public static boolean isValidInputRating(String test) {
-        return test.matches(VALIDATION_INPUT_REGEX);
     }
 
     @Override
