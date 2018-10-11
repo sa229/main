@@ -36,7 +36,7 @@ public class RateCommandParser implements Parser<RateCommand> {
     }
 
     /**
-     * Returns true if prefix contains empty {@code Optional} values in the given
+     * Returns true if prefix does not contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
     private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
