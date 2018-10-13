@@ -1,4 +1,4 @@
-= AddressBook Level 4 - Developer Guide
+= SSENISUB - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
@@ -12,9 +12,9 @@ ifdef::env-github[]
 :note-caption: :information_source:
 :warning-caption: :warning:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level4/tree/master
+:repoURL: https://github.com/CS2103-AY1819S1-T13-2/main
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `Team T13-2`      Since: `Oct 2018`      Licence: `MIT`
 
 == Setting up
 
@@ -815,13 +815,13 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 
 *Target user profile*:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing over mouse input
-* is reasonably comfortable using CLI apps
+* For organisations to maintain a hierarchical form of managing manpower within the organisation itself
+* Has a need to manage a significant number of contacts
+* Prefer desktop apps over other types
+* Prefers typing over mouse input
+* Is reasonably comfortable using CLI apps
 
-*Value proposition*: manage contacts faster than a typical mouse/GUI driven app
+*Value proposition*: This software allows the organisation to manage their staff and details, improving work productivity.
 
 [appendix]
 == User Stories
@@ -830,21 +830,40 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
-|Priority |As a ... |I want to ... |So that I can...
-|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
-
-|`* * *` |user |add a new person |
-
-|`* * *` |user |delete a person |remove entries that I no longer need
-
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
-
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
-
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+| Priority | As a ... | I want to be able to …                                                                                         | So that I can ...                                                        |
+ * * *      | Staff    | Log in                                                                                                         | Access the system                                                         |
+ * * *      | Staff    | Log out                                                                                                        | Safely log out of the system and prevent others from accessing my account |
+ * * *      | Staff    | Edit my profile                                                                                                | Update personal information                                               |
+ * * *      | Staff    | See a help page                                                                                                | Know what is the functionality of the software                            |
+ * * *      | Staff    | Have my personal information set to private                                                                    | Continue working in peace                                                 |
+ * * *      | Staff    | View current personal ratings and feedbacks                                                                    | Improve myself to work better                                             |
+ * * *      | Staff    | Find staff by name                                                                                             | I can find his/her contact information                                    |
+ * *       | Staff    | Undo my last command                                                                                           | I can undo my mistakes                                                    |
+ *        | Staff    | View past personal ratings and feedbacks                                                                       | Look at my progress performance                                           |
+ *        | Staff    | Be able to give my manager feedback                                                                            | Allow my manager to improve on himself/herself                            |
+ *        | Staff    | Receive an email if rating fall before average                                                                 | Track my work progress and set reminder to myself to work harder          |
+ *        | Staff    | Set a rating goal                                                                                              | Strive to work harder to hit my promotion                                 |
+ *        | Staff    | Change command keywords                                                                                        | Use words i prefer                                                        |
+ *        | Staff    | Upload a display picture                                                                                       | Allow other users of the system to identify who I am                      |
+ *        | Staff    | Arrange for meetings with other staff                                                                          | Discuss project details with the other core members                       |
+ * * *      | HR User  | Add a new staff                                                                                                | Update the organisation’s structure appropriately                         |
+ * * *      | HR User  | Delete a staff                                                                                                 | Remove entries that no longer work here                                   |
+ * * *      | HR User  | Edit staff details                                                                                             | Update the staff position if he/she is promoted                           |
+ * *       | HR User  | Have different authorization settings for people                                                               | Employees can only use commands they should be able to                    |
+ * * *      | HR User  | Allocate staff to a department                                                                                 | Manage the manpower within the organization                               |
+ * * *      | HR User  | Allocate staff to a manager                                                                                    | Manage staff to manager                                                   |
+ * *       | HR User  | Set a salary for an employee                                                                                   | Maintain a record of the employee’s payroll                               |
+ * *       | HR User  | Know the number of staff in each department                                                                    | Plan for activities                                                       |
+ * * *      | Manager  | Be able to look for a particular staff information from a particular department                                | Search a list of contacts by tags                                         |
+ * * *      | Manager  | Be able to list the staff                                                                                      | View all the staff under my supervision                                   |
+ * *       | Manager  | Set work ratings & feedback for certain staff                                                                  | Evaluate the employees under me                                           |
+ * *       | Manager  | Update work ratings & feedback for certain staff                                                               | Edit the employee’s rating under me                                       |
+ * *       | Manager  | Sort by ratings                                                                                                | Reward the highly rated performers and identify the weaker ones           |
+ * *       | Manager  | Search by employee tags                                                                                        | Find the people I require more conveniently                               |
+ *        | Manager  | Receive notification to rate staff                                                                             | Remember to rate my staff and give timely feedback                        |
+ *        | Manager  | Receive notification of staff whose rating falls below average for 3 months consecutively under my supervision | Better manage my employees and find out if they need any help             |
 |=======================================================================
 
-_{More to be added}_
 
 [appendix]
 == Use Cases
@@ -877,16 +896,189 @@ Use case ends.
 +
 Use case resumes at step 2.
 
-_{More to be added}_
+[discrete]
+=== Use case: view personal ratings
+
+*MSS*
+
+1. Employee logs into SSENISUB
+2. Employee inputs keyword to view his own ratings
+3. SSENISUB displays the current user’s ratings and feedback (if any)
++
+Use case ends
+
+[discrete]
+=== Use case: view help page
+
+*MSS*
+
+1. A user logs into SSENISUB
+2. User keys in the keyword to display the help page
+3. SSENISUB displays the help page
++
+Use case ends
+
+[discrete]
+=== Use case: undo last action
+
+*MSS*
+
+1. User does some action on SSENISUB
+2. User enters the command to undo the last action made
+3. SSENISUB undo last action and tells user that previous action has been undone
++
+Use case ends
+
+[discrete]
+=== Use case: edit an employee information
+
+*MSS*
+
+1. HR staff logs in to SSENISUB
+2. HR staff searches for the staff to edit and selects it
+3. HR staff makes the necessary changes to the employee
+4. SSENISUB confirms with the HR staff the changes
+5. HR staff confirms and the changes are made
++
+Use case ends
+
+*Extensions*
+[none]
+* 2a.  No employees are being displayed by SSENISUB
++
+Use case ends
+
+[discrete]
+=== Use case: search for employee
+
+*MSS*
+
+1. Employee logs in to SSENISUB
+2. Employee inputs the keyword to search followed by certain keywords pertaining to the employee.
+3. SSENISUB displays the list of employees that matches the keywords supplied.
++
+Use case ends
+
+*Extensions*
+[none]
+* 3a. SSENISUB shows no employees with the matching keywords
++
+Use case ends
+
+[discrete]
+=== Use case: add employee
+
+*MSS*
+
+1. HR staff logs in to SSENISUB
+2. HR staff adds the Employee details into SSENISUB
+3. SSENISUB shows success details of the add
++
+Use case ends
+
+*Extensions*
+[none]
+* 1b. User inputs wrong login information, receives warning
++
+Use case ends
+
+* 2b. Employee details already exists, receives a warning
++
+Use case ends
+[none]
+** 2c. User does not have authorization to add Employees, receives warning
++
+Information of User gets sent to higher up in charge
++
+Use case ends
+
+[discrete]
+=== Use case: review employee
+
+*MSS*
+
+1. Manager logs in to SSENISUB
+2. Manager requests to look for Employee
+3. SSENISUB shows a list of Employees
+4. Manager requests to update review of a particular Employee
+5. SSENISUB updates review of Employee
++
+Use case ends
+
+*Extensions*
+[none]
+* 3a. The list is empty, receives warning
++
+Use case ends     
+
+* 4a. The given index is invalid, SSENISUB shows an error message
++
+Use case ends
+
+[discrete]
+=== Use case: remove employee
+
+*MSS*
+
+1. HR staff logs in to SSENISUB
+2. HR staff searches for the particular staff to remove
+3. HR inputs command to remove the employee
+4. SSENISUB confirms with the HR staff before removing the employee
+5. SSENISUB removes the employee and displays a success message
++
+Use case ends
+
+*Extensions*
+[none]
+* 3a. The employee cannot be found
++
+Use case ends
+
+[discrete]
+=== Use case: set employees’ feedback
+
+*MSS*
+
+1. Manager logs into SSENISUB
+2. Manager searches for an employee
+3. SSENISUB shows the user the employee and the manager selects the employee
+4. Manager enters feedback for the employee and submits the feedback
+5. SSENISUB displays the feedback made and stores it
++
+Use case ends
+
+*Extensions*
+[none]
+* 3a. The employee cannot be found
++
+Use case ends
+
+[discrete]
+=== Use case: sort ratings of employees
+
+*MSS*
+
+1. Manager logs into SSENISUB
+2. Manager displays all employees under him/her
+3. Manager inputs the command to sort the employees by their ratings
+4. SSENISUB sorts the employees by the user’s preference and displays
++
+Use case ends
+
+*Extensions*
+[none]
+* 2a. SSENISUB does not show any employees under the user
++
+Use case ends
+[none]
 
 [appendix]
 == Non Functional Requirements
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `9` or higher installed.
-.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-_{More to be added}_
+.  Should be able to hold up to 100,000 persons without a noticeable sluggishness in performance for typical usage.
+.  Should have a customizable personalized interface.
+. Should be able to change font size.
 
 [appendix]
 == Glossary
@@ -896,23 +1088,6 @@ Windows, Linux, Unix, OS-X
 
 [[private-contact-detail]] Private contact detail::
 A contact detail that is not meant to be shared with others
-
-[appendix]
-== Product Survey
-
-*Product Name*
-
-Author: ...
-
-Pros:
-
-* ...
-* ...
-
-Cons:
-
-* ...
-* ...
 
 [appendix]
 == Instructions for Manual Testing
