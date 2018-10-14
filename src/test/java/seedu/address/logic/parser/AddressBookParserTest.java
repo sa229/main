@@ -45,7 +45,6 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().withRating("0").build(); // Rating set to 0 to simulate newly added staff
-        System.out.println(person);
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
