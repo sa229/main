@@ -16,6 +16,12 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+//import static seedu.address.logic.commands.CommandTestUtil.PRIVATE_ADDRESS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PRIVATE_ADDRESS_DESC_BOB;
+//import static seedu.address.logic.commands.CommandTestUtil.PRIVATE_EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PRIVATE_EMAIL_DESC_BOB;
+//import static seedu.address.logic.commands.CommandTestUtil.PRIVATE_PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PRIVATE_PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -72,6 +78,21 @@ public class AddCommandParserTest {
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+
+        // private number accepted
+        expectedPerson.getPhone().setPrivate("Y");
+        assertParseSuccess(parser, NAME_DESC_BOB + PRIVATE_PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+
+        // private number and email
+        expectedPerson.getEmail().setPrivate("Y");
+        assertParseSuccess(parser, NAME_DESC_BOB + PRIVATE_PHONE_DESC_BOB + PRIVATE_EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+
+        // private number, email and address
+        expectedPerson.getAddress().setPrivate("Y");
+        assertParseSuccess(parser, NAME_DESC_BOB + PRIVATE_PHONE_DESC_BOB + PRIVATE_EMAIL_DESC_BOB
+                + PRIVATE_ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // private number, phone, address
         Person ninja = new PersonBuilder().build();

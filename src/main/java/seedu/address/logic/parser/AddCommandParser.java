@@ -37,23 +37,40 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRIVATE_PHONE, PREFIX_PHONE,
                         PREFIX_PRIVATE_EMAIL, PREFIX_EMAIL, PREFIX_PRIVATE_ADDRESS, PREFIX_ADDRESS, PREFIX_TAG);
 
-        if (argMultimap.getPreamble().isEmpty() && arePrefixesPresent(argMultimap, PREFIX_NAME)) {
-            if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_PHONE)
-                    || arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
-                if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_ADDRESS)
-                        || arePrefixesPresent(argMultimap, PREFIX_ADDRESS)) {
-                    if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_EMAIL)
-                            || arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
+        /*        if (argMultimap.getPreamble().isEmpty() && arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+                    if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_PHONE)
+                            || arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
+                        if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_ADDRESS)
+                                || arePrefixesPresent(argMultimap, PREFIX_ADDRESS)) {
+                            if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_EMAIL)
+                                    || arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
+                            } else {
+                                wrongFormat();
+                            }
+                        } else {
+                            wrongFormat();
+                        }
                     } else {
                         wrongFormat();
                     }
                 } else {
                     wrongFormat();
                 }
-            } else {
-                wrongFormat();
-            }
-        } else {
+        */
+        if (!argMultimap.getPreamble().isEmpty()) {
+            wrongFormat();
+        }
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            wrongFormat();
+        }
+        if (!arePrefixesPresent(argMultimap, PREFIX_PRIVATE_PHONE) && !arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
+            wrongFormat();
+        }
+        if (!arePrefixesPresent(argMultimap, PREFIX_PRIVATE_ADDRESS)
+                && !arePrefixesPresent(argMultimap, PREFIX_ADDRESS)) {
+            wrongFormat();
+        }
+        if (!arePrefixesPresent(argMultimap, PREFIX_PRIVATE_EMAIL) && !arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
             wrongFormat();
         }
 
