@@ -1,4 +1,4 @@
-= AddressBook Level 4 - Developer Guide
+= SSENISUB - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
@@ -13,9 +13,9 @@ ifdef::env-github[]
 :warning-caption: :warning:
 :experimental:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level4/tree/master
+:repoURL: https://github.com/CS2103-AY1819S1-T13-2/main
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `T13-2`      Since: `Jun 2016`      Licence: `MIT`
 
 == Setting up
 
@@ -324,12 +324,38 @@ image::UndoRedoActivityDiagram.png[width="650"]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
-// tag::dataencryption[]
-=== [Proposed] Data Encryption
+// tag::ratecommand[]
+=== Rate command feature
+==== Introduction
+We have implemented a rate command feature as an enhancement, which focuses on the `Logic` component.
+A `Rating` class is implemented to support this, which the `Person` class is dependent on. This command
+allows users, especially for managers to update ratings of employees within an organisation.
 
-_{Explain here how the data encryption feature will be implemented}_
+[NOTE]
+This command differs from the and and edit command, because users cannot simply add an employee with a rating through
+the add command or edit an employee's rating through the edit command.
 
-// end::dataencryption[]
+[CAUTION]
+Any updates to an employee's rating should only
+be done by a *person of authority*, i.e. `Manager`.
+
+==== Current Implementation
+The rate command, as mentioned, executes asynchronous to the add and edit command. Upon adding an employee, a `Rating.DEFAULT_INITIAL_RATING`
+with a default value of 0, is initialised on the `Person` and then saved.
+
+There are 2 validation regular expressions found in the `Rating` class:
+
+* `VALIDATION_REGEX` which checks for integer values from 0 - 10 of `Rating` which have already been added. 0 is included
+as there may be a case when a `Person` has already been added but his/her `Rating` has yet to be updated.
+* `VALIDATION_INPUT_REGEX` which checks for integer values from 1 - 10 of 'Rating' to be added by users with the rate
+command.
+
+
+Given below is a sequence diagram shows how the rate operation works:
+
+image::RateSequenceDiagram.png[width="800"]
+
+// end::ratecommand[]
 
 === Logging
 
