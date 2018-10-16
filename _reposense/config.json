@@ -1,6 +1,4 @@
 {
-  "ignoreGlobList": ["about-us/**", "**index.html"],
-  "ignoreCommitList": [],
   "authors":
   [
     {
