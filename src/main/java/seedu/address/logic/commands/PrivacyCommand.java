@@ -62,9 +62,12 @@ public class PrivacyCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        changePrivacy(personToEdit, fieldsToChange);
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getRating(), personToEdit.getDepartment(),
+                personToEdit.getManager(), personToEdit.getTags());
+        changePrivacy(editedPerson, fieldsToChange);
 
-        model.updatePerson(personToEdit, personToEdit);
+        model.updatePerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_EDIT_PRIVACY_SUCCESS, personToEdit));
