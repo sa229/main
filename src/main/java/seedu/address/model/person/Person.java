@@ -18,6 +18,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    //
 
     // Data fields
     private final Department department;
