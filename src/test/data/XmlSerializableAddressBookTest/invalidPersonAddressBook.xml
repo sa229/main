@@ -7,5 +7,7 @@
         <email isPrivate="false">hans@exam!32ple</email>
         <address isPrivate="false">4th street</address>
         <rating>10</rating>
+        <department isPrivate="false">Accounting</department>
+        <manager isPrivate="false">Ben Leong</manager>
     </persons>
 </addressbook>
