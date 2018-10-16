@@ -7,6 +7,8 @@
         <email>alice@example.com</email>
         <address>123, Jurong West Ave 6, #08-111</address>
         <rating>0</rating>
+        <department>Accounting</department>
+        <manager>Ben Leong</manager>
         <tagged>friends</tagged>
     </persons>
     <persons>
@@ -15,6 +17,8 @@
         <email>johnd@example.com</email>
         <address>311, Clementi Ave 2, #02-25</address>
         <rating>0</rating>
+        <department>Marketing</department>
+        <manager>Marcus Tan</manager>
         <tagged>owesMoney</tagged>
         <tagged>friends</tagged>
     </persons>
@@ -24,6 +28,8 @@
         <email>heinz@example.com</email>
         <address>wall street</address>
         <rating>0</rating>
+        <department>Tech</department>
+        <manager>Moses Lim</manager>
     </persons>
     <persons>
         <name>Daniel Meier</name>
@@ -31,6 +37,8 @@
         <email>cornelia@example.com</email>
         <address>10th street</address>
         <rating>0</rating>
+        <department>Accounting</department>
+        <manager>Lionel Lim</manager>
         <tagged>friends</tagged>
     </persons>
     <persons>
@@ -39,6 +47,8 @@
         <email>werner@example.com</email>
         <address>michegan ave</address>
         <rating>0</rating>
+        <department>Marketing</department>
+        <manager>Edward Loh</manager>
     </persons>
     <persons>
         <name>Fiona Kunz</name>
@@ -46,6 +56,8 @@
         <email>lydia@example.com</email>
         <address>little tokyo</address>
         <rating>0</rating>
+        <department>Tech</department>
+        <manager>Joanne Lee</manager>
     </persons>
     <persons>
         <name>George Best</name>
@@ -53,5 +65,7 @@
         <email>anna@example.com</email>
         <address>4th street</address>
         <rating>0</rating>
+        <department>Accounting</department>
+        <manager>Ben Leong</manager>
     </persons>
 </addressbook>
