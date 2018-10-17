@@ -1,15 +1,17 @@
 package seedu.address.logic.commands;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.Assert;
 import org.junit.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.PrivacyCommand.FieldsToChange;
@@ -20,7 +22,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.FieldsToChangeBuilder;
-import seedu.address.testutil.PersonBuilder;
+//import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalPersons;
 
 public class PrivacyCommandTest {
@@ -29,7 +31,7 @@ public class PrivacyCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
-    public void execute_allFIeldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Person editedPerson = TypicalPersons.ALICE;
         FieldsToChange fieldsToChange = new FieldsToChangeBuilder().withNotPrivate().build();
         PrivacyCommand privacyCommand = new PrivacyCommand(INDEX_FIRST_PERSON, fieldsToChange);
@@ -53,14 +55,94 @@ public class PrivacyCommandTest {
 
         try {
             CommandResult result = privacyCommand.execute(model, commandHistory);
-            Assert.assertEquals(model.getFilteredPersonList().get(indexLastPerson.getZeroBased()).getPhone().isPrivate(),
+            Assert.assertEquals(model.getFilteredPersonList().get(indexLastPerson.getZeroBased())
+                            .getPhone().isPrivate(),
                     true);
-            Assert.assertEquals(model.getFilteredPersonList().get(indexLastPerson.getZeroBased()).getEmail().isPrivate(),
+            Assert.assertEquals(model.getFilteredPersonList().get(indexLastPerson.getZeroBased())
+                            .getEmail().isPrivate(),
                     true);
-            Assert.assertEquals(model.getFilteredPersonList().get(indexLastPerson.getZeroBased()).getAddress().isPrivate(),
+            Assert.assertEquals(model.getFilteredPersonList().get(indexLastPerson.getZeroBased())
+                            .getAddress().isPrivate(),
                     false);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }
+
+    @Test
+    public void execute_invalidPersonIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        FieldsToChange fieldsToChange = new FieldsToChangeBuilder().withPrivateEmail().build();
+        PrivacyCommand privacyCommand = new PrivacyCommand(outOfBoundIndex, fieldsToChange);
+
+        assertCommandFailure(privacyCommand, model, commandHistory, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    /**
+     * Edit filtered list where index is larger than size of filtered list,
+     * but smaller than size of address book
+     */
+    @Test
+    public void execute_invalidPersonIndexFilteredList_failure() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+
+        PrivacyCommand privacyCommand = new PrivacyCommand(outOfBoundIndex,
+                new FieldsToChangeBuilder().withPrivateEmail().build());
+
+        assertCommandFailure(privacyCommand, model, commandHistory, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    //        @Test
+    //        public void executeUndoRedo_validIndexUnfilteredList_success() throws Exception {
+    //            Person editedPerson = new PersonBuilder().build();
+    //            Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+    //            FieldsToChange fieldsToChange = new FieldsToChangeBuilder().withAllPrivate().build();
+    //            PrivacyCommand privacyCommand = new PrivacyCommand(INDEX_FIRST_PERSON, fieldsToChange);
+    //            Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+    //            expectedModel.updatePerson(personToEdit, editedPerson);
+    //            expectedModel.commitAddressBook();
+    //
+    //            // edit -> first person edited
+    //            privacyCommand.execute(model, commandHistory);
+    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+    //                            .getPhone().isPrivate(),
+    //                    true);
+    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+    //                            .getEmail().isPrivate(),
+    //                    true);
+    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+    //                            .getAddress().isPrivate(),
+    //                    true);
+    //
+    //            // undo -> reverts addressbook back to previous state and filtered person list to show all persons
+    //            model.undoAddressBook();
+    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+    //                            .getPhone().isPrivate(),
+    //                    false);
+    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+    //                            .getEmail().isPrivate(),
+    //                    false);
+    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+    //                            .getAddress().isPrivate(),
+    //                    false);
+    //            assertCommandSuccess(new UndoCommand(), model, commandHistory,
+    //                    UndoCommand.MESSAGE_SUCCESS, expectedModel);
+    //
+    //            // redo -> same first person edited again
+    //            model.redoAddressBook();
+    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+    //                            .getPhone().isPrivate(),
+    //                    true);
+    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+    //                            .getEmail().isPrivate(),
+    //                    true);
+    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+    //                            .getAddress().isPrivate(),
+    //                    true);
+    //            assertCommandSuccess(new RedoCommand(), model, commandHistory,
+    //                    RedoCommand.MESSAGE_SUCCESS, expectedModel);
+    //        }
 }
