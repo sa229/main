@@ -482,7 +482,7 @@ will not be saved and will not be shown once the window is closed and reopened.
 
 The following activity diagram shows how the current `Unlock` command works:
 
-image::UnlockActivityDiagram.png[height="600"]
+image::UnlockActivityDiagram.png[height="650"]
 Figure 3.8.2.1 Activity Diagram for `unlock` command
 
 ==== Design Considerations
