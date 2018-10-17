@@ -29,6 +29,11 @@ public class Phone {
         isPrivate = false;
     }
 
+    /**
+     * Constructs a private {@code Phone}.
+     * @param phone A valid phone number.
+     * @param privacy states that this phone is private.
+     */
     public Phone(String phone, String privacy) {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
@@ -51,17 +56,6 @@ public class Phone {
     public boolean isPrivate() {
         return isPrivate;
     }
-    //    /**
-    //     * Sets the isPrivate field to true or false depending on input
-    //     * @param input a "Y" or "N" for Yes or No.
-    //     */
-    //    public void setPrivate(String input) {
-    //        if (input.equals("Y")) {
-    //            isPrivate = true;
-    //        } else if (input.equals("N")) {
-    //            isPrivate = false;
-    //        }
-    //    }
 
     @Override
     public String toString() {
