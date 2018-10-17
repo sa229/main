@@ -352,6 +352,52 @@ image::RateSequenceDiagram.png[width="800"]
 
 // end::ratecommand[]
 
+// tag::privacycommand[]
+=== Privacy Feature
+==== Introduction
+
+We have implemented a privacy feature to fields that we deem to have importance in having an option to be
+made private. A Privacy Command is implemented to be able to toggle the privacy value of the information of
+the selected person.
+
+==== Current implementation
+
+The privacy feature is currently implemented as a boolean field under information classes that can be made private
+(Phone, Email, Address as of v1.2).
+
+A new command PrivacyCommand is implemented to be able to toggle the boolean values of classes that have a Privacy field.
+The add command can also add a Person with private field directly.
+
+The UI will also display private fields as private.
+
+[NOTE]
+This command can only change fields that can be made private, and will throw an exception otherwise.
+
+To change a field to private or not private, a 'y' or 'n' is the expected input respectively. This is planned to
+change in future updates where there can be different levels of privacy for different fields.
+
+Given below is an activity diagram that shows how the Privacy command works:
+
+image::PrivacyCommandActivityDiagram.png[width="800"]
+
+==== Design Considerations
+
+===== How to implement Privacy
+* **Alternative 1 (current choice):** Use privacy as a boolean value
+** Pros: Easy to implement as there is only 2 values to take note off
+** Cons: Restrictive in what it can do looking at a future aspect where different level of privacy may be required
+* **Alternative 2:** Implement Privacy as a Enum class
+** Pros: Able to have different level of Privacy and prevents wrong input automatically
+** Cons: Harder to implement and extra work not required in current stage of project
+// end::privacycommand[]
+
+
+
+// tag::dataencryption[]
+=== [Proposed] Data Encryption
+
+// end::dataencryption[]
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
