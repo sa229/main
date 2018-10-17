@@ -10,10 +10,16 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Manager;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+<<<<<<< HEAD
 import seedu.address.model.person.Salary;
+=======
+import seedu.address.model.person.Rating;
+>>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
 import seedu.address.model.tag.Tag;
 
 /**
@@ -97,6 +103,7 @@ public class ParserUtil {
     }
 
     /**
+<<<<<<< HEAD
      * Parses a (@code String salary) into an (@code Salary).
      * Leading and trailing whitespaces will be trimmed.
      * @param salary
@@ -111,6 +118,35 @@ public class ParserUtil {
             throw new ParseException(Salary.MESSAGE_SALARY_CONSTRAINTS);
         }
         return new Salary(trimmedSalary);
+=======
+     * Parses a {@code String department} into an {@code Department}
+     * Leading and trailing whitespaces wil be trimmed.
+     *
+     * @throws ParseException if the given {@code department} is invalid.
+     */
+    public static Department parseDepartment(String department) throws ParseException {
+        requireNonNull(department);
+        String trimmedDepartment = department.trim();
+        if (!Department.isValidDepartment(trimmedDepartment)) {
+            throw new ParseException(Department.MESSAGE_CONSTRAINTS);
+        }
+        return new Department(trimmedDepartment);
+    }
+
+    /**
+     * Parses a {@code String manager} into an {@code Manager}
+     * Leading and trailing whitespaces wil be trimmed.
+     *
+     * @throws ParseException if the given {@code manager} is invalid.
+     */
+    public static Manager parseManager(String manager) throws ParseException {
+        requireNonNull(manager);
+        String trimmedManager = manager.trim();
+        if (!Manager.isValidManager(trimmedManager)) {
+            throw new ParseException(Manager.MESSAGE_CONSTRAINTS);
+        }
+        return new Manager(trimmedManager);
+>>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
     }
 
     /**
@@ -126,6 +162,21 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses a {@code String rating} into a {@code Rating}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code rating} is invalid.
+     */
+    public static Rating parseRating(String rating) throws ParseException {
+        requireNonNull(rating);
+        String trimmedRating = rating.trim();
+        if (!Rating.isValidInputRating(trimmedRating)) {
+            throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        return new Rating(trimmedRating);
     }
 
     /**

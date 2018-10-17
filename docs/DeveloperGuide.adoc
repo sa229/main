@@ -189,7 +189,7 @@ link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `AddressBookParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
-.  The command execution can affect the `Model` (e.g. adding a person) and/or raise events.
+.  The command execution can affect the `Model` (e.g. adding a staff) and/or raise events.
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -259,18 +259,18 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 image::UndoRedoStartingStateListDiagram.png[width="800"]
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th staff in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 image::UndoRedoNewCommand1StateListDiagram.png[width="800"]
 
-Step 3. The user executes `add n/David ...` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David ...` to add a new staff. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 image::UndoRedoNewCommand2StateListDiagram.png[width="800"]
 
 [NOTE]
 If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the staff was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 image::UndoRedoExecuteUndoStateListDiagram.png[width="800"]
 
@@ -306,7 +306,7 @@ image::UndoRedoActivityDiagram.png[width="650"]
 ** Pros: Easy to implement.
 ** Cons: May have performance issues in terms of memory usage.
 * **Alternative 2:** Individual command knows how to undo/redo by itself.
-** Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+** Pros: Will use less memory (e.g. for `delete`, just save the staff being deleted).
 ** Cons: We must ensure that the implementation of each individual command are correct.
 
 ===== Aspect: Data structure to support the undo/redo commands
@@ -555,7 +555,7 @@ Each individual exercise in this section is component-based (i.e. you would not 
 [TIP]
 Do take a look at <<Design-Logic>> before attempting to modify the `Logic` component.
 
-. Add a shorthand equivalent alias for each of the individual commands. For example, besides typing `clear`, the user can also type `c` to remove all persons in the list.
+. Add a shorthand equivalent alias for each of the individual commands. For example, besides typing `clear`, the user can also type `c` to remove all staff in the list.
 +
 ****
 * Hints
@@ -584,7 +584,7 @@ Do take a look at <<Design-Model>> before attempting to modify the `Model` compo
 ** Think about how you can use SLAP to design the method. Where should we place the main logic of deleting tags?
 **  Find out which of the existing API methods in  link:{repoURL}/src/main/java/seedu/address/model/AddressBook.java[`AddressBook`] and link:{repoURL}/src/main/java/seedu/address/model/person/Person.java[`Person`] classes can be used to implement the tag removal logic. link:{repoURL}/src/main/java/seedu/address/model/AddressBook.java[`AddressBook`] allows you to update a person, and link:{repoURL}/src/main/java/seedu/address/model/person/Person.java[`Person`] allows you to update the tags.
 * Solution
-** Implement a `removeTag(Tag)` method in link:{repoURL}/src/main/java/seedu/address/model/AddressBook.java[`AddressBook`]. Loop through each person, and remove the `tag` from each person.
+** Implement a `removeTag(Tag)` method in link:{repoURL}/src/main/java/seedu/address/model/AddressBook.java[`AddressBook`]. Loop through each staff, and remove the `tag` from each staff.
 ** Add a new API method `deleteTag(Tag)` in link:{repoURL}/src/main/java/seedu/address/model/ModelManager.java[`ModelManager`]. Your link:{repoURL}/src/main/java/seedu/address/model/ModelManager.java[`ModelManager`] should call `AddressBook#removeTag(Tag)`.
 ** Add new tests for each of the new public methods that you have added.
 ** See this https://github.com/se-edu/addressbook-level4/pull/790[PR] for the full solution.
@@ -849,19 +849,19 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
  * * *      | HR User  | Add a new staff                                                                                                | Update the organisation’s structure appropriately                         |
  * * *      | HR User  | Delete a staff                                                                                                 | Remove entries that no longer work here                                   |
  * * *      | HR User  | Edit staff details                                                                                             | Update the staff position if he/she is promoted                           |
- * *       | HR User  | Have different authorization settings for people                                                               | Employees can only use commands they should be able to                    |
+ * *       | HR User  | Have different authorization settings for people                                                               | Staff can only use commands they should be able to                    |
  * * *      | HR User  | Allocate staff to a department                                                                                 | Manage the manpower within the organization                               |
  * * *      | HR User  | Allocate staff to a manager                                                                                    | Manage staff to manager                                                   |
- * *       | HR User  | Set a salary for an employee                                                                                   | Maintain a record of the employee’s payroll                               |
+ * *       | HR User  | Set a salary for a staff                                                                                   | Maintain a record of the staff’s payroll                               |
  * *       | HR User  | Know the number of staff in each department                                                                    | Plan for activities                                                       |
  * * *      | Manager  | Be able to look for a particular staff information from a particular department                                | Search a list of contacts by tags                                         |
  * * *      | Manager  | Be able to list the staff                                                                                      | View all the staff under my supervision                                   |
- * *       | Manager  | Set work ratings & feedback for certain staff                                                                  | Evaluate the employees under me                                           |
- * *       | Manager  | Update work ratings & feedback for certain staff                                                               | Edit the employee’s rating under me                                       |
+ * *       | Manager  | Set work ratings & feedback for certain staff                                                                  | Evaluate the staff under me                                           |
+ * *       | Manager  | Update work ratings & feedback for certain staff                                                               | Edit the staff’s rating under me                                       |
  * *       | Manager  | Sort by ratings                                                                                                | Reward the highly rated performers and identify the weaker ones           |
- * *       | Manager  | Search by employee tags                                                                                        | Find the people I require more conveniently                               |
+ * *       | Manager  | Search by staff tags                                                                                        | Find the people I require more conveniently                               |
  *        | Manager  | Receive notification to rate staff                                                                             | Remember to rate my staff and give timely feedback                        |
- *        | Manager  | Receive notification of staff whose rating falls below average for 3 months consecutively under my supervision | Better manage my employees and find out if they need any help             |
+ *        | Manager  | Receive notification of staff whose rating falls below average for 3 months consecutively under my supervision | Better manage my staff and find out if they need any help             |
 |=======================================================================
 
 
@@ -871,7 +871,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 (For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete person
+=== Use case: delete person
 
 *MSS*
 
@@ -901,8 +901,8 @@ Use case resumes at step 2.
 
 *MSS*
 
-1. Employee logs into SSENISUB
-2. Employee inputs keyword to view his own ratings
+1. Staff logs into SSENISUB
+2. Staff inputs keyword to view his own ratings
 3. SSENISUB displays the current user’s ratings and feedback (if any)
 +
 Use case ends
@@ -930,13 +930,13 @@ Use case ends
 Use case ends
 
 [discrete]
-=== Use case: edit an employee information
+=== Use case: edit a staff information
 
 *MSS*
 
 1. HR staff logs in to SSENISUB
 2. HR staff searches for the staff to edit and selects it
-3. HR staff makes the necessary changes to the employee
+3. HR staff makes the necessary changes to the staff
 4. SSENISUB confirms with the HR staff the changes
 5. HR staff confirms and the changes are made
 +
@@ -944,34 +944,34 @@ Use case ends
 
 *Extensions*
 [none]
-* 2a.  No employees are being displayed by SSENISUB
+* 2a.  No staff are being displayed by SSENISUB
 +
 Use case ends
 
 [discrete]
-=== Use case: search for employee
+=== Use case: search for staff
 
 *MSS*
 
-1. Employee logs in to SSENISUB
-2. Employee inputs the keyword to search followed by certain keywords pertaining to the employee.
-3. SSENISUB displays the list of employees that matches the keywords supplied.
+1. Staff logs in to SSENISUB
+2. Staff inputs the keyword to search followed by certain keywords pertaining to the staff.
+3. SSENISUB displays the list of staff that matches the keywords supplied.
 +
 Use case ends
 
 *Extensions*
 [none]
-* 3a. SSENISUB shows no employees with the matching keywords
+* 3a. SSENISUB shows no staff with the matching keywords
 +
 Use case ends
 
 [discrete]
-=== Use case: add employee
+=== Use case: add staff
 
 *MSS*
 
 1. HR staff logs in to SSENISUB
-2. HR staff adds the Employee details into SSENISUB
+2. HR staff adds the staff details into SSENISUB
 3. SSENISUB shows success details of the add
 +
 Use case ends
@@ -982,26 +982,26 @@ Use case ends
 +
 Use case ends
 
-* 2b. Employee details already exists, receives a warning
+* 2b. Staff details already exists, receives a warning
 +
 Use case ends
 [none]
-** 2c. User does not have authorization to add Employees, receives warning
+** 2c. User does not have authorization to add staff, receives warning
 +
 Information of User gets sent to higher up in charge
 +
 Use case ends
 
 [discrete]
-=== Use case: review employee
+=== Use case: rate staff
 
 *MSS*
 
 1. Manager logs in to SSENISUB
-2. Manager requests to look for Employee
-3. SSENISUB shows a list of Employees
-4. Manager requests to update review of a particular Employee
-5. SSENISUB updates review of Employee
+2. Manager requests to look for staff
+3. SSENISUB shows a list of staff
+4. Manager requests to update review of a particular staff
+5. SSENISUB updates review of staff
 +
 Use case ends
 
@@ -1016,58 +1016,58 @@ Use case ends     
 Use case ends
 
 [discrete]
-=== Use case: remove employee
+=== Use case: remove staff
 
 *MSS*
 
 1. HR staff logs in to SSENISUB
 2. HR staff searches for the particular staff to remove
-3. HR inputs command to remove the employee
-4. SSENISUB confirms with the HR staff before removing the employee
-5. SSENISUB removes the employee and displays a success message
+3. HR inputs command to remove the staff
+4. SSENISUB confirms with the HR staff before removing the staff
+5. SSENISUB removes the staff and displays a success message
 +
 Use case ends
 
 *Extensions*
 [none]
-* 3a. The employee cannot be found
+* 3a. The staff cannot be found
 +
 Use case ends
 
 [discrete]
-=== Use case: set employees’ feedback
+=== Use case: set staff’ feedback
 
 *MSS*
 
 1. Manager logs into SSENISUB
-2. Manager searches for an employee
-3. SSENISUB shows the user the employee and the manager selects the employee
-4. Manager enters feedback for the employee and submits the feedback
+2. Manager searches for a staff
+3. SSENISUB shows the user the staff and the manager selects the staff
+4. Manager enters feedback for the staff and submits the feedback
 5. SSENISUB displays the feedback made and stores it
 +
 Use case ends
 
 *Extensions*
 [none]
-* 3a. The employee cannot be found
+* 3a. The staff cannot be found
 +
 Use case ends
 
 [discrete]
-=== Use case: sort ratings of employees
+=== Use case: sort ratings of staff
 
 *MSS*
 
 1. Manager logs into SSENISUB
-2. Manager displays all employees under him/her
-3. Manager inputs the command to sort the employees by their ratings
-4. SSENISUB sorts the employees by the user’s preference and displays
+2. Manager displays all staff under him/her
+3. Manager inputs the command to sort the staff by their ratings
+4. SSENISUB sorts the staff by the user’s preference and displays
 +
 Use case ends
 
 *Extensions*
 [none]
-* 2a. SSENISUB does not show any employees under the user
+* 2a. SSENISUB does not show any staff under the user
 +
 Use case ends
 [none]
@@ -1076,7 +1076,7 @@ Use case ends
 == Non Functional Requirements
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `9` or higher installed.
-.  Should be able to hold up to 100,000 persons without a noticeable sluggishness in performance for typical usage.
+.  Should be able to hold up to 100,000 staff without a noticeable sluggishness in performance for typical usage.
 .  Should have a customizable personalized interface.
 . Should be able to change font size.
 
@@ -1113,15 +1113,15 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
-=== Deleting a person
+=== Deleting a staff
 
-. Deleting a person while all persons are listed
+. Deleting a staff while all staff are listed
 
-.. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+.. Prerequisites: List all staff using the `list` command. Multiple staff in the list.
 .. Test case: `delete 1` +
    Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `delete 0` +
-   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   Expected: No staff is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
    Expected: Similar to previous.
 

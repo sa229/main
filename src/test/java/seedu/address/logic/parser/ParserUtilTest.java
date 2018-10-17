@@ -20,7 +20,11 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+<<<<<<< HEAD
 import seedu.address.model.person.Salary;
+=======
+import seedu.address.model.person.Rating;
+>>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.Assert;
 
@@ -29,14 +33,22 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+<<<<<<< HEAD
     private static final String INVALID_SALARY = "salary";
+=======
+    private static final String INVALID_RATING = "13";
+>>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+<<<<<<< HEAD
     private static final String VALID_SALARY = "100";
+=======
+    private static final String VALID_RATING = "5";
+>>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -176,6 +188,29 @@ public class ParserUtilTest {
         String salaryWithWhitespace = WHITESPACE + VALID_SALARY + WHITESPACE;
         Salary expectedSalary = new Salary(VALID_SALARY);
         assertEquals(expectedSalary, ParserUtil.parseSalary(salaryWithWhitespace));
+    }
+
+    @Test
+    public void parseRating_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseRating((String) null));
+    }
+
+    @Test
+    public void parseRating_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseRating(INVALID_RATING));
+    }
+
+    @Test
+    public void parseRating_validValueWithoutWhitespace_returnsRating() throws Exception {
+        Rating expectedRating = new Rating(VALID_RATING);
+        assertEquals(expectedRating, ParserUtil.parseRating(VALID_RATING));
+    }
+
+    @Test
+    public void parseRating_validValueWithWhitespace_returnsTrimmedRating() throws Exception {
+        String ratingWithWhitespace = WHITESPACE + VALID_RATING + WHITESPACE;
+        Rating expectedRating = new Rating(VALID_RATING);
+        assertEquals(expectedRating, ParserUtil.parseRating(ratingWithWhitespace));
     }
 
     @Test

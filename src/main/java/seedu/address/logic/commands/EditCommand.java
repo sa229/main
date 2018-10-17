@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MANAGER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
@@ -22,11 +24,17 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Manager;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+<<<<<<< HEAD
 import seedu.address.model.person.Salary;
+=======
+import seedu.address.model.person.Rating;
+>>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
 import seedu.address.model.tag.Tag;
 
 /**
@@ -44,7 +52,12 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+<<<<<<< HEAD
             + "[" + PREFIX_SALARY + "SALARY]"
+=======
+            + "[" + PREFIX_DEPARTMENT + "DEPARTMENT] "
+            + "[" + PREFIX_MANAGER + "MANAGER] "
+>>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -102,6 +115,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+<<<<<<< HEAD
         Salary updatedSalary = editPersonDescriptor.getSalary().orElse(personToEdit.getSalary());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
@@ -109,6 +123,15 @@ public class EditCommand extends Command {
         editedPerson.setSalary(updatedSalary.toString());
 
         return editedPerson;
+=======
+        Rating updatedRating = editPersonDescriptor.getRating().orElse(personToEdit.getRating());
+        Department updatedDepartment = editPersonDescriptor.getDepartment().orElse(personToEdit.getDepartment());
+        Manager updatedManager = editPersonDescriptor.getManager().orElse(personToEdit.getManager());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRating, updatedDepartment,
+                updatedManager, updatedTags);
+>>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
     }
 
     @Override
@@ -138,7 +161,13 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+<<<<<<< HEAD
         private Salary salary;
+=======
+        private Rating rating;
+        private Department department;
+        private Manager manager;
+>>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -152,7 +181,13 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+<<<<<<< HEAD
             setSalary(toCopy.salary);
+=======
+            setRating(toCopy.rating);
+            setDepartment(toCopy.department);
+            setManager(toCopy.manager);
+>>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
             setTags(toCopy.tags);
         }
 
@@ -160,7 +195,11 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
+<<<<<<< HEAD
             return CollectionUtil.isAnyNonNull(name, phone, email, address, salary, tags);
+=======
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, department, manager, tags);
+>>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
         }
 
         public void setName(Name name) {
@@ -203,6 +242,30 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setRating(Rating rating) {
+            this.rating = rating;
+        }
+
+        public Optional<Rating> getRating() {
+            return Optional.ofNullable(rating);
+        }
+
+        public void setDepartment(Department department) {
+            this.department = department;
+        }
+
+        public Optional<Department> getDepartment() {
+            return Optional.ofNullable(department);
+        }
+
+        public void setManager(Manager manager) {
+            this.manager = manager;
+        }
+
+        public Optional<Manager> getManager() {
+            return Optional.ofNullable(manager);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -239,7 +302,13 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+<<<<<<< HEAD
                     && getSalary().equals(e.getSalary())
+=======
+                    && getRating().equals(e.getRating())
+                    && getDepartment().equals(e.getDepartment())
+                    && getManager().equals(e.getManager())
+>>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
                     && getTags().equals(e.getTags());
         }
     }

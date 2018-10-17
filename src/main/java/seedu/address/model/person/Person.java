@@ -14,27 +14,39 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
-
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
 
     // Data fields
+    private final Department department;
+    private final Manager manager;
     private final Address address;
+<<<<<<< HEAD
     private Salary salary;
+=======
+    private final Rating rating;
+>>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Rating rating, Department department,
+                  Manager manager, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, rating, department, manager, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+<<<<<<< HEAD
         this.salary = new Salary("0");
+=======
+        this.rating = rating;
+        this.department = department;
+        this.manager = manager;
+>>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
         this.tags.addAll(tags);
     }
 
@@ -54,6 +66,7 @@ public class Person {
         return address;
     }
 
+<<<<<<< HEAD
     public Salary getSalary() {
         return salary;
     }
@@ -64,6 +77,18 @@ public class Person {
 
     public void setSalary(Salary salary) {
         this.salary = salary;
+=======
+    public Rating getRating() {
+        return rating;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public Manager getManager() {
+        return manager;
+>>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
     }
 
     /**
@@ -107,14 +132,20 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+<<<<<<< HEAD
                 && otherPerson.getSalary().equals(getSalary())
+=======
+                && otherPerson.getRating().equals(getRating())
+                && otherPerson.getDepartment().equals(getDepartment())
+                && otherPerson.getManager().equals(getManager())
+>>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, rating, department, manager, tags);
     }
 
     @Override
@@ -127,8 +158,17 @@ public class Person {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
+<<<<<<< HEAD
                 .append(" Salary: ")
                 .append(getSalary())
+=======
+                .append(" Rating: ")
+                .append(getRating())
+                .append(" Department: ")
+                .append(getDepartment())
+                .append(" Manager: ")
+                .append(getManager())
+>>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
