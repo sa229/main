@@ -391,10 +391,54 @@ image::PrivacyCommandActivityDiagram.png[width="800"]
 ** Cons: Harder to implement and extra work not required in current stage of project
 // end::privacycommand[]
 
+=== Add Feature
 
+==== Current Implementation
+
+The `add` command allows HR users to add staff into SSENISSUB. It will ensure that there will be no duplicate with
+any existing staff.
+
+The following sequence diagram shows the sequence flow from the `LogicManager` to the `ModelManager` when a HR user
+enter a `add` command:
+
+image::AddSequenceDiagram.png[width="800"]
+Figure 3.4.1.1 Sequence Diagram for `add` command
+
+From the sequence diagram:
+
+1. When `Logic Manager` receives the `execute` command from the app, it calls the parseCommand method in
+`AddressBookParser`.
+
+2. `AddressBookParser` will receive add as the command and instantiate `AddCommandParser` to parse the rest of the
+command.
+
+3. If the arguments specified are valid, a `AddCommand` would be created and returned by to the `LogicManager`.
+
+4. `LogicManager` would proceed to call `execute` of the `AddCommand`.
+
+5. A new staff would be added and a successful `CommandResult` would be returned and displayed.
+
+SSENISSUB's staff is stored with name, phone, email address, home address, department, manager name and can
+be search and listed only with names.
+
+All fields are checked against respective validations with each model. If the provided command either does not have
+any field, or field with invalid input, a `ParseException` would be thrown.
+
+==== Design Considerations
+
+===== Implementation of `AddCommandParser`
+* ** Alternative 1 (current choice):** `add` is parsed first, then the rest of the arguments as `AddCommandParser`
+** Pros: Better modularization for commands
+** Cons: More classes will be needed = more code to be written
+
+* ** Alternative 2:** `add` is parsed straight from `AddressBookParser`
+** Pros: Reduces the number of classes needed = less code to be written
+** Cons: Poor modularization for commands
 
 // tag::dataencryption[]
 === [Proposed] Data Encryption
+
+_{Explain here how the data encryption feature will be implemented}_
 
 // end::dataencryption[]
 
