@@ -9,6 +9,10 @@
         <rating>0</rating>
         <department>Accounting</department>
         <manager>Ben Leong</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
         <tagged>friends</tagged>
     </persons>
 
@@ -21,6 +25,10 @@
         <rating>0</rating>
         <department>Accounting</department>
         <manager>Marcus Tan</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
     </persons>
 
 </addressbook>
