@@ -391,6 +391,7 @@ image::PrivacyCommandActivityDiagram.png[width="800"]
 ** Cons: Harder to implement and extra work not required in current stage of project
 // end::privacycommand[]
 
+// tag::addcommand[]
 === Add Feature
 
 ==== Current Implementation
@@ -434,6 +435,7 @@ any field, or field with invalid input, a `ParseException` would be thrown.
 * ** Alternative 2:** `add` is parsed straight from `AddressBookParser`
 ** Pros: Reduces the number of classes needed = less code to be written
 ** Cons: Poor modularization for commands
+// end::addcommand[]
 
 // tag::dataencryption[]
 === [Proposed] Data Encryption
