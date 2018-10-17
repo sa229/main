@@ -8,13 +8,13 @@ import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Manager;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OtHour;
+import seedu.address.model.person.OtRate;
+import seedu.address.model.person.PayDeductibles;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-<<<<<<< HEAD
-import seedu.address.model.person.Salary;
-=======
 import seedu.address.model.person.Rating;
->>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
+import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -27,24 +27,24 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-<<<<<<< HEAD
     public static final String DEFAULT_SALARY = "0";
-=======
+    public static final String DEFAULT_OTHOUR = "0";
+    public static final String DEFAULT_OTRATE = "0";
+    public static final String DEFAULT_DEDUCTIBLES = "0";
     public static final String DEFAULT_DEPARTMENT = "Accounting";
     public static final String DEFAULT_MANAGER = "Ben Leong";
->>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-<<<<<<< HEAD
     private Salary salary;
-=======
+    private OtHour hours;
+    private OtRate rate;
+    private PayDeductibles deductibles;
     private Rating rating;
     private Department department;
     private Manager manager;
->>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
     private Set<Tag> tags;
 
     public PersonBuilder() {
@@ -52,13 +52,13 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-<<<<<<< HEAD
         salary = new Salary(DEFAULT_SALARY);
-=======
+        hours = new OtHour(DEFAULT_OTHOUR);
+        rate = new OtRate(DEFAULT_OTRATE);
+        deductibles = new PayDeductibles(DEFAULT_DEDUCTIBLES);
         rating = new Rating("5");
         department = new Department(DEFAULT_DEPARTMENT);
         manager = new Manager(DEFAULT_MANAGER);
->>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
         tags = new HashSet<>();
     }
 
@@ -70,13 +70,10 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-<<<<<<< HEAD
         salary = personToCopy.getSalary();
-=======
         rating = personToCopy.getRating();
         department = personToCopy.getDepartment();
         manager = personToCopy.getManager();
->>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -106,6 +103,33 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the (@code OtHour) of the (@code Person) that we are building.
+     * @param hours
+     */
+    public PersonBuilder withHours(String hours) {
+        this.hours = new OtHour(hours);
+        return this;
+    }
+
+    /**
+     * Sets the (@code OtRate) of the (@code Person) that we are building.
+     * @param rate
+     */
+    public PersonBuilder withRate(String rate) {
+        this.rate = new OtRate(rate);
+        return this;
+    }
+
+    /**
+     * Sets the (@code PayDeductibles) of the (@code Person) that we are building.
+     * @param deductibles
+     */
+    public PersonBuilder withDeductibles(String deductibles) {
+        this.deductibles = new PayDeductibles(deductibles);
+        return this;
+    }
+
+    /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
@@ -130,15 +154,6 @@ public class PersonBuilder {
     }
 
     /**
-<<<<<<< HEAD
-     * Builds a new person based on the current one.
-     */
-
-    public Person build() {
-        Person newPerson = new Person(name, phone, email, address, tags);
-        newPerson.setSalary(salary);
-        return newPerson;
-=======
      * Sets the {@code Rating} of the {@code Person} that we are building.
      */
     public PersonBuilder withRating(String rating) {
@@ -162,9 +177,12 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds a new person based on the current one.
+     */
     public Person build() {
-        return new Person(name, phone, email, address, rating, department, manager, tags);
->>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
+        return new Person(name, phone, email, address, rating, department, manager,
+          salary, hours, rate, deductibles, tags);
     }
 
 }

@@ -3,16 +3,16 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEDUCTIBLES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MANAGER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OTHOUR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OTRATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-<<<<<<< HEAD
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
-=======
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
->>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -39,13 +39,9 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-<<<<<<< HEAD
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SALARY,
-                  PREFIX_TAG);
-=======
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_RATING, PREFIX_DEPARTMENT, PREFIX_MANAGER, PREFIX_TAG);
->>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
+                        PREFIX_RATING, PREFIX_DEPARTMENT, PREFIX_MANAGER, PREFIX_SALARY, PREFIX_OTHOUR,
+                        PREFIX_OTRATE, PREFIX_DEDUCTIBLES, PREFIX_TAG);
 
         Index index;
 
@@ -68,10 +64,18 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-<<<<<<< HEAD
         if (argMultimap.getValue(PREFIX_SALARY).isPresent()) {
-            editPersonDescriptor.setSalary(ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get()));
-=======
+          editPersonDescriptor.setSalary(ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get()));
+        }
+        if (argMultimap.getValue(PREFIX_OTHOUR).isPresent()) {
+          editPersonDescriptor.setHours(ParserUtil.parseHours(argMultimap.getValue(PREFIX_OTHOUR).get()));
+        }
+        if (argMultimap.getValue(PREFIX_OTRATE).isPresent()) {
+          editPersonDescriptor.setRate(ParserUtil.parseRate(argMultimap.getValue(PREFIX_OTRATE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_DEDUCTIBLES).isPresent()) {
+          editPersonDescriptor.setDeductibles(ParserUtil.parseDeductibles(argMultimap.getValue(PREFIX_DEDUCTIBLES).get()));
+        }
         if (argMultimap.getValue(PREFIX_RATING).isPresent()) {
             editPersonDescriptor.setRating(ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get()));
         }
@@ -81,7 +85,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_MANAGER).isPresent()) {
             editPersonDescriptor.setManager(ParserUtil.parseManager(argMultimap.getValue(PREFIX_MANAGER).get()));
->>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

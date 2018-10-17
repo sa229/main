@@ -10,9 +10,13 @@ import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Manager;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OtHour;
+import seedu.address.model.person.OtRate;
+import seedu.address.model.person.PayDeductibles;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Rating;
+import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -42,6 +46,10 @@ public class EditPersonDescriptorBuilder {
         descriptor.setRating(person.getRating());
         descriptor.setDepartment(person.getDepartment());
         descriptor.setManager(person.getManager());
+        descriptor.setSalary(person.getSalary());
+        descriptor.setHours(person.getOtHours());
+        descriptor.setRate(person.getOtRate());
+        descriptor.setDeductibles(person.getDeductibles());
         descriptor.setTags(person.getTags());
     }
 
@@ -98,6 +106,38 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withManager(String manager) {
         descriptor.setManager(new Manager(manager));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Salary} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withSalary(String salary) {
+        descriptor.setSalary(new Salary(salary));
+        return this;
+    }
+
+    /**
+     * Sets the {@code OtHour} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withHour(String hours) {
+        descriptor.setHours(new OtHour(hours));
+        return this;
+    }
+
+    /**
+     * Sets the {@code OtRate} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withRate(String rate) {
+        descriptor.setRate(new OtRate(rate));
+        return this;
+    }
+
+    /**
+     * Sets the {@code PayDeductibles} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDeductibles(String deductibles) {
+        descriptor.setDeductibles(new PayDeductibles(deductibles));
         return this;
     }
 

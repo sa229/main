@@ -9,7 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class Salary {
 
-    public static final String MESSAGE_SALARY_CONSTRAINTS =
+    public static final Salary DEFAULT_INITIAL_SALARY = new Salary("0");
+
+    public static final String MESSAGE_CONSTRAINTS =
             "Salary should only contain integers with no spaces or commas";
 
     public static final String SALARY_VALIDATION_REGEX = "^([0-9]+.[0-9]{1,2})|0$";
@@ -18,7 +20,7 @@ public class Salary {
 
     public Salary(String value) {
         requireNonNull(value);
-        checkArgument(isValidSalary(value), MESSAGE_SALARY_CONSTRAINTS);
+        checkArgument(isValidSalary(value), MESSAGE_CONSTRAINTS);
         salary = value;
     }
 

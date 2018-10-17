@@ -14,12 +14,12 @@ import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Manager;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OtHour;
+import seedu.address.model.person.OtRate;
+import seedu.address.model.person.PayDeductibles;
 import seedu.address.model.person.Phone;
-<<<<<<< HEAD
-import seedu.address.model.person.Salary;
-=======
 import seedu.address.model.person.Rating;
->>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
+import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -103,7 +103,6 @@ public class ParserUtil {
     }
 
     /**
-<<<<<<< HEAD
      * Parses a (@code String salary) into an (@code Salary).
      * Leading and trailing whitespaces will be trimmed.
      * @param salary
@@ -115,10 +114,63 @@ public class ParserUtil {
         requireNonNull(salary);
         String trimmedSalary = salary.trim();
         if (!Salary.isValidSalary(trimmedSalary)) {
-            throw new ParseException(Salary.MESSAGE_SALARY_CONSTRAINTS);
+            throw new ParseException(Salary.MESSAGE_CONSTRAINTS);
         }
         return new Salary(trimmedSalary);
-=======
+    }
+
+    /**
+     * Parses a (@code String hours) into an (@code OtHour).
+     * Leading and trailing whitespaces will be trimmed.
+     * @param hours
+     * @return An OtHour object after trimming.
+     * @throws ParseException
+     */
+
+    public static OtHour parseHours(String hours) throws ParseException {
+        requireNonNull(hours);
+        String trimmedHours = hours.trim();
+        if (!OtHour.isValidTwoDecimalNumber(trimmedHours)) {
+            throw new ParseException(OtHour.MESSAGE_CONSTRAINTS);
+        }
+        return new OtHour(trimmedHours);
+    }
+
+    /**
+     * Parses a (@code String rate) into an (@code OtRate).
+     * Leading and trailing whitespaces will be trimmed.
+     * @param rate
+     * @return An OtRate object after trimming.
+     * @throws ParseException
+     */
+
+    public static OtRate parseRate(String rate) throws ParseException {
+        requireNonNull(rate);
+        String trimmedRate = rate.trim();
+        if (!OtRate.isValidTwoDecimalNumber(trimmedRate)) {
+            throw new ParseException(OtRate.MESSAGE_CONSTRAINTS);
+        }
+        return new OtRate(trimmedRate);
+    }
+
+    /**
+     * Parses a (@code String deductibles) into an (@code PayDeductibles).
+     * Leading and trailing whitespaces will be trimmed.
+     * @param deductibles
+     * @return A PayDeductibles object after trimming.
+     * @throws ParseException
+     */
+
+    public static PayDeductibles parseDeductibles(String deductibles) throws ParseException {
+        requireNonNull(deductibles);
+        String trimmedDeductibles = deductibles.trim();
+        if (!PayDeductibles.isValidTwoDecimalNumber(trimmedDeductibles)) {
+            throw new ParseException(PayDeductibles.MESSAGE_CONSTRAINTS);
+        }
+        return new PayDeductibles(trimmedDeductibles);
+    }
+
+    /**
      * Parses a {@code String department} into an {@code Department}
      * Leading and trailing whitespaces wil be trimmed.
      *
@@ -146,7 +198,6 @@ public class ParserUtil {
             throw new ParseException(Manager.MESSAGE_CONSTRAINTS);
         }
         return new Manager(trimmedManager);
->>>>>>> 69947c18fa0523039f96ff5eef949770f37d285e
     }
 
     /**
