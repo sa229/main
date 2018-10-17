@@ -36,7 +36,6 @@ public class PrivacyCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "y "
             + PREFIX_ADDRESS + "n";
-            ;
 
     public static final String MESSAGE_EDIT_PRIVACY_SUCCESS = "Privacy modified: %1$s";
     public static final String MESSAGE_NOT_EDITED = "U DIDNT CHANGE ANYTHING IDIOT";
@@ -112,7 +111,7 @@ public class PrivacyCommand extends Command {
 
         public Optional<String> getEmailPrivacy() { return Optional.ofNullable(emailPrivacy); }
 
-        public void setAddressPrivacy(String emailPrivacy) { this.addressPrivacy = addressPrivacy; }
+        public void setAddressPrivacy(String addressPrivacy) { this.addressPrivacy = addressPrivacy; }
 
         public Optional<String> getAddressPrivacy() { return Optional.ofNullable(addressPrivacy); }
 
