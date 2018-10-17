@@ -82,8 +82,8 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Phone phone;
         if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_PHONE)) {
-            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PRIVATE_PHONE).get());
-            phone.setPrivate("Y");
+            phone = new Phone (ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PRIVATE_PHONE).get()).value,
+                    "Y");
         } else {
             phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         }
