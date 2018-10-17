@@ -498,6 +498,44 @@ Figure 3.8.2.1 Activity Diagram for `unlock` command
 
 // end::unlockcommand[]
 
+//tag::Salary, OT Hours, OT Rate and Pay Deductibles For Staff[]
+=== Salary, OT Hours, OT Rate and Pay Deductibles For Staff
+
+==== Introduction
+We have introduced four new fields to a staff namely the salary, overtime(OT) hours, OT rate and Pay deductibles
+for a staff. This is to allow the HR department of the company to keep track of individual staff's details.
+
+==== Current Implementation
+
+The current implementation of this feature is embedded into a Person object together with the other information
+that was originally in the Person object. Prefixes for the respective fields were also created to allow the HR user
+to edit the necessary information whenever needed.
+
+A newly added staff into SSENISUB would be assigned the default values of 0 for all four fields. This is to better
+allow the HR staff to manage the information of the staff. Naturally, when a person first joins the company, he would
+not have raked up any OT hours and the rate is dependent on the job of the individual.
+
+Should the user now want to edit a staff's salary, OT hours, OT rate or pay deductibles, the user can now simply
+input the prefixes followed by the numerals of each field to edit in the edit command. The fields would then be
+edited depending if the prefixes were there or not (similar to the edit command).
+
+==== Design Considerations
+* ** Alternative 1 (First Implementation):** Merging the OT hours, OT rate and pay deductibles within a Salary class
+** Pros: Easier to calculate net pay
+** Cons: Harder to implement and would result in many conflicts within the software itself. Harder to debug
+
+image::FirstImplementation.png[height="450"]
+Figure 3.9.3.1 Idea of First Implementation
+
+* **Alternative 2 (Current Implementation):** Separating out each field to their own classes
+** Pros: Easier to implement and allows for more flexibility if the fields are required to be computed/used for other
+ information, easier to identify issues when something goes wrong
+** Cons: Does not seem intuitive to separate it out since OT hours, OT rate and pay deductibles are used to compute salary
+
+image::SecondImplementation.png[height="450"]
+Figure 3.9.3.2 Idea of Second Implementation
+
+// end::Salary, OT Hours, OT Rate and Pay Deductibles For Staff[]
 == Documentation
 
 We use asciidoc for writing documentation.

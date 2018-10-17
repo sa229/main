@@ -81,7 +81,7 @@ Format: `list`
 === Editing a staff : `edit`
 
 Edits an existing staff in SSENISUB. +
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SALARY] [d/DEPARTMENT] [m/MANAGER] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SALARY] [oth/OTHOUR] [otr/OTRATE] [de/DEDUCTIBLES] [d/DEPARTMENT] [m/MANAGER] [t/TAG]...`
 
 ****
 * Edits the staff at the specified `INDEX`. The index refers to the index number shown in the displayed staff list. The index *must be a positive integer* 1, 2, 3, ...
@@ -272,9 +272,9 @@ e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 123466
 * *Clear* : `clear`
 * *Delete* : `delete INDEX` +
 e.g. `delete 3`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/SALARY] [d/DEPARTMENT] [m/MANAGER] [t/TAG]..
+* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/SALARY] [oth/OTHOUR] [otr/OTRATE] [de/DEDUCTIBLES] [d/DEPARTMENT] [m/MANAGER] [t/TAG]..
 .` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com`
+e.g. `edit 2 n/James Lee e/jameslee@example.com oth/10`
 * *Feedback* : `feedback INDEX [f/FEEDBACK]` +
 e.g. `feedback 1 f/Excellent`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
