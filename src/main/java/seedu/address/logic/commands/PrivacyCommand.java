@@ -69,7 +69,7 @@ public class PrivacyCommand extends Command {
         model.updatePerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_EDIT_PRIVACY_SUCCESS, personToEdit));
+        return new CommandResult(String.format(MESSAGE_EDIT_PRIVACY_SUCCESS, editedPerson));
     }
 
     /**
