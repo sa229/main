@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 //import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIVATE_ADDRESS;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.PrivacyCommand;
 import seedu.address.logic.commands.PrivacyCommand.FieldsToChange;
 import seedu.address.logic.parser.exceptions.ParseException;

@@ -119,17 +119,29 @@ public class PrivacyCommand extends Command {
             return CollectionUtil.isAnyNonNull(phonePrivacy, emailPrivacy, addressPrivacy);
         }
 
-        public void setPhonePrivacy(String phonePrivacy) { this.phonePrivacy = phonePrivacy; }
+        public void setPhonePrivacy(String phonePrivacy) {
+            this.phonePrivacy = phonePrivacy;
+        }
 
-        public Optional<String> getPhonePrivacy() { return Optional.ofNullable(phonePrivacy); }
+        public Optional<String> getPhonePrivacy() {
+            return Optional.ofNullable(phonePrivacy);
+        }
 
-        public void setEmailPrivacy(String emailPrivacy) { this.emailPrivacy = emailPrivacy; }
+        public void setEmailPrivacy(String emailPrivacy) {
+            this.emailPrivacy = emailPrivacy;
+        }
 
-        public Optional<String> getEmailPrivacy() { return Optional.ofNullable(emailPrivacy); }
+        public Optional<String> getEmailPrivacy() {
+            return Optional.ofNullable(emailPrivacy);
+        }
 
-        public void setAddressPrivacy(String addressPrivacy) { this.addressPrivacy = addressPrivacy; }
+        public void setAddressPrivacy(String addressPrivacy) {
+            this.addressPrivacy = addressPrivacy;
+        }
 
-        public Optional<String> getAddressPrivacy() { return Optional.ofNullable(addressPrivacy); }
+        public Optional<String> getAddressPrivacy() {
+            return Optional.ofNullable(addressPrivacy);
+        }
 
 
     }
