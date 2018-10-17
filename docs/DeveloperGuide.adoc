@@ -347,7 +347,16 @@ Given below is an activity diagram that shows how the Privacy command works:
 
 image::PrivacyCommandActivityDiagram.png[width="800"]
 
+==== Design Considerations
 
+===== How to implement Privacy
+* **Alternative 1 (current choice):** Use privacy as a boolean value
+** Pros: Easy to implement as there is only 2 values to take note off
+** Cons: Restrictive in what it can do looking at a future aspect where different level of privacy may be required
+* **Alternative 2:** Implement Privacy as a Enum class
+** Pros: Able to have different level of Privacy and prevents wrong input automatically
+** Cons: Harder to implement and extra work not required in current stage of project
+// end::privacycommand[]
 
 
 
