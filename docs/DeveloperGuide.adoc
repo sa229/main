@@ -327,7 +327,7 @@ A `Rating` class is implemented to support this, which the `Person` class is dep
 allows users, especially for managers to update ratings of employees within an organisation.
 
 [NOTE]
-This command differs from the and and edit command, because users cannot simply add an employee with a rating through
+This command differs from the add and edit command, because users cannot simply add an employee with a rating through
 the add command or edit an employee's rating through the edit command.
 
 [CAUTION]
