@@ -97,7 +97,7 @@ public class CommandTestUtil {
     public static final String INVALID_OTHOUR_DESC = " " + PREFIX_OTHOUR + "25hrs"; // letters not allowed in hours
     public static final String INVALID_OTRATE_DESC = " " + PREFIX_OTRATE + "20/hr"; // letters not allowed in rate
     public static final String INVALID_DEDUCTIBLES_DESC = " " + PREFIX_DEDUCTIBLES
-      + "$1000"; // '$' not allowed in deductibles
+        + "$1000"; // '$' not allowed in deductibles
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

@@ -67,7 +67,7 @@ public class PersonUtil {
         descriptor.getHours().ifPresent(hour -> sb.append(PREFIX_OTHOUR).append(hour.overTimeHour).append(" "));
         descriptor.getRate().ifPresent(rate -> sb.append(PREFIX_OTRATE).append(rate.overTimeRate).append(" "));
         descriptor.getDeductibles().ifPresent(deductibles -> sb.append(PREFIX_DEDUCTIBLES)
-          .append(deductibles.payDeductibles).append(" "));
+            .append(deductibles.payDeductibles).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
