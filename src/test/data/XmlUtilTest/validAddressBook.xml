@@ -8,6 +8,10 @@
         <rating>0</rating>
         <department isPrivate="false">Accounting</department>
         <manager isPrivate="false">Ben Leong</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
     </persons>
     <persons>
         <name>Ruth Mueller</name>
@@ -17,6 +21,10 @@
         <rating>2</rating>
         <department isPrivate="false">Marketing</department>
         <manager isPrivate="false">Marcus Tan</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
     </persons>
     <persons>
         <name>Heinz Kurz</name>
@@ -26,6 +34,10 @@
         <rating>0</rating>
         <department isPrivate="false">Tech</department>
         <manager isPrivate="false">Moses Lim</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
     </persons>
     <persons>
         <name>Cornelia Meier</name>
@@ -35,6 +47,10 @@
         <rating>8</rating>
         <department isPrivate="false">Accounting</department>
         <manager isPrivate="false">Lionel Lim</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
     </persons>
     <persons>
         <name>Werner Meyer</name>
@@ -44,6 +60,10 @@
         <rating>6</rating>
         <department isPrivate="false">Marketing</department>
         <manager isPrivate="false">Edward Toh</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
     </persons>
     <persons>
         <name>Lydia Kunz</name>
@@ -53,6 +73,10 @@
         <rating>5</rating>
         <department isPrivate="false">Tech</department>
         <manager isPrivate="false">Joanne Lee</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
     </persons>
     <persons>
         <name>Anna Best</name>
@@ -62,6 +86,10 @@
         <rating>10</rating>
         <department isPrivate="false">Accounting</department>
         <manager isPrivate="false">Ben Leong</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
     </persons>
     <persons>
         <name>Stefan Meier</name>
@@ -71,6 +99,10 @@
         <rating>7</rating>
         <department isPrivate="false">Marketing</department>
         <manager isPrivate="false">Marcus Tan</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
     </persons>
     <persons>
         <name>Martin Mueller</name>
@@ -80,5 +112,9 @@
         <rating>5</rating>
         <department isPrivate="false">Tech</department>
         <manager isPrivate="false">Joanne Lee</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
     </persons>
 </addressbook>

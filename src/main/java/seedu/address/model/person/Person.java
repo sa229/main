@@ -24,6 +24,10 @@ public class Person {
     private final Department department;
     private final Manager manager;
     private final Address address;
+    private final Salary salary;
+    private final OtHour otHours;
+    private final OtRate otRate;
+    private final PayDeductibles deductibles;
     private final Rating rating;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -31,12 +35,17 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Rating rating, Department department,
-                  Manager manager, Set<Tag> tags) {
+                  Manager manager, Salary salary, OtHour hours, OtRate rate,
+                  PayDeductibles deductibles, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, rating, department, manager, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.salary = salary;
+        this.otHours = hours;
+        this.otRate = rate;
+        this.deductibles = deductibles;
         this.rating = rating;
         this.department = department;
         this.manager = manager;
@@ -57,6 +66,22 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Salary getSalary() {
+        return salary;
+    }
+
+    public OtHour getOtHours() {
+        return otHours;
+    }
+
+    public OtRate getOtRate() {
+        return otRate;
+    }
+
+    public PayDeductibles getDeductibles() {
+        return deductibles;
     }
 
     public Rating getRating() {
@@ -112,6 +137,10 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getSalary().equals(getSalary())
+                && otherPerson.getOtHours().equals(getOtHours())
+                && otherPerson.getOtRate().equals(getOtRate())
+                && otherPerson.getDeductibles().equals(getDeductibles())
                 && otherPerson.getRating().equals(getRating())
                 && otherPerson.getDepartment().equals(getDepartment())
                 && otherPerson.getManager().equals(getManager())
@@ -134,6 +163,14 @@ public class Person {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
+                .append(" Salary: ")
+                .append(getSalary())
+                .append(" OT Hours: ")
+                .append(getOtHours())
+                .append(" OT Rate: ")
+                .append(getOtRate())
+                .append(" Deductibles: ")
+                .append(getDeductibles())
                 .append(" Rating: ")
                 .append(getRating())
                 .append(" Department: ")
