@@ -12,6 +12,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_OTHOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OTRATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIVATE_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIVATE_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIVATE_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
