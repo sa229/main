@@ -319,6 +319,38 @@ image::UndoRedoActivityDiagram.png[width="650"]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
 // end::undoredo[]
 
+// tag::privacycommand[]
+=== Privacy Feature
+==== Introduction
+
+We have implemented a privacy feature to fields that we deem to have importance in having an option to be
+made private. A Privacy Command is implemented to be able to toggle the privacy value of the information of
+the selected person.
+
+==== Current implementation
+
+The privacy feature is currently implemented as a boolean field under information classes that can be made private
+(Phone, Email, Address as of v1.2).
+
+A new command PrivacyCommand is implemented to be able to toggle the boolean values of classes that have a Privacy field.
+The add command can also add a Person with private field directly.
+
+The UI will also display private fields as private.
+
+[NOTE]
+This command can only change fields that can be made private, and will throw an exception otherwise.
+
+To change a field to private or not private, a 'y' or 'n' is the expected input respectively. This is planned to
+change in future updates where there can be different levels of privacy for different fields.
+
+Given below is an activity diagram that shows how the Privacy command works:
+
+image::PrivacyCommandActivityDiagram.png[width="800"]
+
+
+
+
+
 // tag::dataencryption[]
 === [Proposed] Data Encryption
 
