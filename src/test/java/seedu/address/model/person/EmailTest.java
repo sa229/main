@@ -66,15 +66,4 @@ public class EmailTest {
         //default email
         assertFalse(email.isPrivate());
     }
-
-    @Test
-    public void setPrivate() {
-        Email email = new Email("yxt@msn.com");
-        //set to private
-        email.setPrivate("Y");
-        assertTrue(email.isPrivate());
-        //set to non private
-        email.setPrivate("N");
-        assertFalse(email.isPrivate());
-    }
 }

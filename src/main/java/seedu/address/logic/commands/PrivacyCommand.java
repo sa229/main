@@ -96,10 +96,10 @@ public class PrivacyCommand extends Command {
             phone = new Phone(personToEdit.getPhone().value, "Y");
         }
         if (fieldsToChange.getEmailPrivacy().isPresent()) {
-            personToEdit.getEmail().setPrivate(fieldsToChange.getEmailPrivacy().get());
+            email = new Email(personToEdit.getEmail().value, "Y");
         }
         if (fieldsToChange.getAddressPrivacy().isPresent()) {
-            personToEdit.getAddress().setPrivate(fieldsToChange.getAddressPrivacy().get());
+            address = new Address(personToEdit.getAddress().value, "Y");
         }
 
         return new Person(name, phone, email, address, rating, department, manager, tags);
