@@ -31,13 +31,13 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Rating rating, Department department,
-                  Manager manager, Set<Tag> tags) {
+                  Manager manager, Salary salary, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, rating, department, manager, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.salary = new Salary("0");
+        this.salary = salary;
         this.rating = rating;
         this.department = department;
         this.manager = manager;
