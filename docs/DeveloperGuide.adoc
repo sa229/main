@@ -464,6 +464,40 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 
 Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: `config.json`).
 
+// tag::unlockcommand[]
+=== Unlock Feature
+
+==== Introduction
+
+We have implemented an unlock command that focuses on the `Storage` component. An `UnlockCommand` class is added
+and an `UnlockEvent` event is also added.
+
+
+==== Current Implementation
+
+The `unlock` command allows changes made to be saved to the address book.
+
+Without the correct (for now hardcoded) password, all the changes made (add, edit, delete)during the session
+will not be saved and will not be shown once the window is closed and reopened.
+
+The following activity diagram shows how the current `Unlock` command works:
+
+image::UnlockActivityDiagram.png[width="800"]
+Figure 3.8.1.1 Activity Diagram for `unlock` command
+
+==== Design Considerations
+
+===== Implementation of unlock
+* ** Alternative 1 (current choice):** Unlocking is handled as an event rather than a command.
+** Pros: Unlocking can be done at any time and event handler is used
+** Cons: Does not resemble a real unlocking function, minimal functionality
+
+* ** Alternative 2:** Unlocking is a command that overrides all other commands
+** Pros: Makes more sense as an unlock function
+** Cons: Harder to implement
+
+// end::unlockcommand[]
+
 == Documentation
 
 We use asciidoc for writing documentation.
