@@ -71,6 +71,9 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         salary = personToCopy.getSalary();
+        hours = personToCopy.getOtHours();
+        rate = personToCopy.getOtRate();
+        deductibles = personToCopy.getDeductibles();
         rating = personToCopy.getRating();
         department = personToCopy.getDepartment();
         manager = personToCopy.getManager();

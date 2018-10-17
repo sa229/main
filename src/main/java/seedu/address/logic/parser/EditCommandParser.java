@@ -65,16 +65,17 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_SALARY).isPresent()) {
-          editPersonDescriptor.setSalary(ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get()));
+            editPersonDescriptor.setSalary(ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get()));
         }
         if (argMultimap.getValue(PREFIX_OTHOUR).isPresent()) {
-          editPersonDescriptor.setHours(ParserUtil.parseHours(argMultimap.getValue(PREFIX_OTHOUR).get()));
+            editPersonDescriptor.setHours(ParserUtil.parseHours(argMultimap.getValue(PREFIX_OTHOUR).get()));
         }
         if (argMultimap.getValue(PREFIX_OTRATE).isPresent()) {
-          editPersonDescriptor.setRate(ParserUtil.parseRate(argMultimap.getValue(PREFIX_OTRATE).get()));
+            editPersonDescriptor.setRate(ParserUtil.parseRate(argMultimap.getValue(PREFIX_OTRATE).get()));
         }
         if (argMultimap.getValue(PREFIX_DEDUCTIBLES).isPresent()) {
-          editPersonDescriptor.setDeductibles(ParserUtil.parseDeductibles(argMultimap.getValue(PREFIX_DEDUCTIBLES).get()));
+            editPersonDescriptor.setDeductibles(ParserUtil.parseDeductibles(argMultimap
+                .getValue(PREFIX_DEDUCTIBLES).get()));
         }
         if (argMultimap.getValue(PREFIX_RATING).isPresent()) {
             editPersonDescriptor.setRating(ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get()));
