@@ -9,6 +9,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -16,7 +17,15 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Department;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Manager;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rating;
+import seedu.address.model.tag.Tag;
 
 /**
  * Togggles the privacy value of an existing person's information in the address book.
@@ -61,11 +70,7 @@ public class PrivacyCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getRating(), personToEdit.getDepartment(),
-                personToEdit.getManager(), personToEdit.getTags());
-        changePrivacy(editedPerson, fieldsToChange);
-
+        Person editedPerson = changePrivacy(personToEdit, fieldsToChange);
         model.updatePerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.commitAddressBook();
@@ -75,11 +80,20 @@ public class PrivacyCommand extends Command {
     /**
      * Changes the privacy values of a {@code Person} with the options stated in {@code fieldsToChange}
      */
-    private static void changePrivacy(Person personToEdit, FieldsToChange fieldsToChange) {
+    private static Person changePrivacy(Person personToEdit, FieldsToChange fieldsToChange) {
         assert personToEdit != null;
 
+        Name name = personToEdit.getName();
+        Phone phone = personToEdit.getPhone();
+        Email email = personToEdit.getEmail();
+        Address address = personToEdit.getAddress();
+        Rating rating = personToEdit.getRating();
+        Department department = personToEdit.getDepartment();
+        Manager manager = personToEdit.getManager();
+        Set<Tag> tags = personToEdit.getTags();
+
         if (fieldsToChange.getPhonePrivacy().isPresent()) {
-            personToEdit.getPhone().setPrivate(fieldsToChange.getPhonePrivacy().get());
+            phone = new Phone(personToEdit.getPhone().value, "Y");
         }
         if (fieldsToChange.getEmailPrivacy().isPresent()) {
             personToEdit.getEmail().setPrivate(fieldsToChange.getEmailPrivacy().get());
@@ -87,6 +101,8 @@ public class PrivacyCommand extends Command {
         if (fieldsToChange.getAddressPrivacy().isPresent()) {
             personToEdit.getAddress().setPrivate(fieldsToChange.getAddressPrivacy().get());
         }
+
+        return new Person(name, phone, email, address, rating, department, manager, tags);
     }
 
     /**

@@ -94,7 +94,7 @@ public class AddCommandParserTest {
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
 
         // private number accepted
-        expectedPerson.getPhone().setPrivate("Y");
+        //expectedPerson.getPhone().setPrivate("Y");
         assertParseSuccess(parser, NAME_DESC_BOB + PRIVATE_PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + DEPARTMENT_DESC_BOB + MANAGER_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));

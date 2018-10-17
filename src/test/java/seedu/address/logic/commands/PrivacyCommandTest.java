@@ -22,7 +22,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.FieldsToChangeBuilder;
-//import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalPersons;
 
 public class PrivacyCommandTest {
@@ -95,54 +95,54 @@ public class PrivacyCommandTest {
         assertCommandFailure(privacyCommand, model, commandHistory, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
-    //        @Test
-    //        public void executeUndoRedo_validIndexUnfilteredList_success() throws Exception {
-    //            Person editedPerson = new PersonBuilder().build();
-    //            Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-    //            FieldsToChange fieldsToChange = new FieldsToChangeBuilder().withAllPrivate().build();
-    //            PrivacyCommand privacyCommand = new PrivacyCommand(INDEX_FIRST_PERSON, fieldsToChange);
-    //            Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-    //            expectedModel.updatePerson(personToEdit, editedPerson);
-    //            expectedModel.commitAddressBook();
-    //
-    //            // edit -> first person edited
-    //            privacyCommand.execute(model, commandHistory);
-    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
-    //                            .getPhone().isPrivate(),
-    //                    true);
-    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
-    //                            .getEmail().isPrivate(),
-    //                    true);
-    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
-    //                            .getAddress().isPrivate(),
-    //                    true);
-    //
-    //            // undo -> reverts addressbook back to previous state and filtered person list to show all persons
-    //            model.undoAddressBook();
-    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
-    //                            .getPhone().isPrivate(),
-    //                    false);
-    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
-    //                            .getEmail().isPrivate(),
-    //                    false);
-    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
-    //                            .getAddress().isPrivate(),
-    //                    false);
-    //            assertCommandSuccess(new UndoCommand(), model, commandHistory,
-    //                    UndoCommand.MESSAGE_SUCCESS, expectedModel);
-    //
-    //            // redo -> same first person edited again
-    //            model.redoAddressBook();
-    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
-    //                            .getPhone().isPrivate(),
-    //                    true);
-    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
-    //                            .getEmail().isPrivate(),
-    //                    true);
-    //            Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
-    //                            .getAddress().isPrivate(),
-    //                    true);
-    //            assertCommandSuccess(new RedoCommand(), model, commandHistory,
-    //                    RedoCommand.MESSAGE_SUCCESS, expectedModel);
-    //        }
+            @Test
+            public void executeUndoRedo_validIndexUnfilteredList_success() throws Exception {
+                Person editedPerson = new PersonBuilder().build();
+                Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+                FieldsToChange fieldsToChange = new FieldsToChangeBuilder().withAllPrivate().build();
+                PrivacyCommand privacyCommand = new PrivacyCommand(INDEX_FIRST_PERSON, fieldsToChange);
+                Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+                expectedModel.updatePerson(personToEdit, editedPerson);
+                expectedModel.commitAddressBook();
+
+                // edit -> first person edited
+                privacyCommand.execute(model, commandHistory);
+                Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+                                .getPhone().isPrivate(),
+                        true);
+                Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+                                .getEmail().isPrivate(),
+                        true);
+                Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+                                .getAddress().isPrivate(),
+                        true);
+
+                // undo -> reverts addressbook back to previous state and filtered person list to show all persons
+                model.undoAddressBook();
+                Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+                                .getPhone().isPrivate(),
+                        false);
+                Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+                                .getEmail().isPrivate(),
+                        false);
+                Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+                                .getAddress().isPrivate(),
+                        false);
+                assertCommandSuccess(new UndoCommand(), model, commandHistory,
+                        UndoCommand.MESSAGE_SUCCESS, expectedModel);
+
+                // redo -> same first person edited again
+                model.redoAddressBook();
+                Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+                                .getPhone().isPrivate(),
+                        true);
+                Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+                                .getEmail().isPrivate(),
+                        true);
+                Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+                                .getAddress().isPrivate(),
+                        true);
+                assertCommandSuccess(new RedoCommand(), model, commandHistory,
+                        RedoCommand.MESSAGE_SUCCESS, expectedModel);
+            }
 }

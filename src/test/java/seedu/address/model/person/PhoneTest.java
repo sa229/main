@@ -45,15 +45,15 @@ public class PhoneTest {
         //default phone
         assertFalse(phone.isPrivate());
     }
-
-    @Test
-    public void setPrivate() {
-        Phone phone = new Phone("92349234");
-        //set to private
-        phone.setPrivate("Y");
-        assertTrue(phone.isPrivate());
-        //set to non private
-        phone.setPrivate("N");
-        assertFalse(phone.isPrivate());
-    }
+//
+//    @Test
+//    public void setPrivate() {
+//        Phone phone = new Phone("92349234");
+//        //set to private
+//        phone.setPrivate("Y");
+//        assertTrue(phone.isPrivate());
+//        //set to non private
+//        phone.setPrivate("N");
+//        assertFalse(phone.isPrivate());
+//    }
 }
