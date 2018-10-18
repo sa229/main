@@ -8,9 +8,13 @@ import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Manager;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OtHour;
+import seedu.address.model.person.OtRate;
+import seedu.address.model.person.PayDeductibles;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Rating;
+import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -23,6 +27,10 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_SALARY = "0";
+    public static final String DEFAULT_OTHOUR = "0";
+    public static final String DEFAULT_OTRATE = "0";
+    public static final String DEFAULT_DEDUCTIBLES = "0";
     public static final String DEFAULT_DEPARTMENT = "Accounting";
     public static final String DEFAULT_MANAGER = "Ben Leong";
 
@@ -30,6 +38,10 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private Salary salary;
+    private OtHour hours;
+    private OtRate rate;
+    private PayDeductibles deductibles;
     private Rating rating;
     private Department department;
     private Manager manager;
@@ -40,6 +52,10 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        salary = new Salary(DEFAULT_SALARY);
+        hours = new OtHour(DEFAULT_OTHOUR);
+        rate = new OtRate(DEFAULT_OTRATE);
+        deductibles = new PayDeductibles(DEFAULT_DEDUCTIBLES);
         rating = new Rating("5");
         department = new Department(DEFAULT_DEPARTMENT);
         manager = new Manager(DEFAULT_MANAGER);
@@ -54,6 +70,10 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        salary = personToCopy.getSalary();
+        hours = personToCopy.getOtHours();
+        rate = personToCopy.getOtRate();
+        deductibles = personToCopy.getDeductibles();
         rating = personToCopy.getRating();
         department = personToCopy.getDepartment();
         manager = personToCopy.getManager();
@@ -73,6 +93,42 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Sets the (@code Salary) of the (@code Person) that we are building.
+     * @param salary
+     */
+    public PersonBuilder withSalary(String salary) {
+        this.salary = new Salary(salary);
+        return this;
+    }
+
+    /**
+     * Sets the (@code OtHour) of the (@code Person) that we are building.
+     * @param hours
+     */
+    public PersonBuilder withHours(String hours) {
+        this.hours = new OtHour(hours);
+        return this;
+    }
+
+    /**
+     * Sets the (@code OtRate) of the (@code Person) that we are building.
+     * @param rate
+     */
+    public PersonBuilder withRate(String rate) {
+        this.rate = new OtRate(rate);
+        return this;
+    }
+
+    /**
+     * Sets the (@code PayDeductibles) of the (@code Person) that we are building.
+     * @param deductibles
+     */
+    public PersonBuilder withDeductibles(String deductibles) {
+        this.deductibles = new PayDeductibles(deductibles);
         return this;
     }
 
@@ -124,8 +180,12 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds a new person based on the current one.
+     */
     public Person build() {
-        return new Person(name, phone, email, address, rating, department, manager, tags);
+        return new Person(name, phone, email, address, rating, department, manager,
+          salary, hours, rate, deductibles, tags);
     }
 
 }
