@@ -6,8 +6,8 @@ import com.google.common.eventbus.Subscribe;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
 import seedu.address.model.person.Person;
@@ -22,7 +22,7 @@ public class StaffPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     @FXML
-    private StackPane staffPane;
+    private AnchorPane staffAnchor;
     @FXML
     private Label nameLabel;
     @FXML
