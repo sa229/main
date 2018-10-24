@@ -139,7 +139,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_parseCommand_feedback() throws Exception {
-        String command = FeedbackCommand.COMMAND_WORD;
+        String command = FeedbackCommand.COMMAND_WORD + " 1 " + PREFIX_FEEDBACK + "Excellent!";
         assertTrue(parser.parseCommand(command) instanceof FeedbackCommand);
     }
 
