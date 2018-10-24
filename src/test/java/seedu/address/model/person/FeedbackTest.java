@@ -35,4 +35,22 @@ public class FeedbackTest {
         assertTrue(Feedback.isValidFeedback("I'm really impressed by your work performance. "
                                             + "Keep it up!")); // long feedback
     }
+
+    @Test
+    public void equals() {
+        Feedback positiveFeedback = new Feedback("You are good!");
+        Feedback negativeFeedback = new Feedback("You are bad!");
+
+        // same object -> returns true
+        assertTrue(positiveFeedback.equals(positiveFeedback));
+
+        // null -> returns false
+        assertFalse(positiveFeedback.equals(null));
+
+        // different type -> returns false
+        assertFalse(positiveFeedback.equals("0"));
+
+        // different rating -> returns false
+        assertFalse(positiveFeedback.equals(negativeFeedback));
+    }
 }
