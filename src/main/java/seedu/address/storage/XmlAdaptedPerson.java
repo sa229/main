@@ -214,13 +214,6 @@ public class XmlAdaptedPerson {
         }
         final PayDeductibles modelDeductibles = new PayDeductibles(deductibles);
 
-        if (feedback == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Feedback.class.getSimpleName()));
-        }
-        if (!Feedback.isValidFeedback(feedback)) {
-            throw new IllegalValueException(Feedback.MESSAGE_CONSTRAINTS);
-        }
         final Feedback modelFeedback = new Feedback(feedback);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
