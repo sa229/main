@@ -2,19 +2,26 @@ package seedu.address.logic.commands;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Feedback;
+import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 public class FeedbackCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -42,16 +49,36 @@ public class FeedbackCommandTest {
         assertFalse(feedbackFirstCommand.equals(feedbackSecondCommand));
     }
     @Test
-    public void execute_exception() {
-        boolean thrown = false;
+    public void execute_success() {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        FeedbackCommand feedbackCommand = new FeedbackCommand(indexLastPerson, new Feedback("Good"));
+        Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
-        try {
-            feedbackCommand.execute(model, commandHistory);
-        } catch (CommandException ce) {
-            thrown = true;
-        }
-        assertTrue(thrown);
+        PersonBuilder personInList = new PersonBuilder(lastPerson);
+        Person editedPerson = personInList.withFeedback("You are cool!").build();
+
+        FeedbackCommand feedbackCommand = new FeedbackCommand(indexLastPerson, new Feedback("You are cool!"));
+
+        String expectedMessage = String.format(FeedbackCommand.MESSAGE_FEEDBACK_PERSON_SUCCESS, editedPerson);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.updatePerson(lastPerson, editedPerson);
+        expectedModel.commitAddressBook();
+
+        assertCommandSuccess(feedbackCommand, model, commandHistory, expectedMessage, expectedModel);
+    }
+
+    @Test
+    /**
+     * Edit filtered list where index is larger than size of filtered list,
+     * but smaller than size of address book
+     */
+    public void execute_invalidPersonIndexFilteredList_failure() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+
+        FeedbackCommand feedbackCommand = new FeedbackCommand(outOfBoundIndex, new Feedback("Work harder."));
+
+        assertCommandFailure(feedbackCommand, model, commandHistory, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 }
