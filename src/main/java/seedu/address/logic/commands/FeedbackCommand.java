@@ -47,7 +47,7 @@ public class FeedbackCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FeedbackCommand); // instanceof handles nulls
-                //&& index.equals(((FeedbackCommand) other).index)); // state check
+                || (other instanceof FeedbackCommand // instanceof handles nulls
+                && index.equals(((FeedbackCommand) other).index)); // state check
     }
 }
