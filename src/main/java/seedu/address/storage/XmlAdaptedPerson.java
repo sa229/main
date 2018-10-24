@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Feedback;
 import seedu.address.model.person.Manager;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.OtHour;
@@ -53,6 +54,8 @@ public class XmlAdaptedPerson {
     private String rate;
     @XmlElement(required = true)
     private String deductibles;
+    @XmlElement(required = true)
+    private String feedback;
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -79,6 +82,7 @@ public class XmlAdaptedPerson {
         this.hours = "0";
         this.rate = "0";
         this.deductibles = "0";
+        this.feedback = "-NO FEEDBACK YET-";
         if (tagged != null) {
             this.tagged = new ArrayList<>(tagged);
         }
@@ -101,6 +105,7 @@ public class XmlAdaptedPerson {
         hours = source.getOtHours().overTimeHour;
         rate = source.getOtRate().overTimeRate;
         deductibles = source.getDeductibles().payDeductibles;
+        feedback = source.getFeedback().value;
         tagged = source.getTags().stream()
                 .map(XmlAdaptedTag::new)
                 .collect(Collectors.toList());
@@ -209,9 +214,18 @@ public class XmlAdaptedPerson {
         }
         final PayDeductibles modelDeductibles = new PayDeductibles(deductibles);
 
+        if (feedback == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Feedback.class.getSimpleName()));
+        }
+        if (!Feedback.isValidFeedback(feedback)) {
+            throw new IllegalValueException(Feedback.MESSAGE_CONSTRAINTS);
+        }
+        final Feedback modelFeedback = new Feedback(feedback);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRating, modelDepartment, modelManager,
-                modelSalary, modelHours, modelRate, modelDeductibles, modelTags);
+                modelSalary, modelHours, modelRate, modelDeductibles, modelFeedback, modelTags);
     }
 
     @Override
@@ -236,6 +250,7 @@ public class XmlAdaptedPerson {
                 && Objects.equals(hours, otherPerson.hours)
                 && Objects.equals(rate, otherPerson.rate)
                 && Objects.equals(deductibles, otherPerson.deductibles)
+                && Objects.equals(feedback, otherPerson.feedback)
                 && tagged.equals(otherPerson.tagged);
     }
 }
