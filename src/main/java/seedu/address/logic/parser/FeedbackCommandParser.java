@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FEEDBACK;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.FeedbackCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Feedback;
 
 /**
  * Parses input arguments and creates a new FeedbackCommand object
@@ -31,7 +32,7 @@ public class FeedbackCommandParser implements Parser<FeedbackCommand> {
         feedback = argMultimap.getValue(PREFIX_FEEDBACK).get();
         index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
-        return new FeedbackCommand(index, feedback);
+        return new FeedbackCommand(index, new Feedback(feedback));
     }
 
     /**

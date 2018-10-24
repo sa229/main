@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.Test;
 
 import seedu.address.logic.commands.FeedbackCommand;
+import seedu.address.model.person.Feedback;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -27,7 +28,7 @@ public class FeedbackCommandParserTest {
     @Test
     public void parse_validArgs_success() {
         assertParseSuccess(parser, "1 " + PREFIX_FEEDBACK + "Great",
-                new FeedbackCommand(INDEX_FIRST_PERSON, "Great"));
+                new FeedbackCommand(INDEX_FIRST_PERSON, new Feedback("Great")));
     }
 
     @Test

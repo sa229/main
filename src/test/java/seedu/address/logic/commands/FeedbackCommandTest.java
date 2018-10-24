@@ -14,6 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Feedback;
 
 public class FeedbackCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -21,14 +22,14 @@ public class FeedbackCommandTest {
 
     @Test
     public void equals() {
-        FeedbackCommand feedbackFirstCommand = new FeedbackCommand(INDEX_FIRST_PERSON, "Good");
-        FeedbackCommand feedbackSecondCommand = new FeedbackCommand(INDEX_SECOND_PERSON, "Bad");
+        FeedbackCommand feedbackFirstCommand = new FeedbackCommand(INDEX_FIRST_PERSON, new Feedback("Good"));
+        FeedbackCommand feedbackSecondCommand = new FeedbackCommand(INDEX_SECOND_PERSON, new Feedback("Bad"));
 
         // same object -> returns true
         assertTrue(feedbackFirstCommand.equals(feedbackFirstCommand));
 
         // same values -> returns true
-        FeedbackCommand feedbackFirstCommandCopy = new FeedbackCommand(INDEX_FIRST_PERSON, "Good");
+        FeedbackCommand feedbackFirstCommandCopy = new FeedbackCommand(INDEX_FIRST_PERSON, new Feedback("Good"));
         assertTrue(feedbackFirstCommand.equals(feedbackFirstCommandCopy));
 
         // different types -> returns false
@@ -44,7 +45,7 @@ public class FeedbackCommandTest {
     public void execute_exception() {
         boolean thrown = false;
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        FeedbackCommand feedbackCommand = new FeedbackCommand(indexLastPerson, "Good");
+        FeedbackCommand feedbackCommand = new FeedbackCommand(indexLastPerson, new Feedback("Good"));
 
         try {
             feedbackCommand.execute(model, commandHistory);
