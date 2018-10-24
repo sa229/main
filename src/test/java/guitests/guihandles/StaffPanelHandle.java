@@ -17,6 +17,7 @@ public class StaffPanelHandle extends NodeHandle<Node> {
     private static final String DEPARTMENT_FIELD_ID = "#departmentLabel";
     private static final String MANAGER_FIELD_ID = "#managerLabel";
     private static final String RATING_FIELD_ID = "#ratingLabel";
+    private static final String FEEDBACK_FIELD_ID = "#feedbackLabel";
 
     private final Label nameLabel;
     private final Label phoneLabel;
@@ -26,6 +27,7 @@ public class StaffPanelHandle extends NodeHandle<Node> {
     private final Label departmentLabel;
     private final Label managerLabel;
     private final Label ratingLabel;
+    private final Label feedbackLabel;
 
     public StaffPanelHandle(Node staffNode) {
         super(staffNode);
@@ -38,6 +40,7 @@ public class StaffPanelHandle extends NodeHandle<Node> {
         departmentLabel = getChildNode(DEPARTMENT_FIELD_ID);
         managerLabel = getChildNode(MANAGER_FIELD_ID);
         ratingLabel = getChildNode(RATING_FIELD_ID);
+        feedbackLabel = getChildNode(FEEDBACK_FIELD_ID);
     }
 
     public String getName() {
@@ -72,6 +75,10 @@ public class StaffPanelHandle extends NodeHandle<Node> {
         return ratingLabel.getText();
     }
 
+    public String getFeedback() {
+        return feedbackLabel.getText();
+    }
+
     /**
      * Returns true if this handle contains {@code person}.
      */
@@ -83,6 +90,7 @@ public class StaffPanelHandle extends NodeHandle<Node> {
                 && getSalary().equals(person.getSalary().salary)
                 && getDepartment().equals(person.getDepartment().value)
                 && getManager().equals(person.getManager().fullName)
-                && getRating().equals(person.getRating().value);
+                && getRating().equals(person.getRating().value)
+                && getFeedback().equals(person.getFeedback().value);
     }
 }
