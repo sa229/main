@@ -16,7 +16,7 @@ import seedu.address.model.person.Rating;
 
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the rating details of an existing person in the address book.
  */
 public class RateCommand extends Command {
 
