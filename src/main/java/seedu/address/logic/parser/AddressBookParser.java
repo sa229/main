@@ -90,7 +90,7 @@ public class AddressBookParser {
             return new RateCommandParser().parse(arguments);
 
         case FeedbackCommand.COMMAND_WORD:
-            return new FeedbackCommand();
+            return new FeedbackCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
