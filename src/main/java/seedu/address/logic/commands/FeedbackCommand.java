@@ -7,6 +7,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Feedback;
 
 
 /**
@@ -27,12 +28,12 @@ public class FeedbackCommand extends Command {
     public static final String MESSAGE_FEEDBACK_PERSON_SUCCESS = "Feedback updated for Person: %1$s";
 
     private final Index index;
-    private final String feedback;
+    private final Feedback feedback;
 
     /**
      * @param index of the person in the filtered person list to edit
      */
-    public FeedbackCommand(Index index, String feedback) {
+    public FeedbackCommand(Index index, Feedback feedback) {
         requireNonNull(index);
 
         this.index = index;
