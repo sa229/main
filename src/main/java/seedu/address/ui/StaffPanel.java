@@ -61,6 +61,7 @@ public class StaffPanel extends UiPart<Region> {
         departmentLabel.setText(person.getDepartment().value);
         managerLabel.setText(person.getManager().fullName);
         ratingLabel.setText(person.getRating().value);
+        feedbackLabel.setText(person.getFeedback().value);
     }
 
     @Subscribe
