@@ -29,6 +29,7 @@ public class Person {
     private final OtRate otRate;
     private final PayDeductibles deductibles;
     private final Rating rating;
+    private final Feedback feedback;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -36,7 +37,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Rating rating, Department department,
                   Manager manager, Salary salary, OtHour hours, OtRate rate,
-                  PayDeductibles deductibles, Set<Tag> tags) {
+                  PayDeductibles deductibles, Feedback feedback, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, rating, department, manager, tags);
         this.name = name;
         this.phone = phone;
@@ -49,6 +50,7 @@ public class Person {
         this.rating = rating;
         this.department = department;
         this.manager = manager;
+        this.feedback = feedback;
         this.tags.addAll(tags);
     }
 
@@ -94,6 +96,10 @@ public class Person {
 
     public Manager getManager() {
         return manager;
+    }
+
+    public Feedback getFeedback() {
+        return feedback;
     }
 
     /**
@@ -144,13 +150,14 @@ public class Person {
                 && otherPerson.getRating().equals(getRating())
                 && otherPerson.getDepartment().equals(getDepartment())
                 && otherPerson.getManager().equals(getManager())
+                && otherPerson.getFeedback().equals(getFeedback())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, rating, department, manager, tags);
+        return Objects.hash(name, phone, email, address, rating, department, manager, feedback, tags);
     }
 
     @Override
@@ -177,6 +184,8 @@ public class Person {
                 .append(getDepartment())
                 .append(" Manager: ")
                 .append(getManager())
+                .append(" Feedback: ")
+                .append(getFeedback())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
