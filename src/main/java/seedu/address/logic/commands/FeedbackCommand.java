@@ -26,15 +26,15 @@ public class FeedbackCommand extends Command {
 
     public static final String MESSAGE_FEEDBACK_PERSON_SUCCESS = "Feedback updated for Person: %1$s";
 
-    private final Index index;
+    //private final Index index;
 
     /**
      * @param index of the person in the filtered person list to edit
      */
-    public FeedbackCommand(Index index) {
-        requireNonNull(index);
+    public FeedbackCommand() {
+        //requireNonNull(index);
 
-        this.index = index;
+        //this.index = index;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class FeedbackCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FeedbackCommand // instanceof handles nulls
-                && index.equals(((FeedbackCommand) other).index)); // state check
+                || (other instanceof FeedbackCommand); // instanceof handles nulls
+                //&& index.equals(((FeedbackCommand) other).index)); // state check
     }
 }

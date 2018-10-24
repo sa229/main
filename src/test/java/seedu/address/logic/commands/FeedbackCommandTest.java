@@ -19,8 +19,8 @@ public class FeedbackCommandTest {
     @Test
     public void execute_exception() {
         boolean thrown = false;
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        FeedbackCommand feedbackCommand = new FeedbackCommand(indexLastPerson);
+        //Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
+        FeedbackCommand feedbackCommand = new FeedbackCommand();
 
         try {
             feedbackCommand.execute(model, commandHistory);
