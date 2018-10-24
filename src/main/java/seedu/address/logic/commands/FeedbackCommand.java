@@ -20,7 +20,7 @@ import seedu.address.model.person.Person;
  */
 public class FeedbackCommand extends Command {
 
-    public static final String COMMAND_WORD = "fb";
+    public static final String COMMAND_WORD = "feedback";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the feedback for the person identified "
             + "by the index number used in the displayed person list. "
@@ -28,7 +28,7 @@ public class FeedbackCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_FEEDBACK + "FEEDBACK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "r/5";
+            + "fb/5";
 
     public static final String MESSAGE_FEEDBACK_PERSON_SUCCESS = "Feedback updated for Person: %1$s";
 
