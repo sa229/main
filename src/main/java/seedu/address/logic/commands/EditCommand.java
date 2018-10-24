@@ -289,9 +289,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(manager);
         }
 
-        public void setFeedback(Feedback feedback) { this.feedback = feedback; }
+        public void setFeedback(Feedback feedback) {
+            this.feedback = feedback;
+        }
 
-        public Optional<Feedback> getFeedback() { return Optional.ofNullable(feedback); }
+        public Optional<Feedback> getFeedback() {
+            return Optional.ofNullable(feedback);
+        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
