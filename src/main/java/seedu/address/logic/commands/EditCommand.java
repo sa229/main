@@ -123,10 +123,10 @@ public class EditCommand extends Command {
         OtHour updatedHours = editPersonDescriptor.getHours().orElse(personToEdit.getOtHours());
         OtRate updatedRate = editPersonDescriptor.getRate().orElse(personToEdit.getOtRate());
         PayDeductibles updatedDeductibles = editPersonDescriptor.getDeductibles().orElse(personToEdit.getDeductibles());
-        Rating updatedRating = editPersonDescriptor.getRating().orElse(personToEdit.getRating());
+        Rating updatedRating = personToEdit.getRating();
         Department updatedDepartment = editPersonDescriptor.getDepartment().orElse(personToEdit.getDepartment());
         Manager updatedManager = editPersonDescriptor.getManager().orElse(personToEdit.getManager());
-        Feedback updatedFeedback = editPersonDescriptor.getFeedback().orElse(personToEdit.getFeedback());
+        Feedback updatedFeedback = personToEdit.getFeedback();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRating, updatedDepartment,
@@ -165,10 +165,8 @@ public class EditCommand extends Command {
         private OtHour hours;
         private OtRate rate;
         private PayDeductibles deductibles;
-        private Rating rating;
         private Department department;
         private Manager manager;
-        private Feedback feedback;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -186,10 +184,8 @@ public class EditCommand extends Command {
             setHours(toCopy.hours);
             setRate(toCopy.rate);
             setDeductibles(toCopy.deductibles);
-            setRating(toCopy.rating);
             setDepartment(toCopy.department);
             setManager(toCopy.manager);
-            setFeedback(toCopy.feedback);
             setTags(toCopy.tags);
         }
 
@@ -198,7 +194,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, department, manager,
-              salary, hours, rate, deductibles, feedback, tags);
+              salary, hours, rate, deductibles, tags);
         }
 
         public void setName(Name name) {
@@ -265,14 +261,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setRating(Rating rating) {
-            this.rating = rating;
-        }
-
-        public Optional<Rating> getRating() {
-            return Optional.ofNullable(rating);
-        }
-
         public void setDepartment(Department department) {
             this.department = department;
         }
@@ -287,14 +275,6 @@ public class EditCommand extends Command {
 
         public Optional<Manager> getManager() {
             return Optional.ofNullable(manager);
-        }
-
-        public void setFeedback(Feedback feedback) {
-            this.feedback = feedback;
-        }
-
-        public Optional<Feedback> getFeedback() {
-            return Optional.ofNullable(feedback);
         }
 
         /**
@@ -337,10 +317,8 @@ public class EditCommand extends Command {
                     && getHours().equals(e.getHours())
                     && getRate().equals(e.getRate())
                     && getDeductibles().equals(e.getDeductibles())
-                    && getRating().equals(e.getRating())
                     && getDepartment().equals(e.getDepartment())
                     && getManager().equals(e.getManager())
-                    && getFeedback().equals(e.getFeedback())
                     && getTags().equals(e.getTags());
         }
     }
