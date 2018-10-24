@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.Test;
@@ -17,10 +20,31 @@ public class FeedbackCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
+    public void equals() {
+        FeedbackCommand feedbackFirstCommand = new FeedbackCommand(INDEX_FIRST_PERSON, "Good");
+        FeedbackCommand feedbackSecondCommand = new FeedbackCommand(INDEX_SECOND_PERSON, "Bad");
+
+        // same object -> returns true
+        assertTrue(feedbackFirstCommand.equals(feedbackFirstCommand));
+
+        // same values -> returns true
+        FeedbackCommand feedbackFirstCommandCopy = new FeedbackCommand(INDEX_FIRST_PERSON, "Good");
+        assertTrue(feedbackFirstCommand.equals(feedbackFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(feedbackFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(feedbackFirstCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(feedbackFirstCommand.equals(feedbackSecondCommand));
+    }
+    @Test
     public void execute_exception() {
         boolean thrown = false;
-        //Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        FeedbackCommand feedbackCommand = new FeedbackCommand();
+        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
+        FeedbackCommand feedbackCommand = new FeedbackCommand(indexLastPerson, "Good");
 
         try {
             feedbackCommand.execute(model, commandHistory);
