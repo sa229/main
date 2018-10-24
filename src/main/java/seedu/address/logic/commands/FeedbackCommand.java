@@ -26,20 +26,22 @@ public class FeedbackCommand extends Command {
 
     public static final String MESSAGE_FEEDBACK_PERSON_SUCCESS = "Feedback updated for Person: %1$s";
 
-    //private final Index index;
+    private final Index index;
+    private final String feedback;
 
     /**
      * @param index of the person in the filtered person list to edit
      */
-    public FeedbackCommand() {
-        //requireNonNull(index);
+    public FeedbackCommand(Index index, String feedback) {
+        requireNonNull(index);
 
-        //this.index = index;
+        this.index = index;
+        this.feedback = feedback;
     }
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
-        throw new CommandException("Exception");
+        throw new CommandException("Index: " + index.toString() + ", Feedback: " + feedback);
     }
 
     @Override
