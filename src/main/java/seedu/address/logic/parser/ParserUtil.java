@@ -207,13 +207,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code feedback} is invalid.
      */
-    public static Manager parseFeedback(String feedback) throws ParseException {
+    public static Feedback parseFeedback(String feedback) throws ParseException {
         requireNonNull(feedback);
         String trimmedFeedback = feedback.trim();
         if (!Feedback.isValidFeedback(trimmedFeedback)) {
             throw new ParseException(Feedback.MESSAGE_CONSTRAINTS);
         }
-        return new Manager(trimmedFeedback);
+        return new Feedback(trimmedFeedback);
     }
 
     /**
