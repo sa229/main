@@ -49,6 +49,7 @@ public class GuiTestAssert {
         assertEquals(expectedPerson.getDepartment().value, actualPanel.getDepartment());
         assertEquals(expectedPerson.getManager().fullName, actualPanel.getManager());
         assertEquals(expectedPerson.getRating().value, actualPanel.getRating());
+        assertEquals(expectedPerson.getFeedback().value, actualPanel.getFeedback());
     }
 
     /**
