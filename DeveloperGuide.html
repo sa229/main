@@ -36,8 +36,9 @@
 <li><a href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></li>
 <li><a href="#logging">3.6. Logging</a></li>
 <li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
-<li><a href="#unlock-feature">3.8. Unlock Feature</a></li>
-<li><a href="#salary-ot-hours-ot-rate-and-pay-deductibles-for-staff">3.9. Salary, OT Hours, OT Rate and Pay Deductibles For Staff</a></li>
+<li><a href="#unlock-feature-temporarily-omitted">3.8. Unlock Feature (temporarily omitted)</a></li>
+<li><a href="#favourite-feature">3.9. Favourite Feature</a></li>
+<li><a href="#salary-ot-hours-ot-rate-and-pay-deductibles-for-staff">3.10. Salary, OT Hours, OT Rate and Pay Deductibles For Staff</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1084,7 +1085,7 @@ any field, or field with invalid input, a <code>ParseException</code> would be t
 </div>
 </div>
 <div class="sect2">
-<h3 id="unlock-feature"><a class="link" href="#unlock-feature">3.8. Unlock Feature</a></h3>
+<h3 id="unlock-feature-temporarily-omitted"><a class="link" href="#unlock-feature-temporarily-omitted">3.8. Unlock Feature (temporarily omitted)</a></h3>
 <div class="sect3">
 <h4 id="introduction-3"><a class="link" href="#introduction-3">3.8.1. Introduction</a></h4>
 <div class="paragraph">
@@ -1151,16 +1152,67 @@ will not be saved and will not be shown once the window is closed and reopened.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="salary-ot-hours-ot-rate-and-pay-deductibles-for-staff"><a class="link" href="#salary-ot-hours-ot-rate-and-pay-deductibles-for-staff">3.9. Salary, OT Hours, OT Rate and Pay Deductibles For Staff</a></h3>
+<h3 id="favourite-feature"><a class="link" href="#favourite-feature">3.9. Favourite Feature</a></h3>
 <div class="sect3">
 <h4 id="introduction-4"><a class="link" href="#introduction-4">3.9.1. Introduction</a></h4>
+<div class="paragraph">
+<p>We have implemented a favourite command that focuses on the <code>Logic</code> component. A 'FavouriteCommand` class is added.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.9.2. Current Implementation</a></h4>
+<div class="paragraph">
+<p>This <code>favourite</code> command allows contacts to be added to a favourite list and moves the contact to the top of the list.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.9.3. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="implementation-of-favourite-command"><a class="link" href="#implementation-of-favourite-command">Implementation of favourite command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice):</strong> Favourite command can be called using a command alias 'fav'</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier and faster command calling</p>
+</li>
+<li>
+<p>Cons: Ambiguity in choosing command alias (can be either fave or fav)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2:</strong> Favourite command takes in command word 'favourite'</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Clear command word taken in</p>
+</li>
+<li>
+<p>Cons: Slower command calling</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="salary-ot-hours-ot-rate-and-pay-deductibles-for-staff"><a class="link" href="#salary-ot-hours-ot-rate-and-pay-deductibles-for-staff">3.10. Salary, OT Hours, OT Rate and Pay Deductibles For Staff</a></h3>
+<div class="sect3">
+<h4 id="introduction-5"><a class="link" href="#introduction-5">3.10.1. Introduction</a></h4>
 <div class="paragraph">
 <p>We have introduced four new fields to a staff namely the salary, overtime(OT) hours, OT rate and Pay deductibles
 for a staff. This is to allow the HR department of the company to keep track of individual staff&#8217;s details.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.9.2. Current Implementation</a></h4>
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.10.2. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The current implementation of this feature is embedded into a Person object together with the other information
 that was originally in the Person object. Prefixes for the respective fields were also created to allow the HR user
@@ -1178,7 +1230,7 @@ edited depending if the prefixes were there or not (similar to the edit command)
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.9.3. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.10.3. Design Considerations</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3130,4 +3182,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-25 05:54:32 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-25 08:19:49 UTC</div></div></div></body></html>
