@@ -194,7 +194,7 @@ public class PersonBuilder {
         this.favourite = favourite;
         return this;
     }
-  
+
     /**
      * Sets the {@code Feedback} of the {@code Person} that we are building.
      */

@@ -219,7 +219,7 @@ public class XmlAdaptedPerson {
         final PayDeductibles modelDeductibles = new PayDeductibles(deductibles);
 
         final Feedback modelFeedback = new Feedback(feedback);
-      
+
         final boolean modelFavourite = this.favourite;
 
         final Set<Tag> modelTags = new HashSet<>(personTags);

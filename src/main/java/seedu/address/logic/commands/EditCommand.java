@@ -131,7 +131,7 @@ public class EditCommand extends Command {
         boolean updatedFavourite = personToEdit.getFavourite();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRating, updatedDepartment,
-                updatedManager, updatedSalary, updatedHours, updatedRate, updatedDeductibles, updatedFeedback, 
+                updatedManager, updatedSalary, updatedHours, updatedRate, updatedDeductibles, updatedFeedback,
                 updatedTags, updatedFavourite);
     }
 

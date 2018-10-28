@@ -99,11 +99,11 @@ public class Person {
     public Manager getManager() {
         return manager;
     }
-  
+
     public boolean getFavourite() {
         return favourite;
     }
-  
+
     public Feedback getFeedback() {
         return feedback;
     }
