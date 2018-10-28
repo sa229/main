@@ -45,6 +45,7 @@ public class PersonBuilder {
     private Rating rating;
     private Department department;
     private Manager manager;
+    private boolean favourite;
     private Set<Tag> tags;
 
     public PersonBuilder() {
@@ -181,11 +182,19 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Favourite} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withFavourite(boolean favourite) {
+        this.favourite = favourite;
+        return this;
+    }
+
+    /**
      * Builds a new person based on the current one.
      */
     public Person build() {
         return new Person(name, phone, email, address, rating, department, manager,
-          salary, hours, rate, deductibles, tags);
+          salary, hours, rate, deductibles, tags, favourite);
     }
 
 }

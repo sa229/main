@@ -53,6 +53,8 @@ public class XmlAdaptedPerson {
     private String rate;
     @XmlElement(required = true)
     private String deductibles;
+    @XmlElement(required = true)
+    private boolean favourite;
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -67,7 +69,7 @@ public class XmlAdaptedPerson {
      * Constructs an {@code XmlAdaptedPerson} with the given person details.
      */
     public XmlAdaptedPerson(String name, String phone, String email, String address, String department, String manager,
-                            List<XmlAdaptedTag> tagged) {
+                            Boolean favourite, List<XmlAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -79,6 +81,7 @@ public class XmlAdaptedPerson {
         this.hours = "0";
         this.rate = "0";
         this.deductibles = "0";
+        this.favourite = favourite;
         if (tagged != null) {
             this.tagged = new ArrayList<>(tagged);
         }
@@ -104,6 +107,7 @@ public class XmlAdaptedPerson {
         tagged = source.getTags().stream()
                 .map(XmlAdaptedTag::new)
                 .collect(Collectors.toList());
+        favourite = source.getFavourite();
     }
 
     /**
@@ -209,9 +213,11 @@ public class XmlAdaptedPerson {
         }
         final PayDeductibles modelDeductibles = new PayDeductibles(deductibles);
 
+        final boolean modelFavourite = this.favourite;
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRating, modelDepartment, modelManager,
-                modelSalary, modelHours, modelRate, modelDeductibles, modelTags);
+                modelSalary, modelHours, modelRate, modelDeductibles, modelTags, modelFavourite);
     }
 
     @Override
