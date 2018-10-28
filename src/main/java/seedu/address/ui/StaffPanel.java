@@ -58,8 +58,8 @@ public class StaffPanel extends UiPart<Region> {
         emailLabel.setText(person.getEmail().value);
         addressLabel.setText(person.getAddress().value);
         double salary = Double.valueOf(person.getSalary().salary);
-        double otPay = Double.valueOf(person.getOtHours().overTimeHour) *
-          Double.valueOf(person.getOtRate().overTimeRate);
+        double otPay = Double.valueOf(person.getOtHours().overTimeHour)
+            * Double.valueOf(person.getOtRate().overTimeRate);
         double deductibles = Double.valueOf(person.getDeductibles().payDeductibles);
         double netSalary = salary + otPay - deductibles;
         salaryLabel.setText(Double.toString(netSalary));
