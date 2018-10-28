@@ -38,7 +38,7 @@
                                 <Label styleClass="staffLabel-bright" text="Phone" GridPane.rowIndex="1" />
                                 <Label styleClass="staffLabel-bright" text="Email" GridPane.rowIndex="2" />
                                 <Label styleClass="staffLabel-bright" text="Address" GridPane.rowIndex="3" />
-                                <Label styleClass="staffLabel-bright" text="Salary" GridPane.rowIndex="4" />
+                                <Label styleClass="staffLabel-bright" text="Net Salary" GridPane.rowIndex="4" />
                                 <Label styleClass="staffLabel-bright" text="Department" GridPane.rowIndex="5" />
                                 <Label styleClass="staffLabel-bright" text="Manager" GridPane.rowIndex="6" />
                                 <Label styleClass="staffLabel-bright" text="Rating" GridPane.rowIndex="7" />
