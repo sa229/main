@@ -47,7 +47,7 @@ public class GuiTestAssert {
         assertEquals(expectedPerson.getAddress().value, actualPanel.getAddress());
         double salary = Double.valueOf(expectedPerson.getSalary().salary);
         double otPay = Double.valueOf(expectedPerson.getOtHours().overTimeHour)
-          * Double.valueOf(expectedPerson.getOtRate().overTimeRate);
+            * Double.valueOf(expectedPerson.getOtRate().overTimeRate);
         double deductibles = Double.valueOf(expectedPerson.getDeductibles().payDeductibles);
         double expectedNetSalary = salary + otPay - deductibles;
         assertEquals(Double.toString(expectedNetSalary), actualPanel.getSalary());
