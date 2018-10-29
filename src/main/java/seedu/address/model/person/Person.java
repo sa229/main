@@ -18,27 +18,39 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    //
 
     // Data fields
     private final Department department;
     private final Manager manager;
     private final Address address;
+    private final Salary salary;
+    private final OtHour otHours;
+    private final OtRate otRate;
+    private final PayDeductibles deductibles;
     private final Rating rating;
+    private final Feedback feedback;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Rating rating, Department department,
-                  Manager manager, Set<Tag> tags) {
+                  Manager manager, Salary salary, OtHour hours, OtRate rate,
+                  PayDeductibles deductibles, Feedback feedback, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, rating, department, manager, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.salary = salary;
+        this.otHours = hours;
+        this.otRate = rate;
+        this.deductibles = deductibles;
         this.rating = rating;
         this.department = department;
         this.manager = manager;
+        this.feedback = feedback;
         this.tags.addAll(tags);
     }
 
@@ -58,6 +70,22 @@ public class Person {
         return address;
     }
 
+    public Salary getSalary() {
+        return salary;
+    }
+
+    public OtHour getOtHours() {
+        return otHours;
+    }
+
+    public OtRate getOtRate() {
+        return otRate;
+    }
+
+    public PayDeductibles getDeductibles() {
+        return deductibles;
+    }
+
     public Rating getRating() {
         return rating;
     }
@@ -68,6 +96,10 @@ public class Person {
 
     public Manager getManager() {
         return manager;
+    }
+
+    public Feedback getFeedback() {
+        return feedback;
     }
 
     /**
@@ -111,16 +143,21 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getSalary().equals(getSalary())
+                && otherPerson.getOtHours().equals(getOtHours())
+                && otherPerson.getOtRate().equals(getOtRate())
+                && otherPerson.getDeductibles().equals(getDeductibles())
                 && otherPerson.getRating().equals(getRating())
                 && otherPerson.getDepartment().equals(getDepartment())
                 && otherPerson.getManager().equals(getManager())
+                && otherPerson.getFeedback().equals(getFeedback())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, rating, department, manager, tags);
+        return Objects.hash(name, phone, email, address, rating, department, manager, feedback, tags);
     }
 
     @Override
@@ -133,12 +170,22 @@ public class Person {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
+                .append(" Salary: ")
+                .append(getSalary())
+                .append(" OT Hours: ")
+                .append(getOtHours())
+                .append(" OT Rate: ")
+                .append(getOtRate())
+                .append(" Deductibles: ")
+                .append(getDeductibles())
                 .append(" Rating: ")
                 .append(getRating())
                 .append(" Department: ")
                 .append(getDepartment())
                 .append(" Manager: ")
                 .append(getManager())
+                .append(" Feedback: ")
+                .append(getFeedback())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

@@ -9,6 +9,11 @@
         <rating>0</rating>
         <department>Accounting</department>
         <manager>Ben Leong</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
+        <feedback>-NO FEEDBACK YET-</feedback>
         <tagged>friends</tagged>
     </persons>
     <persons>
@@ -19,6 +24,11 @@
         <rating>0</rating>
         <department>Marketing</department>
         <manager>Marcus Tan</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
+        <feedback>-NO FEEDBACK YET-</feedback>
         <tagged>owesMoney</tagged>
         <tagged>friends</tagged>
     </persons>
@@ -30,6 +40,11 @@
         <rating>0</rating>
         <department>Tech</department>
         <manager>Moses Lim</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
+        <feedback>-NO FEEDBACK YET-</feedback>
     </persons>
     <persons>
         <name>Daniel Meier</name>
@@ -39,6 +54,11 @@
         <rating>0</rating>
         <department>Accounting</department>
         <manager>Lionel Lim</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
+        <feedback>-NO FEEDBACK YET-</feedback>
         <tagged>friends</tagged>
     </persons>
     <persons>
@@ -49,6 +69,11 @@
         <rating>0</rating>
         <department>Marketing</department>
         <manager>Edward Loh</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
+        <feedback>-NO FEEDBACK YET-</feedback>
     </persons>
     <persons>
         <name>Fiona Kunz</name>
@@ -58,6 +83,11 @@
         <rating>0</rating>
         <department>Tech</department>
         <manager>Joanne Lee</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
+        <feedback>-NO FEEDBACK YET-</feedback>
     </persons>
     <persons>
         <name>George Best</name>
@@ -67,5 +97,10 @@
         <rating>0</rating>
         <department>Accounting</department>
         <manager>Ben Leong</manager>
+        <salary>0</salary>
+        <hours>0</hours>
+        <rate>0</rate>
+        <deductibles>0</deductibles>
+        <feedback>-NO FEEDBACK YET-</feedback>
     </persons>
 </addressbook>

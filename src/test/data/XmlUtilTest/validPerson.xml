@@ -7,5 +7,10 @@
     <rating>0</rating>
     <department>Accounting</department>
     <manager>Ben Leong</manager>
+    <salary>0</salary>
+    <hours>0</hours>
+    <rate>0</rate>
+    <deductibles>0</deductibles>
+    <feedback>-NO FEEDBACK YET-</feedback>
     <tagged>friends</tagged>
 </person>

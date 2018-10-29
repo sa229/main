@@ -20,11 +20,16 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Feedback;
 import seedu.address.model.person.Manager;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OtHour;
+import seedu.address.model.person.OtRate;
+import seedu.address.model.person.PayDeductibles;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Rating;
+import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -105,11 +110,17 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Rating rating = Rating.DEFAULT_INITIAL_RATING;
+        Salary salary = Salary.DEFAULT_INITIAL_SALARY;
+        OtHour hours = OtHour.DEFAULT_INITIAL_OTHOUR;
+        OtRate rate = OtRate.DEFAULT_INITIAL_OTRATE;
+        PayDeductibles deductibles = PayDeductibles.DEFAULT_INITIAL_DEDUCTIBLES;
         Department department = ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());
         Manager manager = ParserUtil.parseManager(argMultimap.getValue(PREFIX_MANAGER).get());
+        Feedback feedback = Feedback.DEFAULT_INITIAL_FEEDBACK;
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, rating, department, manager, tagList);
+        Person person = new Person(name, phone, email, address, rating, department, manager,
+            salary, hours, rate, deductibles, feedback, tagList);
 
         return new AddCommand(person);
     }
