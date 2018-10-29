@@ -77,6 +77,24 @@ public class PrivacyCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_PRIVACY_SUCCESS, editedPerson));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        //instanceof handle nulls
+        if (!(other instanceof PrivacyCommand)) {
+            return false;
+        }
+
+        //state check
+        PrivacyCommand p = (PrivacyCommand) other;
+        return index.equals(p.index)
+                && fieldsToChange.equals(p.fieldsToChange);
+    }
+
     /**
      * Changes the privacy values of a {@code Person} with the options stated in {@code fieldsToChange}
      */
@@ -141,6 +159,26 @@ public class PrivacyCommand extends Command {
 
         public Optional<String> getAddressPrivacy() {
             return Optional.ofNullable(addressPrivacy);
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof FieldsToChange)) {
+                return false;
+            }
+
+            // state check
+            FieldsToChange e = (FieldsToChange) other;
+
+            return getPhonePrivacy().equals(e.getPhonePrivacy())
+                    && getAddressPrivacy().equals(e.getAddressPrivacy())
+                    && getEmailPrivacy().equals(e.getEmailPrivacy());
         }
 
 
