@@ -214,6 +214,7 @@ public class ParserUtil {
             throw new ParseException("Privacy option should be only Y or N!");
         }
         return trimmedPrivacy;
+    }
 
     /**
      * Parses a {@code String feedback} into an {@code Feedback}

@@ -9,7 +9,9 @@ public class FieldsToChangeBuilder {
 
     private FieldsToChange fieldsToChange;
 
-    public FieldsToChangeBuilder() { fieldsToChange = new FieldsToChange(); }
+    public FieldsToChangeBuilder() {
+        fieldsToChange = new FieldsToChange();
+    }
 
     /**
      * something

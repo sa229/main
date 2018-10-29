@@ -20,11 +20,16 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Feedback;
 import seedu.address.model.person.Manager;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OtHour;
+import seedu.address.model.person.OtRate;
+import seedu.address.model.person.PayDeductibles;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Rating;
+import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -108,6 +113,11 @@ public class PrivacyCommand extends Command {
         Rating rating = personToEdit.getRating();
         Department department = personToEdit.getDepartment();
         Manager manager = personToEdit.getManager();
+        Salary salary = personToEdit.getSalary();
+        OtHour hours = personToEdit.getOtHours();
+        OtRate rate = personToEdit.getOtRate();
+        PayDeductibles deductibles = personToEdit.getDeductibles();
+        Feedback feedback = personToEdit.getFeedback();
         Set<Tag> tags = personToEdit.getTags();
 
         if (fieldsToChange.getPhonePrivacy().isPresent()) {
@@ -120,7 +130,8 @@ public class PrivacyCommand extends Command {
             address = new Address(personToEdit.getAddress().value, "Y");
         }
 
-        return new Person(name, phone, email, address, rating, department, manager, tags);
+        return new Person(name, phone, email, address, rating, department, manager,
+                salary, hours, rate, deductibles, feedback, tags);
     }
 
     /**
