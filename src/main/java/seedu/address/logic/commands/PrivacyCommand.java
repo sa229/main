@@ -47,7 +47,7 @@ public class PrivacyCommand extends Command {
             + PREFIX_ADDRESS + "n";
 
     public static final String MESSAGE_EDIT_PRIVACY_SUCCESS = "Privacy modified: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "U DIDNT CHANGE ANYTHING IDIOT";
+    public static final String MESSAGE_NOT_EDITED = "At least 1 field must be entered!";
 
     private final Index index;
     private final FieldsToChange fieldsToChange;
