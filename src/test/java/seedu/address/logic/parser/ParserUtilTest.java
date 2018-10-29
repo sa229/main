@@ -68,6 +68,23 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parsePrivacy_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parsePrivacy("a"));
+    }
+
+    @Test
+    public void parsePrivacy_validValueWithoutWhitespace_returnsPrivacy() throws Exception {
+        String expectedPrivacy = "Y";
+        assertEquals(expectedPrivacy, ParserUtil.parsePrivacy("Y"));
+    }
+
+    @Test
+    public void parsePrivacy_validValueWithWhitespace_returnsTrimmedPrivacy() throws Exception {
+        String expectedPrivacy = "N";
+        assertEquals(expectedPrivacy, ParserUtil.parsePrivacy("    N  "));
+    }
+
+    @Test
     public void parseName_null_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
     }
