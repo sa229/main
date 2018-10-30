@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Feedback;
 import seedu.address.model.person.Manager;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.OtHour;
@@ -27,12 +28,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_RATING = "0";
     public static final String DEFAULT_SALARY = "0";
     public static final String DEFAULT_OTHOUR = "0";
     public static final String DEFAULT_OTRATE = "0";
     public static final String DEFAULT_DEDUCTIBLES = "0";
     public static final String DEFAULT_DEPARTMENT = "Accounting";
     public static final String DEFAULT_MANAGER = "Ben Leong";
+    public static final String DEFAULT_FEEDBACK = "-NO FEEDBACK YET-";
 
     private Name name;
     private Phone phone;
@@ -45,6 +48,7 @@ public class PersonBuilder {
     private Rating rating;
     private Department department;
     private Manager manager;
+    private Feedback feedback;
     private Set<Tag> tags;
 
     public PersonBuilder() {
@@ -56,9 +60,10 @@ public class PersonBuilder {
         hours = new OtHour(DEFAULT_OTHOUR);
         rate = new OtRate(DEFAULT_OTRATE);
         deductibles = new PayDeductibles(DEFAULT_DEDUCTIBLES);
-        rating = new Rating("5");
+        rating = new Rating(DEFAULT_RATING);
         department = new Department(DEFAULT_DEPARTMENT);
         manager = new Manager(DEFAULT_MANAGER);
+        feedback = new Feedback(DEFAULT_FEEDBACK);
         tags = new HashSet<>();
     }
 
@@ -77,6 +82,7 @@ public class PersonBuilder {
         rating = personToCopy.getRating();
         department = personToCopy.getDepartment();
         manager = personToCopy.getManager();
+        feedback = personToCopy.getFeedback();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -141,6 +147,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the private {@code Address} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPrivateAddress(String address) {
+        this.address = new Address(address, "Y");
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -149,10 +163,26 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the private {@code Phone} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPrivatePhone(String phone) {
+        this.phone = new Phone(phone, "Y");
+        return this;
+    }
+
+    /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the private {@code Email} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPrivateEmail(String email) {
+        this.email = new Email(email, "Y");
         return this;
     }
 
@@ -181,11 +211,19 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Feedback} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withFeedback(String feedback) {
+        this.feedback = new Feedback(feedback);
+        return this;
+    }
+
+    /**
      * Builds a new person based on the current one.
      */
     public Person build() {
         return new Person(name, phone, email, address, rating, department, manager,
-          salary, hours, rate, deductibles, tags);
+          salary, hours, rate, deductibles, feedback, tags);
     }
 
 }

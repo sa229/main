@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEEDBACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -21,10 +22,13 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FeedbackCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.PrivacyCommand;
+import seedu.address.logic.commands.PrivacyCommand.FieldsToChange;
 import seedu.address.logic.commands.RateCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
@@ -33,6 +37,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.FieldsToChangeBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -41,6 +46,16 @@ public class AddressBookParserTest {
     public ExpectedException thrown = ExpectedException.none();
 
     private final AddressBookParser parser = new AddressBookParser();
+
+    @Test
+    public void parseCommand_privacy() throws Exception {
+        Person person = new PersonBuilder().build();
+        FieldsToChange fieldsToChange = new FieldsToChangeBuilder().withPrivateAddress().build();
+        PrivacyCommand command = (PrivacyCommand) parser.parseCommand(PrivacyCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + "a/y");
+        assertEquals(new PrivacyCommand(INDEX_FIRST_PERSON, fieldsToChange), command);
+
+    }
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -133,6 +148,12 @@ public class AddressBookParserTest {
     public void parseCommand_parseCommand_rate() throws Exception {
         String command = RateCommand.COMMAND_WORD + " 1 " + PREFIX_RATING + "5";
         assertTrue(parser.parseCommand(command) instanceof RateCommand);
+    }
+
+    @Test
+    public void parseCommand_parseCommand_feedback() throws Exception {
+        String command = FeedbackCommand.COMMAND_WORD + " 1 " + PREFIX_FEEDBACK + "Excellent!";
+        assertTrue(parser.parseCommand(command) instanceof FeedbackCommand);
     }
 
     @Test

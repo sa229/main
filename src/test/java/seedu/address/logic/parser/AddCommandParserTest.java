@@ -94,23 +94,27 @@ public class AddCommandParserTest {
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
 
         // private number accepted
-        expectedPerson.getPhone().setPrivate("Y");
+        //expectedPerson.getPhone().setPrivate("Y");
+        Person expectedPersonPrivatePhone = new PersonBuilder(BOB).withPrivatePhone(VALID_PHONE_BOB).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PRIVATE_PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + DEPARTMENT_DESC_BOB + MANAGER_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedPersonPrivatePhone));
 
         // private number and email
-        expectedPerson.getEmail().setPrivate("Y");
+        //expectedPerson.getEmail().setPrivate("Y");
+        Person expectedPersonPrivateEmail = new PersonBuilder(BOB).withPrivatePhone(VALID_PHONE_BOB)
+                .withPrivateEmail(VALID_EMAIL_BOB).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PRIVATE_PHONE_DESC_BOB + PRIVATE_EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + DEPARTMENT_DESC_BOB + MANAGER_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedPersonPrivateEmail));
 
         // private number, email and address
-        expectedPerson.getAddress().setPrivate("Y");
+        //expectedPerson.getAddress().setPrivate("Y");
+        Person expectedPersonPrivateAddress = new PersonBuilder(BOB).withPrivatePhone(VALID_PHONE_BOB)
+                .withPrivateEmail(VALID_EMAIL_BOB).withPrivateAddress(VALID_ADDRESS_BOB).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PRIVATE_PHONE_DESC_BOB + PRIVATE_EMAIL_DESC_BOB
                 + PRIVATE_ADDRESS_DESC_BOB + DEPARTMENT_DESC_BOB + MANAGER_DESC_BOB + TAG_DESC_FRIEND,
-                new AddCommand(expectedPerson));
-
+                new AddCommand(expectedPersonPrivateAddress));
     }
 
     @Test

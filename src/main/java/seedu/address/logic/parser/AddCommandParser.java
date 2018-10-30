@@ -20,6 +20,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Feedback;
 import seedu.address.model.person.Manager;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.OtHour;
@@ -86,24 +87,24 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Phone phone;
         if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_PHONE)) {
-            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PRIVATE_PHONE).get());
-            phone.setPrivate("Y");
+            phone = new Phone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PRIVATE_PHONE).get()).value,
+                    "Y");
         } else {
             phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         }
 
         Email email;
         if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_EMAIL)) {
-            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_PRIVATE_EMAIL).get());
-            email.setPrivate("Y");
+            email = new Email(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_PRIVATE_EMAIL).get()).value,
+            "Y");
         } else {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
 
         Address address;
         if (arePrefixesPresent(argMultimap, PREFIX_PRIVATE_ADDRESS)) {
-            address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_PRIVATE_ADDRESS).get());
-            address.setPrivate("Y");
+            address = new Address(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_PRIVATE_ADDRESS).get()).value,
+            "Y");
         } else {
             address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         }
@@ -115,10 +116,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         PayDeductibles deductibles = PayDeductibles.DEFAULT_INITIAL_DEDUCTIBLES;
         Department department = ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());
         Manager manager = ParserUtil.parseManager(argMultimap.getValue(PREFIX_MANAGER).get());
+        Feedback feedback = Feedback.DEFAULT_INITIAL_FEEDBACK;
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(name, phone, email, address, rating, department, manager,
-            salary, hours, rate, deductibles, tagList);
+            salary, hours, rate, deductibles, feedback, tagList);
 
         return new AddCommand(person);
     }
