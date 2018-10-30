@@ -121,13 +121,13 @@ public class PrivacyCommand extends Command {
         Set<Tag> tags = personToEdit.getTags();
 
         if (fieldsToChange.getPhonePrivacy().isPresent()) {
-            phone = new Phone(personToEdit.getPhone().value, "Y");
+            phone = new Phone(personToEdit.getPhone().value, fieldsToChange.getPhonePrivacy().get());
         }
         if (fieldsToChange.getEmailPrivacy().isPresent()) {
-            email = new Email(personToEdit.getEmail().value, "Y");
+            email = new Email(personToEdit.getEmail().value, fieldsToChange.getEmailPrivacy().get());
         }
         if (fieldsToChange.getAddressPrivacy().isPresent()) {
-            address = new Address(personToEdit.getAddress().value, "Y");
+            address = new Address(personToEdit.getAddress().value, fieldsToChange.getAddressPrivacy().get());
         }
 
         return new Person(name, phone, email, address, rating, department, manager,
