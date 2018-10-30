@@ -28,20 +28,20 @@ public class FeedbackCommandParser implements Parser<FeedbackCommand> {
         Feedback feedback = null;
 
         if (!isPrefixPresent(argMultimap, PREFIX_FEEDBACK) || argMultimap.getPreamble().isEmpty()) {
-            wrongFormat();
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FeedbackCommand.MESSAGE_USAGE));
         }
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            wrongFormat();
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FeedbackCommand.MESSAGE_USAGE));
         }
 
         feedbackInput = argMultimap.getValue(PREFIX_FEEDBACK).get();
         try {
             feedback = new Feedback(feedbackInput);
         } catch (IllegalArgumentException iae) {
-            wrongFormat();
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FeedbackCommand.MESSAGE_USAGE));
         }
 
         return new FeedbackCommand(index, feedback);
@@ -53,13 +53,5 @@ public class FeedbackCommandParser implements Parser<FeedbackCommand> {
      */
     private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
         return argumentMultimap.getValue(prefix).isPresent();
-    }
-
-    /**
-     * Throws a ParseException to tell user that the command format was entered wrongly.
-     * @throws ParseException
-     */
-    public static void wrongFormat() throws ParseException {
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FeedbackCommand.MESSAGE_USAGE));
     }
 }

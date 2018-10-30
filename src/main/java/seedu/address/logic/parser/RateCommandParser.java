@@ -28,23 +28,20 @@ public class RateCommandParser implements Parser<RateCommand> {
         Rating rating = null;
 
         if (!isPrefixPresent(argMultimap, PREFIX_RATING) || argMultimap.getPreamble().isEmpty()) {
-            System.out.println("1");
-            wrongFormat();
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
         }
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            System.out.println("2");
-            wrongFormat();
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
         }
 
         ratingNum = argMultimap.getValue(PREFIX_RATING).get();
         try {
             rating = new Rating(ratingNum);
         } catch (IllegalArgumentException iae) {
-            System.out.println("3");
-            wrongFormat();
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
         }
 
         return new RateCommand(index, rating);
@@ -56,13 +53,5 @@ public class RateCommandParser implements Parser<RateCommand> {
      */
     private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
         return argumentMultimap.getValue(prefix).isPresent();
-    }
-
-    /**
-     * Throws a ParseException to tell user that the command format was entered wrongly.
-     * @throws ParseException
-     */
-    public static void wrongFormat() throws ParseException {
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
     }
 }
