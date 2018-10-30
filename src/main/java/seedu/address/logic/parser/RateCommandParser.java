@@ -23,20 +23,21 @@ public class RateCommandParser implements Parser<RateCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_RATING);
 
-        Index index;
+        Index index = null;
         String ratingNum;
         Rating rating = null;
-
-        if (!argMultimap.getPreamble().isEmpty()) {
-            wrongFormat();
-        }
 
         if (!isPrefixPresent(argMultimap, PREFIX_RATING) || argMultimap.getPreamble().isEmpty()) {
             wrongFormat();
         }
-        ratingNum = argMultimap.getValue(PREFIX_RATING).get();
-        index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            wrongFormat();
+        }
+
+        ratingNum = argMultimap.getValue(PREFIX_RATING).get();
         try {
             rating = new Rating(ratingNum);
         } catch (IllegalArgumentException iae) {
