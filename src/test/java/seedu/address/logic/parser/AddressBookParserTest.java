@@ -98,7 +98,7 @@ public class AddressBookParserTest {
         String command = FavouriteCommand.COMMAND_WORD + " 1 ";
         assertTrue(parser.parseCommand(command) instanceof FavouriteCommand);
     }
-    
+
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
