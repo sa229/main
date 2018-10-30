@@ -27,6 +27,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.PrivacyCommand;
+import seedu.address.logic.commands.PrivacyCommand.FieldsToChange;
 import seedu.address.logic.commands.RateCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
@@ -35,6 +37,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.FieldsToChangeBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -43,6 +46,16 @@ public class AddressBookParserTest {
     public ExpectedException thrown = ExpectedException.none();
 
     private final AddressBookParser parser = new AddressBookParser();
+
+    @Test
+    public void parseCommand_privacy() throws Exception {
+        Person person = new PersonBuilder().build();
+        FieldsToChange fieldsToChange = new FieldsToChangeBuilder().withPrivateAddress().build();
+        PrivacyCommand command = (PrivacyCommand) parser.parseCommand(PrivacyCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + "a/y");
+        assertEquals(new PrivacyCommand(INDEX_FIRST_PERSON, fieldsToChange), command);
+
+    }
 
     @Test
     public void parseCommand_add() throws Exception {

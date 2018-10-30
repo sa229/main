@@ -148,6 +148,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the private {@code Address} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPrivateAddress(String address) {
+        this.address = new Address(address, "Y");
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -156,10 +164,26 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the private {@code Phone} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPrivatePhone(String phone) {
+        this.phone = new Phone(phone, "Y");
+        return this;
+    }
+
+    /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the private {@code Email} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPrivateEmail(String email) {
+        this.email = new Email(email, "Y");
         return this;
     }
 

@@ -202,6 +202,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String privacy} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code privacy} is invalid.
+     */
+    public static String parsePrivacy(String privacy) throws ParseException {
+        requireNonNull(privacy);
+        String trimmedPrivacy = privacy.trim().toUpperCase();
+        if (!trimmedPrivacy.equals("Y") && (!trimmedPrivacy.equals("N"))) {
+            throw new ParseException("Privacy option should be only Y or N!");
+        }
+        return trimmedPrivacy;
+    }
+
+    /**
      * Parses a {@code String feedback} into an {@code Feedback}
      * Leading and trailing whitespaces wil be trimmed.
      *

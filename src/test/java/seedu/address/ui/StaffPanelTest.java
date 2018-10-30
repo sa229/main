@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import static seedu.address.testutil.EventsUtil.postNow;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.NINJA;
 import static seedu.address.ui.testutil.GuiTestAssert.assertPanelDisplaysPerson;
 
 import org.junit.Before;
@@ -28,6 +29,13 @@ public class StaffPanelTest extends GuiUnitTest {
     public void display() throws Exception {
         postNow(selectionChangeEventStub);
         assertPanelDisplay(ALICE, staffPanel);
+
+        selectionChangeEventStub = new PersonPanelSelectionChangedEvent(NINJA);
+        guiRobot.interact(() -> staffPanel = new StaffPanel());
+        uiPartRule.setUiPart(staffPanel);
+
+        postNow(selectionChangeEventStub);
+        assertPanelDisplay(NINJA, staffPanel);
     }
 
     /**

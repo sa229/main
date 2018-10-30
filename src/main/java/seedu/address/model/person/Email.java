@@ -29,7 +29,7 @@ public class Email {
 
     public final String value;
 
-    private boolean isPrivate;
+    private final boolean isPrivate;
 
     /**
      * Constructs an {@code Email}.
@@ -41,6 +41,23 @@ public class Email {
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
         isPrivate = false;
+    }
+
+    /**
+     * Constructs a private {@code Email}.
+     *
+     * @param email A valid email address.
+     * @param privacy states that this email is private.
+     */
+    public Email(String email, String privacy) {
+        requireNonNull(email);
+        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
+        value = email;
+        if (privacy.equals("Y")) {
+            isPrivate = true;
+        } else {
+            isPrivate = false;
+        }
     }
 
     /**
@@ -58,18 +75,6 @@ public class Email {
         return isPrivate;
     }
 
-    /**
-     * Sets the isPrivate field to true or false depending on input
-     * @param input a "Y" or "N" for Yes or No.
-     */
-    public void setPrivate(String input) {
-        if (input.equals("Y")) {
-            isPrivate = true;
-        } else if (input.equals("N")) {
-            isPrivate = false;
-        }
-    }
-
     @Override
     public String toString() {
         return value;
@@ -79,7 +84,8 @@ public class Email {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Email // instanceof handles nulls
-                && value.equals(((Email) other).value)); // state check
+                && value.equals(((Email) other).value))
+                && isPrivate() == ((Email) other).isPrivate(); // state check
     }
 
     @Override
