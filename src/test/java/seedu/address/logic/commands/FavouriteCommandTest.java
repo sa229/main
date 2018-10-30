@@ -36,14 +36,23 @@ public class FavouriteCommandTest {
 
         FavouriteCommand favouriteCommand = new FavouriteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(FavouriteCommand.MESSAGE_FAVOURITE_PERSON_SUCCESS,
+        String expectedFavouriteMessage = String.format(FavouriteCommand.MESSAGE_FAVOURITE_PERSON_SUCCESS,
                 favouritedPerson.getName().fullName);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.favouritePerson(personToFavourite, favouritedPerson);
         expectedModel.commitAddressBook();
 
-        assertCommandSuccess(favouriteCommand, model, commandHistory, expectedMessage, model);
+        assertCommandSuccess(favouriteCommand, model, commandHistory, expectedFavouriteMessage, model);
+
+        // unfavourite success
+
+        FavouriteCommand unfavouriteCommand = new FavouriteCommand(INDEX_FIRST_PERSON);
+
+        String expectedUnfavouriteMessage = String.format(FavouriteCommand.MESSAGE_UNFAVOURITE_PERSON_SUCCESS,
+                favouritedPerson.getName().fullName);
+
+        assertCommandSuccess(unfavouriteCommand, model, commandHistory, expectedUnfavouriteMessage, model);
     }
 
     @Test
