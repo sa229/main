@@ -23,16 +23,28 @@ public class FeedbackCommandParser implements Parser<FeedbackCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FEEDBACK);
 
-        Index index;
-        String feedback;
+        Index index = null;
+        String feedbackInput;
+        Feedback feedback = null;
 
         if (!isPrefixPresent(argMultimap, PREFIX_FEEDBACK) || argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FeedbackCommand.MESSAGE_USAGE));
+            wrongFormat();
         }
-        feedback = argMultimap.getValue(PREFIX_FEEDBACK).get();
-        index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
-        return new FeedbackCommand(index, new Feedback(feedback));
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            wrongFormat();
+        }
+
+        feedbackInput = argMultimap.getValue(PREFIX_FEEDBACK).get();
+        try {
+            feedback = new Feedback(feedbackInput);
+        } catch (IllegalArgumentException iae) {
+            wrongFormat();
+        }
+
+        return new FeedbackCommand(index, feedback);
     }
 
     /**
@@ -41,5 +53,13 @@ public class FeedbackCommandParser implements Parser<FeedbackCommand> {
      */
     private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
         return argumentMultimap.getValue(prefix).isPresent();
+    }
+
+    /**
+     * Throws a ParseException to tell user that the command format was entered wrongly.
+     * @throws ParseException
+     */
+    public static void wrongFormat() throws ParseException {
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FeedbackCommand.MESSAGE_USAGE));
     }
 }
