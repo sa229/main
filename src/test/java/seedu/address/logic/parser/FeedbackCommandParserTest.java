@@ -34,10 +34,10 @@ public class FeedbackCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + PREFIX_FEEDBACK + "Sweet", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5 " + PREFIX_FEEDBACK + "Sweet", MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + PREFIX_FEEDBACK + "Awesome", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0 " + PREFIX_FEEDBACK + "Awesome", MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -48,16 +48,16 @@ public class FeedbackCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        // missing rating prefix
-        assertParseFailure(parser, PREFIX_FEEDBACK + "Very good!", MESSAGE_INVALID_FORMAT);
+        // missing index
+        assertParseFailure(parser, PREFIX_FEEDBACK + "Wow you are great", MESSAGE_INVALID_FORMAT);
+
+        // missing feedback prefix
+        assertParseFailure(parser, "1 Good job!", MESSAGE_INVALID_FORMAT);
     }
 
-    /*@Test
+    @Test
     public void parse_invalidArgs_failure() {
-        // larger than 10
-        assertParseFailure(parser, PREFIX_FEEDBACK + "11", MESSAGE_INVALID_FORMAT);
-
-        // non-numeric argument
-        assertParseFailure(parser, PREFIX_FEEDBACK + "five", MESSAGE_INVALID_FORMAT);
-    }*/
+        // empty input
+        assertParseFailure(parser, "1 " + PREFIX_FEEDBACK, MESSAGE_INVALID_FORMAT);
+    }
 }

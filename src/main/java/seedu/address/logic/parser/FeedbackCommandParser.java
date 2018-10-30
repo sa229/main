@@ -23,16 +23,28 @@ public class FeedbackCommandParser implements Parser<FeedbackCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FEEDBACK);
 
-        Index index;
-        String feedback;
+        Index index = null;
+        String feedbackInput;
+        Feedback feedback = null;
 
         if (!isPrefixPresent(argMultimap, PREFIX_FEEDBACK) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FeedbackCommand.MESSAGE_USAGE));
         }
-        feedback = argMultimap.getValue(PREFIX_FEEDBACK).get();
-        index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
-        return new FeedbackCommand(index, new Feedback(feedback));
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FeedbackCommand.MESSAGE_USAGE));
+        }
+
+        feedbackInput = argMultimap.getValue(PREFIX_FEEDBACK).get();
+        try {
+            feedback = new Feedback(feedbackInput);
+        } catch (IllegalArgumentException iae) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FeedbackCommand.MESSAGE_USAGE));
+        }
+
+        return new FeedbackCommand(index, feedback);
     }
 
     /**

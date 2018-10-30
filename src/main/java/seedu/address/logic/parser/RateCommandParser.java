@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Rating;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Edits the rating details of an existing person in the address book.
  */
 public class RateCommandParser implements Parser<RateCommand> {
 
@@ -23,16 +23,28 @@ public class RateCommandParser implements Parser<RateCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_RATING);
 
-        Index index;
-        String rating;
+        Index index = null;
+        String ratingNum;
+        Rating rating = null;
 
         if (!isPrefixPresent(argMultimap, PREFIX_RATING) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
         }
-        rating = argMultimap.getValue(PREFIX_RATING).get();
-        index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
-        return new RateCommand(index, new Rating(rating));
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
+        }
+
+        ratingNum = argMultimap.getValue(PREFIX_RATING).get();
+        try {
+            rating = new Rating(ratingNum);
+        } catch (IllegalArgumentException iae) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
+        }
+
+        return new RateCommand(index, rating);
     }
 
     /**
