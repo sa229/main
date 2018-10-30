@@ -94,6 +94,12 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_favourite() throws Exception {
+        String command = FavouriteCommand.COMMAND_WORD + " 1 ";
+        assertTrue(parser.parseCommand(command) instanceof FavouriteCommand);
+    }
+    
+    @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
@@ -155,12 +161,6 @@ public class AddressBookParserTest {
     public void parseCommand_parseCommand_feedback() throws Exception {
         String command = FeedbackCommand.COMMAND_WORD + " 1 " + PREFIX_FEEDBACK + "Excellent!";
         assertTrue(parser.parseCommand(command) instanceof FeedbackCommand);
-    }
-
-    @Test
-    public void parseCommand_favourite() throws Exception {
-        String command = FavouriteCommand.COMMAND_WORD + " 1 ";
-        assertTrue(parser.parseCommand(command) instanceof FavouriteCommand);
     }
 
     @Test
