@@ -15,7 +15,7 @@ public class Phone {
     public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String value;
 
-    private boolean isPrivate;
+    private final boolean isPrivate;
 
     /**
      * Constructs a {@code Phone}.
@@ -27,6 +27,22 @@ public class Phone {
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
         isPrivate = false;
+    }
+
+    /**
+     * Constructs a private {@code Phone}.
+     * @param phone A valid phone number.
+     * @param privacy states that this phone is private.
+     */
+    public Phone(String phone, String privacy) {
+        requireNonNull(phone);
+        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
+        value = phone;
+        if (privacy.equals("Y")) {
+            isPrivate = true;
+        } else {
+            isPrivate = false;
+        }
     }
 
     /**
@@ -43,17 +59,6 @@ public class Phone {
     public boolean isPrivate() {
         return isPrivate;
     }
-    /**
-     * Sets the isPrivate field to true or false depending on input
-     * @param input a "Y" or "N" for Yes or No.
-     */
-    public void setPrivate(String input) {
-        if (input.equals("Y")) {
-            isPrivate = true;
-        } else if (input.equals("N")) {
-            isPrivate = false;
-        }
-    }
 
     @Override
     public String toString() {
@@ -64,7 +69,8 @@ public class Phone {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Phone // instanceof handles nulls
-                && value.equals(((Phone) other).value)); // state check
+                && value.equals(((Phone) other).value))
+                && isPrivate() == ((Phone) other).isPrivate(); // state check
     }
 
     @Override

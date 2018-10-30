@@ -44,16 +44,12 @@ public class PhoneTest {
         Phone phone = new Phone("92349234");
         //default phone
         assertFalse(phone.isPrivate());
-    }
-
-    @Test
-    public void setPrivate() {
-        Phone phone = new Phone("92349234");
-        //set to private
-        phone.setPrivate("Y");
+        phone = new Phone("92349234", "N");
+        assertFalse(phone.isPrivate());
+        phone = new Phone("92349234", "Y");
         assertTrue(phone.isPrivate());
-        //set to non private
-        phone.setPrivate("N");
+        phone = new Phone("92349234", "y");
         assertFalse(phone.isPrivate());
     }
+
 }
