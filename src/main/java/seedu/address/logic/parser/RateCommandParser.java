@@ -28,12 +28,14 @@ public class RateCommandParser implements Parser<RateCommand> {
         Rating rating = null;
 
         if (!isPrefixPresent(argMultimap, PREFIX_RATING) || argMultimap.getPreamble().isEmpty()) {
+            System.out.println("1");
             wrongFormat();
         }
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
+            System.out.println("2");
             wrongFormat();
         }
 
@@ -41,6 +43,7 @@ public class RateCommandParser implements Parser<RateCommand> {
         try {
             rating = new Rating(ratingNum);
         } catch (IllegalArgumentException iae) {
+            System.out.println("3");
             wrongFormat();
         }
 
