@@ -43,8 +43,11 @@ public class Address {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
-        assert(privacy.equals("Y"));
-        isPrivate = true;
+        if (privacy.equals("Y")) {
+            isPrivate = true;
+        } else {
+            isPrivate = false;
+        }
     }
 
     /**
@@ -71,7 +74,8 @@ public class Address {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && value.equals(((Address) other).value)); // state check
+                && value.equals(((Address) other).value))
+                && isPrivate() == ((Address) other).isPrivate(); // state check
     }
 
     @Override

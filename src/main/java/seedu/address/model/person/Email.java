@@ -53,8 +53,11 @@ public class Email {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
-        assert(privacy.equals("Y"));
-        isPrivate = true;
+        if (privacy.equals("Y")) {
+            isPrivate = true;
+        } else {
+            isPrivate = false;
+        }
     }
 
     /**
@@ -81,7 +84,8 @@ public class Email {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Email // instanceof handles nulls
-                && value.equals(((Email) other).value)); // state check
+                && value.equals(((Email) other).value))
+                && isPrivate() == ((Email) other).isPrivate(); // state check
     }
 
     @Override
