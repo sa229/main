@@ -55,6 +55,8 @@ public class XmlAdaptedPerson {
     @XmlElement(required = true)
     private String deductibles;
     @XmlElement(required = true)
+    private boolean favourite;
+    @XmlElement(required = true)
     private String feedback;
 
     @XmlElement(required = true)
@@ -78,7 +80,7 @@ public class XmlAdaptedPerson {
      */
     public XmlAdaptedPerson(String name, String phone, String email, String address, String department, String manager,
                             boolean phonePrivacy, boolean addressPrivacy, boolean emailPrivacy,
-                            List<XmlAdaptedTag> tagged) {
+                            Boolean favourite, List<XmlAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -90,6 +92,7 @@ public class XmlAdaptedPerson {
         this.hours = "0";
         this.rate = "0";
         this.deductibles = "0";
+        this.favourite = favourite;
         this.feedback = "-NO FEEDBACK YET-";
         this.phonePrivacy = phonePrivacy;
         this.addressPrivacy = addressPrivacy;
@@ -123,6 +126,7 @@ public class XmlAdaptedPerson {
         tagged = source.getTags().stream()
                 .map(XmlAdaptedTag::new)
                 .collect(Collectors.toList());
+        favourite = source.getFavourite();
     }
 
     /**
@@ -247,9 +251,11 @@ public class XmlAdaptedPerson {
 
         final Feedback modelFeedback = new Feedback(feedback);
 
+        final boolean modelFavourite = this.favourite;
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRating, modelDepartment, modelManager,
-                modelSalary, modelHours, modelRate, modelDeductibles, modelFeedback, modelTags);
+                modelSalary, modelHours, modelRate, modelDeductibles, modelFeedback, modelTags, modelFavourite);
     }
 
     @Override
@@ -275,6 +281,7 @@ public class XmlAdaptedPerson {
                 && Objects.equals(rate, otherPerson.rate)
                 && Objects.equals(deductibles, otherPerson.deductibles)
                 && Objects.equals(feedback, otherPerson.feedback)
+                && Objects.equals(favourite, otherPerson.favourite)
                 && tagged.equals(otherPerson.tagged);
     }
 }

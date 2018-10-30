@@ -31,13 +31,14 @@ public class Person {
     private final Rating rating;
     private final Feedback feedback;
     private final Set<Tag> tags = new HashSet<>();
+    private boolean favourite;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Rating rating, Department department,
                   Manager manager, Salary salary, OtHour hours, OtRate rate,
-                  PayDeductibles deductibles, Feedback feedback, Set<Tag> tags) {
+                  PayDeductibles deductibles, Feedback feedback, Set<Tag> tags, boolean favourite) {
         requireAllNonNull(name, phone, email, address, rating, department, manager, tags);
         this.name = name;
         this.phone = phone;
@@ -52,6 +53,7 @@ public class Person {
         this.manager = manager;
         this.feedback = feedback;
         this.tags.addAll(tags);
+        this.favourite = favourite;
     }
 
     public Name getName() {
@@ -96,6 +98,10 @@ public class Person {
 
     public Manager getManager() {
         return manager;
+    }
+
+    public boolean getFavourite() {
+        return favourite;
     }
 
     public Feedback getFeedback() {
@@ -151,13 +157,14 @@ public class Person {
                 && otherPerson.getDepartment().equals(getDepartment())
                 && otherPerson.getManager().equals(getManager())
                 && otherPerson.getFeedback().equals(getFeedback())
+                && otherPerson.getFavourite() == getFavourite()
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, rating, department, manager, feedback, tags);
+        return Objects.hash(name, phone, email, address, rating, department, manager, feedback, tags, favourite);
     }
 
     @Override
@@ -186,6 +193,8 @@ public class Person {
                 .append(getManager())
                 .append(" Feedback: ")
                 .append(getFeedback())
+                .append(" Favourite: ")
+                .append(getFavourite())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
