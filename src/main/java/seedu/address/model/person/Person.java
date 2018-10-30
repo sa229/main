@@ -157,6 +157,7 @@ public class Person {
                 && otherPerson.getDepartment().equals(getDepartment())
                 && otherPerson.getManager().equals(getManager())
                 && otherPerson.getFeedback().equals(getFeedback())
+                && otherPerson.getFavourite() == getFavourite()
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -192,6 +193,8 @@ public class Person {
                 .append(getManager())
                 .append(" Feedback: ")
                 .append(getFeedback())
+                .append(" Favourite: ")
+                .append(getFavourite())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

@@ -281,6 +281,7 @@ public class XmlAdaptedPerson {
                 && Objects.equals(rate, otherPerson.rate)
                 && Objects.equals(deductibles, otherPerson.deductibles)
                 && Objects.equals(feedback, otherPerson.feedback)
+                && Objects.equals(favourite, otherPerson.favourite)
                 && tagged.equals(otherPerson.tagged);
     }
 }

@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-// import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -14,12 +14,11 @@ import org.junit.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
-// import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-// import seedu.address.model.person.Person;
-// import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -30,23 +29,22 @@ public class FavouriteCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
-    /*
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person personToFavourite = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person favouritedPerson = new PersonBuilder().build();
+        Person favouritedPerson = new PersonBuilder(personToFavourite).withFavourite(true).build();
+
         FavouriteCommand favouriteCommand = new FavouriteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(FavouriteCommand.MESSAGE_FAVOURITE_PERSON_SUCCESS,
                 favouritedPerson.getName().fullName);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.favouritePerson(personToFavourite, favouritedPerson);
         expectedModel.commitAddressBook();
 
-        assertCommandSuccess(favouriteCommand, model, commandHistory, expectedMessage, expectedModel);
+        assertCommandSuccess(favouriteCommand, model, commandHistory, expectedMessage, model);
     }
-    */
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
