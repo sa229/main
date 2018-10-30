@@ -88,7 +88,7 @@ public class RateCommandSystemTest extends AddressBookSystemTest {
         assertCommandFailure(RateCommand.COMMAND_WORD + " " + PREFIX_RATING + "5",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
 
-        /* Case: missing all fields -> rejected */
+        /* Case: missing rating fields -> rejected */
         assertCommandFailure(RateCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(),
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
 
