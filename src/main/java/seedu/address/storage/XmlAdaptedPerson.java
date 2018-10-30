@@ -59,6 +59,10 @@ public class XmlAdaptedPerson {
 
     @XmlElement(required = true)
     private boolean phonePrivacy;
+    @XmlElement(required = true)
+    private boolean addressPrivacy;
+    @XmlElement(required = true)
+    private boolean emailPrivacy;
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -73,7 +77,8 @@ public class XmlAdaptedPerson {
      * Constructs an {@code XmlAdaptedPerson} with the given person details.
      */
     public XmlAdaptedPerson(String name, String phone, String email, String address, String department, String manager,
-                            boolean phonePrivacy, List<XmlAdaptedTag> tagged) {
+                            boolean phonePrivacy, boolean addressPrivacy, boolean emailPrivacy,
+                            List<XmlAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -87,6 +92,8 @@ public class XmlAdaptedPerson {
         this.deductibles = "0";
         this.feedback = "-NO FEEDBACK YET-";
         this.phonePrivacy = phonePrivacy;
+        this.addressPrivacy = addressPrivacy;
+        this.emailPrivacy = emailPrivacy;
         if (tagged != null) {
             this.tagged = new ArrayList<>(tagged);
         }
@@ -111,6 +118,8 @@ public class XmlAdaptedPerson {
         deductibles = source.getDeductibles().payDeductibles;
         feedback = source.getFeedback().value;
         phonePrivacy = source.getPhone().isPrivate();
+        addressPrivacy = source.getAddress().isPrivate();
+        emailPrivacy = source.getEmail().isPrivate();
         tagged = source.getTags().stream()
                 .map(XmlAdaptedTag::new)
                 .collect(Collectors.toList());
@@ -156,7 +165,12 @@ public class XmlAdaptedPerson {
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        if (emailPrivacy) {
+            privacy = "Y";
+        } else {
+            privacy = "N";
+        }
+        final Email modelEmail = new Email(email, privacy);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -164,7 +178,12 @@ public class XmlAdaptedPerson {
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        if (addressPrivacy) {
+            privacy = "Y";
+        } else {
+            privacy = "N";
+        }
+        final Address modelAddress = new Address(address, privacy);
         if (rating == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName()));
         }
