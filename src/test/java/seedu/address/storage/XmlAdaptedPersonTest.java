@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import static seedu.address.storage.XmlAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.NINJA;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,12 @@ public class XmlAdaptedPersonTest {
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
         XmlAdaptedPerson person = new XmlAdaptedPerson(BENSON);
         assertEquals(BENSON, person.toModelType());
+    }
+
+    @Test
+    public void toModelType_validPersonWithPrivateDetails_returnsPerson() throws Exception {
+        XmlAdaptedPerson person = new XmlAdaptedPerson(NINJA);
+        assertEquals(NINJA, person.toModelType());
     }
 
     @Test

@@ -74,6 +74,11 @@ public class TypicalPersons {
             .withDepartment("Tech").withManager("Moses Lim")
             .withSalary("0").withHours("0").withRate("0").withDeductibles("0").withFeedback("-NO FEEDBACK YET-")
             .build();
+    public static final Person NINJA = new PersonBuilder().withName("Ninja Warrior").withPrivatePhone("92349234")
+            .withPrivateEmail("ninja@example.com").withPrivateAddress("Ninja Cave").withRating("0")
+            .withDepartment("Assasin").withManager("Bruce Lee").withSalary("0").withHours("0").withRate("0")
+            .withDeductibles("0").withFeedback("-NO FEEDBACK YET-")
+            .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

@@ -42,9 +42,21 @@ public class GuiTestAssert {
      */
     public static void assertPanelDisplaysPerson(Person expectedPerson, StaffPanelHandle actualPanel) {
         assertEquals(expectedPerson.getName().fullName, actualPanel.getName());
-        assertEquals(expectedPerson.getPhone().value, actualPanel.getPhone());
-        assertEquals(expectedPerson.getEmail().value, actualPanel.getEmail());
-        assertEquals(expectedPerson.getAddress().value, actualPanel.getAddress());
+        if (expectedPerson.getPhone().isPrivate()) {
+            assertEquals("Private", actualPanel.getPhone());
+        } else {
+            assertEquals(expectedPerson.getPhone().value, actualPanel.getPhone());
+        }
+        if (expectedPerson.getEmail().isPrivate()) {
+            assertEquals("Private", actualPanel.getEmail());
+        } else {
+            assertEquals(expectedPerson.getEmail().value, actualPanel.getEmail());
+        }
+        if (expectedPerson.getAddress().isPrivate()) {
+            assertEquals("Private", actualPanel.getAddress());
+        } else {
+            assertEquals(expectedPerson.getAddress().value, actualPanel.getAddress());
+        }
         double salary = Double.valueOf(expectedPerson.getSalary().salary);
         double otPay = Double.valueOf(expectedPerson.getOtHours().overTimeHour)
             * Double.valueOf(expectedPerson.getOtRate().overTimeRate);
