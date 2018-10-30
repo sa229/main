@@ -93,7 +93,7 @@ public class XmlUtilTest {
                 INVALID_PERSON_FIELD_FILE, XmlAdaptedPersonWithRootElement.class);
         XmlAdaptedPerson expectedPerson = new XmlAdaptedPerson(
                 VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_DEPARTMENT, VALID_MANAGER,
-                false, false, false, false VALID_TAGS);
+                false, false, false, false, VALID_TAGS);
         assertEquals(expectedPerson, actualPerson);
     }
 
