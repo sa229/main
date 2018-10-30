@@ -33,7 +33,7 @@ public class StaffPanelTest extends GuiUnitTest {
         selectionChangeEventStub = new PersonPanelSelectionChangedEvent(NINJA);
         guiRobot.interact(() -> staffPanel = new StaffPanel());
         uiPartRule.setUiPart(staffPanel);
-        
+
         postNow(selectionChangeEventStub);
         assertPanelDisplay(NINJA, staffPanel);
     }
