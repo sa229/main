@@ -57,6 +57,9 @@ public class XmlAdaptedPerson {
     @XmlElement(required = true)
     private String feedback;
 
+    @XmlElement(required = true)
+    private boolean phonePrivacy;
+
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
 
@@ -70,7 +73,7 @@ public class XmlAdaptedPerson {
      * Constructs an {@code XmlAdaptedPerson} with the given person details.
      */
     public XmlAdaptedPerson(String name, String phone, String email, String address, String department, String manager,
-                            List<XmlAdaptedTag> tagged) {
+                            boolean phonePrivacy, List<XmlAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -83,6 +86,7 @@ public class XmlAdaptedPerson {
         this.rate = "0";
         this.deductibles = "0";
         this.feedback = "-NO FEEDBACK YET-";
+        this.phonePrivacy = phonePrivacy;
         if (tagged != null) {
             this.tagged = new ArrayList<>(tagged);
         }
@@ -106,6 +110,7 @@ public class XmlAdaptedPerson {
         rate = source.getOtRate().overTimeRate;
         deductibles = source.getDeductibles().payDeductibles;
         feedback = source.getFeedback().value;
+        phonePrivacy = source.getPhone().isPrivate();
         tagged = source.getTags().stream()
                 .map(XmlAdaptedTag::new)
                 .collect(Collectors.toList());
@@ -136,7 +141,14 @@ public class XmlAdaptedPerson {
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        String privacy;
+        if (phonePrivacy) {
+            privacy = "Y";
+        } else {
+            privacy = "N";
+        }
+        final Phone modelPhone = new Phone(phone, privacy);
+
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));

@@ -38,8 +38,11 @@ public class Phone {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
-        assert(privacy.equals("Y"));
-        isPrivate = true;
+        if (privacy.equals("Y")) {
+            isPrivate = true;
+        } else {
+            isPrivate = false;
+        }
     }
 
     /**
@@ -66,7 +69,8 @@ public class Phone {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Phone // instanceof handles nulls
-                && value.equals(((Phone) other).value)); // state check
+                && value.equals(((Phone) other).value))
+                && isPrivate() == ((Phone) other).isPrivate(); // state check
     }
 
     @Override

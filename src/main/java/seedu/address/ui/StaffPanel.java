@@ -54,7 +54,11 @@ public class StaffPanel extends UiPart<Region> {
      */
     private void loadStaffPanel(Person person) {
         nameLabel.setText(person.getName().fullName);
-        phoneLabel.setText(person.getPhone().value);
+        if (person.getPhone().isPrivate()) {
+            phoneLabel.setText("Private");
+        } else {
+            phoneLabel.setText(person.getPhone().value);
+        }
         emailLabel.setText(person.getEmail().value);
         addressLabel.setText(person.getAddress().value);
         double salary = Double.valueOf(person.getSalary().salary);
