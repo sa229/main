@@ -11,8 +11,6 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Unfavourites an exisiting contact
@@ -46,13 +44,9 @@ public class UnfavouriteCommand extends Command {
         }
         Person personToUnfavourite = lastShownList.get(index.getZeroBased());
         Person unfavouritedPerson = createFavouritedPerson(personToUnfavourite);
-        try {
-            model.unfavouritePerson(personToUnfavourite, unfavouritedPerson);
-        } catch (DuplicatePersonException dpe) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        } catch (PersonNotFoundException pnfe) {
-            throw new AssertionError("The target person cannot be missing");
-        }
+
+        model.unfavouritePerson(personToUnfavourite, unfavouritedPerson);
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         if (personToUnfavourite.getFavourite()) {
             return new CommandResult(String.format(MESSAGE_UNFAVOURITE_PERSON_SUCCESS,
