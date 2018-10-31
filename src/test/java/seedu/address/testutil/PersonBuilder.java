@@ -36,6 +36,7 @@ public class PersonBuilder {
     public static final String DEFAULT_DEPARTMENT = "Accounting";
     public static final String DEFAULT_MANAGER = "Ben Leong";
     public static final String DEFAULT_FEEDBACK = "-NO FEEDBACK YET-";
+    public static final boolean DEFAULT_FAVOURITE = false;
 
     private Name name;
     private Phone phone;
@@ -48,6 +49,7 @@ public class PersonBuilder {
     private Rating rating;
     private Department department;
     private Manager manager;
+    private boolean favourite;
     private Feedback feedback;
     private Set<Tag> tags;
 
@@ -64,6 +66,7 @@ public class PersonBuilder {
         department = new Department(DEFAULT_DEPARTMENT);
         manager = new Manager(DEFAULT_MANAGER);
         feedback = new Feedback(DEFAULT_FEEDBACK);
+        favourite = Boolean.FALSE;
         tags = new HashSet<>();
     }
 
@@ -83,6 +86,7 @@ public class PersonBuilder {
         department = personToCopy.getDepartment();
         manager = personToCopy.getManager();
         feedback = personToCopy.getFeedback();
+        favourite = personToCopy.getFavourite();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -211,6 +215,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Favourite} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withFavourite(boolean favourite) {
+        this.favourite = favourite;
+        return this;
+    }
+
+    /**
      * Sets the {@code Feedback} of the {@code Person} that we are building.
      */
     public PersonBuilder withFeedback(String feedback) {
@@ -223,7 +235,7 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, phone, email, address, rating, department, manager,
-          salary, hours, rate, deductibles, feedback, tags);
+          salary, hours, rate, deductibles, feedback, tags, favourite);
     }
 
 }

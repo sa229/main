@@ -12,7 +12,7 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level4
+:repoURL: https://github.com/CS2103-AY1819S1-T13-2/main
 
 By: `Team T13-2`      Since: `Oct 2018`      Licence: `MIT`
 
@@ -54,6 +54,7 @@ adds a staff named `John Doe` to SSENISUB.
 `{nbsp}` (i.e. 0 times), `t/staff`, `t/manager` etc.
 * Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 * Adding a 'p' infront of the parameter private. e.g. pp/PHONE makes the phone number private to the other user.
+* Only `PHONE`, `EMAIL` and `ADDRESS` fields can be initialized as private.
 ====
 
 === Viewing help : `help`
@@ -169,6 +170,48 @@ Selects the 2nd staff in SSENISUB.
 `select 1` +
 Selects the 1st staff in the results of the `find` command.
 
+=== Favouriting a staff : `favourite`
+
+Favourites the specified staff and moves it up to the top of the list. +
+Format: `favourite INDEX` or `fav INDEX`
+
+****
+* Favourites the staff at the specified `INDEX`.
+* The index refers to the index number shown in the displayed staff list.
+* The index *must be a positive integer* `1, 2, 3, ...`
+* Staff at the specified `INDEX` needs to not be on the favourite list
+****
+
+Examples:
+
+* `list` +
+`favourite 2` +
+Favourites the 2nd staff in SSENISUB.
+* `find Betsy` +
+`fav 1` +
+Favourites the 1st staff in the results of the `find` command.
+
+=== Unfavouriting a staff : `unfavourite`
+
+Favourites the specified staff and moves it up to the top of the list. +
+Format: `unfavourite INDEX` or `unfav INDEX`
+
+****
+* Removes the staff at the specified `INDEX` from favourite list.
+* The index refers to the index number shown in the displayed staff list.
+* The index *must be a positive integer* `1, 2, 3, ...`
+* Staff at the specified `INDEX` needs to be on the favourite list
+****
+
+Examples:
+
+* `list` +
+`unfavourite 2` +
+Removes the 2nd staff from favourite list.
+* `find Betsy` +
+`unfav 1` +
+Removes the 1st staff in the results of the `find` command from favourite list.
+
 === Listing entered commands : `history`
 
 Lists all the commands that you have entered in reverse chronological order. +
@@ -239,15 +282,37 @@ Format: `clear`
 Exits the program. +
 Format: `exit`
 
-=== Locking SSENISUB: `lock`
+=== Locking SSENISUB [coming in v2.0]: `lock`
 
 Locks the SSENISUB with a specified password. +
 Format: `lock PASSWORD`
 
-=== Unlocking SSENISUB: `unlock`
+=== Unlocking SSENISUB [coming in v2.0]: `unlock`
 
 Unlocks the SSENISUB with a specified password. +
 Format: `unlock PASSWORD`
+
+=== Counting the number of staff [coming in v2.0]: `count`
+
+Count the number of staff in specific department in SSENISUB +
+Format: `count d/DEPARTMENT`
+
+Examples:
+
+* `count d/accounting` +
+
+=== Setting private fields: `privacy`
+
+Sets the mentioned field into a private field(will not display on the panel). +
+Format: `privacy INDEX [n/ y or n] [e/ y or n] [a/ y or n]`
+
+****
+* Modifies the privacy of the information of the staff at the specified `INDEX`.
+* The index refers to the index number shown in the displayed staff list.
+* The index *must be a positive integer* 1, 2, 3, ...
+* Only Phone, Email and Address can be set to private.
+* 'y' means setting to private and 'n' means setting to public.
+****
 
 === Saving the data
 
@@ -275,21 +340,27 @@ e.g. `delete 3`
 * *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/SALARY] [oth/OTHOUR] [otr/OTRATE] [de/DEDUCTIBLES] [d/DEPARTMENT] [m/MANAGER] [t/TAG]..
 .` +
 e.g. `edit 2 n/James Lee e/jameslee@example.com oth/10`
-* *Feedback* : `feedback INDEX [f/FEEDBACK]` +
+* *Favourite* : `favourite INDEX` or `fav INDEX` +
+e.g. `favourite 1` or `fav 2`
+* *Unfavourite* : `unfavourite INDEX` or `unfav INDEX` +
+e.g. `unfavourite 1` or `unfav 2`
+* *Feedback* : `feedback INDEX [fb/FEEDBACK]` +
 e.g. `feedback 1 f/Excellent`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`
 * *Rate* : `rate INDEX [r/RATING]` +
 e.g. `rate 1 r/8`
-* *Sort* : `sort [KEYWORD]` +
+* *Sort* [coming in v2.0] : `sort [KEYWORD]` +
 e.g. `sort ASCENDING`
 * *Delete All* : `deleteall`
 * *List* : `list`
-* *Lock SSENISUB* : `lock PASSWORD`
-* *Unlock SSENISUB* : `unlock PASSWORD`
+* *Lock SSENISUB* [coming in v2.0] : `lock PASSWORD`
+* *Unlock SSENISUB* [coming in v2.0]: `unlock PASSWORD`
 * *Help* : `help`
 * *Select* : `select INDEX` +
 e.g.`select 2`
+* *Privacy* : `privacy INDEX [p/ y or n] [e/ y or n] [a/ y or n]` +
+e.g. `privacy 2 p/y a/n`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`

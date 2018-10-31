@@ -118,9 +118,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Manager manager = ParserUtil.parseManager(argMultimap.getValue(PREFIX_MANAGER).get());
         Feedback feedback = Feedback.DEFAULT_INITIAL_FEEDBACK;
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        boolean favourite = false;
 
         Person person = new Person(name, phone, email, address, rating, department, manager,
-            salary, hours, rate, deductibles, feedback, tagList);
+            salary, hours, rate, deductibles, feedback, tagList, favourite);
 
         return new AddCommand(person);
     }

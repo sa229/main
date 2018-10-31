@@ -119,6 +119,7 @@ public class PrivacyCommand extends Command {
         PayDeductibles deductibles = personToEdit.getDeductibles();
         Feedback feedback = personToEdit.getFeedback();
         Set<Tag> tags = personToEdit.getTags();
+        boolean favourite = personToEdit.getFavourite();
 
         if (fieldsToChange.getPhonePrivacy().isPresent()) {
             phone = new Phone(personToEdit.getPhone().value, fieldsToChange.getPhonePrivacy().get());
@@ -131,7 +132,7 @@ public class PrivacyCommand extends Command {
         }
 
         return new Person(name, phone, email, address, rating, department, manager,
-                salary, hours, rate, deductibles, feedback, tags);
+                salary, hours, rate, deductibles, feedback, tags, favourite);
     }
 
     /**

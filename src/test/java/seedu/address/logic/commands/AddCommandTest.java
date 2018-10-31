@@ -119,6 +119,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void favouritePerson(Person target, Person favouritedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unfavouritePerson(Person target, Person unfavouritedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }

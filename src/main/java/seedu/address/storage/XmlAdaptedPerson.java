@@ -55,6 +55,8 @@ public class XmlAdaptedPerson {
     @XmlElement(required = true)
     private String deductibles;
     @XmlElement(required = true)
+    private boolean favourite;
+    @XmlElement(required = true)
     private String feedback;
 
     @XmlElement(required = true)
@@ -78,7 +80,7 @@ public class XmlAdaptedPerson {
      */
     public XmlAdaptedPerson(String name, String phone, String email, String address, String department, String manager,
                             boolean phonePrivacy, boolean addressPrivacy, boolean emailPrivacy,
-                            List<XmlAdaptedTag> tagged) {
+                            Boolean favourite, List<XmlAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -90,6 +92,7 @@ public class XmlAdaptedPerson {
         this.hours = "0";
         this.rate = "0";
         this.deductibles = "0";
+        this.favourite = favourite;
         this.feedback = "-NO FEEDBACK YET-";
         this.phonePrivacy = phonePrivacy;
         this.addressPrivacy = addressPrivacy;
@@ -123,6 +126,7 @@ public class XmlAdaptedPerson {
         tagged = source.getTags().stream()
                 .map(XmlAdaptedTag::new)
                 .collect(Collectors.toList());
+        favourite = source.getFavourite();
     }
 
     /**
@@ -187,9 +191,6 @@ public class XmlAdaptedPerson {
         if (rating == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName()));
         }
-        if (!Rating.isValidRating(rating)) {
-            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
-        }
         final Rating modelRating = new Rating(rating);
         if (department == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -208,48 +209,21 @@ public class XmlAdaptedPerson {
             throw new IllegalValueException(Manager.MESSAGE_CONSTRAINTS);
         }
         final Manager modelManager = new Manager(manager);
-
-        if (salary == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-              Salary.class.getSimpleName()));
-        }
-        if (!Salary.isValidSalary(salary)) {
-            throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
-        }
         final Salary modelSalary = new Salary(salary);
 
-        if (hours == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-              OtHour.class.getSimpleName()));
-        }
-        if (!OtHour.isValidTwoDecimalNumber(hours)) {
-            throw new IllegalValueException(OtHour.MESSAGE_CONSTRAINTS);
-        }
         final OtHour modelHours = new OtHour(hours);
 
-        if (rate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-              OtRate.class.getSimpleName()));
-        }
-        if (!OtRate.isValidTwoDecimalNumber(rate)) {
-            throw new IllegalValueException(OtRate.MESSAGE_CONSTRAINTS);
-        }
         final OtRate modelRate = new OtRate(rate);
 
-        if (deductibles == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-              PayDeductibles.class.getSimpleName()));
-        }
-        if (!PayDeductibles.isValidTwoDecimalNumber(deductibles)) {
-            throw new IllegalValueException(PayDeductibles.MESSAGE_CONSTRAINTS);
-        }
         final PayDeductibles modelDeductibles = new PayDeductibles(deductibles);
 
         final Feedback modelFeedback = new Feedback(feedback);
 
+        final boolean modelFavourite = this.favourite;
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRating, modelDepartment, modelManager,
-                modelSalary, modelHours, modelRate, modelDeductibles, modelFeedback, modelTags);
+                modelSalary, modelHours, modelRate, modelDeductibles, modelFeedback, modelTags, modelFavourite);
     }
 
     @Override
@@ -275,6 +249,7 @@ public class XmlAdaptedPerson {
                 && Objects.equals(rate, otherPerson.rate)
                 && Objects.equals(deductibles, otherPerson.deductibles)
                 && Objects.equals(feedback, otherPerson.feedback)
+                && Objects.equals(favourite, otherPerson.favourite)
                 && tagged.equals(otherPerson.tagged);
     }
 }

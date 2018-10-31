@@ -128,10 +128,11 @@ public class EditCommand extends Command {
         Manager updatedManager = editPersonDescriptor.getManager().orElse(personToEdit.getManager());
         Feedback updatedFeedback = personToEdit.getFeedback();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        boolean updatedFavourite = personToEdit.getFavourite();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRating, updatedDepartment,
                 updatedManager, updatedSalary, updatedHours, updatedRate, updatedDeductibles, updatedFeedback,
-                updatedTags);
+                updatedTags, updatedFavourite);
     }
 
     @Override
