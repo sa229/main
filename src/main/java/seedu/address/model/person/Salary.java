@@ -28,9 +28,9 @@ public class Salary {
         return test.matches(SALARY_VALIDATION_REGEX);
     }
 
-    public String getSalary() {
-        return salary;
-    }
+    //public String getSalary() {
+    //   return salary;
+    //}
 
     @Override
     public boolean equals(Object other) {
