@@ -260,6 +260,16 @@ Format: `clear`
 Exits the program. +
 Format: `exit`
 
+=== Locking SSENISUB [coming in v2.0]: `lock`
+
+Locks the SSENISUB with a specified password. +
+Format: `lock PASSWORD`
+
+=== Unlocking SSENISUB [coming in v2.0]: `unlock`
+
+Unlocks the SSENISUB with a specified password. +
+Format: `unlock PASSWORD`
+
 === Setting private fields: `privacy`
 
 Sets the mentioned field into a private field(will not display on the panel). +
@@ -311,8 +321,8 @@ e.g. `rate 1 r/8`
 e.g. `sort ASCENDING`
 * *Delete All* : `deleteall`
 * *List* : `list`
-* *Lock SSENISUB* : `lock PASSWORD`
-* *Unlock SSENISUB* : `unlock PASSWORD`
+* *Lock SSENISUB* [coming in v2.0] : `lock PASSWORD`
+* *Unlock SSENISUB* [coming in v2.0]: `unlock PASSWORD`
 * *Help* : `help`
 * *Select* : `select INDEX` +
 e.g.`select 2`
