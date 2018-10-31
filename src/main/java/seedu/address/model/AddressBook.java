@@ -120,40 +120,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code favouritedReadOnlyPerson}.
-     * Sorts the list to show favourite contacts first.
-     * {@code AddressBook}'s tag list will be updated with the tags of {@code favouritedReadOnlyPerson}.
-     */
-    public void unfavouritePerson(Person target, Person unfavouritedPerson) {
-        requireNonNull(unfavouritedPerson);
-
-        // Person unfavouritedPerson = new Person(unfavouritedPerson);
-
-        // TODO: the tags master list will be updated even though the below line fails.
-        // This can cause the tags master list to have additional tags that are not tagged to any person
-        // in the person list.
-
-        persons.setPerson(target, unfavouritedPerson);
-
-        UniquePersonList notFavouriteList = new UniquePersonList();
-        UniquePersonList favouriteList = new UniquePersonList();
-
-        for (Person person : persons) {
-            if (!person.getFavourite()) {
-                notFavouriteList.add(person);
-            } else {
-                favouriteList.add(person);
-            }
-        }
-
-        persons.setPersons(favouriteList);
-        for (Person person : notFavouriteList) {
-            persons.add(person);
-        }
-
-    }
-
-    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
