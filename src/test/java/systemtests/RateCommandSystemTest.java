@@ -16,6 +16,7 @@ import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Rating;
 import seedu.address.testutil.PersonBuilder;
 
 public class RateCommandSystemTest extends AddressBookSystemTest {
@@ -94,13 +95,11 @@ public class RateCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: invalid rating (-1) -> rejected */
         assertCommandFailure(RateCommand.COMMAND_WORD + "  " + index.getOneBased()
-                        + "  " + PREFIX_RATING + "-1",
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
+                        + "  " + PREFIX_RATING + "-1", Rating.MESSAGE_CONSTRAINTS);
 
         /* Case: invalid rating (11) -> rejected */
         assertCommandFailure(RateCommand.COMMAND_WORD + "  " + index.getOneBased()
-                        + "  " + PREFIX_RATING + "11",
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
+                        + "  " + PREFIX_RATING + "11", Rating.MESSAGE_CONSTRAINTS);
     }
 
     /**
