@@ -24,13 +24,16 @@ import seedu.address.testutil.PersonBuilder;
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
  * {@code FavouriteCommand}.
  */
-public class FavouriteCommandTest {
+public class UnfavouriteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
+
+        // person needs to be favourited first
+
         Person personToFavourite = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person favouritedPerson = new PersonBuilder(personToFavourite).withFavourite(true).build();
 
@@ -39,28 +42,43 @@ public class FavouriteCommandTest {
         String expectedFavouriteMessage = String.format(FavouriteCommand.MESSAGE_FAVOURITE_PERSON_SUCCESS,
                 favouritedPerson.getName().fullName);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.favouritePerson(personToFavourite, favouritedPerson);
-        expectedModel.commitAddressBook();
+        Model expectedFavouriteModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedFavouriteModel.favouritePerson(personToFavourite, favouritedPerson);
+        expectedFavouriteModel.commitAddressBook();
 
         assertCommandSuccess(favouriteCommand, model, commandHistory, expectedFavouriteMessage, model);
 
-        // favourite fail
+        Person personToUnfavourite = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person unfavouritedPerson = new PersonBuilder(personToUnfavourite).withFavourite(false).build();
 
-        FavouriteCommand failFavouriteCommand = new FavouriteCommand(INDEX_FIRST_PERSON);
+        UnfavouriteCommand unfavouriteCommand = new UnfavouriteCommand(INDEX_FIRST_PERSON);
 
-        String expectedFailFavouriteMessage = String.format(FavouriteCommand.MESSAGE_FAVOURITE_PERSON_FAIL,
-                favouritedPerson.getName().fullName);
+        String expectedUnfavouriteMessage = String.format(UnfavouriteCommand.MESSAGE_UNFAVOURITE_PERSON_SUCCESS,
+                unfavouritedPerson.getName().fullName);
 
-        assertCommandSuccess(failFavouriteCommand, model, commandHistory, expectedFailFavouriteMessage, model);
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.unfavouritePerson(personToUnfavourite, unfavouritedPerson);
+        expectedModel.commitAddressBook();
+
+        assertCommandSuccess(unfavouriteCommand, model, commandHistory, expectedUnfavouriteMessage, model);
+
+        // unfavourite fail
+
+        UnfavouriteCommand failUnfavouriteCommand = new UnfavouriteCommand(INDEX_FIRST_PERSON);
+
+        String expectedFailUnfavouriteMessage = String.format(UnfavouriteCommand.MESSAGE_UNFAVOURITE_PERSON_FAIL,
+                unfavouritedPerson.getName().fullName);
+
+        assertCommandSuccess(failUnfavouriteCommand, model, commandHistory, expectedFailUnfavouriteMessage, model);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        FavouriteCommand favouriteCommand = new FavouriteCommand(outOfBoundIndex);
+        UnfavouriteCommand unfavouriteCommand = new UnfavouriteCommand(outOfBoundIndex);
 
-        assertCommandFailure(favouriteCommand, model, commandHistory, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(unfavouriteCommand, model, commandHistory,
+                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     /*
@@ -91,9 +109,10 @@ public class FavouriteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        FavouriteCommand favouriteCommand = new FavouriteCommand(outOfBoundIndex);
+        UnfavouriteCommand unfavouriteCommand = new UnfavouriteCommand(outOfBoundIndex);
 
-        assertCommandFailure(favouriteCommand, model, commandHistory, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(unfavouriteCommand, model, commandHistory,
+                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     /*
@@ -123,10 +142,11 @@ public class FavouriteCommandTest {
     @Test
     public void executeUndoRedo_invalidIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        FavouriteCommand favouriteCommand = new FavouriteCommand(outOfBoundIndex);
+        UnfavouriteCommand unfavouriteCommand = new UnfavouriteCommand(outOfBoundIndex);
 
         // execution failed -> address book state not added into model
-        assertCommandFailure(favouriteCommand, model, commandHistory, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(unfavouriteCommand, model, commandHistory,
+                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
         // single address book state in model -> undoCommand and redoCommand fail
         assertCommandFailure(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_FAILURE);
@@ -135,24 +155,24 @@ public class FavouriteCommandTest {
 
     @Test
     public void equals() {
-        FavouriteCommand favouriteFirstCommand = new FavouriteCommand(INDEX_FIRST_PERSON);
-        FavouriteCommand favouriteSecondCommand = new FavouriteCommand(INDEX_SECOND_PERSON);
+        UnfavouriteCommand unfavouriteFirstCommand = new UnfavouriteCommand(INDEX_FIRST_PERSON);
+        UnfavouriteCommand unfavouriteSecondCommand = new UnfavouriteCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
-        assertTrue(favouriteFirstCommand.equals(favouriteFirstCommand));
+        assertTrue(unfavouriteFirstCommand.equals(unfavouriteFirstCommand));
 
         // same values -> returns true
-        FavouriteCommand favouriteFirstCommandCopy = new FavouriteCommand(INDEX_FIRST_PERSON);
-        assertTrue(favouriteFirstCommand.equals(favouriteFirstCommandCopy));
+        UnfavouriteCommand unfavouriteFirstCommandCopy = new UnfavouriteCommand(INDEX_FIRST_PERSON);
+        assertTrue(unfavouriteFirstCommand.equals(unfavouriteFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(favouriteFirstCommand.equals(1));
+        assertFalse(unfavouriteFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(favouriteFirstCommand.equals(null));
+        assertFalse(unfavouriteFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(favouriteFirstCommand.equals(favouriteSecondCommand));
+        assertFalse(unfavouriteFirstCommand.equals(unfavouriteSecondCommand));
     }
 
     /**

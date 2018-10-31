@@ -21,7 +21,7 @@ public class UnfavouriteCommandParser implements Parser<UnfavouriteCommand> {
     public UnfavouriteCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
-            return new UnfavouriteCommandParser(index);
+            return new UnfavouriteCommand(index);
         } catch (IllegalValueException ive) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnfavouriteCommand.MESSAGE_USAGE));

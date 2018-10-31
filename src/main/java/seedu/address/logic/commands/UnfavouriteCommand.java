@@ -47,7 +47,7 @@ public class UnfavouriteCommand extends Command {
         Person personToUnfavourite = lastShownList.get(index.getZeroBased());
         Person unfavouritedPerson = createFavouritedPerson(personToUnfavourite);
         try {
-            model.favouritePerson(personToUnfavourite, unfavouritedPerson);
+            model.unfavouritePerson(personToUnfavourite, unfavouritedPerson);
         } catch (DuplicatePersonException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         } catch (PersonNotFoundException pnfe) {
@@ -68,13 +68,19 @@ public class UnfavouriteCommand extends Command {
     private static Person createFavouritedPerson(Person personToUnfavourite) {
         assert personToUnfavourite != null;
 
-        boolean newFavourite = !personToUnfavourite.getFavourite();
+        boolean newFavourite;
 
-        return new Person(personToUnfavourite.getName(), personToUnfavourite.getPhone(), personToUnfavourite.getEmail(),
-                personToUnfavourite.getAddress(), personToUnfavourite.getRating(), personToUnfavourite.getDepartment(),
-                personToUnfavourite.getManager(), personToUnfavourite.getSalary(), personToUnfavourite.getOtHours(),
-                personToUnfavourite.getOtRate(), personToUnfavourite.getDeductibles(), personToUnfavourite.getFeedback(),
-                personToUnfavourite.getTags(), newFavourite);
+        if (personToUnfavourite.getFavourite()) {
+            newFavourite = !personToUnfavourite.getFavourite();
+        } else {
+            newFavourite = personToUnfavourite.getFavourite();
+        }
+
+        return new Person(personToUnfavourite.getName(), personToUnfavourite.getPhone(),
+                personToUnfavourite.getEmail(), personToUnfavourite.getAddress(), personToUnfavourite.getRating(),
+                personToUnfavourite.getDepartment(), personToUnfavourite.getManager(), personToUnfavourite.getSalary(),
+                personToUnfavourite.getOtHours(), personToUnfavourite.getOtRate(), personToUnfavourite.getDeductibles(),
+                personToUnfavourite.getFeedback(), personToUnfavourite.getTags(), newFavourite);
     }
     @Override
     public boolean equals(Object other) {

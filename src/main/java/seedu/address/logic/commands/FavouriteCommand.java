@@ -55,11 +55,11 @@ public class FavouriteCommand extends Command {
             throw new AssertionError("The target person cannot be missing");
         }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        if (personToFavourite.getFavourite()) {
-            return new CommandResult(String.format(MESSAGE_FAVOURITE_PERSON_FAIL,
+        if (!personToFavourite.getFavourite()) {
+            return new CommandResult(String.format(MESSAGE_FAVOURITE_PERSON_SUCCESS,
                     favouritedPerson.getName().fullName));
         } else {
-            return new CommandResult(String.format(MESSAGE_FAVOURITE_PERSON_SUCCESS,
+            return new CommandResult(String.format(MESSAGE_FAVOURITE_PERSON_FAIL,
                     favouritedPerson.getName().fullName));
         }
     }
@@ -70,7 +70,13 @@ public class FavouriteCommand extends Command {
     private static Person createFavouritedPerson(Person personToFavourite) {
         assert personToFavourite != null;
 
-        boolean newFavourite = !personToFavourite.getFavourite();
+        boolean newFavourite;
+
+        if (personToFavourite.getFavourite()) {
+            newFavourite = personToFavourite.getFavourite();
+        } else {
+            newFavourite = !personToFavourite.getFavourite();
+        }
 
         return new Person(personToFavourite.getName(), personToFavourite.getPhone(), personToFavourite.getEmail(),
                 personToFavourite.getAddress(), personToFavourite.getRating(), personToFavourite.getDepartment(),

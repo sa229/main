@@ -48,6 +48,12 @@ public interface Model {
      */
     void favouritePerson(Person target, Person favouritedPerson);
 
+    /**
+     * Remove the given person from favourite.
+     * The person must exist in the favourites.
+     */
+    void unfavouritePerson(Person target, Person unfavouritedPerson);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
