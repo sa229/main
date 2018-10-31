@@ -96,7 +96,7 @@ public class Feedback {
          */
         public static void loadConfigs() {
             try {
-                Path badWordsFile = Paths.get("docs/words to ban/Bad_Words_List.csv");
+                Path badWordsFile = Paths.get("docs/words to ban/Bad_Words_List.txt");
                 BufferedReader reader = new BufferedReader(new FileReader(badWordsFile.toFile()));
                 String line = "";
                 int counter = 0;
@@ -171,6 +171,10 @@ public class Feedback {
                             }
                         }
                         if (!ignore) {
+                            badWords.add(wordToCheck);
+                        }
+                        // Hard coded because "ass" itself is a profanity but contained in many clean words
+                        if (wordToCheck.equals("ass")) {
                             badWords.add(wordToCheck);
                         }
                     }
