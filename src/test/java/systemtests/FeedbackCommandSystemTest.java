@@ -15,6 +15,7 @@ import seedu.address.logic.commands.FeedbackCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
+import seedu.address.model.person.Feedback;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -91,6 +92,13 @@ public class FeedbackCommandSystemTest extends AddressBookSystemTest {
         /* Case: missing feedback field -> rejected */
         assertCommandFailure(FeedbackCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(),
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FeedbackCommand.MESSAGE_USAGE));
+
+        /* Case: feedback has profanity -> rejected */
+        String feedbackWithProfanity = "you are an asshole.";
+        assertCommandFailure(FeedbackCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                + " " + PREFIX_FEEDBACK + feedbackWithProfanity,
+                String.format(Feedback.MESSAGE_PROFANITY_FOUND
+                        + new Feedback.ProfanityFilter().findProfanity(feedbackWithProfanity)));
     }
 
     /**
