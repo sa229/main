@@ -99,9 +99,7 @@ public class Feedback {
                 Path badWordsFile = Paths.get("docs/words to ban/Bad_Words_List.txt");
                 BufferedReader reader = new BufferedReader(new FileReader(badWordsFile.toFile()));
                 String line = "";
-                int counter = 0;
                 while ((line = reader.readLine()) != null) {
-                    counter++;
                     String[] content = null;
                     try {
                         content = line.split(",");
@@ -132,10 +130,11 @@ public class Feedback {
         /**
          * Iterates over a String input and checks whether a cuss word was found in a list,
          * then checks if the word should be ignored (e.g. bass contains the word *ss).
-         * @param input
+         * @param rawInput
          * @return list of bad words found
          */
-        public ArrayList<String> badWordsFound(String input) {
+        public ArrayList<String> badWordsFound(String rawInput) {
+            String input = rawInput;
             if (input == null) {
                 return new ArrayList<>();
             }
@@ -174,7 +173,7 @@ public class Feedback {
                             badWords.add(wordToCheck);
                         }
                         // Hard coded because "ass" itself is a profanity but contained in many clean words
-                        if (wordToCheck.equals("ass")) {
+                        if ("ass".equals(wordToCheck)) {
                             badWords.add(wordToCheck);
                         }
                     }
@@ -186,9 +185,9 @@ public class Feedback {
         }
 
         /**
-         *
+         * Looks for bad words and returns the list of them
          * @param input
-         * @return
+         * @return list of bad words
          */
         public ArrayList<String> findProfanity(String input) {
             ArrayList<String> badWords = badWordsFound(input);
