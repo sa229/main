@@ -4,27 +4,27 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.FavouriteCommand;
+import seedu.address.logic.commands.UnfavouriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new FavouriteCommand object
  */
 
-public class FavouriteCommandParser implements Parser<FavouriteCommand> {
+public class UnfavouriteCommandParser implements Parser<UnfavouriteCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FavouriteCommand
-     * and returns an FavouriteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the UnfavouriteCommand
+     * and returns an UnfavouriteCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public FavouriteCommand parse(String args) throws ParseException {
+    public UnfavouriteCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
-            return new FavouriteCommand(index);
+            return new UnfavouriteCommand(index);
         } catch (IllegalValueException ive) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FavouriteCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnfavouriteCommand.MESSAGE_USAGE));
         }
     }
 

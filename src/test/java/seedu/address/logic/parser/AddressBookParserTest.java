@@ -34,6 +34,7 @@ import seedu.address.logic.commands.RateCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.UnfavouriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -97,6 +98,12 @@ public class AddressBookParserTest {
     public void parseCommand_favourite() throws Exception {
         String command = FavouriteCommand.COMMAND_WORD + " 1 ";
         assertTrue(parser.parseCommand(command) instanceof FavouriteCommand);
+    }
+
+    @Test
+    public void parseCommand_unfavourite() throws Exception {
+        String command = UnfavouriteCommand.COMMAND_WORD + " 1 ";
+        assertTrue(parser.parseCommand(command) instanceof UnfavouriteCommand);
     }
 
     @Test
