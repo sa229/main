@@ -37,6 +37,5 @@ endif::[]
 _Marco Jakob_.
 * Libraries used: https://github.com/TestFX/TestFX[TextFX], https://bitbucket.org/controlsfx/controlsfx/[ControlsFX], https://github.com/FasterXML/jackson[Jackson], https://github.com/google/guava[Guava], https://github.com/junit-team/junit5[JUnit5]
 * Original source code was adopted from https://github.com/se-edu/ (addressbook-level4)
-* Profanity filter code was adopted from https://gist.github.com/PimDeWitte/c04cc17bc5fa9d7e3aee6670d4105941 (Efficient Bad Word Filter)
 
 == Licence : link:LICENSE[MIT]
