@@ -15,70 +15,67 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
- * Favourites an exisiting contact
+ * Unfavourites an exisiting contact
  */
 
-public class FavouriteCommand extends Command {
+public class UnfavouriteCommand extends Command {
 
-    public static final String COMMAND_WORD = "favourite";
-    public static final String COMMAND_ALIAS = "fav";
+    public static final String COMMAND_WORD = "unfavourite";
+    public static final String COMMAND_ALIAS = "unfav";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to your favourite contacts "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes a person from your favourite contacts "
             + "by the index number used in the last person listing.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
-    public static final String MESSAGE_FAVOURITE_PERSON_FAIL = "Person already favourited: %1$s";
-    public static final String MESSAGE_FAVOURITE_PERSON_SUCCESS = "Added person to favourites: %1$s";
+    public static final String MESSAGE_UNFAVOURITE_PERSON_FAIL = "Person not in favourites: %1$s";
+    public static final String MESSAGE_UNFAVOURITE_PERSON_SUCCESS = "Person removed from favourites: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     private final Index index;
     /**
      * @param index of the person in the filtered person list to edit
      */
-    public FavouriteCommand(Index index) {
+    public UnfavouriteCommand(Index index) {
         requireNonNull(index);
         this.index = index;
     }
-
     @Override
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        Person personToFavourite = lastShownList.get(index.getZeroBased());
-        Person favouritedPerson = createFavouritedPerson(personToFavourite);
+        Person personToUnfavourite = lastShownList.get(index.getZeroBased());
+        Person unfavouritedPerson = createFavouritedPerson(personToUnfavourite);
         try {
-            model.favouritePerson(personToFavourite, favouritedPerson);
+            model.favouritePerson(personToUnfavourite, unfavouritedPerson);
         } catch (DuplicatePersonException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         } catch (PersonNotFoundException pnfe) {
             throw new AssertionError("The target person cannot be missing");
         }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        if (personToFavourite.getFavourite()) {
-            return new CommandResult(String.format(MESSAGE_FAVOURITE_PERSON_FAIL,
-                    favouritedPerson.getName().fullName));
+        if (personToUnfavourite.getFavourite()) {
+            return new CommandResult(String.format(MESSAGE_UNFAVOURITE_PERSON_SUCCESS,
+                    unfavouritedPerson.getName().fullName));
         } else {
-            return new CommandResult(String.format(MESSAGE_FAVOURITE_PERSON_SUCCESS,
-                    favouritedPerson.getName().fullName));
+            return new CommandResult(String.format(MESSAGE_UNFAVOURITE_PERSON_FAIL,
+                    unfavouritedPerson.getName().fullName));
         }
     }
-
     /**
      * Creates and returns a {@code Person} with the details of {@code personToFavourite}
      */
-    private static Person createFavouritedPerson(Person personToFavourite) {
-        assert personToFavourite != null;
+    private static Person createFavouritedPerson(Person personToUnfavourite) {
+        assert personToUnfavourite != null;
 
-        boolean newFavourite = !personToFavourite.getFavourite();
+        boolean newFavourite = !personToUnfavourite.getFavourite();
 
-        return new Person(personToFavourite.getName(), personToFavourite.getPhone(), personToFavourite.getEmail(),
-                personToFavourite.getAddress(), personToFavourite.getRating(), personToFavourite.getDepartment(),
-                personToFavourite.getManager(), personToFavourite.getSalary(), personToFavourite.getOtHours(),
-                personToFavourite.getOtRate(), personToFavourite.getDeductibles(), personToFavourite.getFeedback(),
-                personToFavourite.getTags(), newFavourite);
+        return new Person(personToUnfavourite.getName(), personToUnfavourite.getPhone(), personToUnfavourite.getEmail(),
+                personToUnfavourite.getAddress(), personToUnfavourite.getRating(), personToUnfavourite.getDepartment(),
+                personToUnfavourite.getManager(), personToUnfavourite.getSalary(), personToUnfavourite.getOtHours(),
+                personToUnfavourite.getOtRate(), personToUnfavourite.getDeductibles(), personToUnfavourite.getFeedback(),
+                personToUnfavourite.getTags(), newFavourite);
     }
-
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -86,11 +83,11 @@ public class FavouriteCommand extends Command {
             return true;
         }
         // instanceof handles nulls
-        if (!(other instanceof FavouriteCommand)) {
+        if (!(other instanceof UnfavouriteCommand)) {
             return false;
         }
         // state check
-        FavouriteCommand e = (FavouriteCommand) other;
+        UnfavouriteCommand e = (UnfavouriteCommand) other;
         return index.equals(e.index);
     }
 }

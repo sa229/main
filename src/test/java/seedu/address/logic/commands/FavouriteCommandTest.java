@@ -49,7 +49,7 @@ public class FavouriteCommandTest {
 
         FavouriteCommand unfavouriteCommand = new FavouriteCommand(INDEX_FIRST_PERSON);
 
-        String expectedUnfavouriteMessage = String.format(FavouriteCommand.MESSAGE_UNFAVOURITE_PERSON_SUCCESS,
+        String expectedUnfavouriteMessage = String.format(FavouriteCommand.MESSAGE_FAVOURITE_PERSON_FAIL,
                 favouritedPerson.getName().fullName);
 
         assertCommandSuccess(unfavouriteCommand, model, commandHistory, expectedUnfavouriteMessage, model);
