@@ -58,6 +58,6 @@ public class FeedbackCommandParserTest {
     @Test
     public void parse_invalidArgs_failure() {
         // empty input
-        assertParseFailure(parser, "1 " + PREFIX_FEEDBACK, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 " + PREFIX_FEEDBACK, Feedback.MESSAGE_CONSTRAINTS);
     }
 }
