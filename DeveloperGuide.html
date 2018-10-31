@@ -38,7 +38,8 @@
 <li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 <li><a href="#unlock-feature-temporarily-omitted">3.8. Unlock Feature (temporarily omitted)</a></li>
 <li><a href="#favourite-feature">3.9. Favourite Feature</a></li>
-<li><a href="#salary-ot-hours-ot-rate-and-pay-deductibles-for-staff">3.10. Salary, OT Hours, OT Rate and Pay Deductibles For Staff</a></li>
+<li><a href="#unfavourite-feature">3.10. Unfavourite Feature</a></li>
+<li><a href="#salary-ot-hours-ot-rate-and-pay-deductibles-for-staff">3.11. Salary, OT Hours, OT Rate and Pay Deductibles For Staff</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1203,16 +1204,67 @@ will not be saved and will not be shown once the window is closed and reopened.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="salary-ot-hours-ot-rate-and-pay-deductibles-for-staff"><a class="link" href="#salary-ot-hours-ot-rate-and-pay-deductibles-for-staff">3.10. Salary, OT Hours, OT Rate and Pay Deductibles For Staff</a></h3>
+<h3 id="unfavourite-feature"><a class="link" href="#unfavourite-feature">3.10. Unfavourite Feature</a></h3>
 <div class="sect3">
 <h4 id="introduction-5"><a class="link" href="#introduction-5">3.10.1. Introduction</a></h4>
+<div class="paragraph">
+<p>We have implemented an unfavourite command that focuses on the <code>Logic</code> component. An 'UnfavouriteCommand` class is added.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.10.2. Current Implementation</a></h4>
+<div class="paragraph">
+<p>This <code>unfavourite</code> command allows contacts to be removed from the favourite list.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.10.3. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="implementation-of-unfavourite-action"><a class="link" href="#implementation-of-unfavourite-action">Implementation of unfavourite action</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice):</strong> Using a separate unfavourite command</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Clear use of command</p>
+</li>
+<li>
+<p>Cons: Adds yet another command to command list</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2:</strong> Doing a favourite command on a favourited person will unfavourite them instead</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier implementation</p>
+</li>
+<li>
+<p>Cons: Ambiguous use of this feature as the command is a favourite command</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="salary-ot-hours-ot-rate-and-pay-deductibles-for-staff"><a class="link" href="#salary-ot-hours-ot-rate-and-pay-deductibles-for-staff">3.11. Salary, OT Hours, OT Rate and Pay Deductibles For Staff</a></h3>
+<div class="sect3">
+<h4 id="introduction-6"><a class="link" href="#introduction-6">3.11.1. Introduction</a></h4>
 <div class="paragraph">
 <p>We have introduced four new fields to a staff namely the salary, overtime(OT) hours, OT rate and Pay deductibles
 for a staff. This is to allow the HR department of the company to keep track of individual staff&#8217;s details.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.10.2. Current Implementation</a></h4>
+<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">3.11.2. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The current implementation of this feature is embedded into a Person object together with the other information
 that was originally in the Person object. Prefixes for the respective fields were also created to allow the HR user
@@ -1230,7 +1282,7 @@ edited depending if the prefixes were there or not (similar to the edit command)
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.10.3. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.11.3. Design Considerations</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3182,4 +3234,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-31 14:22:07 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-31 15:06:36 UTC</div></div></div></body></html>
