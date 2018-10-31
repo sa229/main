@@ -12,7 +12,7 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level4
+:repoURL: https://github.com/CS2103-AY1819S1-T13-2/main
 
 By: `Team T13-2`      Since: `Oct 2018`      Licence: `MIT`
 
@@ -270,6 +270,15 @@ Format: `lock PASSWORD`
 Unlocks the SSENISUB with a specified password. +
 Format: `unlock PASSWORD`
 
+=== Counting the number of staff [coming in v2.0]: `count`
+
+Count the number of staff in specific department in SSENISUB +
+Format: `count d/DEPARTMENT`
+
+Examples:
+
+* `count d/accounting` +
+
 === Setting private fields: `privacy`
 
 Sets the mentioned field into a private field(will not display on the panel). +
@@ -311,13 +320,13 @@ e.g. `delete 3`
 e.g. `edit 2 n/James Lee e/jameslee@example.com oth/10`
 * *Favourite* : `favourite INDEX` or 'fav INDEX' +
 e.g. `favourite 1` or 'fav 2'
-* *Feedback* : `feedback INDEX [f/FEEDBACK]` +
+* *Feedback* : `feedback INDEX [fb/FEEDBACK]` +
 e.g. `feedback 1 f/Excellent`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`
 * *Rate* : `rate INDEX [r/RATING]` +
 e.g. `rate 1 r/8`
-* *Sort* : `sort [KEYWORD]` +
+* *Sort* [coming in v2.0] : `sort [KEYWORD]` +
 e.g. `sort ASCENDING`
 * *Delete All* : `deleteall`
 * *List* : `list`
@@ -326,8 +335,8 @@ e.g. `sort ASCENDING`
 * *Help* : `help`
 * *Select* : `select INDEX` +
 e.g.`select 2`
-* *Privacy* : `privacy INDEX [n/ y or n] [e/ y or n] [a/ y or n]` +
-e.g. `privacy 2 n/y a/n`
+* *Privacy* : `privacy INDEX [p/ y or n] [e/ y or n] [a/ y or n]` +
+e.g. `privacy 2 p/y a/n`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`
