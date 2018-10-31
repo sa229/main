@@ -523,6 +523,31 @@ This `favourite` command allows contacts to be added to a favourite list and mov
 
 // end::favouritecommand[]
 
+// tag::unfavouritecommand[]
+=== Unfavourite Feature
+
+==== Introduction
+
+We have implemented an unfavourite command that focuses on the `Logic` component. An 'UnfavouriteCommand` class is added.
+
+
+==== Current Implementation
+
+This `unfavourite` command allows contacts to be removed from the favourite list.
+
+==== Design Considerations
+
+===== Implementation of unfavourite action
+* ** Alternative 1 (current choice):** Using a separate unfavourite command
+** Pros: Clear use of command
+** Cons: Adds yet another command to command list
+
+* ** Alternative 2:** Doing a favourite command on a favourited person will unfavourite them instead
+** Pros: Easier implementation
+** Cons: Ambiguous use of this feature as the command is a favourite command
+
+// end::unfavouritecommand[]
+
 //tag::Salary, OT Hours, OT Rate and Pay Deductibles For Staff[]
 === Salary, OT Hours, OT Rate and Pay Deductibles For Staff
 

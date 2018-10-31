@@ -173,12 +173,13 @@ Selects the 1st staff in the results of the `find` command.
 === Favouriting a staff : `favourite`
 
 Favourites the specified staff and moves it up to the top of the list. +
-Format: `favourite INDEX` or 'fav INDEX'
+Format: `favourite INDEX` or `fav INDEX`
 
 ****
 * Favourites the staff at the specified `INDEX`.
 * The index refers to the index number shown in the displayed staff list.
 * The index *must be a positive integer* `1, 2, 3, ...`
+* Staff at the specified `INDEX` needs to not be on the favourite list
 ****
 
 Examples:
@@ -189,6 +190,27 @@ Favourites the 2nd staff in SSENISUB.
 * `find Betsy` +
 `fav 1` +
 Favourites the 1st staff in the results of the `find` command.
+
+=== Unfavouriting a staff : `unfavourite`
+
+Favourites the specified staff and moves it up to the top of the list. +
+Format: `unfavourite INDEX` or `unfav INDEX`
+
+****
+* Removes the staff at the specified `INDEX` from favourite list.
+* The index refers to the index number shown in the displayed staff list.
+* The index *must be a positive integer* `1, 2, 3, ...`
+* Staff at the specified `INDEX` needs to be on the favourite list
+****
+
+Examples:
+
+* `list` +
+`unfavourite 2` +
+Removes the 2nd staff from favourite list.
+* `find Betsy` +
+`unfav 1` +
+Removes the 1st staff in the results of the `find` command from favourite list.
 
 === Listing entered commands : `history`
 
@@ -318,8 +340,10 @@ e.g. `delete 3`
 * *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/SALARY] [oth/OTHOUR] [otr/OTRATE] [de/DEDUCTIBLES] [d/DEPARTMENT] [m/MANAGER] [t/TAG]..
 .` +
 e.g. `edit 2 n/James Lee e/jameslee@example.com oth/10`
-* *Favourite* : `favourite INDEX` or 'fav INDEX' +
-e.g. `favourite 1` or 'fav 2'
+* *Favourite* : `favourite INDEX` or `fav INDEX` +
+e.g. `favourite 1` or `fav 2`
+* *Unfavourite* : `unfavourite INDEX` or `unfav INDEX` +
+e.g. `unfavourite 1` or `unfav 2`
 * *Feedback* : `feedback INDEX [fb/FEEDBACK]` +
 e.g. `feedback 1 f/Excellent`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
