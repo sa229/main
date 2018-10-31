@@ -191,9 +191,9 @@ public class XmlAdaptedPerson {
         if (rating == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName()));
         }
-        if (!Rating.isValidRating(rating)) {
-            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
-        }
+        //if (!Rating.isValidRating(rating)) {
+        //    throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+        //}
         final Rating modelRating = new Rating(rating);
         if (department == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -213,40 +213,40 @@ public class XmlAdaptedPerson {
         }
         final Manager modelManager = new Manager(manager);
 
-        if (salary == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-              Salary.class.getSimpleName()));
-        }
-        if (!Salary.isValidSalary(salary)) {
-            throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
-        }
+        //if (salary == null) {
+        //    throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+        //      Salary.class.getSimpleName()));
+        //}
+        //if (!Salary.isValidSalary(salary)) {
+        //    throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
+        //}
         final Salary modelSalary = new Salary(salary);
 
-        if (hours == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-              OtHour.class.getSimpleName()));
-        }
-        if (!OtHour.isValidTwoDecimalNumber(hours)) {
-            throw new IllegalValueException(OtHour.MESSAGE_CONSTRAINTS);
-        }
+        //if (hours == null) {
+        //    throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+        //      OtHour.class.getSimpleName()));
+        //}
+        //if (!OtHour.isValidTwoDecimalNumber(hours)) {
+        //    throw new IllegalValueException(OtHour.MESSAGE_CONSTRAINTS);
+        //}
         final OtHour modelHours = new OtHour(hours);
 
-        if (rate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-              OtRate.class.getSimpleName()));
-        }
-        if (!OtRate.isValidTwoDecimalNumber(rate)) {
-            throw new IllegalValueException(OtRate.MESSAGE_CONSTRAINTS);
-        }
+        //if (rate == null) {
+        //    throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+        //      OtRate.class.getSimpleName()));
+        //}
+        //if (!OtRate.isValidTwoDecimalNumber(rate)) {
+        //    throw new IllegalValueException(OtRate.MESSAGE_CONSTRAINTS);
+        //}
         final OtRate modelRate = new OtRate(rate);
 
-        if (deductibles == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-              PayDeductibles.class.getSimpleName()));
-        }
-        if (!PayDeductibles.isValidTwoDecimalNumber(deductibles)) {
-            throw new IllegalValueException(PayDeductibles.MESSAGE_CONSTRAINTS);
-        }
+        //if (deductibles == null) {
+        //    throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+        //      PayDeductibles.class.getSimpleName()));
+        //}
+        //if (!PayDeductibles.isValidTwoDecimalNumber(deductibles)) {
+        //    throw new IllegalValueException(PayDeductibles.MESSAGE_CONSTRAINTS);
+        //}
         final PayDeductibles modelDeductibles = new PayDeductibles(deductibles);
 
         final Feedback modelFeedback = new Feedback(feedback);
