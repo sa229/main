@@ -105,10 +105,33 @@ Edits the name of the 2nd staff to be `Betsy Crower` and clears all existing tag
 Rates an existing staff in SSENISUB +
 Format: `rate INDEX r/8`
 
+****
+* Rates the staff at the specified `INDEX`. The index refers to the index number shown in the displayed staff list. The index *must be a positive integer* 1, 2, 3, ...
+* The rating field must be provided.
+* Ratings can only be from 1 - 10.
+* Existing values will be updated to the input values if they are different.
+****
+
 Examples:
 
 * `rate 3 r/8` +
 Rate the 3rd staff of a rating 8.
+
+=== Rating a staff: `feedback`
+
+Provides feeback for an existing staff in SSENISUB +
+Format: `feedback INDEX fb/You are great!`
+
+****
+* Rates the staff at the specified `INDEX`. The index refers to the index number shown in the displayed staff list. The index *must be a positive integer* 1, 2, 3, ...
+* The feedback field must be provided.
+* Profanities are not allowed.
+****
+
+Examples:
+
+* `feedback 1 r/You are great!` +
+Gives the 1st staff a feedback of "You are great!".
 
 === Locating staff by name: `find`
 
