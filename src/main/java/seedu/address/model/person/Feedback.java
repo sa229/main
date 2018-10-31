@@ -135,9 +135,6 @@ public class Feedback {
          */
         public ArrayList<String> badWordsFound(String rawInput) {
             String input = rawInput;
-            if (input == null) {
-                return new ArrayList<>();
-            }
 
             // remove leetspeak
             input = input.replaceAll("1", "i");
@@ -159,6 +156,11 @@ public class Feedback {
                 // or the max word length is reached.
                 for (int offset = 1; offset < (input.length() + 1 - start) && offset < largestWordLength; offset++) {
                     String wordToCheck = input.substring(start, start + offset);
+                    // Hard coded because "ass" itself is a profanity but contained in many clean words
+                    if ("ass".equals(wordToCheck)) {
+                        badWords.add(wordToCheck);
+                    }
+
                     if (words.containsKey(wordToCheck)) {
                         // for example, if you want to say the word bass, that should be possible.
                         String[] ignoreCheck = words.get(wordToCheck);
@@ -170,10 +172,6 @@ public class Feedback {
                             }
                         }
                         if (!ignore) {
-                            badWords.add(wordToCheck);
-                        }
-                        // Hard coded because "ass" itself is a profanity but contained in many clean words
-                        if ("ass".equals(wordToCheck)) {
                             badWords.add(wordToCheck);
                         }
                     }

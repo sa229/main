@@ -40,6 +40,7 @@ public class FeedbackTest {
     public void hasNoProfanityFeedback() {
         // feedback with profanity --> rejected
         assertFalse(Feedback.hasNoProfanity("fuck")); // one profanity
+        assertFalse(Feedback.hasNoProfanity("ass")); // hard coded profanity
         assertFalse(Feedback.hasNoProfanity("fuck asshole")); // profanities split with space
         assertFalse(Feedback.hasNoProfanity("zkanasaiz")); // profanities within word
         assertFalse(Feedback.hasNoProfanity("You very kpkb, nobody ask you to stfu meh "
@@ -47,6 +48,7 @@ public class FeedbackTest {
 
         // clean feedback --> accepted
         assertTrue(Feedback.hasNoProfanity("Work harder."));
+        assertTrue(Feedback.hasNoProfanity("pakistan")); // paki should be rejected but ignore check on pakistan
         assertTrue(Feedback.hasNoProfanity("What happened to you? You were really rocking it last month, "
                 + "but it is evident that you are sloppy these few days.")); // long feedback
     }
