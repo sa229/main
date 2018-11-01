@@ -18,22 +18,23 @@
 <li><a href="#listing-all-staff-code-list-code">3.3. Listing all staff : <code>list</code></a></li>
 <li><a href="#editing-a-staff-code-edit-code">3.4. Editing a staff : <code>edit</code></a></li>
 <li><a href="#rating-a-staff-code-rate-code">3.5. Rating a staff: <code>rate</code></a></li>
-<li><a href="#locating-staff-by-name-code-find-code">3.6. Locating staff by name: <code>find</code></a></li>
-<li><a href="#deleting-a-staff-code-delete-code">3.7. Deleting a staff : <code>delete</code></a></li>
-<li><a href="#selecting-a-staff-code-select-code">3.8. Selecting a staff : <code>select</code></a></li>
-<li><a href="#favouriting-a-staff-code-favourite-code">3.9. Favouriting a staff : <code>favourite</code></a></li>
-<li><a href="#unfavouriting-a-staff-code-unfavourite-code">3.10. Unfavouriting a staff : <code>unfavourite</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">3.11. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">3.12. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.13. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.14. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.15. Exiting the program : <code>exit</code></a></li>
-<li><a href="#locking-ssenisub-coming-in-v2-0-code-lock-code">3.16. Locking SSENISUB [coming in v2.0]: <code>lock</code></a></li>
-<li><a href="#unlocking-ssenisub-coming-in-v2-0-code-unlock-code">3.17. Unlocking SSENISUB [coming in v2.0]: <code>unlock</code></a></li>
-<li><a href="#counting-the-number-of-staff-coming-in-v2-0-code-count-code">3.18. Counting the number of staff [coming in v2.0]: <code>count</code></a></li>
-<li><a href="#setting-private-fields-code-privacy-code">3.19. Setting private fields: <code>privacy</code></a></li>
-<li><a href="#saving-the-data">3.20. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.21. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#giving-feedback-to-a-staff-code-feedback-code">3.6. Giving feedback to a staff: <code>feedback</code></a></li>
+<li><a href="#locating-staff-by-name-code-find-code">3.7. Locating staff by name: <code>find</code></a></li>
+<li><a href="#deleting-a-staff-code-delete-code">3.8. Deleting a staff : <code>delete</code></a></li>
+<li><a href="#selecting-a-staff-code-select-code">3.9. Selecting a staff : <code>select</code></a></li>
+<li><a href="#favouriting-a-staff-code-favourite-code">3.10. Favouriting a staff : <code>favourite</code></a></li>
+<li><a href="#unfavouriting-a-staff-code-unfavourite-code">3.11. Unfavouriting a staff : <code>unfavourite</code></a></li>
+<li><a href="#listing-entered-commands-code-history-code">3.12. Listing entered commands : <code>history</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">3.13. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.14. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">3.15. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.16. Exiting the program : <code>exit</code></a></li>
+<li><a href="#locking-ssenisub-coming-in-v2-0-code-lock-code">3.17. Locking SSENISUB [coming in v2.0]: <code>lock</code></a></li>
+<li><a href="#unlocking-ssenisub-coming-in-v2-0-code-unlock-code">3.18. Unlocking SSENISUB [coming in v2.0]: <code>unlock</code></a></li>
+<li><a href="#counting-the-number-of-staff-coming-in-v2-0-code-count-code">3.19. Counting the number of staff [coming in v2.0]: <code>count</code></a></li>
+<li><a href="#setting-private-fields-code-privacy-code">3.20. Setting private fields: <code>privacy</code></a></li>
+<li><a href="#saving-the-data">3.21. Saving the data</a></li>
+<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.22. Encrypting data files <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -233,6 +234,26 @@ Edits the name of the 2nd staff to be <code>Betsy Crower</code> and clears all e
 <p>Rates an existing staff in SSENISUB<br>
 Format: <code>rate INDEX r/8</code></p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Rates the staff at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed staff list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>The rating field must be provided.</p>
+</li>
+<li>
+<p>Ratings can only be from 1 - 10.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values if they are different.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
@@ -246,7 +267,42 @@ Rate the 3rd staff of a rating 8.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-staff-by-name-code-find-code"><a class="link" href="#locating-staff-by-name-code-find-code">3.6. Locating staff by name: <code>find</code></a></h3>
+<h3 id="giving-feedback-to-a-staff-code-feedback-code"><a class="link" href="#giving-feedback-to-a-staff-code-feedback-code">3.6. Giving feedback to a staff: <code>feedback</code></a></h3>
+<div class="paragraph">
+<p>Provides feeback for an existing staff in SSENISUB<br>
+Format: <code>feedback INDEX fb/You are great!</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Rates the staff at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed staff list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>The feedback field must be provided.</p>
+</li>
+<li>
+<p>Profanities are not allowed.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>feedback 1 fb/You are great!</code><br>
+Gives the 1st staff a feedback of "You are great!".</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="locating-staff-by-name-code-find-code"><a class="link" href="#locating-staff-by-name-code-find-code">3.7. Locating staff by name: <code>find</code></a></h3>
 <div class="paragraph">
 <p>Finds staff whose names contain any of the given keywords.<br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
@@ -291,7 +347,7 @@ Returns any staff having names <code>Betsy</code>, <code>Tim</code>, or <code>Jo
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-staff-code-delete-code"><a class="link" href="#deleting-a-staff-code-delete-code">3.7. Deleting a staff : <code>delete</code></a></h3>
+<h3 id="deleting-a-staff-code-delete-code"><a class="link" href="#deleting-a-staff-code-delete-code">3.8. Deleting a staff : <code>delete</code></a></h3>
 <div class="paragraph">
 <p>Deletes the specified staff from SSENISUB.<br>
 Format: <code>delete INDEX</code></p>
@@ -332,7 +388,7 @@ Deletes the 1st staff in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-staff-code-select-code"><a class="link" href="#selecting-a-staff-code-select-code">3.8. Selecting a staff : <code>select</code></a></h3>
+<h3 id="selecting-a-staff-code-select-code"><a class="link" href="#selecting-a-staff-code-select-code">3.9. Selecting a staff : <code>select</code></a></h3>
 <div class="paragraph">
 <p>Selects the staff identified by the index number used in the displayed staff list.<br>
 Format: <code>select INDEX</code></p>
@@ -373,7 +429,7 @@ Selects the 1st staff in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="favouriting-a-staff-code-favourite-code"><a class="link" href="#favouriting-a-staff-code-favourite-code">3.9. Favouriting a staff : <code>favourite</code></a></h3>
+<h3 id="favouriting-a-staff-code-favourite-code"><a class="link" href="#favouriting-a-staff-code-favourite-code">3.10. Favouriting a staff : <code>favourite</code></a></h3>
 <div class="paragraph">
 <p>Favourites the specified staff and moves it up to the top of the list.<br>
 Format: <code>favourite INDEX</code> or <code>fav INDEX</code></p>
@@ -417,7 +473,7 @@ Favourites the 1st staff in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="unfavouriting-a-staff-code-unfavourite-code"><a class="link" href="#unfavouriting-a-staff-code-unfavourite-code">3.10. Unfavouriting a staff : <code>unfavourite</code></a></h3>
+<h3 id="unfavouriting-a-staff-code-unfavourite-code"><a class="link" href="#unfavouriting-a-staff-code-unfavourite-code">3.11. Unfavouriting a staff : <code>unfavourite</code></a></h3>
 <div class="paragraph">
 <p>Favourites the specified staff and moves it up to the top of the list.<br>
 Format: <code>unfavourite INDEX</code> or <code>unfav INDEX</code></p>
@@ -461,7 +517,7 @@ Removes the 1st staff in the results of the <code>find</code> command from favou
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.11. Listing entered commands : <code>history</code></a></h3>
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.12. Listing entered commands : <code>history</code></a></h3>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code></p>
@@ -482,7 +538,7 @@ Format: <code>history</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.12. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.13. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores SSENISUB to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code></p>
@@ -527,7 +583,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.13. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.14. Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -559,35 +615,35 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.14. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.15. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from SSENISUB.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.15. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.16. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="locking-ssenisub-coming-in-v2-0-code-lock-code"><a class="link" href="#locking-ssenisub-coming-in-v2-0-code-lock-code">3.16. Locking SSENISUB [coming in v2.0]: <code>lock</code></a></h3>
+<h3 id="locking-ssenisub-coming-in-v2-0-code-lock-code"><a class="link" href="#locking-ssenisub-coming-in-v2-0-code-lock-code">3.17. Locking SSENISUB [coming in v2.0]: <code>lock</code></a></h3>
 <div class="paragraph">
 <p>Locks the SSENISUB with a specified password.<br>
 Format: <code>lock PASSWORD</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="unlocking-ssenisub-coming-in-v2-0-code-unlock-code"><a class="link" href="#unlocking-ssenisub-coming-in-v2-0-code-unlock-code">3.17. Unlocking SSENISUB [coming in v2.0]: <code>unlock</code></a></h3>
+<h3 id="unlocking-ssenisub-coming-in-v2-0-code-unlock-code"><a class="link" href="#unlocking-ssenisub-coming-in-v2-0-code-unlock-code">3.18. Unlocking SSENISUB [coming in v2.0]: <code>unlock</code></a></h3>
 <div class="paragraph">
 <p>Unlocks the SSENISUB with a specified password.<br>
 Format: <code>unlock PASSWORD</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="counting-the-number-of-staff-coming-in-v2-0-code-count-code"><a class="link" href="#counting-the-number-of-staff-coming-in-v2-0-code-count-code">3.18. Counting the number of staff [coming in v2.0]: <code>count</code></a></h3>
+<h3 id="counting-the-number-of-staff-coming-in-v2-0-code-count-code"><a class="link" href="#counting-the-number-of-staff-coming-in-v2-0-code-count-code">3.19. Counting the number of staff [coming in v2.0]: <code>count</code></a></h3>
 <div class="paragraph">
 <p>Count the number of staff in specific department in SSENISUB<br>
 Format: <code>count d/DEPARTMENT</code></p>
@@ -604,7 +660,7 @@ Format: <code>count d/DEPARTMENT</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-private-fields-code-privacy-code"><a class="link" href="#setting-private-fields-code-privacy-code">3.19. Setting private fields: <code>privacy</code></a></h3>
+<h3 id="setting-private-fields-code-privacy-code"><a class="link" href="#setting-private-fields-code-privacy-code">3.20. Setting private fields: <code>privacy</code></a></h3>
 <div class="paragraph">
 <p>Sets the mentioned field into a private field(will not display on the panel).<br>
 Format: <code>privacy INDEX [n/ y or n] [e/ y or n] [a/ y or n]</code></p>
@@ -634,14 +690,14 @@ Format: <code>privacy INDEX [n/ y or n] [e/ y or n] [a/ y or n]</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.20. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.21. Saving the data</a></h3>
 <div class="paragraph">
 <p>SSENISUB data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.21. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.22. Encrypting data files <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
@@ -740,4 +796,4 @@ e.g. <code>privacy 2 p/y a/n</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-31 15:37:56 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-01 05:19:16 UTC</div></div></div></body></html>
