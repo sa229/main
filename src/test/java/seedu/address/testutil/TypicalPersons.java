@@ -41,7 +41,7 @@ public class TypicalPersons {
             .withEmail("heinz@example.com").withAddress("wall street").withRating("0")
             .withDepartment("Tech").withManager("Moses Lim")
             .withSalary("0").withHours("0").withRate("0").withDeductibles("0").withFeedback("-NO FEEDBACK YET-")
-            .build();
+            .withFavourite(true).build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
             .withRating("0").withDepartment("Accounting").withManager("Lionel Lim")

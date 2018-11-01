@@ -33,6 +33,7 @@ import seedu.address.logic.commands.PrivacyCommand.FieldsToChange;
 import seedu.address.logic.commands.RateCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.UnfavouriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -104,6 +105,12 @@ public class AddressBookParserTest {
     public void parseCommand_unfavourite() throws Exception {
         String command = UnfavouriteCommand.COMMAND_WORD + " 1 ";
         assertTrue(parser.parseCommand(command) instanceof UnfavouriteCommand);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof SortCommand);
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof SortCommand);
     }
 
     @Test
