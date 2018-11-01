@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import seedu.address.MainApp;
+
 /**
  * Represents a Person's feedback number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidFeedback(String)}
@@ -23,6 +25,7 @@ public class Feedback {
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
+     *
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String value;
@@ -97,7 +100,7 @@ public class Feedback {
                 //Path badWordsFile = Paths.get("docs", "words to ban", "Bad_Words_List.txt");
                 //BufferedReader reader = new BufferedReader(new FileReader(badWordsFile.toFile()));
                 BufferedReader reader = new BufferedReader(new InputStreamReader(
-                        Feedback.class.getResourceAsStream("/docs/words to ban/Bad_Words_List.txt")));
+                        MainApp.class.getResourceAsStream("/docs/words to ban/Bad_Words_List.txt")));
                 String line = "";
                 while ((line = reader.readLine()) != null) {
                     String[] content = null;
