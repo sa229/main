@@ -117,7 +117,7 @@ Examples:
 * `rate 3 r/8` +
 Rate the 3rd staff of a rating 8.
 
-=== Rating a staff: `feedback`
+=== Giving feedback to a staff: `feedback`
 
 Provides feeback for an existing staff in SSENISUB +
 Format: `feedback INDEX fb/You are great!`
@@ -130,7 +130,7 @@ Format: `feedback INDEX fb/You are great!`
 
 Examples:
 
-* `feedback 1 r/You are great!` +
+* `feedback 1 fb/You are great!` +
 Gives the 1st staff a feedback of "You are great!".
 
 === Locating staff by name: `find`
