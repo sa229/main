@@ -100,7 +100,7 @@ public class Feedback {
                 //Path badWordsFile = Paths.get("docs", "words to ban", "Bad_Words_List.txt");
                 //BufferedReader reader = new BufferedReader(new FileReader(badWordsFile.toFile()));
                 BufferedReader reader = new BufferedReader(new InputStreamReader(
-                        MainApp.class.getResourceAsStream("/docs/words to ban/Bad_Words_List.txt")));
+                        MainApp.class.getResourceAsStream("/words to ban/Bad_Words_List.txt")));
                 String line = "";
                 while ((line = reader.readLine()) != null) {
                     String[] content = null;
