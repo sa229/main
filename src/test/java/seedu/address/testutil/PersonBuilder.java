@@ -66,7 +66,7 @@ public class PersonBuilder {
         department = new Department(DEFAULT_DEPARTMENT);
         manager = new Manager(DEFAULT_MANAGER);
         feedback = new Feedback(DEFAULT_FEEDBACK);
-        favourite = new Boolean(DEFAULT_FAVOURITE);
+        favourite = Boolean.FALSE;
         tags = new HashSet<>();
     }
 

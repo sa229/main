@@ -45,12 +45,12 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         if(person.getFavourite()) {
-            favourited_name.setText(person.getName().fullName);
             favourited_id.setText(displayedIndex + ". ");
+            favourited_name.setText(person.getName().fullName + " ★");
         }
         else {
-            name.setText(person.getName().fullName);
             id.setText(displayedIndex + ". ");
+            name.setText(person.getName().fullName);
         }
         department.setText(person.getDepartment().value + " Department");
         email.setText(person.getEmail().value);
