@@ -29,11 +29,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label favourited_name;
+    private Label favouritedName;
     @FXML
     private Label id;
     @FXML
-    private Label favourited_id;
+    private Label favouritedId;
     @FXML
     private Label email;
     @FXML
@@ -44,11 +44,10 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        if(person.getFavourite()) {
-            favourited_id.setText(displayedIndex + ". ");
-            favourited_name.setText(person.getName().fullName + " ★");
-        }
-        else {
+        if (person.getFavourite()) {
+            favouritedId.setText(displayedIndex + ". ");
+            favouritedName.setText(person.getName().fullName + " ★");
+        } else {
             id.setText(displayedIndex + ". ");
             name.setText(person.getName().fullName);
         }
