@@ -253,7 +253,7 @@ Format: `unlock PASSWORD`
 === Setting private fields: `privacy`
 
 Sets the mentioned field into a private field(will not display on the panel). +
-Format: `privacy INDEX [n/ y or n] [e/ y or n] [a/ y or n]`
+Format: `privacy INDEX [p/ y or n] [e/ y or n] [a/ y or n]`
 
 ****
 * Modifies the privacy of the information of the staff at the specified `INDEX`.
@@ -262,6 +262,13 @@ Format: `privacy INDEX [n/ y or n] [e/ y or n] [a/ y or n]`
 * Only Phone, Email and Address can be set to private.
 * 'y' means setting to private and 'n' means setting to public.
 ****
+
+Examples:
+
+* `privacy 1 p/y a/n` +
+Sets the `Phone` number and `Address` of the 1st staff  in SSENISUB to private +
+and public respectively.
+
 
 === Saving the data
 
@@ -304,8 +311,8 @@ e.g. `sort ASCENDING`
 * *Help* : `help`
 * *Select* : `select INDEX` +
 e.g.`select 2`
-* *Privacy* : `privacy INDEX [n/ y or n] [e/ y or n] [a/ y or n]` +
-e.g. `privacy 2 n/y a/n`
+* *Privacy* : `privacy INDEX [p/ y or n] [e/ y or n] [a/ y or n]` +
+e.g. `privacy 2 p/y a/n`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`
