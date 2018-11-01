@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -92,12 +93,14 @@ public class Feedback {
         }
 
         /**
-         *  Load bad words from csv file
+         *  Load bad words from txt file
          */
         public static void loadConfigs() {
             try {
-                Path badWordsFile = Paths.get("docs/words to ban/Bad_Words_List.txt");
-                BufferedReader reader = new BufferedReader(new FileReader(badWordsFile.toFile()));
+                //Path badWordsFile = Paths.get("docs", "words to ban", "Bad_Words_List.txt");
+                //BufferedReader reader = new BufferedReader(new FileReader(badWordsFile.toFile()));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(
+                        Feedback.class.getResourceAsStream("/docs/words to ban/Bad_Words_List.txt")));
                 String line = "";
                 while ((line = reader.readLine()) != null) {
                     String[] content = null;
