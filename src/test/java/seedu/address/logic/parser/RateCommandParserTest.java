@@ -58,12 +58,12 @@ public class RateCommandParserTest {
     @Test
     public void parse_invalidArgs_failure() {
         // larger than 10
-        assertParseFailure(parser, "1 " + PREFIX_RATING + "11", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 " + PREFIX_RATING + "11", Rating.MESSAGE_CONSTRAINTS);
 
         // non-numeric argument
-        assertParseFailure(parser, "1 " + PREFIX_RATING + "five", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 " + PREFIX_RATING + "five", Rating.MESSAGE_CONSTRAINTS);
 
         // empty input
-        assertParseFailure(parser, "1 " + PREFIX_RATING, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 " + PREFIX_RATING, Rating.MESSAGE_CONSTRAINTS);
     }
 }

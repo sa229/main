@@ -41,7 +41,7 @@ public class FeedbackCommandParser implements Parser<FeedbackCommand> {
         try {
             feedback = new Feedback(feedbackInput);
         } catch (IllegalArgumentException iae) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FeedbackCommand.MESSAGE_USAGE));
+            throw new ParseException(iae.getMessage());
         }
 
         return new FeedbackCommand(index, feedback);

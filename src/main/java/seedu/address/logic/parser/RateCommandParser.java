@@ -41,7 +41,7 @@ public class RateCommandParser implements Parser<RateCommand> {
         try {
             rating = new Rating(ratingNum);
         } catch (IllegalArgumentException iae) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
+            throw new ParseException(iae.getMessage());
         }
 
         return new RateCommand(index, rating);
