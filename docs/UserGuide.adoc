@@ -90,8 +90,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SALARY] [oth/OTH
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the staff will be removed i.e adding of tags is not cumulative.
 * You can remove all the staff's tags by typing `t/` without specifying any tags after it.
-* Upon editing the salary/overtime hours/overtime rate/pay deductibles, net salary would be computed via this formula :
-"Salary + (Overtime Hours * Overtime Rate) - Pay Deductibles" and displayed.
+* Upon editing the salary/overtime hours/overtime rate/pay deductibles, net salary would be computed and displayed automatically.
 ****
 
 Examples:
