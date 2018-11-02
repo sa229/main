@@ -3,8 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.Assert.assertEquals;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
-import static seedu.address.testutil.TypicalPersons.CARL;
-
+import static seedu.address.testutil.TypicalPersons.HARRY;
 
 import org.junit.Test;
 
@@ -25,8 +24,8 @@ public class SortCommandTest {
     public void execute_sortListWithFavourite() {
 
         // typical person Carl is set to be favourited
-        AddressBook addressBook = new AddressBookBuilder().withPerson(BOB).withPerson(ALICE).withPerson(CARL).build();
-        AddressBook expectedAddressBook = new AddressBookBuilder().withPerson(CARL).withPerson(ALICE)
+        AddressBook addressBook = new AddressBookBuilder().withPerson(BOB).withPerson(ALICE).withPerson(HARRY).build();
+        AddressBook expectedAddressBook = new AddressBookBuilder().withPerson(HARRY).withPerson(ALICE)
                 .withPerson(BOB).build();
 
         addressBook.sort();
