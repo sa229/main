@@ -30,7 +30,7 @@ public class FavouriteCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_success() {
         Person personToFavourite = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person favouritedPerson = new PersonBuilder(personToFavourite).withFavourite(true).build();
 
@@ -63,26 +63,6 @@ public class FavouriteCommandTest {
         assertCommandFailure(favouriteCommand, model, commandHistory, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
-    /*
-    @Test
-    public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Person personToFavourite = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person favouritedPerson = new PersonBuilder().build();
-        FavouriteCommand favouriteCommand = new FavouriteCommand(INDEX_FIRST_PERSON);
-
-        String expectedMessage = String.format(FavouriteCommand.MESSAGE_FAVOURITE_PERSON_SUCCESS,
-                favouritedPerson.getName().fullName);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.favouritePerson(personToFavourite, favouritedPerson);
-        expectedModel.commitAddressBook();
-
-        assertCommandSuccess(favouriteCommand, model, commandHistory, expectedMessage, expectedModel);
-    }
-    */
-
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
@@ -95,30 +75,6 @@ public class FavouriteCommandTest {
 
         assertCommandFailure(favouriteCommand, model, commandHistory, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
-
-    /*
-    @Test
-    public void executeUndoRedo_validIndexUnfilteredList_success() throws Exception {
-        Person personToFavourite = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person favouritedPerson = new PersonBuilder().build();
-        FavouriteCommand favouriteCommand = new FavouriteCommand(INDEX_FIRST_PERSON);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-
-        expectedModel.favouritePerson(personToFavourite, favouritedPerson);
-        expectedModel.commitAddressBook();
-
-        // delete -> first person favourited
-        favouriteCommand.execute(model, commandHistory);
-
-        // undo -> reverts addressbook back to previous state and filtered person list to show all persons
-        expectedModel.undoAddressBook();
-        assertCommandSuccess(new UndoCommand(), model, commandHistory, UndoCommand.MESSAGE_SUCCESS, expectedModel);
-
-        // redo -> same first person favourited again
-        expectedModel.redoAddressBook();
-        assertCommandSuccess(new RedoCommand(), model, commandHistory, RedoCommand.MESSAGE_SUCCESS, expectedModel);
-    }
-    */
 
     @Test
     public void executeUndoRedo_invalidIndexUnfilteredList_failure() {
