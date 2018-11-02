@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 /**
  * Sort the list of deck in lexicographical order.
  */
-public class SortCommand extends Command{
+public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
