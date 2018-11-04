@@ -49,6 +49,8 @@ public class FavouriteCommand extends Command {
         model.favouritePerson(personToFavourite, favouritedPerson);
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.commitAddressBook();
+
         if (!personToFavourite.getFavourite()) {
             return new CommandResult(String.format(MESSAGE_FAVOURITE_PERSON_SUCCESS,
                     favouritedPerson.getName().fullName));
@@ -56,6 +58,7 @@ public class FavouriteCommand extends Command {
             return new CommandResult(String.format(MESSAGE_FAVOURITE_PERSON_FAIL,
                     favouritedPerson.getName().fullName));
         }
+
     }
 
     /**
