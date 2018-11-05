@@ -398,7 +398,6 @@ e.g. `find James Jake`
 e.g. `rate 1 r/8`
 * *Sort* [coming in v2.0] : `sort [KEYWORD]` +
 e.g. `sort ASCENDING`
-* *Delete All* : `deleteall`
 * *List* : `list`
 * *Lock SSENISUB* [coming in v2.0] : `lock PASSWORD`
 * *Unlock SSENISUB* [coming in v2.0]: `unlock PASSWORD`
