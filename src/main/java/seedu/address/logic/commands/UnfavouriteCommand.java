@@ -48,6 +48,8 @@ public class UnfavouriteCommand extends Command {
         model.unfavouritePerson(personToUnfavourite, unfavouritedPerson);
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.commitAddressBook();
+
         if (personToUnfavourite.getFavourite()) {
             return new CommandResult(String.format(MESSAGE_UNFAVOURITE_PERSON_SUCCESS,
                     unfavouritedPerson.getName().fullName));

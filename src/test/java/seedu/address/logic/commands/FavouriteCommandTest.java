@@ -30,7 +30,7 @@ public class FavouriteCommandTest {
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_success() {
         Person personToFavourite = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person favouritedPerson = new PersonBuilder(personToFavourite).withFavourite(true).build();
 

@@ -327,7 +327,7 @@ Examples:
 === Setting private fields: `privacy`
 
 Sets the mentioned field into a private field(will not display on the panel). +
-Format: `privacy INDEX [n/ y or n] [e/ y or n] [a/ y or n]`
+Format: `privacy INDEX [p/ y or n] [e/ y or n] [a/ y or n]`
 
 ****
 * Modifies the privacy of the information of the staff at the specified `INDEX`.
@@ -336,6 +336,29 @@ Format: `privacy INDEX [n/ y or n] [e/ y or n] [a/ y or n]`
 * Only Phone, Email and Address can be set to private.
 * 'y' means setting to private and 'n' means setting to public.
 ****
+
+Examples:
+
+* `privacy 1 p/y a/n` +
+Sets the `Phone` number and `Address` of the 1st staff  in SSENISUB to private +
+and public respectively.
+
+=== Additional fields for staff in edit: `edit`
+Staff now has 4 additional fields namely salary, overtime hours (ot hours), overtime rate (ot rate) and pay deductibles.
+Format: edit INDEX [s/SALARY] [oth/OTHOURS] [otr/OTRATE] [de/DEDUCTIBLES]
+
+****
+* Allows the user to edit salary, ot hours, ot rate and pay deductibles.
+* The index reers to the index number shown in the displayed staff list.
+* The index *must be a positive integer* 1, 2, 3, ...
+* When the user clicks on a user, *net salary* is being displayed instead of gross salary
+****
+
+Examples:
+
+* `edit 1 s/4000 oth/20 otr/15 de/640` +
+Edits the staff to have a salary of 4000, overtime hours of 20, overtime rate of 15
+and pay deductibles of 640. Net salary of the user displayed would be 3660 in this case.
 
 === Saving the data
 
@@ -375,7 +398,6 @@ e.g. `find James Jake`
 e.g. `rate 1 r/8`
 * *Sort* [coming in v2.0] : `sort [KEYWORD]` +
 e.g. `sort ASCENDING`
-* *Delete All* : `deleteall`
 * *List* : `list`
 * *Lock SSENISUB* [coming in v2.0] : `lock PASSWORD`
 * *Unlock SSENISUB* [coming in v2.0]: `unlock PASSWORD`
