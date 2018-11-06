@@ -14,7 +14,7 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/CS2103-AY1819S1-T13-2/main
 
-By: `Team T13-2`      Since: `Oct 2018`      Licence: `MIT`
+By: `Team T13-2`      Since: `Nov 2018`      Licence: `MIT`
 
 == Introduction
 
@@ -72,7 +72,7 @@ A staff can have any number of tags (including 0)
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Accounting m/Marcus Lim t/staff`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 d/Marketing m/Edmund Tan t/staff`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/81729817 d/Marketing m/Edmund Tan t/staff`
 
 === Listing all staff : `list`
 
@@ -379,7 +379,7 @@ _{explain how the user can enable/disable data encryption}_
 == Command Summary
 
 * *Add* `add n/NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS d/DEPARTMENT m/MANAGER [t/TAG]...` +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 d/Accounting m/David Choo t/staff`
+e.g. `add n/James Ho p/91829309 e/jamesho@example.com a/123, Clementi Rd, 1234665 d/Accounting m/David Choo t/staff`
 * *Clear* : `clear`
 * *Delete* : `delete INDEX` +
 e.g. `delete 3`
