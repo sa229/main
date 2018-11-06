@@ -2,7 +2,7 @@
 <addressbook>
     <persons>
         <name>Hans Muster</name>
-        <phone isPrivate="false">9482424</phone>
+        <phone isPrivate="false">94824241</phone>
         <email isPrivate="false">hans@example.com</email>
         <address isPrivate="false">4th street</address>
         <rating>0</rating>
@@ -58,7 +58,7 @@
     </persons>
     <persons>
         <name>Werner Meyer</name>
-        <phone isPrivate="false">9482224</phone>
+        <phone isPrivate="false">94822241</phone>
         <email isPrivate="false">werner@example.com</email>
         <address isPrivate="false">michegan ave</address>
         <rating>6</rating>
@@ -72,7 +72,7 @@
     </persons>
     <persons>
         <name>Lydia Kunz</name>
-        <phone isPrivate="false">9482427</phone>
+        <phone isPrivate="false">94824271</phone>
         <email isPrivate="false">lydia@example.com</email>
         <address isPrivate="false">little tokyo</address>
         <rating>5</rating>
@@ -86,7 +86,7 @@
     </persons>
     <persons>
         <name>Anna Best</name>
-        <phone isPrivate="false">9482442</phone>
+        <phone isPrivate="false">94824425</phone>
         <email isPrivate="false">anna@example.com</email>
         <address isPrivate="false">4th street</address>
         <rating>10</rating>
@@ -100,7 +100,7 @@
     </persons>
     <persons>
         <name>Stefan Meier</name>
-        <phone isPrivate="false">8482424</phone>
+        <phone isPrivate="false">84824246</phone>
         <email isPrivate="false">stefan@example.com</email>
         <address isPrivate="false">little india</address>
         <rating>7</rating>
@@ -114,7 +114,7 @@
     </persons>
     <persons>
         <name>Martin Mueller</name>
-        <phone isPrivate="false">8482131</phone>
+        <phone isPrivate="false">84821312</phone>
         <email isPrivate="false">hans@example.com</email>
         <address isPrivate="false">chicago ave</address>
         <rating>5</rating>
