@@ -16,6 +16,7 @@ import seedu.address.commons.core.Config;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.ExitAppRequestEvent;
+import seedu.address.commons.events.ui.HideStaffPanelEvent;
 import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.ShowHelpRequestEvent;
 import seedu.address.logic.Logic;
@@ -208,5 +209,11 @@ public class MainWindow extends UiPart<Stage> {
     private void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         enableStaffPanel();
+    }
+
+    @Subscribe
+    private void handleHideStaffPanelEvent(HideStaffPanelEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        staffPlaceholder.setVisible(false);
     }
 }
