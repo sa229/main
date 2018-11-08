@@ -62,6 +62,11 @@ public class TypicalPersons {
             .withDepartment("Accounting").withManager("Ben Leong")
             .withSalary("0").withHours("0").withRate("0").withDeductibles("0").withFeedback("-NO FEEDBACK YET-")
             .build();
+    public static final Person HARRY = new PersonBuilder().withName("Harry Potter").withPhone("95284922")
+            .withEmail("harry@example.com").withAddress("9.75 platform").withRating("0")
+            .withDepartment("Tech").withManager("Sirius Snape")
+            .withSalary("0").withHours("0").withRate("0").withDeductibles("0").withFeedback("-NO FEEDBACK YET-")
+            .withFavourite(true).build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("84824241")
