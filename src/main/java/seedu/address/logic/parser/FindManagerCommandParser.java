@@ -24,8 +24,8 @@ public class FindManagerCommandParser implements Parser<FindManagerCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindManagerCommand.MESSAGE_USAGE));
         }
 
-        String[] departmentKeywords = trimmedArgs.split("\\s+");
+        String[] managerKeywords = trimmedArgs.split("\\s+");
 
-        return new FindManagerCommand(new ManagerContainsKeywordsPredicate(Arrays.asList(departmentKeywords)));
+        return new FindManagerCommand(new ManagerContainsKeywordsPredicate(Arrays.asList(managerKeywords)));
     }
 }
