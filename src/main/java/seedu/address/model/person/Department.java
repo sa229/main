@@ -17,7 +17,7 @@ public class Department {
      * The first character of the department must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha} ]{1,29}";
+    public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha} ]{0,29}";
 
     public final String value;
 

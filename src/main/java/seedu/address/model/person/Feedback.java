@@ -28,7 +28,7 @@ public class Feedback {
      * otherwise " " (a blank string) becomes a valid input.
      *
      */
-    public static final String VALIDATION_REGEX = "[^\\s].{1,64}";
+    public static final String VALIDATION_REGEX = "[^\\s].{0,64}";
     public final String value;
 
 
