@@ -24,11 +24,11 @@ public class SortCommandTest {
     public void execute_sortListWithFavourite() {
 
         // typical person Carl is set to be favourited
-        Ssenisub Ssenisub = new SsenisubBuilder().withPerson(BOB).withPerson(ALICE).withPerson(HARRY).build();
+        Ssenisub ssenisub = new SsenisubBuilder().withPerson(BOB).withPerson(ALICE).withPerson(HARRY).build();
         Ssenisub expectedSsenisub = new SsenisubBuilder().withPerson(HARRY).withPerson(ALICE)
                 .withPerson(BOB).build();
 
-        Ssenisub.sort();
-        assertEquals(Ssenisub, expectedSsenisub);
+        ssenisub.sort();
+        assertEquals(ssenisub, expectedSsenisub);
     }
 }
