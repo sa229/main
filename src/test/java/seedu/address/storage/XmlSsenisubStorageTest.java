@@ -17,8 +17,8 @@ import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.Ssenisub;
 import seedu.address.model.ReadOnlySsenisub;
+import seedu.address.model.Ssenisub;
 
 public class XmlSsenisubStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "XmlSsenisubStorageTest");
@@ -106,12 +106,12 @@ public class XmlSsenisubStorageTest {
     }
 
     /**
-     * Saves {@code Ssenisub} at the specified {@code filePath}.
+     * Saves {@code ssenisub} at the specified {@code filePath}.
      */
-    private void saveSsenisub(ReadOnlySsenisub Ssenisub, String filePath) {
+    private void saveSsenisub(ReadOnlySsenisub ssenisub, String filePath) {
         try {
             new XmlSsenisubStorage(Paths.get(filePath))
-                    .saveSsenisub(Ssenisub, addToTestDataPathIfNotNull(filePath));
+                    .saveSsenisub(ssenisub, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

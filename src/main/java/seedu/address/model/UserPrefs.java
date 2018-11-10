@@ -12,7 +12,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs {
 
     private GuiSettings guiSettings;
-    private Path ssenisubFilePath = Paths.get("data" , "ssenisub.xml");
+    private Path ssenisubFilePath = Paths.get("data" , "Ssenisub.xml");
 
     public UserPrefs() {
         setGuiSettings(500, 500, 0, 0);
@@ -63,6 +63,7 @@ public class UserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings.toString());
         sb.append("\nLocal data file location : " + ssenisubFilePath);
+        System.out.println(sb.toString());
         return sb.toString();
     }
 

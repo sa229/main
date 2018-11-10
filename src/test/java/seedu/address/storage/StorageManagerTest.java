@@ -16,8 +16,8 @@ import org.junit.rules.TemporaryFolder;
 
 import seedu.address.commons.events.model.SsenisubChangedEvent;
 import seedu.address.commons.events.storage.DataSavingExceptionEvent;
-import seedu.address.model.Ssenisub;
 import seedu.address.model.ReadOnlySsenisub;
+import seedu.address.model.Ssenisub;
 import seedu.address.model.UserPrefs;
 import seedu.address.ui.testutil.EventsCollectorRule;
 
@@ -32,9 +32,9 @@ public class StorageManagerTest {
 
     @Before
     public void setUp() {
-        XmlSsenisubStorage SsenisubStorage = new XmlSsenisubStorage(getTempFilePath("ab"));
+        XmlSsenisubStorage ssenisubStorage = new XmlSsenisubStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(SsenisubStorage, userPrefsStorage);
+        storageManager = new StorageManager(ssenisubStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {

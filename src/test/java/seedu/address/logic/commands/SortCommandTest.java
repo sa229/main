@@ -14,10 +14,10 @@ public class SortCommandTest {
 
     @Test
     public void execute_sortList() {
-        Ssenisub Ssenisub = new SsenisubBuilder().withPerson(BOB).withPerson(ALICE).build();
+        Ssenisub ssenisub = new SsenisubBuilder().withPerson(BOB).withPerson(ALICE).build();
         Ssenisub expectedSsenisub = new SsenisubBuilder().withPerson(ALICE).withPerson(BOB).build();
-        Ssenisub.sort();
-        assertEquals(Ssenisub, expectedSsenisub);
+        ssenisub.sort();
+        assertEquals(ssenisub, expectedSsenisub);
     }
 
     @Test

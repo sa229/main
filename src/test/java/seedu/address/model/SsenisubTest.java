@@ -28,24 +28,24 @@ public class SsenisubTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private final Ssenisub Ssenisub = new Ssenisub();
+    private final Ssenisub ssenisub = new Ssenisub();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), Ssenisub.getPersonList());
+        assertEquals(Collections.emptyList(), ssenisub.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        Ssenisub.resetData(null);
+        ssenisub.resetData(null);
     }
 
     @Test
     public void resetData_withValidReadOnlySsenisub_replacesData() {
         Ssenisub newData = getTypicalSsenisub();
-        Ssenisub.resetData(newData);
-        assertEquals(newData, Ssenisub);
+        ssenisub.resetData(newData);
+        assertEquals(newData, ssenisub);
     }
 
     @Test
@@ -57,38 +57,38 @@ public class SsenisubTest {
         SsenisubStub newData = new SsenisubStub(newPersons);
 
         thrown.expect(DuplicatePersonException.class);
-        Ssenisub.resetData(newData);
+        ssenisub.resetData(newData);
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        Ssenisub.hasPerson(null);
+        ssenisub.hasPerson(null);
     }
 
     @Test
     public void hasPerson_personNotInSsenisub_returnsFalse() {
-        assertFalse(Ssenisub.hasPerson(ALICE));
+        assertFalse(ssenisub.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personInSsenisub_returnsTrue() {
-        Ssenisub.addPerson(ALICE);
-        assertTrue(Ssenisub.hasPerson(ALICE));
+        ssenisub.addPerson(ALICE);
+        assertTrue(ssenisub.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInSsenisub_returnsTrue() {
-        Ssenisub.addPerson(ALICE);
+        ssenisub.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(Ssenisub.hasPerson(editedAlice));
+        assertTrue(ssenisub.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
-        Ssenisub.getPersonList().remove(0);
+        ssenisub.getPersonList().remove(0);
     }
 
     /**

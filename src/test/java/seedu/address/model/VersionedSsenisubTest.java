@@ -18,9 +18,9 @@ import seedu.address.testutil.SsenisubBuilder;
 
 public class VersionedSsenisubTest {
 
-    private final ReadOnlySsenisub SsenisubWithAmy = new SsenisubBuilder().withPerson(AMY).build();
-    private final ReadOnlySsenisub SsenisubWithBob = new SsenisubBuilder().withPerson(BOB).build();
-    private final ReadOnlySsenisub SsenisubWithCarl = new SsenisubBuilder().withPerson(CARL).build();
+    private final ReadOnlySsenisub ssenisubWithAmy = new SsenisubBuilder().withPerson(AMY).build();
+    private final ReadOnlySsenisub ssenisubWithBob = new SsenisubBuilder().withPerson(BOB).build();
+    private final ReadOnlySsenisub ssenisubWithCarl = new SsenisubBuilder().withPerson(CARL).build();
     private final ReadOnlySsenisub emptySsenisub = new SsenisubBuilder().build();
 
     @Test
@@ -37,19 +37,19 @@ public class VersionedSsenisubTest {
     @Test
     public void commit_multipleSsenisubPointerAtEndOfStateList_noStatesRemovedCurrentStateSaved() {
         VersionedSsenisub versionedSsenisub = prepareSsenisubList(
-                emptySsenisub, SsenisubWithAmy, SsenisubWithBob);
+                emptySsenisub, ssenisubWithAmy, ssenisubWithBob);
 
         versionedSsenisub.commit();
         assertSsenisubListStatus(versionedSsenisub,
-                Arrays.asList(emptySsenisub, SsenisubWithAmy, SsenisubWithBob),
-                SsenisubWithBob,
+                Arrays.asList(emptySsenisub, ssenisubWithAmy, ssenisubWithBob),
+                ssenisubWithBob,
                 Collections.emptyList());
     }
 
     @Test
     public void commit_multipleSsenisubPointerNotAtEndOfStateList_statesAfterPointerRemovedCurrentStateSaved() {
         VersionedSsenisub versionedSsenisub = prepareSsenisubList(
-                emptySsenisub, SsenisubWithAmy, SsenisubWithBob);
+                emptySsenisub, ssenisubWithAmy, ssenisubWithBob);
         shiftCurrentStatePointerLeftwards(versionedSsenisub, 2);
 
         versionedSsenisub.commit();
@@ -62,7 +62,7 @@ public class VersionedSsenisubTest {
     @Test
     public void canUndo_multipleSsenisubPointerAtEndOfStateList_returnsTrue() {
         VersionedSsenisub versionedSsenisub = prepareSsenisubList(
-                emptySsenisub, SsenisubWithAmy, SsenisubWithBob);
+                emptySsenisub, ssenisubWithAmy, ssenisubWithBob);
 
         assertTrue(versionedSsenisub.canUndo());
     }
@@ -70,7 +70,7 @@ public class VersionedSsenisubTest {
     @Test
     public void canUndo_multipleSsenisubPointerAtStartOfStateList_returnsTrue() {
         VersionedSsenisub versionedSsenisub = prepareSsenisubList(
-                emptySsenisub, SsenisubWithAmy, SsenisubWithBob);
+                emptySsenisub, ssenisubWithAmy, ssenisubWithBob);
         shiftCurrentStatePointerLeftwards(versionedSsenisub, 1);
 
         assertTrue(versionedSsenisub.canUndo());
@@ -86,7 +86,7 @@ public class VersionedSsenisubTest {
     @Test
     public void canUndo_multipleSsenisubPointerAtStartOfStateList_returnsFalse() {
         VersionedSsenisub versionedSsenisub = prepareSsenisubList(
-                emptySsenisub, SsenisubWithAmy, SsenisubWithBob);
+                emptySsenisub, ssenisubWithAmy, ssenisubWithBob);
         shiftCurrentStatePointerLeftwards(versionedSsenisub, 2);
 
         assertFalse(versionedSsenisub.canUndo());
@@ -95,7 +95,7 @@ public class VersionedSsenisubTest {
     @Test
     public void canRedo_multipleSsenisubPointerNotAtEndOfStateList_returnsTrue() {
         VersionedSsenisub versionedSsenisub = prepareSsenisubList(
-                emptySsenisub, SsenisubWithAmy, SsenisubWithBob);
+                emptySsenisub, ssenisubWithAmy, ssenisubWithBob);
         shiftCurrentStatePointerLeftwards(versionedSsenisub, 1);
 
         assertTrue(versionedSsenisub.canRedo());
@@ -104,7 +104,7 @@ public class VersionedSsenisubTest {
     @Test
     public void canRedo_multipleSsenisubPointerAtStartOfStateList_returnsTrue() {
         VersionedSsenisub versionedSsenisub = prepareSsenisubList(
-                emptySsenisub, SsenisubWithAmy, SsenisubWithBob);
+                emptySsenisub, ssenisubWithAmy, ssenisubWithBob);
         shiftCurrentStatePointerLeftwards(versionedSsenisub, 2);
 
         assertTrue(versionedSsenisub.canRedo());
@@ -120,7 +120,7 @@ public class VersionedSsenisubTest {
     @Test
     public void canRedo_multipleSsenisubPointerAtEndOfStateList_returnsFalse() {
         VersionedSsenisub versionedSsenisub = prepareSsenisubList(
-                emptySsenisub, SsenisubWithAmy, SsenisubWithBob);
+                emptySsenisub, ssenisubWithAmy, ssenisubWithBob);
 
         assertFalse(versionedSsenisub.canRedo());
     }
@@ -128,26 +128,26 @@ public class VersionedSsenisubTest {
     @Test
     public void undo_multipleSsenisubPointerAtEndOfStateList_success() {
         VersionedSsenisub versionedSsenisub = prepareSsenisubList(
-                emptySsenisub, SsenisubWithAmy, SsenisubWithBob);
+                emptySsenisub, ssenisubWithAmy, ssenisubWithBob);
 
         versionedSsenisub.undo();
         assertSsenisubListStatus(versionedSsenisub,
                 Collections.singletonList(emptySsenisub),
-                SsenisubWithAmy,
-                Collections.singletonList(SsenisubWithBob));
+                ssenisubWithAmy,
+                Collections.singletonList(ssenisubWithBob));
     }
 
     @Test
     public void undo_multipleSsenisubPointerNotAtStartOfStateList_success() {
         VersionedSsenisub versionedSsenisub = prepareSsenisubList(
-                emptySsenisub, SsenisubWithAmy, SsenisubWithBob);
+                emptySsenisub, ssenisubWithAmy, ssenisubWithBob);
         shiftCurrentStatePointerLeftwards(versionedSsenisub, 1);
 
         versionedSsenisub.undo();
         assertSsenisubListStatus(versionedSsenisub,
                 Collections.emptyList(),
                 emptySsenisub,
-                Arrays.asList(SsenisubWithAmy, SsenisubWithBob));
+                Arrays.asList(ssenisubWithAmy, ssenisubWithBob));
     }
 
     @Test
@@ -160,7 +160,7 @@ public class VersionedSsenisubTest {
     @Test
     public void undo_multipleSsenisubPointerAtStartOfStateList_throwsNoUndoableStateException() {
         VersionedSsenisub versionedSsenisub = prepareSsenisubList(
-                emptySsenisub, SsenisubWithAmy, SsenisubWithBob);
+                emptySsenisub, ssenisubWithAmy, ssenisubWithBob);
         shiftCurrentStatePointerLeftwards(versionedSsenisub, 2);
 
         assertThrows(VersionedSsenisub.NoUndoableStateException.class, versionedSsenisub::undo);
@@ -169,27 +169,27 @@ public class VersionedSsenisubTest {
     @Test
     public void redo_multipleSsenisubPointerNotAtEndOfStateList_success() {
         VersionedSsenisub versionedSsenisub = prepareSsenisubList(
-                emptySsenisub, SsenisubWithAmy, SsenisubWithBob);
+                emptySsenisub, ssenisubWithAmy, ssenisubWithBob);
         shiftCurrentStatePointerLeftwards(versionedSsenisub, 1);
 
         versionedSsenisub.redo();
         assertSsenisubListStatus(versionedSsenisub,
-                Arrays.asList(emptySsenisub, SsenisubWithAmy),
-                SsenisubWithBob,
+                Arrays.asList(emptySsenisub, ssenisubWithAmy),
+                ssenisubWithBob,
                 Collections.emptyList());
     }
 
     @Test
     public void redo_multipleSsenisubPointerAtStartOfStateList_success() {
         VersionedSsenisub versionedSsenisub = prepareSsenisubList(
-                emptySsenisub, SsenisubWithAmy, SsenisubWithBob);
+                emptySsenisub, ssenisubWithAmy, ssenisubWithBob);
         shiftCurrentStatePointerLeftwards(versionedSsenisub, 2);
 
         versionedSsenisub.redo();
         assertSsenisubListStatus(versionedSsenisub,
                 Collections.singletonList(emptySsenisub),
-                SsenisubWithAmy,
-                Collections.singletonList(SsenisubWithBob));
+                ssenisubWithAmy,
+                Collections.singletonList(ssenisubWithBob));
     }
 
     @Test
@@ -202,17 +202,17 @@ public class VersionedSsenisubTest {
     @Test
     public void redo_multipleSsenisubPointerAtEndOfStateList_throwsNoRedoableStateException() {
         VersionedSsenisub versionedSsenisub = prepareSsenisubList(
-                emptySsenisub, SsenisubWithAmy, SsenisubWithBob);
+                emptySsenisub, ssenisubWithAmy, ssenisubWithBob);
 
         assertThrows(VersionedSsenisub.NoRedoableStateException.class, versionedSsenisub::redo);
     }
 
     @Test
     public void equals() {
-        VersionedSsenisub versionedSsenisub = prepareSsenisubList(SsenisubWithAmy, SsenisubWithBob);
+        VersionedSsenisub versionedSsenisub = prepareSsenisubList(ssenisubWithAmy, ssenisubWithBob);
 
         // same values -> returns true
-        VersionedSsenisub copy = prepareSsenisubList(SsenisubWithAmy, SsenisubWithBob);
+        VersionedSsenisub copy = prepareSsenisubList(ssenisubWithAmy, ssenisubWithBob);
         assertTrue(versionedSsenisub.equals(copy));
 
         // same object -> returns true
@@ -225,12 +225,12 @@ public class VersionedSsenisubTest {
         assertFalse(versionedSsenisub.equals(1));
 
         // different state list -> returns false
-        VersionedSsenisub differentSsenisubList = prepareSsenisubList(SsenisubWithBob, SsenisubWithCarl);
+        VersionedSsenisub differentSsenisubList = prepareSsenisubList(ssenisubWithBob, ssenisubWithCarl);
         assertFalse(versionedSsenisub.equals(differentSsenisubList));
 
         // different current pointer index -> returns false
         VersionedSsenisub differentCurrentStatePointer = prepareSsenisubList(
-                SsenisubWithAmy, SsenisubWithBob);
+                ssenisubWithAmy, ssenisubWithBob);
         shiftCurrentStatePointerLeftwards(versionedSsenisub, 1);
         assertFalse(versionedSsenisub.equals(differentCurrentStatePointer));
     }
@@ -272,15 +272,15 @@ public class VersionedSsenisubTest {
     }
 
     /**
-     * Creates and returns a {@code VersionedSsenisub} with the {@code SsenisubStates} added into it, and the
+     * Creates and returns a {@code VersionedSsenisub} with the {@code ssenisubStates} added into it, and the
      * {@code VersionedSsenisub#currentStatePointer} at the end of list.
      */
-    private VersionedSsenisub prepareSsenisubList(ReadOnlySsenisub... SsenisubStates) {
-        assertFalse(SsenisubStates.length == 0);
+    private VersionedSsenisub prepareSsenisubList(ReadOnlySsenisub... ssenisubStates) {
+        assertFalse(ssenisubStates.length == 0);
 
-        VersionedSsenisub versionedSsenisub = new VersionedSsenisub(SsenisubStates[0]);
-        for (int i = 1; i < SsenisubStates.length; i++) {
-            versionedSsenisub.resetData(SsenisubStates[i]);
+        VersionedSsenisub versionedSsenisub = new VersionedSsenisub(ssenisubStates[0]);
+        for (int i = 1; i < ssenisubStates.length; i++) {
+            versionedSsenisub.resetData(ssenisubStates[i]);
             versionedSsenisub.commit();
         }
 

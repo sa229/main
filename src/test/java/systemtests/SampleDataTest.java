@@ -44,7 +44,7 @@ public class SampleDataTest extends SsenisubSystemTest {
     }
 
     @Test
-    public void Ssenisub_dataFileDoesNotExist_loadSampleData() {
+    public void ssenisub_dataFileDoesNotExist_loadSampleData() {
         Person[] expectedList = SampleDataUtil.getSamplePersons();
         assertListMatching(getPersonListPanel(), expectedList);
     }

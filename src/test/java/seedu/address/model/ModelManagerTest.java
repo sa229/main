@@ -47,13 +47,13 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Ssenisub Ssenisub = new SsenisubBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        Ssenisub ssenisub = new SsenisubBuilder().withPerson(ALICE).withPerson(BENSON).build();
         Ssenisub differentSsenisub = new Ssenisub();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(Ssenisub, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(Ssenisub, userPrefs);
+        modelManager = new ModelManager(ssenisub, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(ssenisub, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -65,13 +65,13 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different Ssenisub -> returns false
+        // different ssenisub -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentSsenisub, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(Ssenisub, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(ssenisub, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -79,6 +79,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns true
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setSsenisubFilePath(Paths.get("differentFilePath"));
-        assertTrue(modelManager.equals(new ModelManager(Ssenisub, differentUserPrefs)));
+        assertTrue(modelManager.equals(new ModelManager(ssenisub, differentUserPrefs)));
     }
 }

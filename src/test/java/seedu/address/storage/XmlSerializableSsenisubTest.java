@@ -28,9 +28,9 @@ public class XmlSerializableSsenisubTest {
     public void toModelType_typicalPersonsFile_success() throws Exception {
         XmlSerializableSsenisub dataFromFile = XmlUtil.getDataFromFile(TYPICAL_PERSONS_FILE,
                 XmlSerializableSsenisub.class);
-        Ssenisub SsenisubFromFile = dataFromFile.toModelType();
+        Ssenisub ssenisubFromFile = dataFromFile.toModelType();
         Ssenisub typicalPersonsSsenisub = TypicalPersons.getTypicalSsenisub();
-        assertEquals(SsenisubFromFile, typicalPersonsSsenisub);
+        assertEquals(ssenisubFromFile, typicalPersonsSsenisub);
     }
 
     @Test
