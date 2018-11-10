@@ -26,13 +26,13 @@ public class ModelManager extends ComponentManager implements Model {
     /**
      * Initializes a ModelManager with the given Ssenisub and userPrefs.
      */
-    public ModelManager(ReadOnlySsenisub Ssenisub, UserPrefs userPrefs) {
+    public ModelManager(ReadOnlySsenisub ssenisub, UserPrefs userPrefs) {
         super();
-        requireAllNonNull(Ssenisub, userPrefs);
+        requireAllNonNull(ssenisub, userPrefs);
 
-        logger.fine("Initializing with SSENISUB: " + Ssenisub + " and user prefs " + userPrefs);
+        logger.fine("Initializing with SSENISUB: " + ssenisub + " and user prefs " + userPrefs);
 
-        versionedSsenisub = new VersionedSsenisub(Ssenisub);
+        versionedSsenisub = new VersionedSsenisub(ssenisub);
         filteredPersons = new FilteredList<>(versionedSsenisub.getPersonList());
     }
 

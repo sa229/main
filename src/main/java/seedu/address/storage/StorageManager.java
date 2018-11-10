@@ -21,13 +21,13 @@ import seedu.address.model.UserPrefs;
 public class StorageManager extends ComponentManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private SsenisubStorage SsenisubStorage;
+    private SsenisubStorage ssenisubStorage;
     private UserPrefsStorage userPrefsStorage;
 
 
-    public StorageManager(SsenisubStorage SsenisubStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(SsenisubStorage ssenisubStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.SsenisubStorage = SsenisubStorage;
+        this.ssenisubStorage = ssenisubStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -53,29 +53,29 @@ public class StorageManager extends ComponentManager implements Storage {
 
     @Override
     public Path getSsenisubFilePath() {
-        return SsenisubStorage.getSsenisubFilePath();
+        return ssenisubStorage.getSsenisubFilePath();
     }
 
     @Override
     public Optional<ReadOnlySsenisub> readSsenisub() throws DataConversionException, IOException {
-        return readSsenisub(SsenisubStorage.getSsenisubFilePath());
+        return readSsenisub(ssenisubStorage.getSsenisubFilePath());
     }
 
     @Override
     public Optional<ReadOnlySsenisub> readSsenisub(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return SsenisubStorage.readSsenisub(filePath);
+        return ssenisubStorage.readSsenisub(filePath);
     }
 
     @Override
-    public void saveSsenisub(ReadOnlySsenisub Ssenisub) throws IOException {
-        saveSsenisub(Ssenisub, SsenisubStorage.getSsenisubFilePath());
+    public void saveSsenisub(ReadOnlySsenisub ssenisub) throws IOException {
+        saveSsenisub(ssenisub, ssenisubStorage.getSsenisubFilePath());
     }
 
     @Override
-    public void saveSsenisub(ReadOnlySsenisub Ssenisub, Path filePath) throws IOException {
+    public void saveSsenisub(ReadOnlySsenisub ssenisub, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        SsenisubStorage.saveSsenisub(Ssenisub, filePath);
+        ssenisubStorage.saveSsenisub(ssenisub, filePath);
     }
 
 

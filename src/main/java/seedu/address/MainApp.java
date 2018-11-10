@@ -62,8 +62,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         userPrefs = initPrefs(userPrefsStorage);
-        SsenisubStorage SsenisubStorage = new XmlSsenisubStorage(userPrefs.getSsenisubFilePath());
-        storage = new StorageManager(SsenisubStorage, userPrefsStorage);
+        SsenisubStorage ssenisubStorage = new XmlSsenisubStorage(userPrefs.getSsenisubFilePath());
+        storage = new StorageManager(ssenisubStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -82,14 +82,14 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, UserPrefs userPrefs) {
-        Optional<ReadOnlySsenisub> SsenisubOptional;
+        Optional<ReadOnlySsenisub> ssenisubOptional;
         ReadOnlySsenisub initialData;
         try {
-            SsenisubOptional = storage.readSsenisub();
-            if (!SsenisubOptional.isPresent()) {
+            ssenisubOptional = storage.readSsenisub();
+            if (!ssenisubOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample SSENISUB");
             }
-            initialData = SsenisubOptional.orElseGet(SampleDataUtil::getSampleSsenisub);
+            initialData = ssenisubOptional.orElseGet(SampleDataUtil::getSampleSsenisub);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty SSENISUB");
             initialData = new Ssenisub();

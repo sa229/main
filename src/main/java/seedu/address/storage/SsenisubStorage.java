@@ -35,11 +35,11 @@ public interface SsenisubStorage {
      * @param Ssenisub cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveSsenisub(ReadOnlySsenisub Ssenisub) throws IOException;
+    void saveSsenisub(ReadOnlySsenisub ssenisub) throws IOException;
 
     /**
      * @see #saveSsenisub(ReadOnlySsenisub)
      */
-    void saveSsenisub(ReadOnlySsenisub Ssenisub, Path filePath) throws IOException;
+    void saveSsenisub(ReadOnlySsenisub ssenisub, Path filePath) throws IOException;
 
 }

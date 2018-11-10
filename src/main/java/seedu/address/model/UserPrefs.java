@@ -12,7 +12,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs {
 
     private GuiSettings guiSettings;
-    private Path SsenisubFilePath = Paths.get("data" , "ssenisub.xml");
+    private Path ssenisubFilePath = Paths.get("data" , "ssenisub.xml");
 
     public UserPrefs() {
         setGuiSettings(500, 500, 0, 0);
@@ -31,11 +31,11 @@ public class UserPrefs {
     }
 
     public Path getSsenisubFilePath() {
-        return SsenisubFilePath;
+        return ssenisubFilePath;
     }
 
-    public void setSsenisubFilePath(Path SsenisubFilePath) {
-        this.SsenisubFilePath = SsenisubFilePath;
+    public void setSsenisubFilePath(Path ssenisubFilePath) {
+        this.ssenisubFilePath = ssenisubFilePath;
     }
 
     @Override
@@ -50,19 +50,19 @@ public class UserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return Objects.equals(guiSettings, o.guiSettings)
-                && Objects.equals(SsenisubFilePath, o.SsenisubFilePath);
+                && Objects.equals(ssenisubFilePath, o.ssenisubFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, SsenisubFilePath);
+        return Objects.hash(guiSettings, ssenisubFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings.toString());
-        sb.append("\nLocal data file location : " + SsenisubFilePath);
+        sb.append("\nLocal data file location : " + ssenisubFilePath);
         return sb.toString();
     }
 

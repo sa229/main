@@ -8,14 +8,14 @@ import java.util.List;
  */
 public class VersionedSsenisub extends Ssenisub {
 
-    private final List<ReadOnlySsenisub> SsenisubStateList;
+    private final List<ReadOnlySsenisub> ssenisubStateList;
     private int currentStatePointer;
 
     public VersionedSsenisub(ReadOnlySsenisub initialState) {
         super(initialState);
 
-        SsenisubStateList = new ArrayList<>();
-        SsenisubStateList.add(new Ssenisub(initialState));
+        ssenisubStateList = new ArrayList<>();
+        ssenisubStateList.add(new Ssenisub(initialState));
         currentStatePointer = 0;
     }
 
@@ -25,12 +25,12 @@ public class VersionedSsenisub extends Ssenisub {
      */
     public void commit() {
         removeStatesAfterCurrentPointer();
-        SsenisubStateList.add(new Ssenisub(this));
+        ssenisubStateList.add(new Ssenisub(this));
         currentStatePointer++;
     }
 
     private void removeStatesAfterCurrentPointer() {
-        SsenisubStateList.subList(currentStatePointer + 1, SsenisubStateList.size()).clear();
+        ssenisubStateList.subList(currentStatePointer + 1, ssenisubStateList.size()).clear();
     }
 
     /**
@@ -41,7 +41,7 @@ public class VersionedSsenisub extends Ssenisub {
             throw new NoUndoableStateException();
         }
         currentStatePointer--;
-        resetData(SsenisubStateList.get(currentStatePointer));
+        resetData(ssenisubStateList.get(currentStatePointer));
     }
 
     /**
@@ -52,7 +52,7 @@ public class VersionedSsenisub extends Ssenisub {
             throw new NoRedoableStateException();
         }
         currentStatePointer++;
-        resetData(SsenisubStateList.get(currentStatePointer));
+        resetData(ssenisubStateList.get(currentStatePointer));
     }
 
     /**
@@ -66,7 +66,7 @@ public class VersionedSsenisub extends Ssenisub {
      * Returns true if {@code redo()} has address book states to redo.
      */
     public boolean canRedo() {
-        return currentStatePointer < SsenisubStateList.size() - 1;
+        return currentStatePointer < ssenisubStateList.size() - 1;
     }
 
     @Override
@@ -85,7 +85,7 @@ public class VersionedSsenisub extends Ssenisub {
 
         // state check
         return super.equals(otherVersionedSsenisub)
-                && SsenisubStateList.equals(otherVersionedSsenisub.SsenisubStateList)
+                && ssenisubStateList.equals(otherVersionedSsenisub.ssenisubStateList)
                 && currentStatePointer == otherVersionedSsenisub.currentStatePointer;
     }
 

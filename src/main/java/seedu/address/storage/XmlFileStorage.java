@@ -15,10 +15,10 @@ public class XmlFileStorage {
     /**
      * Saves the given SSENISUB data to the specified file.
      */
-    public static void saveDataToFile(Path file, XmlSerializableSsenisub Ssenisub)
+    public static void saveDataToFile(Path file, XmlSerializableSsenisub ssenisub)
             throws FileNotFoundException {
         try {
-            XmlUtil.saveDataToFile(file, Ssenisub);
+            XmlUtil.saveDataToFile(file, ssenisub);
         } catch (JAXBException e) {
             throw new AssertionError("Unexpected exception " + e.getMessage(), e);
         }

@@ -61,20 +61,20 @@ public class XmlSsenisubStorage implements SsenisubStorage {
     }
 
     @Override
-    public void saveSsenisub(ReadOnlySsenisub Ssenisub) throws IOException {
-        saveSsenisub(Ssenisub, filePath);
+    public void saveSsenisub(ReadOnlySsenisub ssenisub) throws IOException {
+        saveSsenisub(ssenisub, filePath);
     }
 
     /**
      * Similar to {@link #saveSsenisub(ReadOnlySsenisub)}
      * @param filePath location of the data. Cannot be null
      */
-    public void saveSsenisub(ReadOnlySsenisub Ssenisub, Path filePath) throws IOException {
-        requireNonNull(Ssenisub);
+    public void saveSsenisub(ReadOnlySsenisub ssenisub, Path filePath) throws IOException {
+        requireNonNull(ssenisub);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        XmlFileStorage.saveDataToFile(filePath, new XmlSerializableSsenisub(Ssenisub));
+        XmlFileStorage.saveDataToFile(filePath, new XmlSerializableSsenisub(ssenisub));
     }
 
 }

@@ -46,15 +46,15 @@ public class XmlSerializableSsenisub {
      * {@code XmlAdaptedPerson}.
      */
     public Ssenisub toModelType() throws IllegalValueException {
-        Ssenisub Ssenisub = new Ssenisub();
+        Ssenisub ssenisub = new Ssenisub();
         for (XmlAdaptedPerson p : persons) {
             Person person = p.toModelType();
-            if (Ssenisub.hasPerson(person)) {
+            if (ssenisub.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            Ssenisub.addPerson(person);
+            ssenisub.addPerson(person);
         }
-        return Ssenisub;
+        return ssenisub;
     }
 
     @Override

@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.Ssenisub;
 import seedu.address.model.ReadOnlySsenisub;
+import seedu.address.model.Ssenisub;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;

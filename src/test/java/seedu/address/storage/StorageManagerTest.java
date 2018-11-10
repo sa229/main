@@ -57,7 +57,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void SsenisubReadSave() throws Exception {
+    public void ssenisubReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link XmlSsenisubStorage} class.
@@ -94,7 +94,7 @@ public class StorageManagerTest {
         }
 
         @Override
-        public void saveSsenisub(ReadOnlySsenisub Ssenisub, Path filePath) throws IOException {
+        public void saveSsenisub(ReadOnlySsenisub ssenisub, Path filePath) throws IOException {
             throw new IOException("dummy exception");
         }
     }

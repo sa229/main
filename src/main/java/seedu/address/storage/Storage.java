@@ -28,7 +28,7 @@ public interface Storage extends SsenisubStorage, UserPrefsStorage {
     Optional<ReadOnlySsenisub> readSsenisub() throws DataConversionException, IOException;
 
     @Override
-    void saveSsenisub(ReadOnlySsenisub Ssenisub) throws IOException;
+    void saveSsenisub(ReadOnlySsenisub ssenisub) throws IOException;
 
     /**
      * Saves the current version of Ssenisub to the hard disk.
