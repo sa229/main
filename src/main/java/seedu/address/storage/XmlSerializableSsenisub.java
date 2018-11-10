@@ -8,15 +8,15 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlySsenisub;
+import seedu.address.model.Ssenisub;
 import seedu.address.model.person.Person;
 
 /**
- * An Immutable AddressBook that is serializable to XML format
+ * An Immutable Ssenisub that is serializable to XML format
  */
-@XmlRootElement(name = "addressbook")
-public class XmlSerializableAddressBook {
+@XmlRootElement(name = "ssenisub")
+public class XmlSerializableSsenisub {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
@@ -24,37 +24,37 @@ public class XmlSerializableAddressBook {
     private List<XmlAdaptedPerson> persons;
 
     /**
-     * Creates an empty XmlSerializableAddressBook.
+     * Creates an empty XmlSerializableSsenisub.
      * This empty constructor is required for marshalling.
      */
-    public XmlSerializableAddressBook() {
+    public XmlSerializableSsenisub() {
         persons = new ArrayList<>();
     }
 
     /**
      * Conversion
      */
-    public XmlSerializableAddressBook(ReadOnlyAddressBook src) {
+    public XmlSerializableSsenisub(ReadOnlySsenisub src) {
         this();
         persons.addAll(src.getPersonList().stream().map(XmlAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this addressbook into the model's {@code AddressBook} object.
+     * Converts this Ssenisub into the model's {@code Ssenisub} object.
      *
      * @throws IllegalValueException if there were any data constraints violated or duplicates in the
      * {@code XmlAdaptedPerson}.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public Ssenisub toModelType() throws IllegalValueException {
+        Ssenisub ssenisub = new Ssenisub();
         for (XmlAdaptedPerson p : persons) {
             Person person = p.toModelType();
-            if (addressBook.hasPerson(person)) {
+            if (ssenisub.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            ssenisub.addPerson(person);
         }
-        return addressBook;
+        return ssenisub;
     }
 
     @Override
@@ -63,9 +63,9 @@ public class XmlSerializableAddressBook {
             return true;
         }
 
-        if (!(other instanceof XmlSerializableAddressBook)) {
+        if (!(other instanceof XmlSerializableSsenisub)) {
             return false;
         }
-        return persons.equals(((XmlSerializableAddressBook) other).persons);
+        return persons.equals(((XmlSerializableSsenisub) other).persons);
     }
 }

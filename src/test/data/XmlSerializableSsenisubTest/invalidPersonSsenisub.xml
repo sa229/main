@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addressbook>
+<ssenisub>
     <!-- Person with invalid email field -->
     <persons>
         <name>Hans Muster</name>
@@ -11,4 +11,4 @@
         <manager isPrivate="false">Ben Leong</manager>
         <feedback>Great work on the recent event!</feedback>
     </persons>
-</addressbook>
+</ssenisub>

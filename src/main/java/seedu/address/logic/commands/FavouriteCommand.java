@@ -27,7 +27,7 @@ public class FavouriteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 ";
     public static final String MESSAGE_FAVOURITE_PERSON_FAIL = "Person already favourited: %1$s";
     public static final String MESSAGE_FAVOURITE_PERSON_SUCCESS = "Added person to favourites: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in SSENISUB.";
     private final Index index;
     /**
      * @param index of the person in the filtered person list to edit
@@ -49,7 +49,7 @@ public class FavouriteCommand extends Command {
         model.favouritePerson(personToFavourite, favouritedPerson);
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.commitAddressBook();
+        model.commitSsenisub();
 
         if (!personToFavourite.getFavourite()) {
             return new CommandResult(String.format(MESSAGE_FAVOURITE_PERSON_SUCCESS,

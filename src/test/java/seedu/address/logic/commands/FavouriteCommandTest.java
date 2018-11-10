@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalSsenisub;
 
 import org.junit.Test;
 
@@ -26,7 +26,7 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class FavouriteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSsenisub(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
@@ -39,9 +39,9 @@ public class FavouriteCommandTest {
         String expectedFavouriteMessage = String.format(FavouriteCommand.MESSAGE_FAVOURITE_PERSON_SUCCESS,
                 favouritedPerson.getName().fullName);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getSsenisub(), new UserPrefs());
         expectedModel.favouritePerson(personToFavourite, favouritedPerson);
-        expectedModel.commitAddressBook();
+        expectedModel.commitSsenisub();
 
         assertCommandSuccess(favouriteCommand, model, commandHistory, expectedFavouriteMessage, model);
 
@@ -69,7 +69,7 @@ public class FavouriteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getSsenisub().getPersonList().size());
 
         FavouriteCommand favouriteCommand = new FavouriteCommand(outOfBoundIndex);
 

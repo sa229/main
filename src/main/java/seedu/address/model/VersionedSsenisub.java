@@ -4,55 +4,55 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * {@code AddressBook} that keeps track of its own history.
+ * {@code Ssenisub} that keeps track of its own history.
  */
-public class VersionedAddressBook extends AddressBook {
+public class VersionedSsenisub extends Ssenisub {
 
-    private final List<ReadOnlyAddressBook> addressBookStateList;
+    private final List<ReadOnlySsenisub> ssenisubStateList;
     private int currentStatePointer;
 
-    public VersionedAddressBook(ReadOnlyAddressBook initialState) {
+    public VersionedSsenisub(ReadOnlySsenisub initialState) {
         super(initialState);
 
-        addressBookStateList = new ArrayList<>();
-        addressBookStateList.add(new AddressBook(initialState));
+        ssenisubStateList = new ArrayList<>();
+        ssenisubStateList.add(new Ssenisub(initialState));
         currentStatePointer = 0;
     }
 
     /**
-     * Saves a copy of the current {@code AddressBook} state at the end of the state list.
+     * Saves a copy of the current {@code Ssenisub} state at the end of the state list.
      * Undone states are removed from the state list.
      */
     public void commit() {
         removeStatesAfterCurrentPointer();
-        addressBookStateList.add(new AddressBook(this));
+        ssenisubStateList.add(new Ssenisub(this));
         currentStatePointer++;
     }
 
     private void removeStatesAfterCurrentPointer() {
-        addressBookStateList.subList(currentStatePointer + 1, addressBookStateList.size()).clear();
+        ssenisubStateList.subList(currentStatePointer + 1, ssenisubStateList.size()).clear();
     }
 
     /**
-     * Restores the address book to its previous state.
+     * Restores Ssenisub to its previous state.
      */
     public void undo() {
         if (!canUndo()) {
             throw new NoUndoableStateException();
         }
         currentStatePointer--;
-        resetData(addressBookStateList.get(currentStatePointer));
+        resetData(ssenisubStateList.get(currentStatePointer));
     }
 
     /**
-     * Restores the address book to its previously undone state.
+     * Restores Ssenisub to its previously undone state.
      */
     public void redo() {
         if (!canRedo()) {
             throw new NoRedoableStateException();
         }
         currentStatePointer++;
-        resetData(addressBookStateList.get(currentStatePointer));
+        resetData(ssenisubStateList.get(currentStatePointer));
     }
 
     /**
@@ -66,7 +66,7 @@ public class VersionedAddressBook extends AddressBook {
      * Returns true if {@code redo()} has address book states to redo.
      */
     public boolean canRedo() {
-        return currentStatePointer < addressBookStateList.size() - 1;
+        return currentStatePointer < ssenisubStateList.size() - 1;
     }
 
     @Override
@@ -77,16 +77,16 @@ public class VersionedAddressBook extends AddressBook {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof VersionedAddressBook)) {
+        if (!(other instanceof VersionedSsenisub)) {
             return false;
         }
 
-        VersionedAddressBook otherVersionedAddressBook = (VersionedAddressBook) other;
+        VersionedSsenisub otherVersionedSsenisub = (VersionedSsenisub) other;
 
         // state check
-        return super.equals(otherVersionedAddressBook)
-                && addressBookStateList.equals(otherVersionedAddressBook.addressBookStateList)
-                && currentStatePointer == otherVersionedAddressBook.currentStatePointer;
+        return super.equals(otherVersionedSsenisub)
+                && ssenisubStateList.equals(otherVersionedSsenisub.ssenisubStateList)
+                && currentStatePointer == otherVersionedSsenisub.currentStatePointer;
     }
 
     /**
@@ -94,7 +94,7 @@ public class VersionedAddressBook extends AddressBook {
      */
     public static class NoUndoableStateException extends RuntimeException {
         private NoUndoableStateException() {
-            super("Current state pointer at start of addressBookState list, unable to undo.");
+            super("Current state pointer at start of SSENISUB State list, unable to undo.");
         }
     }
 
@@ -103,7 +103,7 @@ public class VersionedAddressBook extends AddressBook {
      */
     public static class NoRedoableStateException extends RuntimeException {
         private NoRedoableStateException() {
-            super("Current state pointer at end of addressBookState list, unable to redo.");
+            super("Current state pointer at end of SSENISUB State list, unable to redo.");
         }
     }
 }

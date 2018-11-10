@@ -7,23 +7,23 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalSsenisub;
 
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.Ssenisub;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Feedback;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 public class FeedbackCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSsenisub(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
@@ -58,9 +58,9 @@ public class FeedbackCommandTest {
         FeedbackCommand feedbackCommand = new FeedbackCommand(indexLastPerson, new Feedback("You are cool!"));
 
         String expectedMessage = String.format(FeedbackCommand.MESSAGE_FEEDBACK_PERSON_SUCCESS, editedPerson);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Ssenisub(model.getSsenisub()), new UserPrefs());
         expectedModel.updatePerson(lastPerson, editedPerson);
-        expectedModel.commitAddressBook();
+        expectedModel.commitSsenisub();
 
         assertCommandSuccess(feedbackCommand, model, commandHistory, expectedMessage, expectedModel);
     }
@@ -74,7 +74,7 @@ public class FeedbackCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getSsenisub().getPersonList().size());
 
         FeedbackCommand feedbackCommand = new FeedbackCommand(outOfBoundIndex, new Feedback("Work harder."));
 

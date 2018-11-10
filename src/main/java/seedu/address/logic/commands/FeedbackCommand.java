@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
 
 
 /**
- * Edits the feedback details of an existing person in the address book.
+ * Edits the feedback details of an existing person in SSENISUB.
  */
 public class FeedbackCommand extends Command {
 
@@ -65,7 +65,7 @@ public class FeedbackCommand extends Command {
 
         model.updatePerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.commitAddressBook();
+        model.commitSsenisub();
 
         Index indexEdited = Index.fromZeroBased(model.getFilteredPersonList().indexOf(editedPerson));
         EventsCenter.getInstance().post(new JumpToListRequestEvent(indexEdited));

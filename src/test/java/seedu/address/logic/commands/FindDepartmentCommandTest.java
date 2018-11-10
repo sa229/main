@@ -10,7 +10,7 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.GEORGE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalSsenisub;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,8 +27,8 @@ import seedu.address.model.person.DepartmentContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for (@code FindDepartmentCommand).
  */
 public class FindDepartmentCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSsenisub(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalSsenisub(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test

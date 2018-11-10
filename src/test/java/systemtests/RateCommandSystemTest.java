@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Rating;
 import seedu.address.testutil.PersonBuilder;
 
-public class RateCommandSystemTest extends AddressBookSystemTest {
+public class RateCommandSystemTest extends SsenisubSystemTest {
 
     @Test
     public void rate() {
@@ -62,7 +62,7 @@ public class RateCommandSystemTest extends AddressBookSystemTest {
          * -> rejected
          */
         showPersonsWithName(KEYWORD_MATCHING_MEIER);
-        int invalidIndex = getModel().getAddressBook().getPersonList().size();
+        int invalidIndex = getModel().getSsenisub().getPersonList().size();
         assertCommandFailure(RateCommand.COMMAND_WORD + "  " + invalidIndex + " " + PREFIX_RATING + "1",
                 Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
@@ -148,8 +148,8 @@ public class RateCommandSystemTest extends AddressBookSystemTest {
      * 4. Asserts that the status bar's sync status changes.<br>
      * 5. Asserts that the command box has the default style class.<br>
      * Verifications 1 and 2 are performed by
-     * {@code AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
-     * @see AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     * {@code SsenisubSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * @see SsenisubSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage,
                                       Index expectedSelectedCardIndex) {
@@ -167,8 +167,8 @@ public class RateCommandSystemTest extends AddressBookSystemTest {
      * 3. Asserts that the browser url, selected card and status bar remain unchanged.<br>
      * 4. Asserts that the command box has the error style.<br>
      * Verifications 1 and 2 are performed by
-     * {@code AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
-     * @see AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     * {@code SsenisubSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * @see SsenisubSystemTest#assertApplicationDisplaysExpected(String, String, Model)
      */
     private void assertCommandFailure(String command, String expectedResultMessage) {
         Model expectedModel = getModel();

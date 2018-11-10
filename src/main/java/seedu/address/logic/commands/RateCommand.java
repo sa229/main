@@ -18,7 +18,7 @@ import seedu.address.model.person.Rating;
 
 
 /**
- * Edits the rating details of an existing person in the address book.
+ * Edits the rating details of an existing person in SSENISUB.
  */
 public class RateCommand extends Command {
 
@@ -71,7 +71,7 @@ public class RateCommand extends Command {
 
         model.updatePerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.commitAddressBook();
+        model.commitSsenisub();
 
         Index indexEdited = Index.fromZeroBased(model.getFilteredPersonList().indexOf(editedPerson));
         EventsCenter.getInstance().post(new JumpToListRequestEvent(indexEdited));

@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Rating;
 
 /**
- * Edits the rating details of an existing person in the address book.
+ * Edits the rating details of an existing person in SSENISUB.
  */
 public class RateCommandParser implements Parser<RateCommand> {
 

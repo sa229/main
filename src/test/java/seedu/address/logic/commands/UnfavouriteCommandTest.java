@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalSsenisub;
 
 import org.junit.Test;
 
@@ -26,7 +26,7 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class UnfavouriteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSsenisub(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
@@ -42,9 +42,9 @@ public class UnfavouriteCommandTest {
         String expectedFavouriteMessage = String.format(FavouriteCommand.MESSAGE_FAVOURITE_PERSON_SUCCESS,
                 favouritedPerson.getName().fullName);
 
-        Model expectedFavouriteModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedFavouriteModel = new ModelManager(model.getSsenisub(), new UserPrefs());
         expectedFavouriteModel.favouritePerson(personToFavourite, favouritedPerson);
-        expectedFavouriteModel.commitAddressBook();
+        expectedFavouriteModel.commitSsenisub();
 
         assertCommandSuccess(favouriteCommand, model, commandHistory, expectedFavouriteMessage, model);
 
@@ -56,9 +56,9 @@ public class UnfavouriteCommandTest {
         String expectedUnfavouriteMessage = String.format(UnfavouriteCommand.MESSAGE_UNFAVOURITE_PERSON_SUCCESS,
                 unfavouritedPerson.getName().fullName);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getSsenisub(), new UserPrefs());
         expectedModel.unfavouritePerson(personToUnfavourite, unfavouritedPerson);
-        expectedModel.commitAddressBook();
+        expectedModel.commitSsenisub();
 
         assertCommandSuccess(unfavouriteCommand, model, commandHistory, expectedUnfavouriteMessage, model);
 
@@ -87,7 +87,7 @@ public class UnfavouriteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getSsenisub().getPersonList().size());
 
         UnfavouriteCommand unfavouriteCommand = new UnfavouriteCommand(outOfBoundIndex);
 

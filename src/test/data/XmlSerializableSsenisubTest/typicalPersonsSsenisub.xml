@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!-- AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook() -->
-<addressbook>
+<!-- Ssenisub save file which contains the same Person values as in TypicalPersons#getTypicalSsenisub() -->
+<ssenisub>
     <persons>
         <name>Alice Pauline</name>
         <phone>94351253</phone>
@@ -103,4 +103,4 @@
         <deductibles>0</deductibles>
         <feedback>-NO FEEDBACK YET-</feedback>
     </persons>
-</addressbook>
+</ssenisub>

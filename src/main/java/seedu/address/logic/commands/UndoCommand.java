@@ -23,11 +23,11 @@ public class UndoCommand extends Command {
     public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        if (!model.canUndoAddressBook()) {
+        if (!model.canUndoSsenisub()) {
             throw new CommandException(MESSAGE_FAILURE);
         }
 
-        model.undoAddressBook();
+        model.undoSsenisub();
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         EventsCenter.getInstance().post(new HideStaffPanelEvent());
