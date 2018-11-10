@@ -19,7 +19,8 @@ import seedu.address.MainApp;
 public class Feedback {
 
     public static final Feedback DEFAULT_INITIAL_FEEDBACK = new Feedback("-NO FEEDBACK YET-");
-    public static final String MESSAGE_CONSTRAINTS = "Feedback can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Feedback can take any values, and it should not be blank\n"
+            + "Maximum Length: 65 characters";
     public static final String MESSAGE_PROFANITY_FOUND = "Feedback input rejected, because profanity found: ";
 
     /*
@@ -27,7 +28,7 @@ public class Feedback {
      * otherwise " " (a blank string) becomes a valid input.
      *
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "[^\\s].{1,64}";
     public final String value;
 
 

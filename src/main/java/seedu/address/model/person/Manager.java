@@ -10,13 +10,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Manager {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Managers should only contain alphabetical characters and spaces, and it should not be blank";
+            "Managers should only contain alphabetical characters and spaces, and it should not be blank\n"
+                + "Maximum Length: 50 characters";
 
     /**
      * The first character of the manager must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha} ]{1,49}";
 
     public final String fullName;
 
