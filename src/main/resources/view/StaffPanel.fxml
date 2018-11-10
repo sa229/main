@@ -17,10 +17,10 @@
                 <AnchorPane prefHeight="500.0" prefWidth="900.0">
                     <children>
                         <Label styleClass="label-header" stylesheets="@DarkTheme.css" text="Staff Details" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                        <GridPane AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="55.0">
+                        <GridPane AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="55.0">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="266.2181396484375" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="393.6187286376953" minWidth="10.0" prefWidth="355.7818603515625" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="181.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="467.0" minWidth="10.0" prefWidth="441.0" />
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -43,15 +43,15 @@
                                 <Label styleClass="staffLabel-bright" text="Manager" GridPane.rowIndex="6" />
                                 <Label styleClass="staffLabel-bright" text="Rating" GridPane.rowIndex="7" />
                                 <Label styleClass="staffLabel-bright" text="Feedback" GridPane.rowIndex="8" />
-                                <Label fx:id="nameLabel" styleClass="staffLabel-bright" GridPane.columnIndex="1" />
-                                <Label fx:id="phoneLabel" styleClass="staffLabel-bright" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                <Label fx:id="emailLabel" styleClass="staffLabel-bright" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                <Label fx:id="addressLabel" styleClass="staffLabel-bright" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                <Label fx:id="salaryLabel" styleClass="staffLabel-bright" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                <Label fx:id="departmentLabel" styleClass="staffLabel-bright" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                <Label fx:id="managerLabel" styleClass="staffLabel-bright" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                <Label fx:id="ratingLabel" styleClass="staffLabel-bright" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                <Label fx:id="feedbackLabel" styleClass="staffLabel-bright" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                <Label fx:id="nameLabel" prefWidth="450.0" styleClass="staffLabel-bright" wrapText="true" GridPane.columnIndex="1" GridPane.vgrow="ALWAYS" />
+                                <Label fx:id="phoneLabel" prefWidth="450.0" styleClass="staffLabel-bright" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
+                                <Label fx:id="emailLabel" prefWidth="450.0" styleClass="staffLabel-bright" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
+                                <Label fx:id="addressLabel" prefWidth="450.0" styleClass="staffLabel-bright" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
+                                <Label fx:id="salaryLabel" prefWidth="450.0" styleClass="staffLabel-bright" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
+                                <Label fx:id="departmentLabel" prefWidth="450.0" styleClass="staffLabel-bright" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES" />
+                                <Label fx:id="managerLabel" prefWidth="450.0" styleClass="staffLabel-bright" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.vgrow="ALWAYS" />
+                                <Label fx:id="ratingLabel" prefWidth="450.0" styleClass="staffLabel-bright" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                <Label fx:id="feedbackLabel" maxWidth="-Infinity" prefWidth="450.0" styleClass="staffLabel-bright" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="8" GridPane.vgrow="ALWAYS" />
                             </children>
                         </GridPane>
                     </children>
