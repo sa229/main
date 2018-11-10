@@ -15,6 +15,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FavouriteCommand;
 import seedu.address.logic.commands.FeedbackCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindDepartmentCommand;
+import seedu.address.logic.commands.FindEmailCommand;
+import seedu.address.logic.commands.FindManagerCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -22,6 +25,7 @@ import seedu.address.logic.commands.PrivacyCommand;
 import seedu.address.logic.commands.RateCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.UnfavouriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -76,8 +80,20 @@ public class AddressBookParser {
         case UnfavouriteCommand.COMMAND_ALIAS:
             return new UnfavouriteCommandParser().parse(arguments);
 
+        case SortCommand.COMMAND_WORD:
+            return new SortCommand();
+
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case FindDepartmentCommand.COMMAND_WORD:
+            return new FindDepartmentCommandParser().parse(arguments);
+
+        case FindEmailCommand.COMMAND_WORD:
+            return new FindEmailCommandParser().parse(arguments);
+
+        case FindManagerCommand.COMMAND_WORD:
+            return new FindManagerCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

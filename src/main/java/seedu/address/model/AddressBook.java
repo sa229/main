@@ -120,6 +120,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Sorts the person list
+     */
+    public void sort() {
+        persons.sort();
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */

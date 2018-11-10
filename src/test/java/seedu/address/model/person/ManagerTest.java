@@ -30,12 +30,12 @@ public class ManagerTest {
         assertFalse(Manager.isValidManager(" ")); // spaces only
         assertFalse(Manager.isValidManager("^")); // only non-alphanumeric characters
         assertFalse(Manager.isValidManager("peter*")); // contains non-alphanumeric characters
+        assertFalse(Manager.isValidManager("peter the 2nd")); // alphanumeric characters
+        assertFalse(Manager.isValidManager("12345")); // numbers only
 
         // valid manager
         assertTrue(Manager.isValidManager("peter jack")); // alphabets only
-        assertTrue(Manager.isValidManager("12345")); // numbers only
-        assertTrue(Manager.isValidManager("peter the 2nd")); // alphanumeric characters
         assertTrue(Manager.isValidManager("Capital Tan")); // with capital letters
-        assertTrue(Manager.isValidManager("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(Manager.isValidManager("David Roger Jackson Ray Jr")); // long names
     }
 }

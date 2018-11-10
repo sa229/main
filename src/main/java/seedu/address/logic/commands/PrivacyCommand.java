@@ -11,8 +11,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -79,6 +81,10 @@ public class PrivacyCommand extends Command {
         model.updatePerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.commitAddressBook();
+
+        Index indexEdited = Index.fromZeroBased(model.getFilteredPersonList().indexOf(editedPerson));
+        EventsCenter.getInstance().post(new JumpToListRequestEvent(indexEdited));
+
         return new CommandResult(String.format(MESSAGE_EDIT_PRIVACY_SUCCESS, editedPerson));
     }
 

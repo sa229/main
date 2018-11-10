@@ -6,8 +6,10 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
+import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -70,6 +72,10 @@ public class RateCommand extends Command {
         model.updatePerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.commitAddressBook();
+
+        Index indexEdited = Index.fromZeroBased(model.getFilteredPersonList().indexOf(editedPerson));
+        EventsCenter.getInstance().post(new JumpToListRequestEvent(indexEdited));
+
         return new CommandResult(String.format(MESSAGE_RATING_PERSON_SUCCESS, editedPerson));
     }
 
