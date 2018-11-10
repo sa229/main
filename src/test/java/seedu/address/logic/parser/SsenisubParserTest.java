@@ -44,11 +44,11 @@ import seedu.address.testutil.FieldsToChangeBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class SsenisubParserTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final SsenisubParser parser = new SsenisubParser();
 
     @Test
     public void parseCommand_privacy() throws Exception {

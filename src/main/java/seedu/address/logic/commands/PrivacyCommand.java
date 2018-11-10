@@ -35,7 +35,7 @@ import seedu.address.model.person.Salary;
 import seedu.address.model.tag.Tag;
 
 /**
- * Togggles the privacy value of an existing person's information in the address book.
+ * Togggles the privacy value of an existing person's information in SSENISUB.
  */
 public class PrivacyCommand extends Command {
 
@@ -80,7 +80,7 @@ public class PrivacyCommand extends Command {
         Person editedPerson = changePrivacy(personToEdit, fieldsToChange);
         model.updatePerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.commitAddressBook();
+        model.commitSsenisub();
 
         Index indexEdited = Index.fromZeroBased(model.getFilteredPersonList().indexOf(editedPerson));
         EventsCenter.getInstance().post(new JumpToListRequestEvent(indexEdited));

@@ -27,7 +27,7 @@ public class UnfavouriteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 ";
     public static final String MESSAGE_UNFAVOURITE_PERSON_FAIL = "Person not in favourites: %1$s";
     public static final String MESSAGE_UNFAVOURITE_PERSON_SUCCESS = "Person removed from favourites: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in SSENISUB.";
     private final Index index;
     /**
      * @param index of the person in the filtered person list to edit
@@ -48,7 +48,7 @@ public class UnfavouriteCommand extends Command {
         model.unfavouritePerson(personToUnfavourite, unfavouritedPerson);
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.commitAddressBook();
+        model.commitSsenisub();
 
         if (personToUnfavourite.getFavourite()) {
             return new CommandResult(String.format(MESSAGE_UNFAVOURITE_PERSON_SUCCESS,

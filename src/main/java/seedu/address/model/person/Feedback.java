@@ -13,7 +13,7 @@ import java.util.Map;
 import seedu.address.MainApp;
 
 /**
- * Represents a Person's feedback number in the address book.
+ * Represents a Person's feedback number in SSENISUB.
  * Guarantees: immutable; is valid as declared in {@link #isValidFeedback(String)}
  */
 public class Feedback {

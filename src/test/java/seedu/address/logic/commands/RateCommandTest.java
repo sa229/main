@@ -7,14 +7,14 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalSsenisub;
 
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
-import seedu.address.model.AddressBook;
+import seedu.address.model.Ssenisub;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -23,7 +23,7 @@ import seedu.address.model.person.Rating;
 import seedu.address.testutil.PersonBuilder;
 
 public class RateCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSsenisub(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
@@ -59,9 +59,9 @@ public class RateCommandTest {
         RateCommand rateCommand = new RateCommand(indexLastPerson, new Rating("6"));
 
         String expectedMessage = String.format(RateCommand.MESSAGE_RATING_PERSON_SUCCESS, editedPerson);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Ssenisub(model.getSsenisub()), new UserPrefs());
         expectedModel.updatePerson(lastPerson, editedPerson);
-        expectedModel.commitAddressBook();
+        expectedModel.commitSsenisub();
 
         assertCommandSuccess(rateCommand, model, commandHistory, expectedMessage, expectedModel);
     }
@@ -75,7 +75,7 @@ public class RateCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getSsenisub().getPersonList().size());
 
         RateCommand rateCommand = new RateCommand(outOfBoundIndex, new Rating("0"));
 

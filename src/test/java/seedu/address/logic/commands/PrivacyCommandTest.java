@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalSsenisub;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,7 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.PrivacyCommand.FieldsToChange;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.Ssenisub;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -27,7 +27,7 @@ import seedu.address.testutil.TypicalPersons;
 
 public class PrivacyCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSsenisub(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test
@@ -38,9 +38,9 @@ public class PrivacyCommandTest {
 
         String expectedMessage = String.format(PrivacyCommand.MESSAGE_EDIT_PRIVACY_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Ssenisub(model.getSsenisub()), new UserPrefs());
         expectedModel.updatePerson(model.getFilteredPersonList().get(0), editedPerson);
-        expectedModel.commitAddressBook();
+        expectedModel.commitSsenisub();
 
         assertCommandSuccess(privacyCommand, model, commandHistory, expectedMessage, expectedModel);
 
@@ -87,7 +87,7 @@ public class PrivacyCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getSsenisub().getPersonList().size());
 
         PrivacyCommand privacyCommand = new PrivacyCommand(outOfBoundIndex,
                 new FieldsToChangeBuilder().withPrivateEmail().build());
@@ -101,9 +101,9 @@ public class PrivacyCommandTest {
         Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         FieldsToChange fieldsToChange = new FieldsToChangeBuilder().withAllPrivate().build();
         PrivacyCommand privacyCommand = new PrivacyCommand(INDEX_FIRST_PERSON, fieldsToChange);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Ssenisub(model.getSsenisub()), new UserPrefs());
         expectedModel.updatePerson(personToEdit, editedPerson);
-        expectedModel.commitAddressBook();
+        expectedModel.commitSsenisub();
         // edit -> first person edited
         privacyCommand.execute(model, commandHistory);
         Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
@@ -113,8 +113,8 @@ public class PrivacyCommandTest {
         Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
                         .getAddress().isPrivate(), true);
 
-        // undo -> reverts addressbook back to previous state and filtered person list to show all persons
-        model.undoAddressBook();
+        // undo -> reverts Ssenisub back to previous state and filtered person list to show all persons
+        model.undoSsenisub();
         Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
                         .getPhone().isPrivate(), false);
         Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
@@ -123,7 +123,7 @@ public class PrivacyCommandTest {
                         .getAddress().isPrivate(), false);
 
         // redo -> same first person edited again
-        model.redoAddressBook();
+        model.redoSsenisub();
         Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
                         .getPhone().isPrivate(), true);
         Assert.assertEquals(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())

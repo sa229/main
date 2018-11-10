@@ -12,7 +12,7 @@ import seedu.address.model.person.UniquePersonList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class Ssenisub implements ReadOnlySsenisub {
 
     private final UniquePersonList persons;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
     }
 
-    public AddressBook() {}
+    public Ssenisub() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an SSENISUB using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public Ssenisub(ReadOnlySsenisub toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code Ssenisub} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlySsenisub newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
@@ -59,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in Ssenisub.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -67,8 +67,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to SSENISUB.
+     * The person must not already exist in SSENISUB.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -76,8 +76,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in SSENISUB.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in SSENISUB.
      */
     public void updatePerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -88,7 +88,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given person {@code target} in the list with {@code favouritedReadOnlyPerson}.
      * Sorts the list to show favourite contacts first.
-     * {@code AddressBook}'s tag list will be updated with the tags of {@code favouritedReadOnlyPerson}.
+     * {@code Ssenisub}'s tag list will be updated with the tags of {@code favouritedReadOnlyPerson}.
      */
     public void favouritePerson(Person target, Person favouritedPerson) {
         requireNonNull(favouritedPerson);
@@ -127,8 +127,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code Ssenisub}.
+     * {@code key} must exist in SSENISUB.
      */
     public void removePerson(Person key) {
         persons.remove(key);
@@ -150,8 +150,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                || (other instanceof Ssenisub // instanceof handles nulls
+                && persons.equals(((Ssenisub) other).persons));
     }
 
     @Override
