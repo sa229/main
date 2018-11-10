@@ -32,7 +32,7 @@ public interface SsenisubStorage {
 
     /**
      * Saves the given {@link ReadOnlySsenisub} to the storage.
-     * @param Ssenisub cannot be null.
+     * @param ssenisub cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
     void saveSsenisub(ReadOnlySsenisub ssenisub) throws IOException;

@@ -21,19 +21,19 @@ public class LogicManager extends ComponentManager implements Logic {
 
     private final Model model;
     private final CommandHistory history;
-    private final SsenisubParser SsenisubParser;
+    private final SsenisubParser ssenisubParser;
 
     public LogicManager(Model model) {
         this.model = model;
         history = new CommandHistory();
-        SsenisubParser = new SsenisubParser();
+        ssenisubParser = new SsenisubParser();
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         try {
-            Command command = SsenisubParser.parseCommand(commandText);
+            Command command = ssenisubParser.parseCommand(commandText);
             return command.execute(model, history);
         } finally {
             history.add(commandText);
