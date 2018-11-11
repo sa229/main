@@ -67,6 +67,29 @@ public class Ssenisub implements ReadOnlySsenisub {
     }
 
     /**
+     * Returns true of a person with the same Name as {@code person} exists in Ssenisub.
+     */
+    public boolean hasName(Person person) {
+        requireNonNull(person);
+        return persons.containsName(person);
+    }
+    /**
+     * Returns true if a person with the same Phone Number as {@code person} exists in Ssenisub.
+     */
+    public boolean hasPhoneNumber(Person person) {
+        requireNonNull(person);
+        return persons.containsPhoneNumber(person);
+    }
+
+    /**
+     * Returns true if a person with the same Email as {@code person} exists in Ssenisub.
+     */
+    public boolean hasEmail(Person person) {
+        requireNonNull(person);
+        return persons.containsEmail(person);
+    }
+
+    /**
      * Adds a person to SSENISUB.
      * The person must not already exist in SSENISUB.
      */

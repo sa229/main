@@ -24,6 +24,21 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a person with the same Name as {@code person} exists in Ssenisub.
+     */
+    boolean hasName(Person person);
+
+    /**
+     * Returns true if a person has the same Phone Number as {@code person} exists in Ssenisub.
+     */
+    boolean hasPhoneNumber(Person person);
+
+    /**
+     * Returns true if a person has the same Email as {@code person} exists in Ssenisub.
+     */
+    boolean hasEmail(Person person);
+
+    /**
      * Deletes the given person.
      * The person must exist in Ssenisub.
      */
