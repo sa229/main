@@ -12,7 +12,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs {
 
     private GuiSettings guiSettings;
-    private Path ssenisubFilePath = Paths.get("data" , "Ssenisub.xml");
+    private Path ssenisubFilePath = Paths.get("data" , "ssenisub.xml");
 
     public UserPrefs() {
         setGuiSettings(500, 500, 0, 0);
