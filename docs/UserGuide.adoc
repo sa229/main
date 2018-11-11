@@ -123,9 +123,11 @@ Provides feeback for an existing staff in SSENISUB +
 Format: `feedback INDEX fb/You are great!`
 
 ****
-* Rates the staff at the specified `INDEX`. The index refers to the index number shown in the displayed staff list. The index *must be a positive integer* 1, 2, 3, ...
+* Updated the feedback of the staff at specified `INDEX`. The index refers to the index number shown in the displayed
+staff list. The index *must be a positive integer* 1, 2, 3, ...
 * The feedback field must be provided.
-* Profanities are not allowed.
+* Profanities are not allowed, even if it is encapsulated within a word.
+* Profanities written in leetspeak will be caught as well.
 ****
 
 Examples:
@@ -391,7 +393,7 @@ e.g. `favourite 1` or `fav 2`
 * *Unfavourite* : `unfavourite INDEX` or `unfav INDEX` +
 e.g. `unfavourite 1` or `unfav 2`
 * *Feedback* : `feedback INDEX [fb/FEEDBACK]` +
-e.g. `feedback 1 f/Excellent`
+e.g. `feedback 1 fb/Excellent job!`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`
 * *Rate* : `rate INDEX [r/RATING]` +
