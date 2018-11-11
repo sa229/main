@@ -349,6 +349,49 @@ Returns `john` and `John Doe`
 Returns any manager having names `Betsy`, `Tim`, or `John`
 // end::find-m[]
 
+// tag::sort[]
+=== Sorting all staff by name : `sort`
+
+Sorts the staff list by name. +
+Format: `sort`
+
+****
+* Sorts by favourite then by name, favourite staffs stay on top of the list
+****
+// end::sort[]
+
+// tag::sortDept[]
+=== Sorting all staff by department : `sortDept`
+
+Sorts the staff list by department. +
+Format: `sortDept`
+
+****
+* Sorts by department then by favourite then by name
+****
+// end::sortDept[]
+
+// tag::sortRatingDown[]
+=== Sorting all staff by rating : `sortRatingDown`
+
+Sorts the staff list by rating from highest to lowest. +
+Format: `sortRatingDown` or `sortRating`
+
+****
+* Sorts by rating (highest-lowest) then by favourite then by name
+****
+// end::sortRatingDown[]
+
+// tag::sortRatingUp[]
+=== Sorting all staff by rating : `sortRatingUp`
+
+Sorts the staff list by rating from lowest to highest. +
+Format: `sortRatingUp`
+
+****
+* Sorts by rating (lowest-highest) then by favourite then by name
+****
+// end::sortRatingDown[]
 
 // tag::favourite[]
 === Favouriting a staff : `favourite`
@@ -551,6 +594,10 @@ e.g. `find-e johnd@example.com`
 e.g. `find-d Accounting`
 * *Find by Manager* : `find-m KEYWORD [MORE_KEYWORDS]` +
 e.g. `find-m Moses Ben`
+* *Sort by Name* : `sort`
+* *Sort by Department* : `sortDept`
+* *Sort by Rating from Highest to Lowest* : `sortRatingDown` or `sortRating`
+* *Sort by Rating from Lowest to Highest* : `sortRatingUp`
 * *Favourite* : `favourite INDEX` or `fav INDEX` +
 e.g. `favourite 1` or `fav 2`
 * *Unfavourite* : `unfavourite INDEX` or `unfav INDEX` +
