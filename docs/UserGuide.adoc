@@ -111,6 +111,9 @@ Format: `add n/NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS d/DEPARTMENT m/MAN
 [TIP]
 A staff can have any number of tags (including 0)
 
+[CAUTION]
+`Phone` numbers and `Email` addresses are unique, you will be unable to add a new staff with a pre-existing `Phone` number or `Email` address within SSENISUB
+
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Accounting m/Marcus Lim t/staff`
@@ -302,6 +305,33 @@ Selects the 2nd staff in SSENISUB.
 `select 1` +
 Selects the 1st staff in the results of the `find` command.
 
+// tag::privacy[]
+=== Setting private fields: `privacy`
+
+Sets the mentioned field into a private field (displays as 'private' on staff panel). +
+
+Format: `privacy INDEX [p/ y or n] [e/ y or n] [a/ y or n]`
+
+****
+* Modifies the privacy of the information of the staff at the specified `INDEX`.
+* The index refers to the index number shown in the displayed staff list.
+* The index *must be a positive integer* 1, 2, 3, ...
+* Only Phone, Email and Address can be set to private.
+* 'y' means setting to private and 'n' means setting to public.
+* Coming in v2.0: View private fields +
+** With the authorization level features implemented, a user with high enough level of authority
+will be able to see the actual values of the private field (instead of 'private'). +
+****
+
+Examples:
+
+* `privacy 1 p/y a/n` +
+Sets the `Phone` number and `Address` of the 1st staff  in SSENISUB to private and public respectively.
+
+* `privacy 4 e/n p/n` +
+Sets the `Email` and `Phone` number of the 4th staff in SSENISUB to public.
+// end::privacy[]
+
 === Favouriting a staff : `favourite`
 
 Favourites the specified staff and moves it up to the top of the list. +
@@ -404,24 +434,6 @@ The `redo` command fails as there are no `undo` commands executed previously.
 `redo` (reapplies the `clear` command) +
 // end::undoredo[]
 
-=== Setting private fields: `privacy`
-
-Sets the mentioned field into a private field (will not display on the panel). +
-Format: `privacy INDEX [p/ y or n] [e/ y or n] [a/ y or n]`
-
-****
-* Modifies the privacy of the information of the staff at the specified `INDEX`.
-* The index refers to the index number shown in the displayed staff list.
-* The index *must be a positive integer* 1, 2, 3, ...
-* Only Phone, Email and Address can be set to private.
-* 'y' means setting to private and 'n' means setting to public.
-****
-
-Examples:
-
-* `privacy 1 p/y a/n` +
-Sets the `Phone` number and `Address` of the 1st staff  in SSENISUB to private and public respectively.
-
 === Additional fields for staff in edit: `edit`
 Staff now has 4 additional fields namely salary, overtime hours (ot hours), overtime rate (ot rate) and pay deductibles.
 Format: edit INDEX [s/SALARY] [oth/OTHOURS] [otr/OTRATE] [de/DEDUCTIBLES]
@@ -454,16 +466,6 @@ Format: `clear`
 Exits the program. +
 Format: `exit`
 
-=== Login to SSENISUB [coming in v2.0]: `Login`
-
-Login to SSENISUB so that different users such as staff, HR staff & manager only allowed to use certain commands. +
-Format: `login u/manager pw/password`
-
-=== Logout from SSENISUB [coming in v2.0]: `logout`
-
-Logout from SSENISUB. +
-Format: `logout`
-
 === Locking SSENISUB [coming in v2.0]: `lock`
 
 Locks SSENISUB with a specified password. +
@@ -473,6 +475,36 @@ Format: `lock PASSWORD`
 
 Unlocks SSENISUB with a specified password. +
 Format: `unlock PASSWORD`
+
+=== Counting the number of staff [coming in v2.0]: `count`
+
+Count the number of staff in specific department in SSENISUB +
+Format: `count d/DEPARTMENT`
+
+Examples:
+
+* `count d/accounting` +
+
+// tag::login[]
+=== Authorization levels for features [coming in v2.0]: `login`, `logout`
+
+Allows a user to log into the SSENISUB system with different authorization levels. +
+Format: `login USERNAME PASSWORD`, `logout`
+
+****
+* In future versions, we plan to have features locked by authorization level, as we intend for
+SSENISUB to be used by all staff within the same Organization, it makes more sense if only
+a HR Manager is allowed to add or delete staff, or only the staff himself to be able to change his
+own information privacy settings.
+* Implementation of this authorization level feature will then allow us to develop new features makes
+the organization hierachy more understandable and obvious.
+****
+
+Examples:
+
+* `login AmyBee 123456` +
+* `logout`
+// end::login[]
 
 // tag::dataencryption[]
 === Encrypting data files `[coming in v2.0]`
@@ -523,7 +555,7 @@ e.g. `privacy 2 p/y a/n`
 * *Exit* : `exit`
 * *Sort* [coming in v2.0] : `sort [KEYWORD]` +
 e.g. `sort ASCENDING`
-* *Login SSENISUB* [coming in v2.0] : `login u/manager pw/password`
+* *Login SSENISUB* [coming in v2.0] : `login USERNAME PASSWORD`
 * *Logout SSENISUB* [coming in v2.0] : `logout`
 * *Lock SSENISUB* [coming in v2.0] : `lock PASSWORD`
 * *Unlock SSENISUB* [coming in v2.0]: `unlock PASSWORD`

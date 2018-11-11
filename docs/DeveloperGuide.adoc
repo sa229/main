@@ -472,22 +472,23 @@ adding profanities that have been overlooked, etc.)
 ==== Introduction
 
 We have implemented a privacy feature to fields that we deem to have importance in having an option to be
-made private. A Privacy Command is implemented to be able to toggle the privacy value of the information of
+made private. A Privacy Command is implemented to be able to set the privacy values of the information of
 the selected person.
 
 ==== Current implementation
 
 The privacy feature is currently implemented as a boolean field under information classes that can be made private
-(Phone, Email, Address as of v1.2).
+(Phone, Email, Address as of v1.4).
 
-A new command PrivacyCommand is implemented to be able to toggle the boolean values of classes that have a Privacy field.
-The add command can also add a Person with private field directly.
+A new command PrivacyCommand is implemented to be able to change the Privacy values of classes that have a Privacy field.
+The add command can also add a Staff with private fields directly.
 
-The UI will also display private fields as private.
+The GUI will also display private fields as private.
 
 [NOTE]
 This command can only change fields that can be made private, and will throw an exception otherwise.
 
+Coming in v2.0: +
 To change a field to private or not private, a 'y' or 'n' is the expected input respectively. This is planned to
 change in future updates where there can be different levels of privacy for different fields.
 
@@ -505,6 +506,23 @@ image::PrivacyCommandActivityDiagram.png[width="800"]
 ** Pros: Able to have different level of Privacy and prevents wrong input automatically
 ** Cons: Harder to implement and extra work not required in current stage of project
 // end::privacycommand[]
+
+// tag::logincommand[]
+=== [Proposed] Login Feature
+==== Introduction
+
+The login feature will be implemented together with an authorization level feature. Based on the login credentials, the staff
+using the SSENISUB will have varying levels of access to the various features offered.
+
+The idea and motivation behind this is that as we plan for SSENISUB to be used as a central database and can be used by any
+staff, not all commands and features should be utilized by a typical staff, such as `delete`. Only a HR Manager should have the
+authorization to be able to `delete` or `add` staff.
+
+With the implementation of authorization levels, we will then be able to categorize the other features based on authority required
+to access them, and also affect the visibility state of private information.
+
+A Logout feature will also be implemented for the case of a shared device, which multiple staff can be using throughout the day.
+// end:logincommand[]
 
 // tag::addcommand[]
 === Add Feature

@@ -1,0 +1,69 @@
+= Tan Yuxuan - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: SSENISUB
+
+---
+
+== Overview
+
+SSENISUB is intended for organizations who follow a strict hierarchical structure to manage their manpower and
+allows the staff to use this as contact book.
+
+== Summary of contributions
+
+* *Code contributed*: [https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=abtyx[Functional code]]
+
+* *Major enhancement*: added the Privacy feature to Phone, Email and Address fields of a Staff.
+** What it does: This feature allows staff to have the choice to set their private information to a 'private' state, which will allow only the appropriate personnel to be able to view it on SSENISUB.
+** Justification: This feature is important as it respects and protects the privacy of the staff's information, disallowing misuse of their information by regular staff.
+** Highlights: The implementation of this feature is quite universal within the constraints of the project, and thus 'privacy' can be implemented to other fields deemed neccesary in the future with similar logic.
+
+* *Minor enhancement*:
+** Modified the AddCommand to take in three new prefixes `pp/`, `pe/` and `pa/` which represent private `Phone`, private `Email` and private `Address`. This allows the direct addition of a staff with private fields.
+** Made the staff panel portion of the GUI reflect the staff's information differently based on its privacy settings.
+
+* *Other contributions*:
+
+** Enhancements to existing features:
+*** Made Phone Numbers and Email addresses unique within the SSENISUB staff list as no two staff should be using the same phone number or email address.
+**** Implementation: changed the AddCommand and EditCommand to check the existing staffs for duplicate phone or emails before fully executing the command.
+
+*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
+*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
+** Documentation:
+*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
+** Community:
+*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
+*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
+*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
+*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
+** Tools:
+*** Integrated a third party library (Natty) to the project (https://github.com[#42])
+*** Integrated a new Github plugin (CircleCI) to the team repo
+
+_{you can add/remove categories in the list above}_
+
+== Contributions to the User Guide
+
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=privacy]
+
+include::../UserGuide.adoc[tag=login]
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+include::../DeveloperGuide.adoc[tag=privacycommand]
+
+include::../DeveloperGuide.adoc[tag=logincommand]
+
