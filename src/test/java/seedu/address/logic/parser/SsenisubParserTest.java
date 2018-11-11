@@ -34,6 +34,9 @@ import seedu.address.logic.commands.RateCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.SortDeptCommand;
+import seedu.address.logic.commands.SortRatingDownCommand;
+import seedu.address.logic.commands.SortRatingUpCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.UnfavouriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -110,7 +113,21 @@ public class SsenisubParserTest {
     @Test
     public void parseCommand_sort() throws Exception {
         assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD) instanceof SortCommand);
-        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " 3") instanceof SortCommand);
+    }
+
+    @Test
+    public void parseCommand_sortDept() throws Exception {
+        assertTrue(parser.parseCommand(SortDeptCommand.COMMAND_WORD) instanceof SortDeptCommand);
+    }
+
+    @Test
+    public void parseCommand_sortRatingDown() throws Exception {
+        assertTrue(parser.parseCommand(SortRatingDownCommand.COMMAND_WORD) instanceof SortRatingDownCommand);
+    }
+
+    @Test
+    public void parseCommand_sortRatingUp() throws Exception {
+        assertTrue(parser.parseCommand(SortRatingUpCommand.COMMAND_WORD) instanceof SortRatingUpCommand);
     }
 
     @Test

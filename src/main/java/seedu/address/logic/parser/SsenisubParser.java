@@ -26,8 +26,12 @@ import seedu.address.logic.commands.RateCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.SortDeptCommand;
+import seedu.address.logic.commands.SortRatingDownCommand;
+import seedu.address.logic.commands.SortRatingUpCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.UnfavouriteCommand;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -82,6 +86,16 @@ public class SsenisubParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommand();
+
+        case SortDeptCommand.COMMAND_WORD:
+            return new SortDeptCommand();
+
+        case SortRatingUpCommand.COMMAND_WORD:
+            return new SortRatingUpCommand();
+
+        case SortRatingDownCommand.COMMAND_WORD:
+        case SortRatingDownCommand.COMMAND_ALIAS:
+            return new SortRatingDownCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);

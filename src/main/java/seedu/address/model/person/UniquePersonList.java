@@ -102,9 +102,9 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Sorts the person list.
+     * Sorts the person list by name.
      */
-    public void sort() {
+    public void sortByName() {
 
         Comparator<Person> byName = Comparator.comparing(person -> person.getName().toString());
         Comparator<Person> byFavReversed = Comparator.comparing(person -> String.valueOf(person.getFavourite()));
@@ -113,6 +113,58 @@ public class UniquePersonList implements Iterable<Person> {
         Comparator<Person> byFavthenName = byFav.thenComparing(byName);
 
         internalList.sort(byFavthenName);
+
+    }
+
+    /**
+     * Sorts the person list by department.
+     */
+    public void sortByDept() {
+
+        Comparator<Person> byDept = Comparator.comparing(person -> person.getDepartment().toString());
+        Comparator<Person> byName = Comparator.comparing(person -> person.getName().toString());
+        Comparator<Person> byFavReversed = Comparator.comparing(person -> String.valueOf(person.getFavourite()));
+        Comparator<Person> byFav = byFavReversed.reversed();
+
+        Comparator<Person> byDeptthenFav = byDept.thenComparing(byFav);
+        Comparator<Person> byDeptthenFavthenName = byDeptthenFav.thenComparing(byName);
+
+        internalList.sort(byDeptthenFavthenName);
+
+    }
+
+    /**
+     * Sorts the person list by rating from lowest to highest.
+     */
+    public void sortByRatingUp() {
+
+        Comparator<Person> byRatingUp = Comparator.comparingInt(person -> person.getRating().hashCode());
+        Comparator<Person> byName = Comparator.comparing(person -> person.getName().toString());
+        Comparator<Person> byFavReversed = Comparator.comparing(person -> String.valueOf(person.getFavourite()));
+        Comparator<Person> byFav = byFavReversed.reversed();
+
+        Comparator<Person> byRatingUpthenFav = byRatingUp.thenComparing(byFav);
+        Comparator<Person> byRatingUpthenFavthenName = byRatingUpthenFav.thenComparing(byName);
+
+        internalList.sort(byRatingUpthenFavthenName);
+
+    }
+
+    /**
+     * Sorts the person list by rating from highest to lowest.
+     */
+    public void sortByRatingDown() {
+
+        Comparator<Person> byRatingUp = Comparator.comparingInt(person -> person.getRating().hashCode());
+        Comparator<Person> byRatingDown = byRatingUp.reversed();
+        Comparator<Person> byName = Comparator.comparing(person -> person.getName().toString());
+        Comparator<Person> byFavReversed = Comparator.comparing(person -> String.valueOf(person.getFavourite()));
+        Comparator<Person> byFav = byFavReversed.reversed();
+
+        Comparator<Person> byRatingDownthenFav = byRatingDown.thenComparing(byFav);
+        Comparator<Person> byRatingDownthenFavthenName = byRatingDownthenFav.thenComparing(byName);
+
+        internalList.sort(byRatingDownthenFavthenName);
 
     }
 

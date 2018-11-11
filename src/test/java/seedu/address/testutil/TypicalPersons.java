@@ -79,6 +79,18 @@ public class TypicalPersons {
             .withDepartment("Tech").withManager("Moses Lim")
             .withSalary("0").withHours("0").withRate("0").withDeductibles("0").withFeedback("-NO FEEDBACK YET-")
             .build();
+    public static final Person JASON = new PersonBuilder().withName("Jason Samuel").withPhone("98832818")
+            .withEmail("jasonsamuel@example.com").withAddress("PGPR").withRating("4")
+            .withDepartment("Marketing").withManager("Michael Lam").withSalary("0").withHours("0").withRate("0")
+            .withDeductibles("0").withFeedback("-NO FEEDBACK YET-").build();
+    public static final Person KEVIN = new PersonBuilder().withName("Kevin William").withPhone("92734819")
+            .withEmail("kevinwilliam@example.com").withAddress("Surabaya").withRating("7")
+            .withDepartment("Tech").withManager("Michael Lam").withSalary("0").withHours("0").withRate("0")
+            .withDeductibles("0").withFeedback("-NO FEEDBACK YET-").build();
+    public static final Person MICHAEL = new PersonBuilder().withName("Michael Lam").withPhone("92734819")
+            .withEmail("michaellam@example.com").withAddress("Farrer Road").withRating("9")
+            .withDepartment("Tech").withManager("Michael Lam").withSalary("0").withHours("0").withRate("0")
+            .withDeductibles("0").withFeedback("-NO FEEDBACK YET-").build();
     public static final Person NINJA = new PersonBuilder().withName("Ninja Warrior").withPrivatePhone("92349234")
             .withPrivateEmail("ninja@example.com").withPrivateAddress("Ninja Cave").withRating("0")
             .withDepartment("Assasin").withManager("Bruce Lee").withSalary("0").withHours("0").withRate("0")
