@@ -1,0 +1,55 @@
+= Ngeow Xiu Qi - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: SSENISUB
+image::Ui.png[width="600"]
+---
+
+== Overview
+
+SSENISUB is a software for the Human Resource (HR) department to better manage the employees in the company, it also serves as a tool for
+managers to better manage their staff and lastly, serve as a contact list for users to find other staff within the company or department.
+
+== Summary of contributions
+
+* *Code contributed*: [https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=NgeowXiuQi[Functional code]]
+
+* *Major enhancement*: Implemented four new fields for a staff, namely : Salary, Overtime Hours, Overtime Rate and Pay Deductibles.
+** What it does: This feature allows the HR department to store all financial aspects for a staff and ensure they are properly accounted for.
+** Justification: This feature not only allows the staff to ensure that he/she is being paid the right amount, but also helps the HR department to store these information in their records and edit them should there be any changes.
+** Highlights: The four new fields is able to behave seamlessly as part of the Staff and behaves just like the other attributes like Phone and Address. The HR staff would also be able to edit the four fields whenever necessary
+to allow changes (such as a pay raise or when the user has worked more overtime hours).
+
+* *Minor enhancement*:
+** Modified the "Edit" command to take in four new prefixes to allow editing of the salary, overtime hours, overtime rate and pay deductibles fields implemented ("s/","oth/", "otr/", "de/" respectively) (Pull Requests https://github.com/CS2103-AY1819S1-T13-2/main/pull/10[#10], https://github.com/CS2103-AY1819S1-T13-2/main/pull/41[#41]).
+** Tweaked the staff panel to be able to display the net salary. Net salary in this case refers to the final salary calculated after all additions and deductions are taken into account. (Pull Request https://github.com/CS2103-AY1819S1-T13-2/main/pull/53[#53])
+
+* *Other contributions*:
+** Test Case Review :
+*** Reviewed some of the tests and removed any unnecessary checks within the test case itself (Pull Request  https://github.com/CS2103-AY1819S1-T13-2/main/pull/63[#63]).
+
+** Documentation:
+*** Edited the README document to reflect our product's (SSENISUB) overview and features (Pull Request https://github.com/CS2103-AY1819S1-T13-2/main/pull/5[#5]).
+
+** Community:
+*** Reviewed several PRs of major features : https://github.com/CS2103-AY1819S1-T13-2/main/pull/119[#119], https://github.com/CS2103-AY1819S1-T13-2/main/pull/56[#56], https://github.com/CS2103-AY1819S1-T13-2/main/pull/55[#55], https://github.com/CS2103-AY1819S1-T13-2/main/pull/27[#27], https://github.com/CS2103-AY1819S1-T13-2/main/pull/23[#23]
+**** Helped to ensure that teammates codes in PRs were according to proper coding guidelines (Done when reviewing PRs).
+
+== Contributions to the User Guide
+
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=edit]
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+include::../DeveloperGuide.adoc[tag=Salary, OT Hours, OT Rate and Pay Deductibles For Staff]
