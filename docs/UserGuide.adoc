@@ -391,7 +391,7 @@ Format: `sortRatingUp`
 ****
 * Sorts by rating (lowest-highest) then by favourite then by name
 ****
-// end::sortRatingDown[]
+// end::sortRatingUp[]
 
 // tag::favourite[]
 === Favouriting a staff : `favourite`
