@@ -19,7 +19,9 @@ By: `Team T13-2`      Since: `Nov 2018`      Licence: `MIT`
 == Introduction
 
 SSENISUB is intended for organizations who follows a strict hierarchical structure to manage their manpower and
-allows the staff to use this as contact book. Jump to the <<Quick Start>> to get started. Enjoy!
+allows the staff to use this as contact book.
+
+Jump to the <<Quick Start>> to get started. Enjoy!
 
 == Quick Start
 
@@ -31,11 +33,11 @@ allows the staff to use this as contact book. Jump to the <<Quick Start>> to get
 image::Ui.png[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
-e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
+   e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list`* : lists all staff
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Accounting m/Alice Tan` :
+* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John Street Blk 123, #01-01 d/Tech m/Alice Tan` :
 adds a staff named `John Doe` to SSENISUB.
 * **`delete`**`3` : deletes the 3rd staff shown in the current list
 * *`exit`* : exits the app
@@ -61,11 +63,12 @@ adds a staff named `John Doe` to SSENISUB.
 [width="100%",cols="20%,<80%"]
 |=======================================================================
 
-|NAME | Names should only contain alphabetical characters and spaces, and it should not be blank
+|NAME | Names should only contain alphabetical characters and spaces, and should not be blank
 
-|PHONE | Phone numbers should only contain numbers, starts with digit '6', '8' or '9' and it should be 8 digits long
+|PHONE | Phone numbers should only contain numbers, starts with digit '6', '8' or '9', and should be 8 digits long
 
 |EMAIL | Emails should be of the format local-part@domain and adhere to the following constraints: +
+
  1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses,
  (!#$%&'*+/=?`{}~^.-), 1 to 50 characters long  +
 
@@ -75,7 +78,7 @@ adds a staff named `John Doe` to SSENISUB.
  - start and end with alphanumeric characters +
  - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.
 
-|ADDRESS | Addresses can take any values, and it should not be blank, 1 to 50 characters long
+|ADDRESS | Addresses can take any values, should not be blank, and should be 1 to 50 characters long
 
 |SALARY | Salary should only contain integers with no spaces or commas
 
@@ -85,17 +88,17 @@ adds a staff named `John Doe` to SSENISUB.
 
 |DEDUCTIBLE | Deductible should only contain numbers up to two decimal places with no spaces or commas
 
-|DEPARTMENT | Department should only contain alphabetic characters and spaces, and it should not be blank, 1 to 30
-characters long
+|DEPARTMENT | Department should only contain alphabetic characters and spaces, should not be blank,
+and should be 1 to 30 characters long
 
-|MANAGER | Manager should only contain alphabetic characters and spaces, and it should not be blank, 1 to 50
-characters long
+|MANAGER | Manager should only contain alphabetic characters and spaces, should not be blank,
+and should be 1 to 50 characters long
 
-|RATING | Rating should only contain numbers, and it should be between 1 to 10
+|RATING | Rating should only contain numbers between 1 to 10
 
-|FEEDBACK | Feedback can take any values, and it should not be blank, 1 to 65 characters long
+|FEEDBACK | Feedback can take any values, should not be blank, and should be 1 to 65 characters long
 
-|INDEX | Refers to the index number shown by the staff list command & it must be a positive integer 1, 2, 3, ...
+|INDEX | Refers to the index number shown by the staff list command, and must be a positive integer 1, 2, 3, ...
 
 |=======================================================================
 
