@@ -1,0 +1,589 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Terence Goh - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">SSENISUB</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/CS2103-AY1819S1-T13-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Terence Goh - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-ssenisub"><a class="link" href="#project-ssenisub">PROJECT: SSENISUB</a></h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ui.png" alt="Ui" width="600">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This project portfolio serves to document my contributions to SSENISUB, a CS2103 (Software Engineering)
+project, as part of my Computer Science curriculum in National University of Singapore (NUS).</p>
+</div>
+<div class="paragraph">
+<p>SSENISUB is an business management application which is used for managing employees' information within an organisation.
+Its name is inspired from the the word "business", and is simply a palindrome of it. It is morphed from the given
+<code>addressbook-level4</code> application as its base. The user interacts with it mainly using a
+Command Line Interface (CLI). In conjunction with the CLI, a Graphical User Interface (GUI) is used to make it more
+user-friendly, supported by coloured text and symbols. This application is written in Java with about 15 kLoC,
+and its GUI is created with JavaFX, CSS and HTML.</p>
+</div>
+<div class="paragraph">
+<p>My main responsibility in SSENISUB is to implement commands (<code>feedback</code> and <code>rate</code>) that a manager would want to have to support a continuous
+review and tracking of his/her employees' performance throughout their time in the organisation. This is used to support
+making informed management decisions.</p>
+</div>
+<div class="paragraph">
+<p>I also played a key role in creating an identity for SSENISUB by designing an icon and making it the
+face of the application.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Code contributed</strong>: <a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=iamrence">[RepoSense for IamRENCE</a>]</p>
+</li>
+<li>
+<p><strong>Major enhancement 1</strong>: added <strong>the ability to give ratings to staff</strong> stored inside the application</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Allows the user to update a rating of a staff to keep track of his/her performance in the organisation.</p>
+</li>
+<li>
+<p>Justification: This feature improves the product significantly because a user is provided with a way to keep track of
+his/her employees' performance, which is especially important during the <strong>year-end performance review</strong>. It potentially
+affects how much bonus or credit is given to the staff in the organisation.</p>
+</li>
+<li>
+<p>Highlights: This enhancement looks similar to the add and edit command, but has to be made to <strong>execute asynchronous</strong> to
+these commands. In future releases, where users of different level of authorisations are allowed to use different commands,
+this command would only be accessible to managers (or direct superiors). The reason is because they have the right to and are in
+the best position to give any rating to their staff.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Major enhancement 2</strong>: added <strong>the ability to give feedback to staff</strong> stored inside the application</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Allows the user to give professional feedback to staff in the organisation, so that the staff knows what he/she is
+doing well in and to find out what areas of improvement he/she can engage in.</p>
+</li>
+<li>
+<p>Justification: This feature, like the rate command, improves the product to a large extent because a user is provided
+with a way to inform his/her employees what to look out for in their performance so that they can improve themselves.
+Coupled with the rate command, a manager can make <strong>more informed reviews</strong> of his/her employees' performance. At the same
+time, employees can use the feedback assigned to them as <strong>motivation</strong> for continuous improvement, or as a <strong>wake up call</strong> for
+any bad performance. This can <strong>boost the organisation&#8217;s productivity</strong> as a whole.</p>
+</li>
+<li>
+<p>Highlights: Just like the rate command, the feedback command is <strong>run non-parallel to the add and edit command</strong> due to
+future user authorisation implementations. Another highlight of this command is that users <strong>cannot enter profanities</strong>
+(even if it is entered in leetspeak). Designing an efficient way to check for profanities proved to be a very tough task: Whether
+to base the runtime on input length or the number of profanities to be rejected. A detailed analysis had to be done to make a choice.</p>
+</li>
+<li>
+<p>Credits: [<a href="https://gist.github.com/PimDeWitte/c04cc17bc5fa9d7e3aee6670d4105941">Simple Profanity Filter by PimDeWitte</a>]</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Checked <code>v1.1</code> - <code>v1.4</code> (4 releases) before team member released them on GitHub</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the application icon
+(Pull request <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/42">#42</a>)</p>
+</li>
+<li>
+<p>Wrote additional tests for existing features to increase coverage from 93.4% to 93.6%
+(Pull request <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/58">#58</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Bug fixes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed bugs in the rate and feedback command that allowed for inputs that should have been rejected
+(Pull request <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/58">#58</a>)</p>
+</li>
+<li>
+<p>Fixed overall UI/code bug where "Address Book"/"AddresBook" is displayed or used instead of our application "SSENISUB"
+(Pull request <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/107">#107</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated existing contents of the User Guide:
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/101">#101</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/102">#102</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/109">#109</a></p>
+</li>
+<li>
+<p>Updated existing contents of the Developer Guide:
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/29">#29</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/109">#109</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed:
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/12">#12</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/16">#16</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/27">#27</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/31">#31</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/44">#44</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/49">#49</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/54">#54</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/81">#81</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/100">#100</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/103">#103</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/104">#104</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/106">#106</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/108">#108</a></p>
+</li>
+<li>
+<p>Reported bugs and suggestions for other teams in the class
+(examples:  <a href="https://github.com/CS2103-AY1819S1-F11-3/main/issues/184">1</a>,
+<a href="https://github.com/CS2103-AY1819S1-F11-3/main/issues/198">2</a>,
+<a href="https://github.com/CS2103-AY1819S1-F11-3/main/issues/200">3</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="rating-a-staff-code-rate-code"><a class="link" href="#rating-a-staff-code-rate-code">Rating a staff: <code>rate</code></a></h3>
+<div class="paragraph">
+<p>Rates an existing staff in SSENISUB<br>
+Format: <code>rate INDEX r/8</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Rates the staff at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed staff list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>The rating field must be provided.</p>
+</li>
+<li>
+<p>Ratings can only be from 1 - 10.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values if they are different.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>rate 3 r/8</code><br>
+Rate the 3rd staff of a rating 8.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="rate-command-feature"><a class="link" href="#rate-command-feature">Rate command feature</a></h3>
+<div class="sect3">
+<h4 id="introduction"><a class="link" href="#introduction">Introduction</a></h4>
+<div class="paragraph">
+<p>We have implemented a rate command feature as an enhancement, which focuses on the <code>Logic</code> component.
+A <code>Rating</code> class is implemented to support this, which the <code>Person</code> class is dependent on. This command
+allows users, especially for managers to update ratings of employees within an organisation.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This command differs from the add and edit command, because users cannot simply add an employee with a rating through
+the add command or edit an employee&#8217;s rating through the edit command.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Any updates to an employee&#8217;s rating should only
+be done by a <strong>person of authority</strong>, i.e. <code>Manager</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The rate command, as mentioned, executes asynchronous to the add and edit command. Upon adding an employee, a <code>Rating.DEFAULT_INITIAL_RATING</code>
+with a default value of 0, is initialised on the <code>Person</code> and then saved.</p>
+</div>
+<div class="paragraph">
+<p>There are 2 validation regular expressions found in the <code>Rating</code> class:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>VALIDATION_REGEX</code> which checks for integer values from 0 - 10 of <code>Rating</code> which have already been added. 0 is included
+as there may be a case when a <code>Person</code> has already been added but his/her <code>Rating</code> has yet to be updated.</p>
+</li>
+<li>
+<p><code>VALIDATION_INPUT_REGEX</code> which checks for integer values from 1 - 10 of 'Rating' to be added by users with the rate
+command.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is a sequence diagram shows how the rate operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RateSequenceDiagram.png" alt="RateSequenceDiagram" width="800">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="feedback-command-feature"><a class="link" href="#feedback-command-feature">Feedback command feature</a></h3>
+<div class="sect3">
+<h4 id="introduction-2"><a class="link" href="#introduction-2">Introduction</a></h4>
+<div class="paragraph">
+<p>Similar to the rate command, we have implemented a feedback command feature as an enhancement, which also focuses on the
+<code>Logic</code> component. A <code>Feedback</code> class is implemented to support this, which the <code>Person</code> class is dependent on. This
+command allows users, especially for managers to give feedback to their employees within an organisation for them to
+know what to look out for in their performance and improve themselves.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This command also differs from the add and edit command, because users cannot simply add an employee with a feedback
+through the add command or edit an employee&#8217;s feedback through the edit command. Every added employee will start off
+without any feedback assigned to him/her.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Any updates to an employee&#8217;s feedback should only
+be done by a <strong>person of authority</strong>, i.e. <code>Manager</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The feedback command, like the rate command, executes nonparallel to the add and edit command. Upon adding an employee,
+a <code>FEEDBACK.DEFAULT_INITIAL_FEEDBACK</code> with a default value of "-NO FEEDBACK YET-", is initialised on the <code>Person</code> and
+then saved.</p>
+</div>
+<div class="paragraph">
+<p>Given below is a sequence diagram shows how the feedback operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FeedbackSequenceDiagram.png" alt="FeedbackSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>A simple profanity is implemented in the 'Feedback' class, which checks for any profanity found within the feedback
+input (Adapted from <a href="https://gist.github.com/PimDeWitte/c04cc17bc5fa9d7e3aee6670d4105941" class="bare">https://gist.github.com/PimDeWitte/c04cc17bc5fa9d7e3aee6670d4105941</a> by PimDeWitte).
+A list of English and Singlish profanities can be found under src/main/resources/words to ban/Bad_Words_List.txt
+and can be subjected to expansion and modification. It works by iterating through the whole input to find any possible
+sequence of words (no re-ordering) that match any profanity found within Bad_Words_List.txt. As such, runtime will be
+dependent on input length rather than profanity list length.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Feedback-Features"><a class="link" href="#Feedback-Features">Noteworthy Features:</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>The filter is case insensitive.</p>
+</li>
+<li>
+<p>In Bad_Words_List.txt, profanities are separated into rows with the format: "[THE_BAD_WORD],[IGNORE_IN_COMBINATION_WITH"</p>
+<div class="ulist">
+<ul>
+<li>
+<p>[THE_BAD_WORD] is the profanity to filter out.</p>
+</li>
+<li>
+<p>[IGNORE_IN_COMBINATION_WITH] can be empty, or contain a series of 1 or more words (separated by commas) that
+[THE_BAD_WORD] can be used with, e.g. paki, pakistan. "paki" is a racial slur and will be rejected, but if "pakistan", a
+country name, is entered, "pakistan" will be accepted even though it contains "paki".</p>
+</li>
+<li>
+<p>Each iteration ends when the end of the string is reached or the current substring check reaches the longest profanity
+string length within the txt file (For increased performance).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Any leetspeak in the input will be replaced by the appropriate characters before the check, i.e. "H3ll0" will be
+corrected to "Hello".</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+This profanity filter is quite basic and can be bypassed because of replacing leetspeak. For example, "2 girls 1 cup" is
+considered as inappropriate, but the replacement of "1" to "i" will cause the input to be accepted. An easy solution is
+to hard code the check of this input, but there will be many other examples like this that we would have to hard code for.
+As such, we have decided to accept this as a minor shortfall of this implementation.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Given below is a sample run of the profanity filter with a feedback input of "u suckz":</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Iteration 1:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>1a: "u": Not a profanity (No match with line in txt file).</p>
+</li>
+<li>
+<p>1b: "u ": Not a profanity (No match with line in txt file).</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+<li>
+<p>1g: "u suckz": Not a profanity (No match with line in txt file).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Iteration 2:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>2a: " ": Not a profanity (No match with line in txt file).</p>
+</li>
+<li>
+<p>2b: "  s": Not a profanity (No match with line in txt file).</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+<li>
+<p>2f: " suckz": Not a profanity (No match with line in txt file).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Iteration 3:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>3a: "s": Not a profanity (No match with line in txt file).</p>
+</li>
+<li>
+<p>3b: "su": Not a profanity (No match with line in txt file).</p>
+</li>
+<li>
+<p>3c: "suc": Not a profanity (No match with line in txt file).</p>
+</li>
+<li>
+<p>3d: "suck": Profanity! (Matches with a line in txt file). Added to a list of bad words found.</p>
+</li>
+<li>
+<p>3e: "suckz": Not a profanity (No match with line in txt file).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+<li>
+<p>Iteration 7:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>7a: "z": Not a profanity (No match with line in txt file).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The resulting list has only 1 value: "suck" and input will be rejected since there is at least 1 profanity found.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="how-to-implement-the-profanity-filter"><a class="link" href="#how-to-implement-the-profanity-filter">How to implement the profanity filter</a></h5>
+<div class="paragraph">
+<p>To ensure <strong>fast retrieval</strong>, a HashMap is used to store profanities to be rejected before using it to check if the
+input contains any profanities inside.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Check every substring of the input to see if it matches any profanity-to-reject
+within the HashMap.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: <strong>O(1)</strong> runtime per substring when checking whether a particular substring of the input.</p>
+</li>
+<li>
+<p>Cons: Runs for <strong>O(n!)</strong> time, where n is the number of characters in the input.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>While this may look daunting, we have a character input limit on <code>Person</code> attributes (feedback included) of 50.
+As such, there is an imposed upper bound on the performance time, preventing any significant decline in performance.</p>
+</li>
+<li>
+<p>Also, one optimisation method implemented (mentioned in <a href="#Feedback-Features">Feedback noteworthy features</a>) is
+ending the iteration when the length of the longest string within the profanities-to-reject is reached. This
+improves the performance time to <strong>O(ln)</strong>, where l is length of the longest profanity-to-reject.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2 :</strong> Check every element in HashMap to see if it is contained within the input.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Runs for <strong>O(n)</strong> time per element in HashMap using the String.contains() method, where n is the number of
+characters in the input, and is capped at n ≤ 50 (Mentioned in Alternative 1).</p>
+</li>
+<li>
+<p>Cons: Runs for <strong>O(nm)</strong> time, where m is the number of elements in the HashMap. m can increase infinitely by
+extending the list of profanities-to-reject (i.e. Adding profanities of other languages, adding newly created profanities,
+adding profanities that have been overlooked, etc.)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Hence, this alternative is not as efficient as <strong>O(lm)</strong> in Alternative 1 as l can be capped but m may not.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 10:11:07 UTC</div></div></div></body></html>
