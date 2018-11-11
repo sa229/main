@@ -542,7 +542,7 @@ Examples:
 // end::login[]
 
 // tag::dataencryption[]
-=== Encrypting data files `[coming in v2.0]`
+=== Encrypting data files [coming in v2.0]
 
 _{explain how the user can enable/disable data encryption}_
 // end::dataencryption[]
