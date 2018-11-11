@@ -67,7 +67,7 @@ public class Ssenisub implements ReadOnlySsenisub {
     }
 
     /**
-     * Returns true of a person with the same Name as {@code person} exists in Ssenisub.
+     * Returns true if a person with the same Name as {@code person} exists in Ssenisub.
      */
     public boolean hasName(Person person) {
         requireNonNull(person);
