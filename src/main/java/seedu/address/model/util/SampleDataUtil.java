@@ -31,7 +31,7 @@ public class SampleDataUtil {
                 new Address("Blk 30 Geylang Street 29, #06-40"), new Rating("10"), new Department("Accounting"),
                     new Manager("Ben Leong"), new Salary("2000"), new OtHour("10"), new OtRate("10"),
                     new PayDeductibles("200"), new Feedback("You have alot of potential."),
-                    getTagSet("friends"), true),
+                    getTagSet("friends"), false),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Rating("2"), new Department("Marketing"),
                     new Manager("Marcus Tan"), new Salary("2500"), new OtHour("5"), new OtRate("20"),
