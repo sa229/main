@@ -119,9 +119,7 @@ Examples:
 Rate the 3rd staff of a rating 8.
 // end::rate[]
 
-k
-
-// tag:feedback[]
+// tag::feedback[]
 === Giving feedback to a staff: `feedback`
 
 Provides feeback for an existing staff in SSENISUB +
@@ -139,7 +137,7 @@ Examples:
 
 * `feedback 1 fb/You are great!` +
 Gives the 1st staff a feedback of "You are great!".
-// end:feedback[]
+// end::feedback[]
 
 === Locating staff by name: `find`
 
