@@ -420,11 +420,11 @@ then saved.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>A simple profanity is implemented in the 'Feedback' class, which checks for any profanity found within the feedback
-input (Adapted from <a href="https://gist.github.com/PimDeWitte/c04cc17bc5fa9d7e3aee6670d4105941" class="bare">https://gist.github.com/PimDeWitte/c04cc17bc5fa9d7e3aee6670d4105941</a> by PimDeWitte).
-A list of English and Singlish profanities can be found under src/main/resources/words to ban/Bad_Words_List.txt
-and can be subjected to expansion and modification. It works by iterating through the whole input to find any possible
-sequence of words (no re-ordering) that match any profanity found within Bad_Words_List.txt. As such, runtime will be
+<p>A simple profanity is implemented in the <code>Feedback</code> class, which checks for any profanity found within the feedback
+input (Adapted from <a href="https://gist.github.com/PimDeWitte/c04cc17bc5fa9d7e3aee6670d4105941">Simple Profanity Filter</a>).
+The list of English and Singlish profanities (<a href="https://github.com/CS2103-AY1819S1-T13-2/main/blob/master/src/main/resources/words%20to%20ban/Bad_Words_List.txt">Profanity List</a>)
+used can be subjected to expansion and modification. The fiter works by iterating through the whole input to find any possible
+sequence of words (no re-ordering) that match any profanity found within the profanity list. As such, runtime will be
 dependent on input length rather than profanity list length.</p>
 </div>
 </div>
@@ -436,15 +436,15 @@ dependent on input length rather than profanity list length.</p>
 <p>The filter is case insensitive.</p>
 </li>
 <li>
-<p>In Bad_Words_List.txt, profanities are separated into rows with the format: "[THE_BAD_WORD],[IGNORE_IN_COMBINATION_WITH"</p>
+<p>In the profanity list, profanities are separated into rows with the format: <code>[THE_BAD_WORD]</code>, <code>[IGNORE_IN_COMBINATION_WITH]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>[THE_BAD_WORD] is the profanity to filter out.</p>
+<p><code>[THE_BAD_WORD]</code> is the profanity to filter out.</p>
 </li>
 <li>
-<p>[IGNORE_IN_COMBINATION_WITH] can be empty, or contain a series of 1 or more words (separated by commas) that
-[THE_BAD_WORD] can be used with, e.g. paki, pakistan. "paki" is a racial slur and will be rejected, but if "pakistan", a
+<p><code>[IGNORE_IN_COMBINATION_WITH]</code> can be empty, or contain a series of 1 or more words (separated by commas) that
+<code>[THE_BAD_WORD]</code> can be used with, e.g. paki, pakistan. "paki" is a racial slur and will be rejected, but if "pakistan", a
 country name, is entered, "pakistan" will be accepted even though it contains "paki".</p>
 </li>
 <li>
@@ -532,7 +532,7 @@ As such, we have decided to accept this as a minor shortfall of this implementat
 <p>3c: "suc": Not a profanity (No match with line in txt file).</p>
 </li>
 <li>
-<p>3d: "suck": Profanity! (Matches with a line in txt file). Added to a list of bad words found.</p>
+<p>3d: "suck": <strong>Profanity</strong>! (Matches with a line in txt file). Added to a list of bad words found.</p>
 </li>
 <li>
 <p>3e: "suckz": Not a profanity (No match with line in txt file).</p>
@@ -625,4 +625,4 @@ adding profanities that have been overlooked, etc.)</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 11:15:34 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 11:49:43 UTC</div></div></div></body></html>
