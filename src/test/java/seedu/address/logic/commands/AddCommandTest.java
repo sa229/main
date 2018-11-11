@@ -144,9 +144,25 @@ public class AddCommandTest {
         }
 
         @Override
-        public void sort() {
+        public void sortByName() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void sortByDept() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortByRatingUp() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortByRatingDown() {
+            throw new AssertionError("This method should not be called.");
+        }
+
 
         @Override
         public ObservableList<Person> getFilteredPersonList() {

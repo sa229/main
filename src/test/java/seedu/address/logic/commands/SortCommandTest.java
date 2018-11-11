@@ -16,7 +16,7 @@ public class SortCommandTest {
     public void execute_sortList() {
         Ssenisub ssenisub = new SsenisubBuilder().withPerson(BOB).withPerson(ALICE).build();
         Ssenisub expectedSsenisub = new SsenisubBuilder().withPerson(ALICE).withPerson(BOB).build();
-        ssenisub.sort();
+        ssenisub.sortByName();
         assertEquals(ssenisub, expectedSsenisub);
     }
 
@@ -28,7 +28,7 @@ public class SortCommandTest {
         Ssenisub expectedSsenisub = new SsenisubBuilder().withPerson(HARRY).withPerson(ALICE)
                 .withPerson(BOB).build();
 
-        ssenisub.sort();
+        ssenisub.sortByName();
         assertEquals(ssenisub, expectedSsenisub);
     }
 }

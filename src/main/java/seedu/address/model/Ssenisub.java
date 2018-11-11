@@ -143,10 +143,31 @@ public class Ssenisub implements ReadOnlySsenisub {
     }
 
     /**
-     * Sorts the person list
+     * Sorts the person list by name
      */
-    public void sort() {
-        persons.sort();
+    public void sortByName() {
+        persons.sortByName();
+    }
+
+    /**
+     * Sorts the person list by department
+     */
+    public void sortByDept() {
+        persons.sortByDept();
+    }
+
+    /**
+     * Sorts the person list by rating from lowest to highest
+     */
+    public void sortByRatingUp() {
+        persons.sortByRatingUp();
+    }
+
+    /**
+     * Sorts the person list by rating from highest to lowest
+     */
+    public void sortByRatingDown() {
+        persons.sortByRatingDown();
     }
 
     /**
