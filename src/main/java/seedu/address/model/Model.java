@@ -55,9 +55,24 @@ public interface Model {
     void unfavouritePerson(Person target, Person unfavouritedPerson);
 
     /**
-     * Sorts the person list
+     * Sorts the person list by name
      */
-    void sort();
+    void sortByName();
+
+    /**
+     * Sorts the person list by dept
+     */
+    void sortByDept();
+
+    /**
+     * Sorts the person list by rating from lowest to highest
+     */
+    void sortByRatingUp();
+
+    /**
+     * Sorts the person list by rating from highest to lowest
+     */
+    void sortByRatingDown();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

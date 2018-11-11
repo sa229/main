@@ -100,8 +100,29 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void sort() {
-        versionedSsenisub.sort();
+    public void sortByName() {
+        versionedSsenisub.sortByName();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        indicateSsenisubChanged();
+    }
+
+    @Override
+    public void sortByDept() {
+        versionedSsenisub.sortByDept();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        indicateSsenisubChanged();
+    }
+
+    @Override
+    public void sortByRatingUp() {
+        versionedSsenisub.sortByRatingUp();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        indicateSsenisubChanged();
+    }
+
+    @Override
+    public void sortByRatingDown() {
+        versionedSsenisub.sortByRatingDown();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         indicateSsenisubChanged();
     }

@@ -6,18 +6,18 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 
 /**
- * Sort the list of deck in name's lexicographical order.
+ * Sort the list of deck in department's lexicographical order.
  */
-public class SortCommand extends Command {
+public class SortDeptCommand extends Command {
 
-    public static final String COMMAND_WORD = "sort";
+    public static final String COMMAND_WORD = "sortDept";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all persons by name";
+    public static final String MESSAGE_SUCCESS = "Sorted all persons by department";
 
     @Override
     public CommandResult execute(Model model, CommandHistory history) {
         requireNonNull(model);
-        model.sortByName();
+        model.sortByDept();
         model.commitSsenisub();
         return new CommandResult(MESSAGE_SUCCESS);
     }
