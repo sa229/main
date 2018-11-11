@@ -31,19 +31,19 @@ face of the application.
 * *Code contributed*: https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&search=iamrence[[RepoSense for IamRENCE]]
 
 * *Major enhancement 1*: added *the ability to give ratings to staff* stored inside the application
-** What it does: allows the user to update a rating of a staff to keep track of his/her performance in the organisation.
+** What it does: Allows the user to update a rating of a staff to keep track of his/her performance in the organisation.
 ** Justification: This feature improves the product significantly because a user is provided with a way to keep track of
-his/her employees' performance, which is especially important during the *year-end performance review*. This potentially
+his/her employees' performance, which is especially important during the *year-end performance review*. It potentially
 affects how much bonus or credit is given to the staff in the organisation.
 ** Highlights: This enhancement looks similar to the add and edit command, but has to be made to *execute asynchronous* to
 these commands. In future releases, where users of different level of authorisations are allowed to use different commands,
-this command would only be accessible to managers (or direct superiors). This is because they have the right to and are in
+this command would only be accessible to managers (or direct superiors). The reason is because they have the right to and are in
 the best position to give any rating to their staff.
 
 * *Major enhancement 2*: added *the ability to give feedback to staff* stored inside the application
-** What it does: allows the user to give professional feedback to staff in the organisation, so that the staff knows what he/she is
+** What it does: Allows the user to give professional feedback to staff in the organisation, so that the staff knows what he/she is
 doing well in and to find out what areas of improvement he/she can engage in.
-** Justification: This feature, like the rate command, improves the product significantly because a user is provided
+** Justification: This feature, like the rate command, improves the product to a large extent because a user is provided
 with a way to inform his/her employees what to look out for in their performance so that they can improve themselves.
 Coupled with the rate command, a manager can make *more informed reviews* of his/her employees' performance. At the same
 time, employees can use the feedback assigned to them as *motivation* for continuous improvement, or as a *wake up call* for
