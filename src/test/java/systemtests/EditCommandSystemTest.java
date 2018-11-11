@@ -102,7 +102,7 @@ public class EditCommandSystemTest extends SsenisubSystemTest {
                 + ADDRESS_DESC_BOB + DEPARTMENT_DESC_BOB + MANAGER_DESC_BOB + TAG_DESC_FRIEND;
         editedPerson = new PersonBuilder(BOB).withName(VALID_NAME_AMY).build();
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_PHONE_NUMBER);
-//        assertCommandSuccess(command, index, editedPerson);
+        //assertCommandSuccess(command, index, editedPerson);
 
         /* Case: edit a person with new values same as another person's values but with different phone and email
          * -> edited
@@ -144,14 +144,15 @@ public class EditCommandSystemTest extends SsenisubSystemTest {
         /* Case: selects first card in the person list, edit a person -> edited, card selection remains unchanged but
          * browser url changes
          */
-//        showAllPersons();
-//        index = INDEX_FIRST_PERSON;
-//        selectPerson(index);
-//        command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-//                + ADDRESS_DESC_AMY + DEPARTMENT_DESC_AMY + MANAGER_DESC_AMY + TAG_DESC_FRIEND;
-//        // this can be misleading: card selection actually remains unchanged but the
-//        // browser's url is updated to reflect the new person's name
-//        assertCommandSuccess(command, index, AMY, index);
+        //showAllPersons();
+        //index = INDEX_FIRST_PERSON;
+        //selectPerson(index);
+        //command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_AMY
+        //        + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        //        + ADDRESS_DESC_AMY + DEPARTMENT_DESC_AMY + MANAGER_DESC_AMY + TAG_DESC_FRIEND;
+        // this can be misleading: card selection actually remains unchanged but the
+        // browser's url is updated to reflect the new person's name
+        //assertCommandSuccess(command, index, AMY, index);
 
         /* --------------------------------- Performing invalid edit operation -------------------------------------- */
 
