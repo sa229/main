@@ -63,6 +63,23 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public boolean hasName(Person person) {
+        requireNonNull(person);
+        return versionedSsenisub.hasName(person);
+    }
+    @Override
+    public boolean hasPhoneNumber(Person person) {
+        requireNonNull(person);
+        return versionedSsenisub.hasPhoneNumber(person);
+    }
+
+    @Override
+    public boolean hasEmail(Person person) {
+        requireNonNull(person);
+        return versionedSsenisub.hasEmail(person);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         versionedSsenisub.removePerson(target);
         indicateSsenisubChanged();

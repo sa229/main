@@ -165,7 +165,7 @@ The sections below give more details of each component.
 .Structure of the UI Component
 image::UiClassDiagram.png[width="800"]
 
-*API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
+*API* : link:{repoURL}/tree/master/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `BrowserPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
@@ -185,7 +185,7 @@ The `UI` component,
 image::LogicClassDiagram.png[width="800"]
 
 *API* :
-link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
+link:{repoURL}/tree/master/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `SsenisubParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
@@ -203,7 +203,7 @@ image::DeletePersonSdForLogic.png[width="800"]
 .Structure of the Model Component
 image::ModelClassDiagram.png[width="800"]
 
-*API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
+*API* : link:{repoURL}/tree/master/src/main/java/seedu/address/model/Model.java[`Model.java`]
 
 The `Model`,
 
@@ -223,7 +223,7 @@ image:ModelClassBetterOopDiagram.png[width="800"]
 .Structure of the Storage Component
 image::StorageClassDiagram.png[width="800"]
 
-*API* : link:{repoURL}/src/main/java/seedu/address/storage/Storage.java[`Storage.java`]
+*API* : link:{repoURL}/tree/master/src/main/java/seedu/address/storage/Storage.java[`Storage.java`]
 
 The `Storage` component,
 
@@ -378,11 +378,11 @@ Given below is a sequence diagram shows how the feedback operation works:
 
 image::FeedbackSequenceDiagram.png[width="800"]
 
-A simple profanity is implemented in the 'Feedback' class, which checks for any profanity found within the feedback
-input (Adapted from https://gist.github.com/PimDeWitte/c04cc17bc5fa9d7e3aee6670d4105941 by PimDeWitte).
-A list of English and Singlish profanities can be found under src/main/resources/words to ban/Bad_Words_List.txt
-and can be subjected to expansion and modification. It works by iterating through the whole input to find any possible
-sequence of words (no re-ordering) that match any profanity found within Bad_Words_List.txt. As such, runtime will be
+A simple profanity is implemented in the `Feedback` class, which checks for any profanity found within the feedback
+input (Adapted from https://gist.github.com/PimDeWitte/c04cc17bc5fa9d7e3aee6670d4105941[Simple Profanity Filter]).
+The list of English and Singlish profanities (https://github.com/CS2103-AY1819S1-T13-2/main/blob/master/src/main/resources/words%20to%20ban/Bad_Words_List.txt[Profanity List])
+used can be subjected to expansion and modification. The fiter works by iterating through the whole input to find any possible
+sequence of words (no re-ordering) that match any profanity found within the profanity list. As such, runtime will be
 dependent on input length rather than profanity list length.
 
 [[Feedback-Features]]
@@ -390,12 +390,12 @@ dependent on input length rather than profanity list length.
 
 * The filter is case insensitive.
 
-* In Bad_Words_List.txt, profanities are separated into rows with the format: "[THE_BAD_WORD],[IGNORE_IN_COMBINATION_WITH"
+* In the profanity list, profanities are separated into rows with the format: `[THE_BAD_WORD]`, `[IGNORE_IN_COMBINATION_WITH]`
 
-** [THE_BAD_WORD] is the profanity to filter out.
+** `[THE_BAD_WORD]` is the profanity to filter out.
 
-** [IGNORE_IN_COMBINATION_WITH] can be empty, or contain a series of 1 or more words (separated by commas) that
-[THE_BAD_WORD] can be used with, e.g. paki, pakistan. "paki" is a racial slur and will be rejected, but if "pakistan", a
+** `[IGNORE_IN_COMBINATION_WITH]` can be empty, or contain a series of 1 or more words (separated by commas) that
+`[THE_BAD_WORD]` can be used with, e.g. paki, pakistan. "paki" is a racial slur and will be rejected, but if "pakistan", a
 country name, is entered, "pakistan" will be accepted even though it contains "paki".
 
 ** Each iteration ends when the end of the string is reached or the current substring check reaches the longest profanity
@@ -431,7 +431,7 @@ Given below is a sample run of the profanity filter with a feedback input of "u 
 ** 3a: "s": Not a profanity (No match with line in txt file).
 ** 3b: "su": Not a profanity (No match with line in txt file).
 ** 3c: "suc": Not a profanity (No match with line in txt file).
-** 3d: "suck": Profanity! (Matches with a line in txt file). Added to a list of bad words found.
+** 3d: "suck": *Profanity*! (Matches with a line in txt file). Added to a list of bad words found.
 ** 3e: "suckz": Not a profanity (No match with line in txt file).
 
 * ...

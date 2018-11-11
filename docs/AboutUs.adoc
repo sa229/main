@@ -28,7 +28,7 @@ Role: Developer +
 
 === Terence Goh
 image::iamrence.png[width="150", align="left"]
-{empty}[https://github.com/IamRENCE[github]] [<<terence#, portfolio>>]
+{empty}[https://github.com/IamRENCE[github]] [<<iamrence#, portfolio>>]
 
 Role: Developer +
 

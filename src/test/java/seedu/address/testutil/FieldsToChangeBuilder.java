@@ -14,7 +14,7 @@ public class FieldsToChangeBuilder {
     }
 
     /**
-     * something
+     * Sets the phone value of the builder to private.
      */
     public FieldsToChangeBuilder withPrivatePhone() {
         fieldsToChange.setPhonePrivacy("Y");
@@ -22,7 +22,7 @@ public class FieldsToChangeBuilder {
     }
 
     /**
-     * something
+     * Sets the email value of the builder to private.
      */
     public FieldsToChangeBuilder withPrivateEmail() {
         fieldsToChange.setEmailPrivacy("Y");
@@ -30,7 +30,7 @@ public class FieldsToChangeBuilder {
     }
 
     /**
-     * something
+     * Sets the address value of the builder to private.
      */
     public FieldsToChangeBuilder withPrivateAddress() {
         fieldsToChange.setAddressPrivacy("Y");
@@ -38,7 +38,7 @@ public class FieldsToChangeBuilder {
     }
 
     /**
-     * something
+     * Sets the phone, email and address value of the builder to private.
      */
     public FieldsToChangeBuilder withAllPrivate() {
         fieldsToChange.setPhonePrivacy("Y");
@@ -48,7 +48,7 @@ public class FieldsToChangeBuilder {
     }
 
     /**
-     * something
+     * Sets the phone, email and address value of the builder to non-private.
      */
     public FieldsToChangeBuilder withNotPrivate() {
         fieldsToChange.setPhonePrivacy("N");
@@ -57,6 +57,10 @@ public class FieldsToChangeBuilder {
         return this;
     }
 
+    /**
+     * Builds the FieldsToChange with the privacy values set.
+     * @return FieldsToChange
+     */
     public FieldsToChange build() {
         return fieldsToChange;
     }
