@@ -57,6 +57,48 @@ adds a staff named `John Doe` to SSENISUB.
 * Only `PHONE`, `EMAIL` and `ADDRESS` fields can be initialized as private.
 ====
 
+*Fields restrictions*
+[width="100%",cols="20%,<80%"]
+|=======================================================================
+
+|NAME | Names should only contain alphabetical characters and spaces, and it should not be blank
+
+|PHONE | Phone numbers should only contain numbers, starts with digit '6', '8' or '9' and it should be 8 digits long
+
+|EMAIL | Emails should be of the format local-part@domain and adhere to the following constraints: +
+ 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses,
+ (!#$%&'*+/=?`{}~^.-), 1 to 50 characters long  +
+
+ 2. This is followed by a '@' and then a domain name. +
+ The domain name must: +
+ - be at least 2 characters long +
+ - start and end with alphanumeric characters +
+ - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.
+
+|ADDRESS | Addresses can take any values, and it should not be blank, 1 to 50 characters long
+
+|SALARY | Salary should only contain integers with no spaces or commas
+
+|OT HOUR | Overtime hours should only contain numbers up to two decimal places with no spaces or commas
+
+|OT RATE | Overtime rate should only contain numbers up to two decimal places with no spaces or commas
+
+|DEDUCTIBLE | Deductible should only contain numbers up to two decimal places with no spaces or commas
+
+|DEPARTMENT | Department should only contain alphabetic characters and spaces, and it should not be blank, 1 to 30
+characters long
+
+|MANAGER | Manager should only contain alphabetic characters and spaces, and it should not be blank, 1 to 50
+characters long
+
+|RATING | Rating should only contain numbers, and it should be between 1 to 10
+
+|FEEDBACK | Feedback can take any values, and it should not be blank, 1 to 65 characters long
+
+|INDEX | Refers to the index number shown by the staff list command & it must be a positive integer 1, 2, 3, ...
+
+|=======================================================================
+
 === Viewing help : `help`
 
 Format: `help`
@@ -139,10 +181,10 @@ Examples:
 Gives the 1st staff a feedback of "You are great!".
 // end::feedback[]
 
-=== Locating staff by name: `find`
+=== Locating staff by name: `find-n`
 
 Finds staff whose names contain any of the given keywords. +
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find-n KEYWORD [MORE_KEYWORDS]`
 
 ****
 * The search is case insensitive. e.g `hans` will match `Hans`
@@ -154,10 +196,71 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-* `find John` +
-Returns `john` and `John Doe`
-* `find Betsy Tim John` +
+* `find-n John` +
+Returns `John` and `John Doe`
+* `find-n Betsy Tim John` +
 Returns any staff having names `Betsy`, `Tim`, or `John`
+
+=== Locating staff by email: `find-e`
+
+Finds staff whose email contain any of the given keywords. +
+Format: `find-e KEYWORD [MORE_KEYWORDS]`
+
+****
+* The search is case insensitive. e.g `hans@example.com` will match `Hans@example.com`
+* The order of the keywords does not matter. e.g. `hans@example.com` `dan@example.com` will match `dan@example.com`
+`hans@example.com`
+* Only the email is searched.
+* Only full words will be matched e.g. `Han@example.com` will not match `Hans@example.com`
+****
+
+Examples:
+
+* `find-e John@example.com` +
+Returns `John`
+* `find-n Betsy@example.com Tim@example.com` +
+Returns any staff having emails `Betsy`, `Tim`
+
+=== Locating staff by department: `find-d`
+
+Finds staff whose department contain any of the given keywords. +
+Format: `find-d KEYWORD [MORE_KEYWORDS]`
+
+****
+* The search is case insensitive. e.g `accounting` will match `AccountinG`
+* The order of the keywords does not matter. e.g. `Accounting Tech` will match `Tech Accounting`
+* Only the department is searched.
+* Only full words will be matched e.g. `Account` will not match `Accounting`
+* Staff matching at least one keyword will be returned (i.e. `OR` search)
+****
+
+Examples:
+
+* `find-d Accounting` +
+Returns any staff in Accounting Department `John`
+* `find-d Accounting Tech` +
+Returns any staff in Accounting or Tech Department `John`, `Betsy`, `Tim`
+
+=== Locating staff by manager: `find-m`
+
+Finds manager whose names contain any of the given keywords. +
+Format: `find-m KEYWORD [MORE_KEYWORDS]`
+
+****
+* The search is case insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the manager is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Manager matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`,
+`Bo Yang`
+****
+
+Examples:
+
+* `find-m John` +
+Returns `john` and `John Doe`
+* `find-m Betsy Tim John` +
+Returns any manager having names `Betsy`, `Tim`, or `John`
 
 === Deleting a staff : `delete`
 
@@ -301,38 +404,9 @@ The `redo` command fails as there are no `undo` commands executed previously.
 `redo` (reapplies the `clear` command) +
 // end::undoredo[]
 
-=== Clearing all entries : `clear`
-
-Clears all entries from SSENISUB. +
-Format: `clear`
-
-=== Exiting the program : `exit`
-
-Exits the program. +
-Format: `exit`
-
-=== Locking SSENISUB [coming in v2.0]: `lock`
-
-Locks SSENISUB with a specified password. +
-Format: `lock PASSWORD`
-
-=== Unlocking SSENISUB [coming in v2.0]: `unlock`
-
-Unlocks SSENISUB with a specified password. +
-Format: `unlock PASSWORD`
-
-=== Counting the number of staff [coming in v2.0]: `count`
-
-Count the number of staff in specific department in SSENISUB +
-Format: `count d/DEPARTMENT`
-
-Examples:
-
-* `count d/accounting` +
-
 === Setting private fields: `privacy`
 
-Sets the mentioned field into a private field(will not display on the panel). +
+Sets the mentioned field into a private field (will not display on the panel). +
 Format: `privacy INDEX [p/ y or n] [e/ y or n] [a/ y or n]`
 
 ****
@@ -346,8 +420,7 @@ Format: `privacy INDEX [p/ y or n] [e/ y or n] [a/ y or n]`
 Examples:
 
 * `privacy 1 p/y a/n` +
-Sets the `Phone` number and `Address` of the 1st staff  in SSENISUB to private +
-and public respectively.
+Sets the `Phone` number and `Address` of the 1st staff  in SSENISUB to private and public respectively.
 
 === Additional fields for staff in edit: `edit`
 Staff now has 4 additional fields namely salary, overtime hours (ot hours), overtime rate (ot rate) and pay deductibles.
@@ -370,6 +443,36 @@ and pay deductibles of 640. Net salary of the user displayed would be 3660 in th
 
 SSENISUB data are saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
+
+=== Clearing all entries : `clear`
+
+Clears all entries from SSENISUB. +
+Format: `clear`
+
+=== Exiting the program : `exit`
+
+Exits the program. +
+Format: `exit`
+
+=== Login to SSENISUB [coming in v2.0]: `Login`
+
+Login to SSENISUB so that different users such as staff, HR staff & manager only allowed to use certain commands. +
+Format: `login u/manager pw/password`
+
+=== Logout from SSENISUB [coming in v2.0]: `logout`
+
+Logout from SSENISUB. +
+Format: `logout`
+
+=== Locking SSENISUB [coming in v2.0]: `lock`
+
+Locks SSENISUB with a specified password. +
+Format: `lock PASSWORD`
+
+=== Unlocking SSENISUB [coming in v2.0]: `unlock`
+
+Unlocks SSENISUB with a specified password. +
+Format: `unlock PASSWORD`
 
 // tag::dataencryption[]
 === Encrypting data files `[coming in v2.0]`
@@ -398,15 +501,17 @@ e.g. `favourite 1` or `fav 2`
 e.g. `unfavourite 1` or `unfav 2`
 * *Feedback* : `feedback INDEX [fb/FEEDBACK]` +
 e.g. `feedback 1 fb/Excellent job!`
-* *Find* : `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `find James Jake`
+* *Find by Name* : `find-n KEYWORD [MORE_KEYWORDS]` +
+e.g. `find-n James Jake`
+* *Find by Email* : `find-e KEYWORD [MORE_KEYWORDS]` +
+e.g. `find-e johnd@example.com`
+* *Find by Department* : `find-d KEYWORD [MORE_KEYWORDS]` +
+e.g. `find-d Accounting`
+* *Find by Manager* : `find-m KEYWORD [MORE_KEYWORDS]` +
+e.g. `find-m Moses Ben`
 * *Rate* : `rate INDEX [r/RATING]` +
 e.g. `rate 1 r/8`
-* *Sort* [coming in v2.0] : `sort [KEYWORD]` +
-e.g. `sort ASCENDING`
 * *List* : `list`
-* *Lock SSENISUB* [coming in v2.0] : `lock PASSWORD`
-* *Unlock SSENISUB* [coming in v2.0]: `unlock PASSWORD`
 * *Help* : `help`
 * *Select* : `select INDEX` +
 e.g.`select 2`
@@ -416,3 +521,9 @@ e.g. `privacy 2 p/y a/n`
 * *Undo* : `undo`
 * *Redo* : `redo`
 * *Exit* : `exit`
+* *Sort* [coming in v2.0] : `sort [KEYWORD]` +
+e.g. `sort ASCENDING`
+* *Login SSENISUB* [coming in v2.0] : `login u/manager pw/password`
+* *Logout SSENISUB* [coming in v2.0] : `logout`
+* *Lock SSENISUB* [coming in v2.0] : `lock PASSWORD`
+* *Unlock SSENISUB* [coming in v2.0]: `unlock PASSWORD`
