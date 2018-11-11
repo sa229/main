@@ -116,11 +116,11 @@ Format: `add n/NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS d/DEPARTMENT m/MAN
 A staff can have any number of tags (including 0)
 
 [CAUTION]
-`Phone` numbers and `Email` addresses are unique, you will be unable to add a new staff with a pre-existing `Phone` number or `Email` address within SSENISUB
+`Phone` numbers and `Email` addresses are unique, you will not be able to add a new staff with a pre-existing `Phone` number or `Email` address within SSENISUB
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Accounting m/Marcus Lim t/staff`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John Street, Block 123, #01-01 d/Accounting m/Marcus Lim t/staff`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/81729817 d/Marketing m/Edmund Tan t/staff`
 // end::add[]
 
@@ -139,7 +139,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SALARY] [oth/OTH
 * Edits the staff at the specified `INDEX`. The index refers to the index number shown in the displayed staff list. The index *must be a positive integer* 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the staff will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the staff will be removed, i.e. adding of tags is not cumulative.
 * You can remove all the staff's tags by typing `t/` without specifying any tags after it.
 ****
 
