@@ -352,6 +352,121 @@ image::RateSequenceDiagram.png[width="800"]
 
 // end::ratecommand[]
 
+// tag::feedbackcommand[]
+=== Feedback command feature
+==== Introduction
+Similar to the rate command, we have implemented a feedback command feature as an enhancement, which also focuses on the
+`Logic` component. A `Feedback` class is implemented to support this, which the `Person` class is dependent on. This
+command allows users, especially for managers to give feedback to their employees within an organisation for them to
+know what to look out for in their performance and improve themselves.
+
+[NOTE]
+This command also differs from the add and edit command, because users cannot simply add an employee with a feedback
+through the add command or edit an employee's feedback through the edit command. Every added employee will start off
+without any feedback assigned to him/her.
+
+[CAUTION]
+Any updates to an employee's feedback should only
+be done by a *person of authority*, i.e. `Manager`.
+
+==== Current Implementation
+The feedback command, like the rate command, executes nonparallel to the add and edit command. Upon adding an employee,
+a `FEEDBACK.DEFAULT_INITIAL_FEEDBACK` with a default value of "-NO FEEDBACK YET-", is initialised on the `Person` and
+then saved.
+
+Given below is a sequence diagram shows how the feedback operation works:
+
+image::FeedbackSequenceDiagram.png[width="800"]
+
+A simple profanity is implemented in the 'Feedback' class, which checks for any profanity found within the feedback
+input (Adapted from https://gist.github.com/PimDeWitte/c04cc17bc5fa9d7e3aee6670d4105941 by PimDeWitte).
+A list of English and Singlish profanities can be found under src/main/resources/words to ban/Bad_Words_List.txt
+and can be subjected to expansion and modification. It works by iterating through the whole input to find any possible
+sequence of words (no re-ordering) that match any profanity found within Bad_Words_List.txt. As such, runtime will be
+dependent on input length rather than profanity list length.
+
+[[Feedback-Features]]
+==== Noteworthy Features:
+
+* The filter is case insensitive.
+
+* In Bad_Words_List.txt, profanities are separated into rows with the format: "[THE_BAD_WORD],[IGNORE_IN_COMBINATION_WITH"
+
+** [THE_BAD_WORD] is the profanity to filter out.
+
+** [IGNORE_IN_COMBINATION_WITH] can be empty, or contain a series of 1 or more words (separated by commas) that
+[THE_BAD_WORD] can be used with, e.g. paki, pakistan. "paki" is a racial slur and will be rejected, but if "pakistan", a
+country name, is entered, "pakistan" will be accepted even though it contains "paki".
+
+** Each iteration ends when the end of the string is reached or the current substring check reaches the longest profanity
+string length within the txt file (For increased performance).
+
+* Any leetspeak in the input will be replaced by the appropriate characters before the check, i.e. "H3ll0" will be
+corrected to "Hello".
+
+[CAUTION]
+This profanity filter is quite basic and can be bypassed because of replacing leetspeak. For example, "2 girls 1 cup" is
+considered as inappropriate, but the replacement of "1" to "i" will cause the input to be accepted. An easy solution is
+to hard code the check of this input, but there will be many other examples like this that we would have to hard code for.
+As such, we have decided to accept this as a minor shortfall of this implementation.
+
+Given below is a sample run of the profanity filter with a feedback input of "u suckz":
+
+* Iteration 1:
+
+** 1a: "u": Not a profanity (No match with line in txt file).
+** 1b: "u ": Not a profanity (No match with line in txt file).
+** ...
+** 1g: "u suckz": Not a profanity (No match with line in txt file).
+
+* Iteration 2:
+
+** 2a: " ": Not a profanity (No match with line in txt file).
+** 2b: "  s": Not a profanity (No match with line in txt file).
+** ...
+** 2f: " suckz": Not a profanity (No match with line in txt file).
+
+* Iteration 3:
+
+** 3a: "s": Not a profanity (No match with line in txt file).
+** 3b: "su": Not a profanity (No match with line in txt file).
+** 3c: "suc": Not a profanity (No match with line in txt file).
+** 3d: "suck": Profanity! (Matches with a line in txt file). Added to a list of bad words found.
+** 3e: "suckz": Not a profanity (No match with line in txt file).
+
+* ...
+
+* Iteration 7:
+
+** 7a: "z": Not a profanity (No match with line in txt file).
+
+* The resulting list has only 1 value: "suck" and input will be rejected since there is at least 1 profanity found.
+
+==== Design Considerations
+===== How to implement the profanity filter
+To ensure **fast retrieval**, a HashMap is used to store profanities to be rejected before using it to check if the
+input contains any profanities inside.
+
+* **Alternative 1 (current choice):** Check every substring of the input to see if it matches any profanity-to-reject
+within the HashMap.
+** Pros: **O(1)** runtime per substring when checking whether a particular substring of the input.
+** Cons: Runs for **O(n!)** time, where n is the number of characters in the input.
+*** While this may look daunting, we have a character input limit on `Person` attributes (feedback included) of 50.
+As such, there is an imposed upper bound on the performance time, preventing any significant decline in performance.
+*** Also, one optimisation method implemented (mentioned in <<Feedback-Features, Feedback noteworthy features>>) is
+ending the iteration when the length of the longest string within the profanities-to-reject is reached. This
+improves the performance time to **O(ln)**, where l is length of the longest profanity-to-reject.
+
+* **Alternative 2 :** Check every element in HashMap to see if it is contained within the input.
+** Pros: Runs for **O(n)** time per element in HashMap using the String.contains() method, where n is the number of
+characters in the input, and is capped at n ≤ 50 (Mentioned in Alternative 1).
+** Cons: Runs for **O(nm)** time, where m is the number of elements in the HashMap. m can increase infinitely by
+extending the list of profanities-to-reject (i.e. Adding profanities of other languages, adding newly created profanities,
+adding profanities that have been overlooked, etc.)
+*** Hence, this alternative is not as efficient as **O(lm)** in Alternative 1 as l can be capped but m may not.
+
+// end::feedbackcommand[]
+
 // tag::privacycommand[]
 === Privacy Feature
 ==== Introduction
@@ -487,7 +602,7 @@ Figure 3.8.2.1 Activity Diagram for `unlock` command
 
 ==== Design Considerations
 
-===== Implementation of unlock
+===== Implementation of unlock (coming in v2.0)
 * ** Alternative 1 (current choice):** Unlocking is handled as an event rather than a command.
 ** Pros: Unlocking can be done at any time and event handler is used
 ** Cons: Does not resemble a real unlocking function, minimal functionality
@@ -1226,7 +1341,7 @@ Use case ends
 +
 Use case ends
 [none]
-** 2c. User does not have authorization to add staff, receives warning
+* 2c. User does not have authorization to add staff, receives warning
 +
 Information of User gets sent to higher up in charge
 +
@@ -1256,6 +1371,33 @@ Use case ends     
 Use case ends
 
 [discrete]
+=== Use case: Give staff feedback
+
+*MSS*
+
+1. Manager logs in to SSENISUB
+2. Manager requests to look for staff
+3. SSENISUB shows a list of staff
+4. Manager requests to update feedback for a particular staff
+5. SSENISUB updates feedback of staff
++
+Use case ends
+
+*Extensions*
+[none]
+* 3a. The list is empty, receives warning
++
+Use case ends     
+
+* 4a. The given index is invalid, SSENISUB shows an error message
++
+Use case ends
+
+* 4b. The given feedback contains profanity, SSENISUB shows an error message and the profanity found
++
+Use case ends
+
+[discrete]
 === Use case: remove staff
 
 *MSS*
@@ -1265,25 +1407,6 @@ Use case ends
 3. HR inputs command to remove the staff
 4. SSENISUB confirms with the HR staff before removing the staff
 5. SSENISUB removes the staff and displays a success message
-+
-Use case ends
-
-*Extensions*
-[none]
-* 3a. The staff cannot be found
-+
-Use case ends
-
-[discrete]
-=== Use case: set staff’ feedback
-
-*MSS*
-
-1. Manager logs into SSENISUB
-2. Manager searches for a staff
-3. SSENISUB shows the user the staff and the manager selects the staff
-4. Manager enters feedback for the staff and submits the feedback
-5. SSENISUB displays the feedback made and stores it
 +
 Use case ends
 
