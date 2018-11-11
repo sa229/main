@@ -100,6 +100,7 @@ respectively.
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd staff to be `Betsy Crower` and clears all existing tags.
 
+// tag::rate[]
 === Rating a staff: `rate`
 
 Rates an existing staff in SSENISUB +
@@ -116,7 +117,11 @@ Examples:
 
 * `rate 3 r/8` +
 Rate the 3rd staff of a rating 8.
+// end::rate[]
 
+k
+
+// tag:feedback[]
 === Giving feedback to a staff: `feedback`
 
 Provides feeback for an existing staff in SSENISUB +
@@ -134,6 +139,7 @@ Examples:
 
 * `feedback 1 fb/You are great!` +
 Gives the 1st staff a feedback of "You are great!".
+// end:feedback[]
 
 === Locating staff by name: `find`
 
