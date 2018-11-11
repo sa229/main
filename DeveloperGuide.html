@@ -31,15 +31,16 @@
 <ul class="sectlevel2">
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
 <li><a href="#rate-command-feature">3.2. Rate command feature</a></li>
-<li><a href="#privacy-feature">3.3. Privacy Feature</a></li>
-<li><a href="#add-feature">3.4. Add Feature</a></li>
-<li><a href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.6. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
-<li><a href="#unlock-feature-temporarily-omitted">3.8. Unlock Feature (temporarily omitted)</a></li>
-<li><a href="#favourite-feature">3.9. Favourite Feature</a></li>
-<li><a href="#unfavourite-feature">3.10. Unfavourite Feature</a></li>
-<li><a href="#salary-ot-hours-ot-rate-and-pay-deductibles-for-staff">3.11. Salary, OT Hours, OT Rate and Pay Deductibles For Staff</a></li>
+<li><a href="#feedback-command-feature">3.3. Feedback command feature</a></li>
+<li><a href="#privacy-feature">3.4. Privacy Feature</a></li>
+<li><a href="#add-feature">3.5. Add Feature</a></li>
+<li><a href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.7. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
+<li><a href="#unlock-feature-temporarily-omitted">3.9. Unlock Feature (temporarily omitted)</a></li>
+<li><a href="#favourite-feature">3.10. Favourite Feature</a></li>
+<li><a href="#unfavourite-feature">3.11. Unfavourite Feature</a></li>
+<li><a href="#salary-ot-hours-ot-rate-and-pay-deductibles-for-staff">3.12. Salary, OT Hours, OT Rate and Pay Deductibles For Staff</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -861,9 +862,267 @@ command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="privacy-feature"><a class="link" href="#privacy-feature">3.3. Privacy Feature</a></h3>
+<h3 id="feedback-command-feature"><a class="link" href="#feedback-command-feature">3.3. Feedback command feature</a></h3>
 <div class="sect3">
 <h4 id="introduction-2"><a class="link" href="#introduction-2">3.3.1. Introduction</a></h4>
+<div class="paragraph">
+<p>Similar to the rate command, we have implemented a feedback command feature as an enhancement, which also focuses on the
+<code>Logic</code> component. A <code>Feedback</code> class is implemented to support this, which the <code>Person</code> class is dependent on. This
+command allows users, especially for managers to give feedback to their employees within an organisation for them to
+know what to look out for in their performance and improve themselves.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This command also differs from the add and edit command, because users cannot simply add an employee with a feedback
+through the add command or edit an employee&#8217;s feedback through the edit command. Every added employee will start off
+without any feedback assigned to him/her.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Any updates to an employee&#8217;s feedback should only
+be done by a <strong>person of authority</strong>, i.e. <code>Manager</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.2. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The feedback command, like the rate command, executes nonparallel to the add and edit command. Upon adding an employee,
+a <code>FEEDBACK.DEFAULT_INITIAL_FEEDBACK</code> with a default value of "-NO FEEDBACK YET-", is initialised on the <code>Person</code> and
+then saved.</p>
+</div>
+<div class="paragraph">
+<p>Given below is a sequence diagram shows how the feedback operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/FeedbackSequenceDiagram.png" alt="FeedbackSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>A simple profanity is implemented in the 'Feedback' class, which checks for any profanity found within the feedback
+input (Adapted from <a href="https://gist.github.com/PimDeWitte/c04cc17bc5fa9d7e3aee6670d4105941" class="bare">https://gist.github.com/PimDeWitte/c04cc17bc5fa9d7e3aee6670d4105941</a> by PimDeWitte).
+A list of English and Singlish profanities can be found under src/main/resources/words to ban/Bad_Words_List.txt
+and can be subjected to expansion and modification. It works by iterating through the whole input to find any possible
+sequence of words (no re-ordering) that match any profanity found within Bad_Words_List.txt. As such, runtime will be
+dependent on input length rather than profanity list length.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Feedback-Features"><a class="link" href="#Feedback-Features">3.3.3. Noteworthy Features:</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>The filter is case insensitive.</p>
+</li>
+<li>
+<p>In Bad_Words_List.txt, profanities are separated into rows with the format: "[THE_BAD_WORD],[IGNORE_IN_COMBINATION_WITH"</p>
+<div class="ulist">
+<ul>
+<li>
+<p>[THE_BAD_WORD] is the profanity to filter out.</p>
+</li>
+<li>
+<p>[IGNORE_IN_COMBINATION_WITH] can be empty, or contain a series of 1 or more words (separated by commas) that
+[THE_BAD_WORD] can be used with, e.g. paki, pakistan. "paki" is a racial slur and will be rejected, but if "pakistan", a
+country name, is entered, "pakistan" will be accepted even though it contains "paki".</p>
+</li>
+<li>
+<p>Each iteration ends when the end of the string is reached or the current substring check reaches the longest profanity
+string length within the txt file (For increased performance).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Any leetspeak in the input will be replaced by the appropriate characters before the check, i.e. "H3ll0" will be
+corrected to "Hello".</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+This profanity filter is quite basic and can be bypassed because of replacing leetspeak. For example, "2 girls 1 cup" is
+considered as inappropriate, but the replacement of "1" to "i" will cause the input to be accepted. An easy solution is
+to hard code the check of this input, but there will be many other examples like this that we would have to hard code for.
+As such, we have decided to accept this as a minor shortfall of this implementation.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Given below is a sample run of the profanity filter with a feedback input of "u suckz":</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Iteration 1:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>1a: "u": Not a profanity (No match with line in txt file).</p>
+</li>
+<li>
+<p>1b: "u ": Not a profanity (No match with line in txt file).</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+<li>
+<p>1g: "u suckz": Not a profanity (No match with line in txt file).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Iteration 2:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>2a: " ": Not a profanity (No match with line in txt file).</p>
+</li>
+<li>
+<p>2b: "  s": Not a profanity (No match with line in txt file).</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+<li>
+<p>2f: " suckz": Not a profanity (No match with line in txt file).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Iteration 3:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>3a: "s": Not a profanity (No match with line in txt file).</p>
+</li>
+<li>
+<p>3b: "su": Not a profanity (No match with line in txt file).</p>
+</li>
+<li>
+<p>3c: "suc": Not a profanity (No match with line in txt file).</p>
+</li>
+<li>
+<p>3d: "suck": Profanity! (Matches with a line in txt file). Added to a list of bad words found.</p>
+</li>
+<li>
+<p>3e: "suckz": Not a profanity (No match with line in txt file).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+<li>
+<p>Iteration 7:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>7a: "z": Not a profanity (No match with line in txt file).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The resulting list has only 1 value: "suck" and input will be rejected since there is at least 1 profanity found.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.3.4. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="how-to-implement-the-profanity-filter"><a class="link" href="#how-to-implement-the-profanity-filter">How to implement the profanity filter</a></h5>
+<div class="paragraph">
+<p>To ensure <strong>fast retrieval</strong>, a HashMap is used to store profanities to be rejected before using it to check if the
+input contains any profanities inside.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Check every substring of the input to see if it matches any profanity-to-reject
+within the HashMap.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: <strong>O(1)</strong> runtime per substring when checking whether a particular substring of the input.</p>
+</li>
+<li>
+<p>Cons: Runs for <strong>O(n!)</strong> time, where n is the number of characters in the input.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>While this may look daunting, we have a character input limit on <code>Person</code> attributes (feedback included) of 50.
+As such, there is an imposed upper bound on the performance time, preventing any significant decline in performance.</p>
+</li>
+<li>
+<p>Also, one optimisation method implemented (mentioned in <a href="#Feedback-Features">Feedback noteworthy features</a>) is
+ending the iteration when the length of the longest string within the profanities-to-reject is reached. This
+improves the performance time to <strong>O(ln)</strong>, where l is length of the longest profanity-to-reject.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2 :</strong> Check every element in HashMap to see if it is contained within the input.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Runs for <strong>O(n)</strong> time per element in HashMap using the String.contains() method, where n is the number of
+characters in the input, and is capped at n ≤ 50 (Mentioned in Alternative 1).</p>
+</li>
+<li>
+<p>Cons: Runs for <strong>O(nm)</strong> time, where m is the number of elements in the HashMap. m can increase infinitely by
+extending the list of profanities-to-reject (i.e. Adding profanities of other languages, adding newly created profanities,
+adding profanities that have been overlooked, etc.)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Hence, this alternative is not as efficient as <strong>O(lm)</strong> in Alternative 1 as l can be capped but m may not.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="privacy-feature"><a class="link" href="#privacy-feature">3.4. Privacy Feature</a></h3>
+<div class="sect3">
+<h4 id="introduction-3"><a class="link" href="#introduction-3">3.4.1. Introduction</a></h4>
 <div class="paragraph">
 <p>We have implemented a privacy feature to fields that we deem to have importance in having an option to be
 made private. A Privacy Command is implemented to be able to toggle the privacy value of the information of
@@ -871,7 +1130,7 @@ the selected person.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.3.2. Current implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.2. Current implementation</a></h4>
 <div class="paragraph">
 <p>The privacy feature is currently implemented as a boolean field under information classes that can be made private
 (Phone, Email, Address as of v1.2).</p>
@@ -909,7 +1168,7 @@ change in future updates where there can be different levels of privacy for diff
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.3.3. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.3. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="how-to-implement-privacy"><a class="link" href="#how-to-implement-privacy">How to implement Privacy</a></h5>
 <div class="ulist">
@@ -946,9 +1205,9 @@ change in future updates where there can be different levels of privacy for diff
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-feature"><a class="link" href="#add-feature">3.4. Add Feature</a></h3>
+<h3 id="add-feature"><a class="link" href="#add-feature">3.5. Add Feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>add</code> command allows HR users to add staff into SSENISSUB. It will ensure that there will be no duplicate with
 any existing staff.</p>
@@ -999,7 +1258,7 @@ any field, or field with invalid input, a <code>ParseException</code> would be t
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="implementation-of-code-addcommandparser-code"><a class="link" href="#implementation-of-code-addcommandparser-code">Implementation of <code>AddCommandParser</code></a></h5>
 <div class="ulist">
@@ -1036,20 +1295,20 @@ any field, or field with invalid input, a <code>ParseException</code> would be t
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1080,22 +1339,22 @@ any field, or field with invalid input, a <code>ParseException</code> would be t
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="unlock-feature-temporarily-omitted"><a class="link" href="#unlock-feature-temporarily-omitted">3.8. Unlock Feature (temporarily omitted)</a></h3>
+<h3 id="unlock-feature-temporarily-omitted"><a class="link" href="#unlock-feature-temporarily-omitted">3.9. Unlock Feature (temporarily omitted)</a></h3>
 <div class="sect3">
-<h4 id="introduction-3"><a class="link" href="#introduction-3">3.8.1. Introduction</a></h4>
+<h4 id="introduction-4"><a class="link" href="#introduction-4">3.9.1. Introduction</a></h4>
 <div class="paragraph">
 <p>We have implemented an unlock command that focuses on the <code>Storage</code> component. An <code>UnlockCommand</code> class is added
 and an <code>UnlockEvent</code> event is also added.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.8.2. Current Implementation</a></h4>
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.9.2. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>unlock</code> command allows changes made to be saved to SSENISUB.</p>
 </div>
@@ -1116,9 +1375,9 @@ will not be saved and will not be shown once the window is closed and reopened.<
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.8.3. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.9.3. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="implementation-of-unlock"><a class="link" href="#implementation-of-unlock">Implementation of unlock</a></h5>
+<h5 id="implementation-of-unlock-coming-in-v2-0"><a class="link" href="#implementation-of-unlock-coming-in-v2-0">Implementation of unlock (coming in v2.0)</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1153,21 +1412,21 @@ will not be saved and will not be shown once the window is closed and reopened.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="favourite-feature"><a class="link" href="#favourite-feature">3.9. Favourite Feature</a></h3>
+<h3 id="favourite-feature"><a class="link" href="#favourite-feature">3.10. Favourite Feature</a></h3>
 <div class="sect3">
-<h4 id="introduction-4"><a class="link" href="#introduction-4">3.9.1. Introduction</a></h4>
+<h4 id="introduction-5"><a class="link" href="#introduction-5">3.10.1. Introduction</a></h4>
 <div class="paragraph">
 <p>We have implemented a favourite command that focuses on the <code>Logic</code> component. A 'FavouriteCommand` class is added.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.9.2. Current Implementation</a></h4>
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.10.2. Current Implementation</a></h4>
 <div class="paragraph">
 <p>This <code>favourite</code> command allows contacts to be added to a favourite list and moves the contact to the top of the list.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.9.3. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.10.3. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="implementation-of-favourite-command"><a class="link" href="#implementation-of-favourite-command">Implementation of favourite command</a></h5>
 <div class="ulist">
@@ -1204,21 +1463,21 @@ will not be saved and will not be shown once the window is closed and reopened.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="unfavourite-feature"><a class="link" href="#unfavourite-feature">3.10. Unfavourite Feature</a></h3>
+<h3 id="unfavourite-feature"><a class="link" href="#unfavourite-feature">3.11. Unfavourite Feature</a></h3>
 <div class="sect3">
-<h4 id="introduction-5"><a class="link" href="#introduction-5">3.10.1. Introduction</a></h4>
+<h4 id="introduction-6"><a class="link" href="#introduction-6">3.11.1. Introduction</a></h4>
 <div class="paragraph">
 <p>We have implemented an unfavourite command that focuses on the <code>Logic</code> component. An 'UnfavouriteCommand` class is added.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.10.2. Current Implementation</a></h4>
+<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">3.11.2. Current Implementation</a></h4>
 <div class="paragraph">
 <p>This <code>unfavourite</code> command allows contacts to be removed from the favourite list.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.10.3. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.11.3. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="implementation-of-unfavourite-action"><a class="link" href="#implementation-of-unfavourite-action">Implementation of unfavourite action</a></h5>
 <div class="ulist">
@@ -1255,16 +1514,16 @@ will not be saved and will not be shown once the window is closed and reopened.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="salary-ot-hours-ot-rate-and-pay-deductibles-for-staff"><a class="link" href="#salary-ot-hours-ot-rate-and-pay-deductibles-for-staff">3.11. Salary, OT Hours, OT Rate and Pay Deductibles For Staff</a></h3>
+<h3 id="salary-ot-hours-ot-rate-and-pay-deductibles-for-staff"><a class="link" href="#salary-ot-hours-ot-rate-and-pay-deductibles-for-staff">3.12. Salary, OT Hours, OT Rate and Pay Deductibles For Staff</a></h3>
 <div class="sect3">
-<h4 id="introduction-6"><a class="link" href="#introduction-6">3.11.1. Introduction</a></h4>
+<h4 id="introduction-7"><a class="link" href="#introduction-7">3.12.1. Introduction</a></h4>
 <div class="paragraph">
 <p>We have introduced four new fields to a staff namely the salary, overtime(OT) hours, OT rate and Pay deductibles
 for a staff. This is to allow the HR department of the company to keep track of individual staff&#8217;s details.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">3.11.2. Current Implementation</a></h4>
+<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">3.12.2. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The current implementation of this feature is embedded into a Person object together with the other information
 that was originally in the Person object. Prefixes for the respective fields were also created to allow the HR user
@@ -1282,7 +1541,7 @@ edited depending if the prefixes were there or not (similar to the edit command)
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.11.3. Design Considerations</a></h4>
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">3.12.3. Design Considerations</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2910,8 +3169,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
-<div class="ulist none">
-<ul class="none">
+</li>
 <li>
 <p>2c. User does not have authorization to add staff, receives warning</p>
 <div class="paragraph">
@@ -2919,9 +3177,6 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div class="paragraph">
 <p>Use case ends</p>
-</div>
-</li>
-</ul>
 </div>
 </li>
 </ul>
@@ -2971,6 +3226,57 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
+<h3 id="use-case-give-staff-feedback" class="discrete">Use case: Give staff feedback</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Manager logs in to SSENISUB</p>
+</li>
+<li>
+<p>Manager requests to look for staff</p>
+</li>
+<li>
+<p>SSENISUB shows a list of staff</p>
+</li>
+<li>
+<p>Manager requests to update feedback for a particular staff</p>
+</li>
+<li>
+<p>SSENISUB updates feedback of staff</p>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a. The list is empty, receives warning</p>
+<div class="paragraph">
+<p>Use case ends     </p>
+</div>
+</li>
+<li>
+<p>4a. The given index is invalid, SSENISUB shows an error message</p>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
+</li>
+<li>
+<p>4b. The given feedback contains profanity, SSENISUB shows an error message and the profanity found</p>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
+</li>
+</ul>
+</div>
 <h3 id="use-case-remove-staff" class="discrete">Use case: remove staff</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -2991,45 +3297,6 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 <li>
 <p>SSENISUB removes the staff and displays a success message</p>
-<div class="paragraph">
-<p>Use case ends</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>3a. The staff cannot be found</p>
-<div class="paragraph">
-<p>Use case ends</p>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-set-staff-feedback" class="discrete">Use case: set staff’ feedback</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Manager logs into SSENISUB</p>
-</li>
-<li>
-<p>Manager searches for a staff</p>
-</li>
-<li>
-<p>SSENISUB shows the user the staff and the manager selects the staff</p>
-</li>
-<li>
-<p>Manager enters feedback for the staff and submits the feedback</p>
-</li>
-<li>
-<p>SSENISUB displays the feedback made and stores it</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
@@ -3234,4 +3501,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 06:33:49 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 07:46:37 UTC</div></div></div></body></html>
