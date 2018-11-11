@@ -129,6 +129,10 @@ Examples:
 Shows a list of all staff in SSENISUB. +
 Format: `list`
 
+****
+* When a staff is selected, *net salary* is being displayed instead of gross salary
+****
+
 // tag::edit[]
 === Editing a staff : `edit`
 
@@ -138,6 +142,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/SALARY] [oth/OTH
 ****
 * Edits the staff at the specified `INDEX`. The index refers to the index number shown in the displayed staff list. The index *must be a positive integer* 1, 2, 3, ...
 * At least one of the optional fields must be provided.
+* Staff has 4 additional editable fields: salary, overtime hours (ot hours), overtime rate (ot rate) and pay deductibles.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the staff will be removed, i.e. adding of tags is not cumulative.
 * You can remove all the staff's tags by typing `t/` without specifying any tags after it.
@@ -156,7 +161,7 @@ Edits the name of the 2nd staff to be `Betsy Crower` and clears all existing tag
 === Rating a staff: `rate`
 
 Rates an existing staff in SSENISUB +
-Format: `rate INDEX r/8`
+Format: `rate INDEX r/RATING`
 
 ****
 * Rates the staff at the specified `INDEX`. The index refers to the index number shown in the displayed staff list. The index *must be a positive integer* 1, 2, 3, ...
@@ -168,17 +173,17 @@ Format: `rate INDEX r/8`
 Examples:
 
 * `rate 3 r/8` +
-Rate the 3rd staff of a rating 8.
+Rates the 3rd staff of a rating 8.
 // end::rate[]
 
 // tag::feedback[]
 === Giving feedback to a staff: `feedback`
 
-Provides feeback for an existing staff in SSENISUB +
-Format: `feedback INDEX fb/You are great!`
+Provides feedback for an existing staff in SSENISUB +
+Format: `feedback INDEX fb/FEEDBACK`
 
 ****
-* Updated the feedback of the staff at specified `INDEX`. The index refers to the index number shown in the displayed
+* Updates the feedback of the staff at specified `INDEX`. The index refers to the index number shown in the displayed
 staff list. The index *must be a positive integer* 1, 2, 3, ...
 * The feedback field must be provided.
 * Profanities are not allowed, even if it is encapsulated within a word.
@@ -198,11 +203,11 @@ Finds staff whose names contain any of the given keywords. +
 Format: `find-n KEYWORD [MORE_KEYWORDS]`
 
 ****
-* The search is case insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case insensitive, e.g `hans` will match `Hans`
+* The order of the keywords does not matter, e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Staff matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only full words will be matched, e.g. `Han` will not match `Hans`
+* Staff matching at least one keyword will be returned (i.e. `OR` search), e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 ****
 
 Examples:
@@ -220,11 +225,11 @@ Finds staff whose email contain any of the given keywords. +
 Format: `find-e KEYWORD [MORE_KEYWORDS]`
 
 ****
-* The search is case insensitive. e.g `hans@example.com` will match `Hans@example.com`
-* The order of the keywords does not matter. e.g. `hans@example.com` `dan@example.com` will match `dan@example.com`
+* The search is case insensitive, e.g `hans@example.com` will match `Hans@example.com`
+* The order of the keywords does not matter, e.g. `hans@example.com` `dan@example.com` will match `dan@example.com`
 `hans@example.com`
 * Only the email is searched.
-* Only full words will be matched e.g. `Han@example.com` will not match `Hans@example.com`
+* Only full words will be matched, e.g. `Han@example.com` will not match `Hans@example.com`
 ****
 
 Examples:
@@ -242,10 +247,10 @@ Finds staff whose department contain any of the given keywords. +
 Format: `find-d KEYWORD [MORE_KEYWORDS]`
 
 ****
-* The search is case insensitive. e.g `accounting` will match `AccountinG`
-* The order of the keywords does not matter. e.g. `Accounting Tech` will match `Tech Accounting`
+* The search is case insensitive, e.g `accounting` will match `AccountinG`
+* The order of the keywords does not matter, e.g. `Accounting Tech` will match `Tech Accounting`
 * Only the department is searched.
-* Only full words will be matched e.g. `Account` will not match `Accounting`
+* Only full words will be matched, e.g. `Account` will not match `Accounting`
 * Staff matching at least one keyword will be returned (i.e. `OR` search)
 ****
 
@@ -448,23 +453,6 @@ The `redo` command fails as there are no `undo` commands executed previously.
 `redo` (reapplies the `delete 1` command) +
 `redo` (reapplies the `clear` command) +
 // end::undoredo[]
-
-=== Additional fields for staff in edit: `edit`
-Staff now has 4 additional fields namely salary, overtime hours (ot hours), overtime rate (ot rate) and pay deductibles.
-Format: edit INDEX [s/SALARY] [oth/OTHOURS] [otr/OTRATE] [de/DEDUCTIBLES]
-
-****
-* Allows the user to edit salary, ot hours, ot rate and pay deductibles.
-* The index reers to the index number shown in the displayed staff list.
-* The index *must be a positive integer* 1, 2, 3, ...
-* When the user clicks on a user, *net salary* is being displayed instead of gross salary
-****
-
-Examples:
-
-* `edit 1 s/4000 oth/20 otr/15 de/640` +
-Edits the staff to have a salary of 4000, overtime hours of 20, overtime rate of 15
-and pay deductibles of 640. Net salary of the user displayed would be 3660 in this case.
 
 === Saving the data
 
