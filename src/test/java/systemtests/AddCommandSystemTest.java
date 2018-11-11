@@ -81,11 +81,11 @@ public class AddCommandSystemTest extends SsenisubSystemTest {
         expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, model, expectedResultMessage);
 
-        /* Case: add a person with all fields same as another person in SSENISUB except name -> added */
-        toAdd = new PersonBuilder(AMY).withName(VALID_NAME_BOB).build();
-        command = AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                + DEPARTMENT_DESC_AMY + MANAGER_DESC_AMY + TAG_DESC_FRIEND;
-        assertCommandSuccess(command, toAdd);
+        ///* Case: add a person with all fields same as another person in SSENISUB except name -> added */
+        //toAdd = new PersonBuilder(AMY).withName(VALID_NAME_BOB).build();
+        //command = AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+        //        + DEPARTMENT_DESC_AMY + MANAGER_DESC_AMY + TAG_DESC_FRIEND;
+        //assertCommandSuccess(command, toAdd);
 
         /* Case: add a person with all fields same as another person in SSENISUB except phone and email
          * -> added
