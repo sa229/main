@@ -103,6 +103,7 @@ characters long
 
 Format: `help`
 
+// tag::add[]
 === Adding a staff: `add`
 
 Adds a staff to SSENISUB +
@@ -115,12 +116,14 @@ Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Accounting m/Marcus Lim t/staff`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/81729817 d/Marketing m/Edmund Tan t/staff`
+// end::add[]
 
 === Listing all staff : `list`
 
 Shows a list of all staff in SSENISUB. +
 Format: `list`
 
+// tag::edit[]
 === Editing a staff : `edit`
 
 Edits an existing staff in SSENISUB. +
@@ -141,6 +144,7 @@ Edits the phone number, email address, salary of the 1st staff to be `91234567`,
 respectively.
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd staff to be `Betsy Crower` and clears all existing tags.
+// end::edit[]
 
 // tag::rate[]
 === Rating a staff: `rate`
@@ -181,6 +185,7 @@ Examples:
 Gives the 1st staff a feedback of "You are great!".
 // end::feedback[]
 
+// tag::find-n[]
 === Locating staff by name: `find-n`
 
 Finds staff whose names contain any of the given keywords. +
@@ -200,7 +205,9 @@ Examples:
 Returns `John` and `John Doe`
 * `find-n Betsy Tim John` +
 Returns any staff having names `Betsy`, `Tim`, or `John`
+// end::find-n[]
 
+// tag::find-e[]
 === Locating staff by email: `find-e`
 
 Finds staff whose email contain any of the given keywords. +
@@ -220,7 +227,9 @@ Examples:
 Returns `John`
 * `find-n Betsy@example.com Tim@example.com` +
 Returns any staff having emails `Betsy`, `Tim`
+// end::find-e[]
 
+// tag::find-d[]
 === Locating staff by department: `find-d`
 
 Finds staff whose department contain any of the given keywords. +
@@ -240,7 +249,9 @@ Examples:
 Returns any staff in Accounting Department `John`
 * `find-d Accounting Tech` +
 Returns any staff in Accounting or Tech Department `John`, `Betsy`, `Tim`
+// end::find-d[]
 
+// tag::find-m[]
 === Locating staff by manager: `find-m`
 
 Finds manager whose names contain any of the given keywords. +
@@ -261,6 +272,7 @@ Examples:
 Returns `john` and `John Doe`
 * `find-m Betsy Tim John` +
 Returns any manager having names `Betsy`, `Tim`, or `John`
+// end::find-m[]
 
 === Deleting a staff : `delete`
 
