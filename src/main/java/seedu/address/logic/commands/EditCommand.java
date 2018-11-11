@@ -73,7 +73,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in SSENISUB.";
     //public static final String MESSAGE_DUPLICATE_NAME = "Unable to edit to an existing name.";
-    public static final String MESSAGE_DUPLICATE_PHONE_NUMBER = "Unable to edit to a existing phone number";
+    public static final String MESSAGE_DUPLICATE_PHONE_NUMBER = "Unable to edit to an existing phone number";
     public static final String MESSAGE_DUPLICATE_EMAIL = "Unable to edit to an existing email address";
 
     private final Index index;
