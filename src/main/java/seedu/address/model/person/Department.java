@@ -10,13 +10,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Department {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Departments should only contain alphabetic characters and spaces, and it should not be blank";
+            "Departments should only contain alphabetic characters and spaces, and it should not be blank\n"
+            + "Maximum Length: 30 characters";
 
     /**
      * The first character of the department must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha} ]{0,29}";
 
     public final String value;
 
