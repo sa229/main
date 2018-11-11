@@ -15,8 +15,18 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p>This project portfolio serves to document the work that I have contributed to the software, SSENISUB, during my time as a student of CS2103 (Software Engineering),
+under the team T13-2 in the National University of Singapore (NUS).</p>
+</div>
+<div class="paragraph">
 <p>SSENISUB is a software for the Human Resource (HR) department to better manage the employees in the company, it also serves as a tool for
-managers to better manage their staff and lastly, serve as a contact list for users to find other staff within the company or department.</p>
+managers to better manage their staff and lastly, serve as a contact list for users to find other staff within the company or department.
+This software consists of about 15 kLoC and it makes use of both the Command Line Interface (CLI) and a Graphical User Interface (GUI) to
+interact with the user.</p>
+</div>
+<div class="paragraph">
+<p>My role as a team member was to implement finance related functions for the software. Specifically, I have implemented the Salary, Overtime Hours,
+ Overtime Rate and Pay Deductibles field for a Staff to allow the Human Resource sector to better manage their staff&#8217;s payroll.</p>
 </div>
 </div>
 </div>
@@ -33,14 +43,15 @@ managers to better manage their staff and lastly, serve as a contact list for us
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: This feature allows the HR department to store all financial aspects for a staff and ensure they are properly accounted for.</p>
+<p>What it does: This feature allows the HR department to store all payroll aspects for a staff and ensure that they are properly accounted for.</p>
 </li>
 <li>
-<p>Justification: This feature not only allows the staff to ensure that he/she is being paid the right amount, but also helps the HR department to store these information in their records and edit them should there be any changes.</p>
+<p>Justification: This feature not only allows the staff to ensure that he/she is being paid the right amount, but also helps the HR department to store these information in their records and edit them whenever necessary. Thus, this removes
+the need for paper records of pay which may result in confusion and loss of records.</p>
 </li>
 <li>
-<p>Highlights: The four new fields is able to behave seamlessly as part of the Staff and behaves just like the other attributes like Phone and Address. The HR staff would also be able to edit the four fields whenever necessary
-to allow changes (such as a pay raise or when the user has worked more overtime hours).</p>
+<p>Highlights: The four new fields are able to behave seamlessly as part of the Staff and behaves just like the other attributes would like with Phone and Address. The HR staff would also be able to edit the four fields whenever necessary
+to allow changes (such as a pay raise or when the staff has worked more overtime hours than initially recorded).</p>
 </li>
 </ul>
 </div>
@@ -50,7 +61,7 @@ to allow changes (such as a pay raise or when the user has worked more overtime 
 <div class="ulist">
 <ul>
 <li>
-<p>Modified the "Edit" command to take in four new prefixes to allow editing of the salary, overtime hours, overtime rate and pay deductibles fields implemented ("s/","oth/", "otr/", "de/" respectively) (Pull Requests <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/10">#10</a>, <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/41">#41</a>).</p>
+<p>Modified the <code>edit</code> command to take in four new prefixes to allow editing of the salary, overtime hours, overtime rate and pay deductibles fields implemented ("s/","oth/", "otr/", "de/" respectively) (Pull Requests <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/10">#10</a>, <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/41">#41</a>).</p>
 </li>
 <li>
 <p>Tweaked the staff panel to be able to display the net salary. Net salary in this case refers to the final salary calculated after all additions and deductions are taken into account. (Pull Request <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/53">#53</a>)</p>
@@ -87,14 +98,13 @@ to allow changes (such as a pay raise or when the user has worked more overtime 
 <div class="ulist">
 <ul>
 <li>
-<p>Reviewed several PRs of major features : <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/119">#119</a>, <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/56">#56</a>, <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/55">#55</a>, <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/27">#27</a>, <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/23">#23</a></p>
-<div class="ulist">
-<ul>
+<p>Reviewed several PRs of major features : <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/23">#23</a>, <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/27">#27</a>, <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/55">#55</a>, <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/56">#56</a>, <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/119">#119</a></p>
+</li>
+<li>
+<p>Tested other team&#8217;s software, reported bugs and suggested improvements (Examples : <a href="https://github.com/CS2103-AY1819S1-W10-3/main/issues/137">Issue 1</a>, <a href="https://github.com/CS2103-AY1819S1-W10-3/main/issues/141">Issue 2</a>, <a href="https://github.com/CS2103-AY1819S1-W10-3/main/issues/144">Issue 3</a>)</p>
+</li>
 <li>
 <p>Helped to ensure that teammates codes in PRs were according to proper coding guidelines (Done when reviewing PRs).</p>
-</li>
-</ul>
-</div>
 </li>
 </ul>
 </div>
@@ -181,4 +191,4 @@ Edits the name of the 2nd staff to be <code>Betsy Crower</code> and clears all e
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 19:44:58 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 20:48:19 UTC</div></div></div></body></html>
