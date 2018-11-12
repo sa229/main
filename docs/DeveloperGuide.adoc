@@ -329,12 +329,12 @@ Figure 3.9.3.2 Idea of Second Implementation
 ==== Introduction
 Similar to the rate command, we have implemented a feedback command feature as an enhancement, which also focuses on the
 `Logic` component. A `Feedback` class is implemented to support this, which the `Person` class is dependent on. This
-command allows users, especially for managers to give feedback to their employees within an organisation for them to
+command allows users, especially for managers, to give feedback to their employees within an organisation for them to
 know what to look out for in their performance and improve themselves.
 
 [NOTE]
 This command also differs from the add and edit command, because users cannot simply add an employee with a feedback
-through the add command or edit an employee's feedback through the edit command. Every added employee will start off
+through the add command or edit an employee's feedback through the edit command. Every employee added will start off
 without any feedback assigned to him/her.
 
 [CAUTION]
@@ -353,7 +353,7 @@ image::FeedbackSequenceDiagram.png[width="800"]
 A simple profanity is implemented in the `Feedback` class, which checks for any profanity found within the feedback
 input (Adapted from https://gist.github.com/PimDeWitte/c04cc17bc5fa9d7e3aee6670d4105941[Simple Profanity Filter]).
 The list of English and Singlish profanities (https://github.com/CS2103-AY1819S1-T13-2/main/blob/master/src/main/resources/words%20to%20ban/Bad_Words_List.txt[Profanity List])
-used can be subjected to expansion and modification. The fiter works by iterating through the whole input to find any possible
+used can be subjected to expansion and modification. The filter works by iterating through the whole input to find any possible
 sequence of words (no re-ordering) that match any profanity found within the profanity list. As such, runtime will be
 dependent on input length rather than profanity list length.
 
@@ -375,10 +375,10 @@ image::FeedbackProfanitySequenceDiagram.png[width="800"]
 `[THE_BAD_WORD]` can be used with, e.g. paki, pakistan. "paki" is a racial slur and will be rejected, but if "pakistan", a
 country name, is entered, "pakistan" will be accepted even though it contains "paki".
 
-** Each iteration ends when the end of the string is reached or the current substring check reaches the longest profanity
-string length within the txt file (For increased performance).
+** Each iteration ends when the end of the string is reached or the length of the current substring checked reaches the longest profanity
+string length within the profanity list (For increased performance).
 
-* Any leetspeak in the input will be replaced by the appropriate characters before the check, i.e. "H3ll0" will be
+* Any leetspeak in the input will be replaced by its appropriate characters before the check, i.e. "H3ll0" will be
 corrected to "Hello".
 
 [CAUTION]
@@ -391,43 +391,43 @@ Given below is a sample run of the profanity filter with a feedback input of "u 
 
 * Iteration 1:
 
-** 1a: "u": Not a profanity (No match with line in txt file).
-** 1b: "u ": Not a profanity (No match with line in txt file).
+** 1a: "u": Not a profanity (No match with line in profanity list).
+** 1b: "u ": Not a profanity (No match with line in profanity list).
 ** ...
-** 1g: "u suckz": Not a profanity (No match with line in txt file).
+** 1g: "u suckz": Not a profanity (No match with line in profanity list).
 
 * Iteration 2:
 
-** 2a: " ": Not a profanity (No match with line in txt file).
-** 2b: "  s": Not a profanity (No match with line in txt file).
+** 2a: " ": Not a profanity (No match with line in profanity list).
+** 2b: "  s": Not a profanity (No match with line in profanity list).
 ** ...
-** 2f: " suckz": Not a profanity (No match with line in txt file).
+** 2f: " suckz": Not a profanity (No match with line in profanity list).
 
 * Iteration 3:
 
-** 3a: "s": Not a profanity (No match with line in txt file).
-** 3b: "su": Not a profanity (No match with line in txt file).
-** 3c: "suc": Not a profanity (No match with line in txt file).
-** 3d: "suck": *Profanity*! (Matches with a line in txt file). Added to a list of bad words found.
-** 3e: "suckz": Not a profanity (No match with line in txt file).
+** 3a: "s": Not a profanity (No match with line in profanity list).
+** 3b: "su": Not a profanity (No match with line in profanity list).
+** 3c: "suc": Not a profanity (No match with line in profanity list).
+** 3d: "suck": *Profanity*! (Matches with a line in profanity list). Added to a list of bad words found.
+** 3e: "suckz": Not a profanity (No match with line in profanity list).
 
 * ...
 
 * Iteration 7:
 
-** 7a: "z": Not a profanity (No match with line in txt file).
+** 7a: "z": Not a profanity (No match with line in profanity list).
 
-* The resulting list has only 1 value: "suck" and input will be rejected since there is at least 1 profanity found.
+* The resulting list has only 1 value: "suck" and the input will be rejected since there is at least 1 profanity found.
 
 ==== Design Considerations
 ===== How to implement the profanity filter
-To ensure **fast retrieval**, a HashMap is used to store profanities to be rejected before using it to check if the
+To ensure **fast retrieval**, a HashMap is used to store profanities to be rejected from the data file before using it to check if the
 input contains any profanities inside.
 
 * **Alternative 1 (current choice):** Check every substring of the input to see if it matches any profanity-to-reject
 within the HashMap.
 ** Pros: **O(1)** runtime per substring when checking whether a particular substring of the input.
-** Cons: Runs for **O(n²)** time, where n is the number of characters in the input.
+** Cons: Runs for **O(n^2^)** time, where n is the number of characters in the input.
 *** While this may look daunting, we have a character input limit on `Person` attributes (feedback included) of 50.
 As such, there is an imposed upper bound on the performance time, preventing any significant decline in performance.
 *** Also, one optimisation method implemented (mentioned in <<Feedback-Features, Feedback noteworthy features>>) is
@@ -441,6 +441,7 @@ characters in the input, and is capped at n ≤ 50 (Mentioned in Alternative 1).
 extending the list of profanities-to-reject (i.e. Adding profanities of other languages, adding newly created profanities,
 adding profanities that have been overlooked, etc.)
 *** Hence, this alternative is not as efficient as **O(lm)** in Alternative 1 as l can be capped but m may not.
+
 // end::feedbackcommand[]
 
 // tag::ratecommand[]
@@ -466,13 +467,14 @@ There are 2 validation regular expressions found in the `Rating` class:
 
 * `VALIDATION_REGEX` which checks for integer values from 0 - 10 of `Rating` which have already been added. 0 is included
 as there may be a case when a `Person` has already been added but his/her `Rating` has yet to be updated.
-* `VALIDATION_INPUT_REGEX` which checks for integer values from 1 - 10 of 'Rating' to be added by users with the rate
+* `VALIDATION_INPUT_REGEX` which checks for integer values from 1 - 10 of `Rating` to be added by users with the rate
 command.
 
 
 Given below is a sequence diagram shows how the rate operation works:
 
 image::RateSequenceDiagram.png[width="800"]
+
 // end::ratecommand[]
 
 // tag::privacycommand[]
