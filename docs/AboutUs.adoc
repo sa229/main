@@ -42,7 +42,7 @@ Role: Developer +
 
 '''
 
-=== Ashburn Tan
+=== Ashburn Tan Yuxuan
 image::abtyx.png[width="150", align="left"]
 {empty}[https://github.com/abtyx[github]] [<<abtyx#, portfolio>>]
 
