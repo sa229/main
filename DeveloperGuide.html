@@ -782,7 +782,7 @@ information, easier to identify issues when something goes wrong</p>
 <div class="paragraph">
 <p>Similar to the rate command, we have implemented a feedback command feature as an enhancement, which also focuses on the
 <code>Logic</code> component. A <code>Feedback</code> class is implemented to support this, which the <code>Person</code> class is dependent on. This
-command allows users, especially for managers to give feedback to their employees within an organisation for them to
+command allows users, especially for managers, to give feedback to their employees within an organisation for them to
 know what to look out for in their performance and improve themselves.</p>
 </div>
 <div class="admonitionblock note">
@@ -793,7 +793,7 @@ know what to look out for in their performance and improve themselves.</p>
 </td>
 <td class="content">
 This command also differs from the add and edit command, because users cannot simply add an employee with a feedback
-through the add command or edit an employee&#8217;s feedback through the edit command. Every added employee will start off
+through the add command or edit an employee&#8217;s feedback through the edit command. Every employee added will start off
 without any feedback assigned to him/her.
 </td>
 </tr>
@@ -832,7 +832,7 @@ then saved.</p>
 <p>A simple profanity is implemented in the <code>Feedback</code> class, which checks for any profanity found within the feedback
 input (Adapted from <a href="https://gist.github.com/PimDeWitte/c04cc17bc5fa9d7e3aee6670d4105941">Simple Profanity Filter</a>).
 The list of English and Singlish profanities (<a href="https://github.com/CS2103-AY1819S1-T13-2/main/blob/master/src/main/resources/words%20to%20ban/Bad_Words_List.txt">Profanity List</a>)
-used can be subjected to expansion and modification. The fiter works by iterating through the whole input to find any possible
+used can be subjected to expansion and modification. The filter works by iterating through the whole input to find any possible
 sequence of words (no re-ordering) that match any profanity found within the profanity list. As such, runtime will be
 dependent on input length rather than profanity list length.</p>
 </div>
@@ -866,14 +866,14 @@ which omitted the part where <code>Feedback</code> is called by <code>FeedbackCo
 country name, is entered, "pakistan" will be accepted even though it contains "paki".</p>
 </li>
 <li>
-<p>Each iteration ends when the end of the string is reached or the current substring check reaches the longest profanity
-string length within the txt file (For increased performance).</p>
+<p>Each iteration ends when the end of the string is reached or the length of the current substring checked reaches the longest profanity
+string length within the profanity list (For increased performance).</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Any leetspeak in the input will be replaced by the appropriate characters before the check, i.e. "H3ll0" will be
+<p>Any leetspeak in the input will be replaced by its appropriate characters before the check, i.e. "H3ll0" will be
 corrected to "Hello".</p>
 </li>
 </ul>
@@ -903,16 +903,16 @@ As such, we have decided to accept this as a minor shortfall of this implementat
 <div class="ulist">
 <ul>
 <li>
-<p>1a: "u": Not a profanity (No match with line in txt file).</p>
+<p>1a: "u": Not a profanity (No match with line in profanity list).</p>
 </li>
 <li>
-<p>1b: "u ": Not a profanity (No match with line in txt file).</p>
+<p>1b: "u ": Not a profanity (No match with line in profanity list).</p>
 </li>
 <li>
 <p>&#8230;&#8203;</p>
 </li>
 <li>
-<p>1g: "u suckz": Not a profanity (No match with line in txt file).</p>
+<p>1g: "u suckz": Not a profanity (No match with line in profanity list).</p>
 </li>
 </ul>
 </div>
@@ -922,16 +922,16 @@ As such, we have decided to accept this as a minor shortfall of this implementat
 <div class="ulist">
 <ul>
 <li>
-<p>2a: " ": Not a profanity (No match with line in txt file).</p>
+<p>2a: " ": Not a profanity (No match with line in profanity list).</p>
 </li>
 <li>
-<p>2b: "  s": Not a profanity (No match with line in txt file).</p>
+<p>2b: "  s": Not a profanity (No match with line in profanity list).</p>
 </li>
 <li>
 <p>&#8230;&#8203;</p>
 </li>
 <li>
-<p>2f: " suckz": Not a profanity (No match with line in txt file).</p>
+<p>2f: " suckz": Not a profanity (No match with line in profanity list).</p>
 </li>
 </ul>
 </div>
@@ -941,19 +941,19 @@ As such, we have decided to accept this as a minor shortfall of this implementat
 <div class="ulist">
 <ul>
 <li>
-<p>3a: "s": Not a profanity (No match with line in txt file).</p>
+<p>3a: "s": Not a profanity (No match with line in profanity list).</p>
 </li>
 <li>
-<p>3b: "su": Not a profanity (No match with line in txt file).</p>
+<p>3b: "su": Not a profanity (No match with line in profanity list).</p>
 </li>
 <li>
-<p>3c: "suc": Not a profanity (No match with line in txt file).</p>
+<p>3c: "suc": Not a profanity (No match with line in profanity list).</p>
 </li>
 <li>
-<p>3d: "suck": <strong>Profanity</strong>! (Matches with a line in txt file). Added to a list of bad words found.</p>
+<p>3d: "suck": <strong>Profanity</strong>! (Matches with a line in profanity list). Added to a list of bad words found.</p>
 </li>
 <li>
-<p>3e: "suckz": Not a profanity (No match with line in txt file).</p>
+<p>3e: "suckz": Not a profanity (No match with line in profanity list).</p>
 </li>
 </ul>
 </div>
@@ -966,13 +966,13 @@ As such, we have decided to accept this as a minor shortfall of this implementat
 <div class="ulist">
 <ul>
 <li>
-<p>7a: "z": Not a profanity (No match with line in txt file).</p>
+<p>7a: "z": Not a profanity (No match with line in profanity list).</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>The resulting list has only 1 value: "suck" and input will be rejected since there is at least 1 profanity found.</p>
+<p>The resulting list has only 1 value: "suck" and the input will be rejected since there is at least 1 profanity found.</p>
 </li>
 </ul>
 </div>
@@ -982,7 +982,7 @@ As such, we have decided to accept this as a minor shortfall of this implementat
 <div class="sect4">
 <h5 id="how-to-implement-the-profanity-filter"><a class="link" href="#how-to-implement-the-profanity-filter">How to implement the profanity filter</a></h5>
 <div class="paragraph">
-<p>To ensure <strong>fast retrieval</strong>, a HashMap is used to store profanities to be rejected before using it to check if the
+<p>To ensure <strong>fast retrieval</strong>, a HashMap is used to store profanities to be rejected from the data file before using it to check if the
 input contains any profanities inside.</p>
 </div>
 <div class="ulist">
@@ -996,7 +996,7 @@ within the HashMap.</p>
 <p>Pros: <strong>O(1)</strong> runtime per substring when checking whether a particular substring of the input.</p>
 </li>
 <li>
-<p>Cons: Runs for <strong>O(n²)</strong> time, where n is the number of characters in the input.</p>
+<p>Cons: Runs for <strong>O(n<sup>2</sup>)</strong> time, where n is the number of characters in the input.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1094,7 +1094,7 @@ with a default value of 0, is initialised on the <code>Person</code> and then sa
 as there may be a case when a <code>Person</code> has already been added but his/her <code>Rating</code> has yet to be updated.</p>
 </li>
 <li>
-<p><code>VALIDATION_INPUT_REGEX</code> which checks for integer values from 1 - 10 of 'Rating' to be added by users with the rate
+<p><code>VALIDATION_INPUT_REGEX</code> which checks for integer values from 1 - 10 of <code>Rating</code> to be added by users with the rate
 command.</p>
 </li>
 </ul>
@@ -4043,4 +4043,4 @@ Expected: Staff is already unfavourited. Error details shown in the status messa
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 13:19:00 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 13:37:48 UTC</div></div></div></body></html>
