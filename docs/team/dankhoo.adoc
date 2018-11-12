@@ -23,14 +23,15 @@ Sebastiani.
 ** Allows manager to give rating and feedback on their staff's performance.
 ** Allows manager to favourite the staff to place it on top of the list.
 
-User interacts with SSENISUB mainly using the Command Line Interface (CLI).
+User interacts with SSENISUB mainly using the Command Line Interface (CLI). +
 
-My main responsibility in this project is to enhance the commands (`add`, `edit`, `find`)
+My main responsibility in this project is to enhance the commands (`add`, `edit`, `find`) +
 
 I also played a key role in designing the UI, to make a better experience for the user on the whole. The UI was also
 further improved to display the details of the staff. A few UI event triggers have also been implemented. The picture
 below shows the main page of SSENISUB.
 
+.SSENISUB Main Page
 image::Ui.png[width="800"]
 
 == Summary of contributions
@@ -93,20 +94,21 @@ https://github.com/CS2103-AY1819S1-T13-2/main/pull/108[#108])
 (Pull request https://github.com/CS2103-AY1819S1-T13-2/main/pull/103[#103])
 ** Documentation:
 *** Updated existing contents of the About Us:
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/1[#1]
+(Pull request https://github.com/CS2103-AY1819S1-T13-2/main/pull/1[#1])
 *** Updated existing contents of the README:
 (Pull request https://github.com/CS2103-AY1819S1-T13-2/main/pull/31[#31],
 https://github.com/CS2103-AY1819S1-T13-2/main/pull/36[#36])
 *** Updated existing contents of the User Guide:
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/13[#13],
+(Pull request https://github.com/CS2103-AY1819S1-T13-2/main/pull/13[#13],
 https://github.com/CS2103-AY1819S1-T13-2/main/pull/65[#65],
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/113[#113]
-*** Updated existing contents and diagrams of the Developer Guide:
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/37[#37],
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/118[#118]
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/113[#113])
+*** Updated existing contents, diagrams and manual test cases of the Developer Guide:
+(Pull request https://github.com/CS2103-AY1819S1-T13-2/main/pull/37[#37],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/118[#118],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/134[#134])
 ** Community:
 *** PRs reviewed:
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/5[#5],
+(https://github.com/CS2103-AY1819S1-T13-2/main/pull/5[#5],
 https://github.com/CS2103-AY1819S1-T13-2/main/pull/7[#7],
 https://github.com/CS2103-AY1819S1-T13-2/main/pull/29[#29],
 https://github.com/CS2103-AY1819S1-T13-2/main/pull/32[#32],
@@ -126,7 +128,7 @@ https://github.com/CS2103-AY1819S1-T13-2/main/pull/111[#111],
 https://github.com/CS2103-AY1819S1-T13-2/main/pull/112[#112],
 https://github.com/CS2103-AY1819S1-T13-2/main/pull/114[#114],
 https://github.com/CS2103-AY1819S1-T13-2/main/pull/115[#115],
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/117[#117]
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/117[#117])
 *** Reported bugs and suggestions for other project
 (https://github.com/CS2103-AY1819S1-W12-3/main/issues/130[#130],
 https://github.com/CS2103-AY1819S1-W12-3/main/issues/133[#133],
@@ -160,3 +162,9 @@ documentation and the technical depth of my contributions to the project._
 |===
 
 include::../DeveloperGuide.adoc[tag=addcommand]
+
+include::../DeveloperGuide.adoc[tag=addStaffTC]
+
+include::../DeveloperGuide.adoc[tag=selectStaffTC]
+
+include::../DeveloperGuide.adoc[tag=FindingStaffTC]
