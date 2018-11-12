@@ -508,7 +508,7 @@ image::PrivacyCommandActivityDiagram.png[width="800"]
 ** Cons: Harder to implement and extra work not required in current stage of project
 // end::privacycommand[]
 
-// tag::logincommand[]
+// tag::login[]
 === [Proposed] Login Feature
 ==== Introduction
 
@@ -523,7 +523,11 @@ With the implementation of authorization levels, we will then be able to categor
 to access them, and also affect the visibility state of private information.
 
 A Logout feature will also be implemented for the case of a shared device, which multiple staff can be using throughout the day.
-// end:logincommand[]
+
+Given below is an activity diagram that shows how this feature works when a user wants to use the `Delete` command.
+
+image::LoginLogoutActivityDiagram.png[width="800"]
+// end::login[]
 
 // tag::addcommand[]
 === Add Feature
