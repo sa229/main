@@ -45,10 +45,10 @@ Sebastiani.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>User interacts with SSENISUB mainly using the Command Line Interface (CLI).</p>
+<p>User interacts with SSENISUB mainly using the Command Line Interface (CLI).<br></p>
 </div>
 <div class="paragraph">
-<p>My main responsibility in this project is to enhance the commands (<code>add</code>, <code>edit</code>, <code>find</code>)</p>
+<p>My main responsibility in this project is to enhance the commands (<code>add</code>, <code>edit</code>, <code>find</code>)<br></p>
 </div>
 <div class="paragraph">
 <p>I also played a key role in designing the UI, to make a better experience for the user on the whole. The UI was also
@@ -59,6 +59,7 @@ below shows the main page of SSENISUB.</p>
 <div class="content">
 <img src="../images/Ui.png" alt="Ui" width="800">
 </div>
+<div class="title">Figure 1. SSENISUB Main Page</div>
 </div>
 </div>
 </div>
@@ -202,7 +203,7 @@ overlook on any staff.</p>
 <ul>
 <li>
 <p>Updated existing contents of the About Us:
-<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/1">#1</a></p>
+(Pull request <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/1">#1</a>)</p>
 </li>
 <li>
 <p>Updated existing contents of the README:
@@ -211,14 +212,15 @@ overlook on any staff.</p>
 </li>
 <li>
 <p>Updated existing contents of the User Guide:
-<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/13">#13</a>,
+(Pull request <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/13">#13</a>,
 <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/65">#65</a>,
-<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/113">#113</a></p>
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/113">#113</a>)</p>
 </li>
 <li>
-<p>Updated existing contents and diagrams of the Developer Guide:
-<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/37">#37</a>,
-<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/118">#118</a></p>
+<p>Updated existing contents, diagrams and manual test cases of the Developer Guide:
+(Pull request <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/37">#37</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/118">#118</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/134">#134</a>)</p>
 </li>
 </ul>
 </div>
@@ -229,7 +231,7 @@ overlook on any staff.</p>
 <ul>
 <li>
 <p>PRs reviewed:
-<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/5">#5</a>,
+(<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/5">#5</a>,
 <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/7">#7</a>,
 <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/29">#29</a>,
 <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/32">#32</a>,
@@ -249,7 +251,7 @@ overlook on any staff.</p>
 <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/112">#112</a>,
 <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/114">#114</a>,
 <a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/115">#115</a>,
-<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/117">#117</a></p>
+<a href="https://github.com/CS2103-AY1819S1-T13-2/main/pull/117">#117</a>)</p>
 </li>
 <li>
 <p>Reported bugs and suggestions for other project
@@ -660,5 +662,125 @@ any field, or field with invalid input, a <code>ParseException</code> would be t
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="adding-a-staff"><a class="link" href="#adding-a-staff">Adding a staff</a></h3>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Phone and email must be unique, it should not been used for any existing staff.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>add</code> n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 d/Tech m/Ben t/staff<br>
+Expected: The command result panel should display that the person has been added with all the details. Timestamp
+in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>add</code> n/John-Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 d/Tech m/Ben t/staff<br>
+Expected: Error message will be shown in the command result panel - Names should only contain alphabetical
+characters and spaces, and it should not be blank. Timestamp in the status bar remains the same.</p>
+</li>
+</ol>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 09:52:33 UTC</div></div></div></body></html>
+</li>
+<li>
+<p>Prerequisites: Phone or email exists in SSENISUB</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>add</code> n/Johnny p/98765432 e/johnny@example.com a/311, Clementi Ave 2, #02-25 d/Tech m/Ben t/staff<br>
+Expected: Error message will be shown in the command result panel - This phone number is already in use.
+Timestamp in the status bar remains the same.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="selecting-a-staff"><a class="link" href="#selecting-a-staff">Selecting a staff</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Selecting a staff while all staff are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all staff using the <code>list</code> command. Multiple staff in the list.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>select 1</code><br>
+Expected: The details of the selected staff would be displayed on the staff display panel.</p>
+</li>
+<li>
+<p>Other correct select commands to try: <code>select x</code> (where x is larger than 0 but less than the list size)<br>
+Expected: Similar to previous.</p>
+</li>
+<li>
+<p>Test case: <code>select 0</code><br>
+Expected: No staff would be selected and would display invalid message in the command result panel.</p>
+</li>
+<li>
+<p>Other incorrect select commands to try: <code>select</code>, <code>select x</code> (where x is 0 or lesser than 0 or larger than the
+list size)<br>
+   Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding-staff"><a class="link" href="#finding-staff">Finding staff</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Finding staff by name</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Having at least 1 staff.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: Valid name<br>
+Command: <code>find-n</code> John<br>
+Expected: Staff/s with name John will be shown on the left panel.</p>
+</li>
+<li>
+<p>Other correct find by name commands to try: <code>find-n Valid name</code> (where valid name contain alphabetical characters
+that are in SSENISUB)<br>
+   Expected: Similar as previous</p>
+</li>
+<li>
+<p>Test case: Invalid name<br>
+Command: <code>find-n</code> 123<br>
+Expected: No staff will be shown on the left panel.</p>
+</li>
+<li>
+<p>Other find by name commands to try: <code>find-n Invalid name</code> (where invalid name contain alphanumeric
+characters or names that are not in SSENISUB)<br>
+   Expected: Similar as previous</p>
+</li>
+<li>
+<p>Test case: Empty value<br>
+Command: <code>find-n</code><br>
+Expected: Error message is shown in the command result panel.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 10:07:14 UTC</div></div></div></body></html>
