@@ -63,6 +63,23 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public boolean hasName(Person person) {
+        requireNonNull(person);
+        return versionedSsenisub.hasName(person);
+    }
+    @Override
+    public boolean hasPhoneNumber(Person person) {
+        requireNonNull(person);
+        return versionedSsenisub.hasPhoneNumber(person);
+    }
+
+    @Override
+    public boolean hasEmail(Person person) {
+        requireNonNull(person);
+        return versionedSsenisub.hasEmail(person);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         versionedSsenisub.removePerson(target);
         indicateSsenisubChanged();
@@ -100,8 +117,29 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void sort() {
-        versionedSsenisub.sort();
+    public void sortByName() {
+        versionedSsenisub.sortByName();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        indicateSsenisubChanged();
+    }
+
+    @Override
+    public void sortByDept() {
+        versionedSsenisub.sortByDept();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        indicateSsenisubChanged();
+    }
+
+    @Override
+    public void sortByRatingUp() {
+        versionedSsenisub.sortByRatingUp();
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        indicateSsenisubChanged();
+    }
+
+    @Override
+    public void sortByRatingDown() {
+        versionedSsenisub.sortByRatingDown();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         indicateSsenisubChanged();
     }

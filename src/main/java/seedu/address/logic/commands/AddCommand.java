@@ -41,6 +41,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in SSENISUB";
+    public static final String MESSAGE_DUPLICATE_PHONE_NUMBER = "This phone number is already in use";
+    public static final String MESSAGE_DUPLICATE_EMAIL = "This email is already in use";
 
     private final Person toAdd;
 
@@ -58,6 +60,14 @@ public class AddCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        if (model.hasPhoneNumber(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHONE_NUMBER);
+        }
+
+        if (model.hasEmail(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
         }
 
         model.addPerson(toAdd);

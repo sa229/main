@@ -12,7 +12,7 @@ ifdef::env-github[]
 :note-caption: :information_source:
 :warning-caption: :warning:
 endif::[]
-:repoURL: https://github.com/CS2103-AY1819S1-T13-2/main
+:repoURL: https://github.com/CS2103-AY1819S1-T13-2/main/tree/master
 
 By: `Team T13-2`      Since: `Oct 2018`      Licence: `MIT`
 
@@ -165,9 +165,10 @@ The sections below give more details of each component.
 .Structure of the UI Component
 image::UiClassDiagram.png[width="800"]
 
-*API* : link:{repoURL}/tree/master/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
+*API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `BrowserPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`,
+`StatusBarFooter`, `StaffPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
@@ -185,7 +186,7 @@ The `UI` component,
 image::LogicClassDiagram.png[width="800"]
 
 *API* :
-link:{repoURL}/tree/master/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
+link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `SsenisubParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
@@ -203,7 +204,7 @@ image::DeletePersonSdForLogic.png[width="800"]
 .Structure of the Model Component
 image::ModelClassDiagram.png[width="800"]
 
-*API* : link:{repoURL}/tree/master/src/main/java/seedu/address/model/Model.java[`Model.java`]
+*API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
 
 The `Model`,
 
@@ -223,7 +224,7 @@ image:ModelClassBetterOopDiagram.png[width="800"]
 .Structure of the Storage Component
 image::StorageClassDiagram.png[width="800"]
 
-*API* : link:{repoURL}/tree/master/src/main/java/seedu/address/storage/Storage.java[`Storage.java`]
+*API* : link:{repoURL}/src/main/java/seedu/address/storage/Storage.java[`Storage.java`]
 
 The `Storage` component,
 
@@ -472,22 +473,23 @@ adding profanities that have been overlooked, etc.)
 ==== Introduction
 
 We have implemented a privacy feature to fields that we deem to have importance in having an option to be
-made private. A Privacy Command is implemented to be able to toggle the privacy value of the information of
+made private. A Privacy Command is implemented to be able to set the privacy values of the information of
 the selected person.
 
 ==== Current implementation
 
 The privacy feature is currently implemented as a boolean field under information classes that can be made private
-(Phone, Email, Address as of v1.2).
+(Phone, Email, Address as of v1.4).
 
-A new command PrivacyCommand is implemented to be able to toggle the boolean values of classes that have a Privacy field.
-The add command can also add a Person with private field directly.
+A new command PrivacyCommand is implemented to be able to change the Privacy values of classes that have a Privacy field.
+The add command can also add a Staff with private fields directly.
 
-The UI will also display private fields as private.
+The GUI will also display private fields as private.
 
 [NOTE]
 This command can only change fields that can be made private, and will throw an exception otherwise.
 
+Coming in v2.0: +
 To change a field to private or not private, a 'y' or 'n' is the expected input respectively. This is planned to
 change in future updates where there can be different levels of privacy for different fields.
 
@@ -505,6 +507,27 @@ image::PrivacyCommandActivityDiagram.png[width="800"]
 ** Pros: Able to have different level of Privacy and prevents wrong input automatically
 ** Cons: Harder to implement and extra work not required in current stage of project
 // end::privacycommand[]
+
+// tag::login[]
+=== [Proposed] Login Feature
+==== Introduction
+
+The login feature will be implemented together with an authorization level feature. Based on the login credentials, the staff
+using the SSENISUB will have varying levels of access to the various features offered.
+
+The idea and motivation behind this is that as we plan for SSENISUB to be used as a central database and can be used by any
+staff, not all commands and features should be utilized by a typical staff, such as `delete`. Only a HR Manager should have the
+authorization to be able to `delete` or `add` staff.
+
+With the implementation of authorization levels, we will then be able to categorize the other features based on authority required
+to access them, and also affect the visibility state of private information.
+
+A Logout feature will also be implemented for the case of a shared device, which multiple staff can be using throughout the day.
+
+Given below is an activity diagram that shows how this feature works when a user wants to use the `Delete` command.
+
+image::LoginLogoutActivityDiagram.png[width="800"]
+// end::login[]
 
 // tag::addcommand[]
 === Add Feature
@@ -580,7 +603,7 @@ We are using `java.util.logging` package for logging. The `LogsCenter` class is 
 Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: `config.json`).
 
 // tag::unlockcommand[]
-=== Unlock Feature (temporarily omitted)
+=== Unlock Feature (coming in v2.0)
 
 ==== Introduction
 
@@ -602,7 +625,7 @@ Figure 3.8.2.1 Activity Diagram for `unlock` command
 
 ==== Design Considerations
 
-===== Implementation of unlock (coming in v2.0)
+===== Implementation of unlock
 * ** Alternative 1 (current choice):** Unlocking is handled as an event rather than a command.
 ** Pros: Unlocking can be done at any time and event handler is used
 ** Cons: Does not resemble a real unlocking function, minimal functionality
@@ -663,7 +686,7 @@ This `unfavourite` command allows contacts to be removed from the favourite list
 
 // end::unfavouritecommand[]
 
-//tag::Salary, OT Hours, OT Rate and Pay Deductibles For Staff[]
+// tag::salaryfunction[]
 === Salary, OT Hours, OT Rate and Pay Deductibles For Staff
 
 ==== Introduction
@@ -700,7 +723,7 @@ Figure 3.9.3.1 Idea of First Implementation
 image::SecondImplementation.png[height="450"]
 Figure 3.9.3.2 Idea of Second Implementation
 
-// end::Salary, OT Hours, OT Rate and Pay Deductibles For Staff[]
+// end::salaryfunction[]
 == Documentation
 
 We use asciidoc for writing documentation.
@@ -1475,6 +1498,63 @@ These instructions only provide a starting point for testers to work on; testers
    Expected: The most recent window size and location is retained.
 
 _{ more test cases ... }_
+
+// tag::addStaffTC[]
+=== Adding a staff
+
+.. Prerequisites: Phone and email must be unique, it should not been used for any existing staff.
+... Test case: `add` n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 d/Tech m/Ben t/staff +
+   Expected: The command result panel should display that the person has been added with all the details. Timestamp
+   in the status bar is updated.
+... Test case: `add` n/John-Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 d/Tech m/Ben t/staff +
+   Expected: Error message will be shown in the command result panel - Names should only contain alphabetical
+   characters and spaces, and it should not be blank. Timestamp in the status bar remains the same.
+
+.. Prerequisites: Phone or email exists in SSENISUB
+... Test case: `add` n/Johnny p/98765432 e/johnny@example.com a/311, Clementi Ave 2, #02-25 d/Tech m/Ben t/staff +
+    Expected: Error message will be shown in the command result panel - This phone number is already in use.
+    Timestamp in the status bar remains the same.
+// end::addStaffTC[]
+
+// tag::selectStaffTC[]
+=== Selecting a staff
+
+. Selecting a staff while all staff are listed
+
+.. Prerequisites: List all staff using the `list` command. Multiple staff in the list.
+... Test case: `select 1` +
+   Expected: The details of the selected staff would be displayed on the staff display panel.
+... Other correct select commands to try: `select x` (where x is larger than 0 but less than the list size) +
+   Expected: Similar to previous.
+... Test case: `select 0` +
+   Expected: No staff would be selected and would display invalid message in the command result panel.
+... Other incorrect select commands to try: `select`, `select x` (where x is 0 or lesser than 0 or larger than the
+list size) +
+   Expected: Similar to previous.
+// end::selectStaffTC[]
+
+// tag::FindingStaffTC[]
+=== Finding staff
+
+. Finding staff by name
+
+.. Prerequisites: Having at least 1 staff.
+... Test case: Valid name +
+   Command: `find-n` John +
+   Expected: Staff/s with name John will be shown on the left panel.
+... Other correct find by name commands to try: `find-n Valid name` (where valid name contain alphabetical characters
+that are in SSENISUB) +
+   Expected: Similar as previous
+... Test case: Invalid name +
+   Command: `find-n` 123 +
+   Expected: No staff will be shown on the left panel.
+... Other find by name commands to try: `find-n Invalid name` (where invalid name contain alphanumeric
+characters or names that are not in SSENISUB) +
+   Expected: Similar as previous
+... Test case: Empty value +
+   Command: `find-n` +
+   Expected: Error message is shown in the command result panel.
+// end::FindingStaffTC[]
 
 === Deleting a staff
 

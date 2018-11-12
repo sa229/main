@@ -72,6 +72,9 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in SSENISUB.";
+    //public static final String MESSAGE_DUPLICATE_NAME = "Unable to edit to an existing name.";
+    public static final String MESSAGE_DUPLICATE_PHONE_NUMBER = "Unable to edit to an existing phone number";
+    public static final String MESSAGE_DUPLICATE_EMAIL = "Unable to edit to an existing email address";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -99,6 +102,14 @@ public class EditCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+
+        if (!personToEdit.hasSamePhone(editedPerson) && model.hasPhoneNumber(editedPerson)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHONE_NUMBER);
+        }
+
+        if (!personToEdit.hasSameEmail(editedPerson) && model.hasEmail(editedPerson)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
+        }
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

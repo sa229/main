@@ -67,6 +67,29 @@ public class Ssenisub implements ReadOnlySsenisub {
     }
 
     /**
+     * Returns true if a person with the same Name as {@code person} exists in Ssenisub.
+     */
+    public boolean hasName(Person person) {
+        requireNonNull(person);
+        return persons.containsName(person);
+    }
+    /**
+     * Returns true if a person with the same Phone Number as {@code person} exists in Ssenisub.
+     */
+    public boolean hasPhoneNumber(Person person) {
+        requireNonNull(person);
+        return persons.containsPhoneNumber(person);
+    }
+
+    /**
+     * Returns true if a person with the same Email as {@code person} exists in Ssenisub.
+     */
+    public boolean hasEmail(Person person) {
+        requireNonNull(person);
+        return persons.containsEmail(person);
+    }
+
+    /**
      * Adds a person to SSENISUB.
      * The person must not already exist in SSENISUB.
      */
@@ -120,10 +143,31 @@ public class Ssenisub implements ReadOnlySsenisub {
     }
 
     /**
-     * Sorts the person list
+     * Sorts the person list by name
      */
-    public void sort() {
-        persons.sort();
+    public void sortByName() {
+        persons.sortByName();
+    }
+
+    /**
+     * Sorts the person list by department
+     */
+    public void sortByDept() {
+        persons.sortByDept();
+    }
+
+    /**
+     * Sorts the person list by rating from lowest to highest
+     */
+    public void sortByRatingUp() {
+        persons.sortByRatingUp();
+    }
+
+    /**
+     * Sorts the person list by rating from highest to lowest
+     */
+    public void sortByRatingDown() {
+        persons.sortByRatingDown();
     }
 
     /**

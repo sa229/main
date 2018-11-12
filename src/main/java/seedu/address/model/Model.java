@@ -24,6 +24,21 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a person with the same Name as {@code person} exists in Ssenisub.
+     */
+    boolean hasName(Person person);
+
+    /**
+     * Returns true if a person has the same Phone Number as {@code person} exists in Ssenisub.
+     */
+    boolean hasPhoneNumber(Person person);
+
+    /**
+     * Returns true if a person has the same Email as {@code person} exists in Ssenisub.
+     */
+    boolean hasEmail(Person person);
+
+    /**
      * Deletes the given person.
      * The person must exist in Ssenisub.
      */
@@ -55,9 +70,24 @@ public interface Model {
     void unfavouritePerson(Person target, Person unfavouritedPerson);
 
     /**
-     * Sorts the person list
+     * Sorts the person list by name
      */
-    void sort();
+    void sortByName();
+
+    /**
+     * Sorts the person list by dept
+     */
+    void sortByDept();
+
+    /**
+     * Sorts the person list by rating from lowest to highest
+     */
+    void sortByRatingUp();
+
+    /**
+     * Sorts the person list by rating from highest to lowest
+     */
+    void sortByRatingDown();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
