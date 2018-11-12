@@ -386,6 +386,11 @@ used can be subjected to expansion and modification. The fiter works by iteratin
 sequence of words (no re-ordering) that match any profanity found within the profanity list. As such, runtime will be
 dependent on input length rather than profanity list length.
 
+Given below is a sequence diagram to show how the profanity filter operation works (This extends from the previous diagram,
+which omitted the part where `Feedback` is called by `FeedbackCommandParser`):
+
+image::FeedbackProfanitySequenceDiagram.png[width="800"]
+
 [[Feedback-Features]]
 ==== Noteworthy Features:
 
