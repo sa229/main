@@ -1499,6 +1499,63 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
+// tag::addStaffTC[]
+=== Adding a staff
+
+.. Prerequisites: Phone and email must be unique, it should not been used for any existing staff.
+... Test case: `add` n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 d/Tech m/Ben t/staff +
+   Expected: The command result panel should display that the person has been added with all the details. Timestamp
+   in the status bar is updated.
+... Test case: `add` n/John-Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 d/Tech m/Ben t/staff +
+   Expected: Error message will be shown in the command result panel - Names should only contain alphabetical
+   characters and spaces, and it should not be blank. Timestamp in the status bar remains the same.
+
+.. Prerequisites: Phone or email exists in SSENISUB
+... Test case: `add` n/Johnny p/98765432 e/johnny@example.com a/311, Clementi Ave 2, #02-25 d/Tech m/Ben t/staff +
+    Expected: Error message will be shown in the command result panel - This phone number is already in use.
+    Timestamp in the status bar remains the same.
+// end::addStaffTC[]
+
+// tag::selectStaffTC[]
+=== Selecting a staff
+
+. Selecting a staff while all staff are listed
+
+.. Prerequisites: List all staff using the `list` command. Multiple staff in the list.
+... Test case: `select 1` +
+   Expected: The details of the selected staff would be displayed on the staff display panel.
+... Other correct select commands to try: `select x` (where x is larger than 0 but less than the list size) +
+   Expected: Similar to previous.
+... Test case: `select 0` +
+   Expected: No staff would be selected and would display invalid message in the command result panel.
+... Other incorrect select commands to try: `select`, `select x` (where x is 0 or lesser than 0 or larger than the
+list size) +
+   Expected: Similar to previous.
+// end::selectStaffTC[]
+
+// tag::FindingStaffTC[]
+=== Finding staff
+
+. Finding staff by name
+
+.. Prerequisites: Having at least 1 staff.
+... Test case: Valid name +
+   Command: `find-n` John +
+   Expected: Staff/s with name John will be shown on the left panel.
+... Other correct find by name commands to try: `find-n Valid name` (where valid name contain alphabetical characters
+that are in SSENISUB) +
+   Expected: Similar as previous
+... Test case: Invalid name +
+   Command: `find-n` 123 +
+   Expected: No staff will be shown on the left panel.
+... Other find by name commands to try: `find-n Invalid name` (where invalid name contain alphanumeric
+characters or names that are not in SSENISUB) +
+   Expected: Similar as previous
+... Test case: Empty value +
+   Command: `find-n` +
+   Expected: Error message is shown in the command result panel.
+// end::FindingStaffTC[]
+
 === Deleting a staff
 
 . Deleting a staff while all staff are listed
