@@ -389,6 +389,14 @@ Removes the 1st staff in the results of the <code>find</code> command from favou
 <div class="paragraph">
 <p>This <code>favourite</code> command allows contacts to be added to a favourite list and moves the contact to the top of the list.</p>
 </div>
+<div class="paragraph">
+<p>Given below is a sequence diagram that shows how the favourite command works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FavouriteSequenceDiagram.png" alt="FavouriteSequenceDiagram" width="800">
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
@@ -432,7 +440,7 @@ Removes the 1st staff in the results of the <code>find</code> command from favou
 <div class="sect3">
 <h4 id="introduction-2"><a class="link" href="#introduction-2">Introduction</a></h4>
 <div class="paragraph">
-<p>We have implemented an unfavourite command that focuses on the <code>Logic</code> component. An 'UnfavouriteCommand` class is added.</p>
+<p>As we have implemented a favourite command, we also have implemented an unfavourite command that focuses on the <code>Logic</code> component. An 'UnfavouriteCommand` class is added.</p>
 </div>
 </div>
 <div class="sect3">
@@ -440,11 +448,19 @@ Removes the 1st staff in the results of the <code>find</code> command from favou
 <div class="paragraph">
 <p>This <code>unfavourite</code> command allows contacts to be removed from the favourite list.</p>
 </div>
+<div class="paragraph">
+<p>Given below is a sequence diagram that shows how the unfavourite command works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UnfavouriteSequenceDiagram.png" alt="UnfavouriteSequenceDiagram" width="800">
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="implementation-of-unfavourite-action"><a class="link" href="#implementation-of-unfavourite-action">Implementation of unfavourite action</a></h5>
+<h5 id="implementation-of-unfavourite-command"><a class="link" href="#implementation-of-unfavourite-command">Implementation of unfavourite command</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -479,4 +495,4 @@ Removes the 1st staff in the results of the <code>find</code> command from favou
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 10:22:32 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 12:32:04 UTC</div></div></div></body></html>

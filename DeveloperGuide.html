@@ -29,19 +29,23 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
-<li><a href="#rate-command-feature">3.2. Rate command feature</a></li>
+<li><a href="#add-feature">3.1. Add Feature</a></li>
+<li><a href="#salary-ot-hours-ot-rate-and-pay-deductibles-for-staff">3.2. Salary, OT Hours, OT Rate and Pay Deductibles For Staff</a></li>
 <li><a href="#feedback-command-feature">3.3. Feedback command feature</a></li>
-<li><a href="#privacy-feature">3.4. Privacy Feature</a></li>
-<li><a href="#proposed-login-feature">3.5. [Proposed] Login Feature</a></li>
-<li><a href="#add-feature">3.6. Add Feature</a></li>
-<li><a href="#proposed-data-encryption">3.7. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.8. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.9. Configuration</a></li>
-<li><a href="#unlock-feature-coming-in-v2-0">3.10. Unlock Feature (coming in v2.0)</a></li>
-<li><a href="#favourite-feature">3.11. Favourite Feature</a></li>
-<li><a href="#unfavourite-feature">3.12. Unfavourite Feature</a></li>
-<li><a href="#salary-ot-hours-ot-rate-and-pay-deductibles-for-staff">3.13. Salary, OT Hours, OT Rate and Pay Deductibles For Staff</a></li>
+<li><a href="#rate-command-feature">3.4. Rate command feature</a></li>
+<li><a href="#privacy-feature">3.5. Privacy Feature</a></li>
+<li><a href="#sort-feature">3.6. Sort Feature</a></li>
+<li><a href="#sort-by-department-feature">3.7. Sort By Department Feature</a></li>
+<li><a href="#sort-by-rating-from-highest-to-lowest-feature">3.8. Sort By Rating From Highest To Lowest Feature</a></li>
+<li><a href="#sort-by-rating-from-lowest-to-highest-feature">3.9. Sort By Rating From Lowest To Highest Feature</a></li>
+<li><a href="#favourite-feature">3.10. Favourite Feature</a></li>
+<li><a href="#unfavourite-feature">3.11. Unfavourite Feature</a></li>
+<li><a href="#undo-redo-feature">3.12. Undo/Redo feature</a></li>
+<li><a href="#lock-and-unlock-feature-coming-in-v2-0">3.13. Lock and Unlock Feature (coming in v2.0)</a></li>
+<li><a href="#proposed-login-feature">3.14. [Proposed] Login Feature</a></li>
+<li><a href="#proposed-data-encryption">3.15. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.16. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.17. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -86,10 +90,12 @@
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
 <li><a href="#adding-a-staff">G.2. Adding a staff</a></li>
-<li><a href="#selecting-a-staff">G.3. Selecting a staff</a></li>
-<li><a href="#finding-staff">G.4. Finding staff</a></li>
-<li><a href="#deleting-a-staff">G.5. Deleting a staff</a></li>
-<li><a href="#saving-data">G.6. Saving data</a></li>
+<li><a href="#deleting-a-staff">G.3. Deleting a staff</a></li>
+<li><a href="#selecting-a-staff">G.4. Selecting a staff</a></li>
+<li><a href="#finding-staff">G.5. Finding staff</a></li>
+<li><a href="#favouriting-a-staff">G.6. Favouriting a staff</a></li>
+<li><a href="#unfavouriting-a-staff">G.7. Unfavouriting a staff</a></li>
+<li><a href="#saving-data">G.8. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -598,198 +604,86 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>SSENISUB</cod
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.1. Undo/Redo feature</a></h3>
+<h3 id="add-feature"><a class="link" href="#add-feature">3.1. Add Feature</a></h3>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by <code>VersionedSsenisub</code>.
-It extends <code>SSENISUB</code> with an undo/redo history, stored internally as an <code>SsenisubStateList</code> and <code>currentStatePointer</code>.
-Additionally, it implements the following operations:</p>
+<p>The <code>add</code> command allows HR users to add staff into SSENISSUB. It will ensure that there will be no duplicate with
+any existing staff.</p>
 </div>
-<div class="ulist">
-<ul>
+<div class="paragraph">
+<p>The following sequence diagram shows the sequence flow from the <code>LogicManager</code> to the <code>ModelManager</code> when a HR user
+enter a <code>add</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AddSequenceDiagram.png" alt="AddSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 3.4.1.1 Sequence Diagram for <code>add</code> command</p>
+</div>
+<div class="paragraph">
+<p>From the sequence diagram:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p><code>VersionedSsenisub#commit()</code>&#8201;&#8212;&#8201;Saves the current SSENISUB state in its history.</p>
+<p>When <code>Logic Manager</code> receives the <code>execute</code> command from the app, it calls the parseCommand method in
+<code>SsenisubParser</code>.</p>
 </li>
 <li>
-<p><code>VersionedSsenisub#undo()</code>&#8201;&#8212;&#8201;Restores the previous SSENISUB state from its history.</p>
+<p><code>SsenisubParser</code> will receive add as the command and instantiate <code>AddCommandParser</code> to parse the rest of the
+command.</p>
 </li>
 <li>
-<p><code>VersionedSsenisub#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone SSENISUB state from its history.</p>
+<p>If the arguments specified are valid, a <code>AddCommand</code> would be created and returned by to the <code>LogicManager</code>.</p>
 </li>
-</ul>
+<li>
+<p><code>LogicManager</code> would proceed to call <code>execute</code> of the <code>AddCommand</code>.</p>
+</li>
+<li>
+<p>A new staff would be added and a successful <code>CommandResult</code> would be returned and displayed.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitSsenisub()</code>, <code>Model#undoSsenisub()</code> and <code>Model#redoSsenisub()</code> respectively.</p>
+<p>SSENISSUB&#8217;s staff is stored with name, phone, email address, home address, department, manager name and can
+be search and listed only with names.</p>
 </div>
 <div class="paragraph">
-<p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>VersionedSsenisub</code> will be initialized with the initial SSENISUB state, and the <code>currentStatePointer</code> pointing to that single SSENISUB state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoStartingStateListDiagram.png" alt="UndoRedoStartingStateListDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th staff in SSENISUB. The <code>delete</code> command calls <code>Model#commitSsenisub()</code>, causing the modified state of SSENISUB after the <code>delete 5</code> command executes to be saved in the <code>SsenisubStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted address book state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoNewCommand1StateListDiagram.png" alt="UndoRedoNewCommand1StateListDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new staff. The <code>add</code> command also calls <code>Model#commitSsenisub()</code>, causing another modified address book state to be saved into the <code>SsenisubStateList</code>.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoNewCommand2StateListDiagram.png" alt="UndoRedoNewCommand2StateListDiagram" width="800">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If a command fails its execution, it will not call <code>Model#commitSsenisub()</code>, so SSENISUB state will not be saved into the <code>SsenisubStateList</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 4. The user now decides that adding the staff was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoSsenisub()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores SSENISUB to that state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoExecuteUndoStateListDiagram.png" alt="UndoRedoExecuteUndoStateListDiagram" width="800">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>currentStatePointer</code> is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The <code>undo</code> command uses <code>Model#canUndoSsenisub()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the undo operation works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoSequenceDiagram.png" alt="UndoRedoSequenceDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoSsenisub()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores SSENISUB to that state.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>currentStatePointer</code> is at index <code>SsenisubStateList.size() - 1</code>, pointing to the latest address book state, then there are no undone address book states to restore. The <code>redo</code> command uses <code>Model#canRedoSsenisub()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify SSENISUB, such as <code>list</code>, will usually not call <code>Model#commitSsenisub()</code>, <code>Model#undoSsenisub()</code> or <code>Model#redoSsenisub()</code>. Thus, the <code>SsenisubStateList</code> remains unchanged.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoNewCommand3StateListDiagram.png" alt="UndoRedoNewCommand3StateListDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitSsenisub()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>SsenisubStateList</code>, all address book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoNewCommand4StateListDiagram.png" alt="UndoRedoNewCommand4StateListDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a new command:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoActivityDiagram.png" alt="UndoRedoActivityDiagram" width="650">
-</div>
+<p>All fields are checked against respective validations with each model. If the provided command either does not have
+any field, or field with invalid input, a <code>ParseException</code> would be thrown.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
+<h5 id="implementation-of-code-addcommandparser-code"><a class="link" href="#implementation-of-code-addcommandparser-code">Implementation of <code>AddCommandParser</code></a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Saves the entire address book.</p>
+<p><strong> Alternative 1 (current choice):</strong> <code>add</code> is parsed first, then the rest of the arguments as <code>AddCommandParser</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easy to implement.</p>
+<p>Pros: Better modularization for commands</p>
 </li>
 <li>
-<p>Cons: May have performance issues in terms of memory usage.</p>
+<p>Cons: More classes will be needed = more code to be written</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself.</p>
+<p><strong> Alternative 2:</strong> <code>add</code> is parsed straight from <code>SsenisubParser</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the staff being deleted).</p>
+<p>Pros: Reduces the number of classes needed = less code to be written</p>
 </li>
 <li>
-<p>Cons: We must ensure that the implementation of each individual command are correct.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-undo-redo-commands"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands">Aspect: Data structure to support the undo/redo commands</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of address book states.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.</p>
-</li>
-<li>
-<p>Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>VersionedSsenisub</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Use <code>HistoryManager</code> for undo/redo</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.</p>
-</li>
-<li>
-<p>Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as <code>HistoryManager</code> now needs to do two different things.</p>
+<p>Cons: Poor modularization for commands</p>
 </li>
 </ul>
 </div>
@@ -800,69 +694,84 @@ If the <code>currentStatePointer</code> is at index <code>SsenisubStateList.size
 </div>
 </div>
 <div class="sect2">
-<h3 id="rate-command-feature"><a class="link" href="#rate-command-feature">3.2. Rate command feature</a></h3>
+<h3 id="salary-ot-hours-ot-rate-and-pay-deductibles-for-staff"><a class="link" href="#salary-ot-hours-ot-rate-and-pay-deductibles-for-staff">3.2. Salary, OT Hours, OT Rate and Pay Deductibles For Staff</a></h3>
 <div class="sect3">
 <h4 id="introduction"><a class="link" href="#introduction">3.2.1. Introduction</a></h4>
 <div class="paragraph">
-<p>We have implemented a rate command feature as an enhancement, which focuses on the <code>Logic</code> component.
-A <code>Rating</code> class is implemented to support this, which the <code>Person</code> class is dependent on. This command
-allows users, especially for managers to update ratings of employees within an organisation.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This command differs from the add and edit command, because users cannot simply add an employee with a rating through
-the add command or edit an employee&#8217;s rating through the edit command.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
-</td>
-<td class="content">
-Any updates to an employee&#8217;s rating should only
-be done by a <strong>person of authority</strong>, i.e. <code>Manager</code>.
-</td>
-</tr>
-</table>
+<p>We have introduced four new fields to a staff namely the salary, overtime(OT) hours, OT rate and Pay deductibles
+for a staff. This is to allow the HR department of the company to keep track of individual staff&#8217;s details.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.2. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The rate command, as mentioned, executes asynchronous to the add and edit command. Upon adding an employee, a <code>Rating.DEFAULT_INITIAL_RATING</code>
-with a default value of 0, is initialised on the <code>Person</code> and then saved.</p>
+<p>The current implementation of this feature is embedded into a Person object together with the other information
+that was originally in the Person object. Prefixes for the respective fields were also created to allow the HR user
+to edit the necessary information whenever needed.</p>
 </div>
 <div class="paragraph">
-<p>There are 2 validation regular expressions found in the <code>Rating</code> class:</p>
+<p>A newly added staff into SSENISUB would be assigned the default values of 0 for all four fields. This is to better
+allow the HR staff to manage the information of the staff. Naturally, when a person first joins the company, he would
+not have raked up any OT hours and the rate is dependent on the job of the individual.</p>
+</div>
+<div class="paragraph">
+<p>Should the user now want to edit a staff&#8217;s salary, OT hours, OT rate or pay deductibles, the user can now simply
+input the prefixes followed by the numerals of each field to edit in the edit command. The fields would then be
+edited depending if the prefixes were there or not (similar to the edit command).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.3. Design Considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (First Implementation):</strong> Merging the OT hours, OT rate and pay deductibles within a Salary class</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to calculate net pay</p>
+</li>
+<li>
+<p>Cons: Harder to implement and would result in many conflicts within the software itself. Harder to debug</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/FirstImplementation.png" alt="FirstImplementation" height="450">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 3.9.3.1 Idea of First Implementation</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>VALIDATION_REGEX</code> which checks for integer values from 0 - 10 of <code>Rating</code> which have already been added. 0 is included
-as there may be a case when a <code>Person</code> has already been added but his/her <code>Rating</code> has yet to be updated.</p>
+<p><strong>Alternative 2 (Current Implementation):</strong> Separating out each field to their own classes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement and allows for more flexibility if the fields are required to be computed/used for other
+information, easier to identify issues when something goes wrong</p>
 </li>
 <li>
-<p><code>VALIDATION_INPUT_REGEX</code> which checks for integer values from 1 - 10 of 'Rating' to be added by users with the rate
-command.</p>
+<p>Cons: Does not seem intuitive to separate it out since OT hours, OT rate and pay deductibles are used to compute salary</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Given below is a sequence diagram shows how the rate operation works:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/RateSequenceDiagram.png" alt="RateSequenceDiagram" width="800">
+<img src="images/SecondImplementation.png" alt="SecondImplementation" height="450">
 </div>
+</div>
+<div class="paragraph">
+<p>Figure 3.9.3.2 Idea of Second Implementation</p>
 </div>
 </div>
 </div>
@@ -1069,7 +978,7 @@ As such, we have decided to accept this as a minor shortfall of this implementat
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.3.4. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.4. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="how-to-implement-the-profanity-filter"><a class="link" href="#how-to-implement-the-profanity-filter">How to implement the profanity filter</a></h5>
 <div class="paragraph">
@@ -1087,7 +996,7 @@ within the HashMap.</p>
 <p>Pros: <strong>O(1)</strong> runtime per substring when checking whether a particular substring of the input.</p>
 </li>
 <li>
-<p>Cons: Runs for <strong>O(n!)</strong> time, where n is the number of characters in the input.</p>
+<p>Cons: Runs for <strong>O(n²)</strong> time, where n is the number of characters in the input.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1134,9 +1043,76 @@ adding profanities that have been overlooked, etc.)</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="privacy-feature"><a class="link" href="#privacy-feature">3.4. Privacy Feature</a></h3>
+<h3 id="rate-command-feature"><a class="link" href="#rate-command-feature">3.4. Rate command feature</a></h3>
 <div class="sect3">
 <h4 id="introduction-3"><a class="link" href="#introduction-3">3.4.1. Introduction</a></h4>
+<div class="paragraph">
+<p>We have implemented a rate command feature as an enhancement, which focuses on the <code>Logic</code> component.
+A <code>Rating</code> class is implemented to support this, which the <code>Person</code> class is dependent on. This command
+allows users, especially for managers to update ratings of employees within an organisation.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This command differs from the add and edit command, because users cannot simply add an employee with a rating through
+the add command or edit an employee&#8217;s rating through the edit command.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+Any updates to an employee&#8217;s rating should only
+be done by a <strong>person of authority</strong>, i.e. <code>Manager</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.2. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The rate command, as mentioned, executes asynchronous to the add and edit command. Upon adding an employee, a <code>Rating.DEFAULT_INITIAL_RATING</code>
+with a default value of 0, is initialised on the <code>Person</code> and then saved.</p>
+</div>
+<div class="paragraph">
+<p>There are 2 validation regular expressions found in the <code>Rating</code> class:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>VALIDATION_REGEX</code> which checks for integer values from 0 - 10 of <code>Rating</code> which have already been added. 0 is included
+as there may be a case when a <code>Person</code> has already been added but his/her <code>Rating</code> has yet to be updated.</p>
+</li>
+<li>
+<p><code>VALIDATION_INPUT_REGEX</code> which checks for integer values from 1 - 10 of 'Rating' to be added by users with the rate
+command.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Given below is a sequence diagram shows how the rate operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/RateSequenceDiagram.png" alt="RateSequenceDiagram" width="800">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="privacy-feature"><a class="link" href="#privacy-feature">3.5. Privacy Feature</a></h3>
+<div class="sect3">
+<h4 id="introduction-4"><a class="link" href="#introduction-4">3.5.1. Introduction</a></h4>
 <div class="paragraph">
 <p>We have implemented a privacy feature to fields that we deem to have importance in having an option to be
 made private. A Privacy Command is implemented to be able to set the privacy values of the information of
@@ -1144,7 +1120,7 @@ the selected person.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.4.2. Current implementation</a></h4>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.5.2. Current implementation</a></h4>
 <div class="paragraph">
 <p>The privacy feature is currently implemented as a boolean field under information classes that can be made private
 (Phone, Email, Address as of v1.4).</p>
@@ -1183,7 +1159,7 @@ change in future updates where there can be different levels of privacy for diff
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.4.3. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.5.3. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="how-to-implement-privacy"><a class="link" href="#how-to-implement-privacy">How to implement Privacy</a></h5>
 <div class="ulist">
@@ -1220,116 +1196,55 @@ change in future updates where there can be different levels of privacy for diff
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-login-feature"><a class="link" href="#proposed-login-feature">3.5. [Proposed] Login Feature</a></h3>
+<h3 id="sort-feature"><a class="link" href="#sort-feature">3.6. Sort Feature</a></h3>
 <div class="sect3">
-<h4 id="introduction-4"><a class="link" href="#introduction-4">3.5.1. Introduction</a></h4>
+<h4 id="introduction-5"><a class="link" href="#introduction-5">3.6.1. Introduction</a></h4>
 <div class="paragraph">
-<p>The login feature will be implemented together with an authorization level feature. Based on the login credentials, the staff
-using the SSENISUB will have varying levels of access to the various features offered.</p>
+<p>We have implemented a sort command that focuses on the <code>Logic</code> component. A <code>SortCommand</code> class is added.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.6.2. Current Implementation</a></h4>
+<div class="paragraph">
+<p>This <code>sort</code> command sorts the staff list by name in lexicographical order.</p>
 </div>
 <div class="paragraph">
-<p>The idea and motivation behind this is that as we plan for SSENISUB to be used as a central database and can be used by any
-staff, not all commands and features should be utilized by a typical staff, such as <code>delete</code>. Only a HR Manager should have the
-authorization to be able to <code>delete</code> or <code>add</code> staff.</p>
-</div>
-<div class="paragraph">
-<p>With the implementation of authorization levels, we will then be able to categorize the other features based on authority required
-to access them, and also affect the visibility state of private information.</p>
-</div>
-<div class="paragraph">
-<p>A Logout feature will also be implemented for the case of a shared device, which multiple staff can be using throughout the day.</p>
-</div>
-<div class="paragraph">
-<p>Given below is an activity diagram that shows how this feature works when a user wants to use the <code>Delete</code> command.</p>
+<p>Given below is a sequence diagram that shows how the sort command works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/LoginLogoutActivityDiagram.png" alt="LoginLogoutActivityDiagram" width="800">
+<img src="images/SortSequenceDiagram.png" alt="SortSequenceDiagram" width="800">
 </div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="add-feature"><a class="link" href="#add-feature">3.6. Add Feature</a></h3>
-<div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.6.1. Current Implementation</a></h4>
-<div class="paragraph">
-<p>The <code>add</code> command allows HR users to add staff into SSENISSUB. It will ensure that there will be no duplicate with
-any existing staff.</p>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows the sequence flow from the <code>LogicManager</code> to the <code>ModelManager</code> when a HR user
-enter a <code>add</code> command:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/AddSequenceDiagram.png" alt="AddSequenceDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Figure 3.4.1.1 Sequence Diagram for <code>add</code> command</p>
-</div>
-<div class="paragraph">
-<p>From the sequence diagram:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>When <code>Logic Manager</code> receives the <code>execute</code> command from the app, it calls the parseCommand method in
-<code>SsenisubParser</code>.</p>
-</li>
-<li>
-<p><code>SsenisubParser</code> will receive add as the command and instantiate <code>AddCommandParser</code> to parse the rest of the
-command.</p>
-</li>
-<li>
-<p>If the arguments specified are valid, a <code>AddCommand</code> would be created and returned by to the <code>LogicManager</code>.</p>
-</li>
-<li>
-<p><code>LogicManager</code> would proceed to call <code>execute</code> of the <code>AddCommand</code>.</p>
-</li>
-<li>
-<p>A new staff would be added and a successful <code>CommandResult</code> would be returned and displayed.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>SSENISSUB&#8217;s staff is stored with name, phone, email address, home address, department, manager name and can
-be search and listed only with names.</p>
-</div>
-<div class="paragraph">
-<p>All fields are checked against respective validations with each model. If the provided command either does not have
-any field, or field with invalid input, a <code>ParseException</code> would be thrown.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.6.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.6.3. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="implementation-of-code-addcommandparser-code"><a class="link" href="#implementation-of-code-addcommandparser-code">Implementation of <code>AddCommandParser</code></a></h5>
+<h5 id="implementation-of-sort-command"><a class="link" href="#implementation-of-sort-command">Implementation of sort command</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong> Alternative 1 (current choice):</strong> <code>add</code> is parsed first, then the rest of the arguments as <code>AddCommandParser</code></p>
+<p><strong> Alternative 1 (current choice):</strong> Sorts by favourite then by name</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Better modularization for commands</p>
+<p>Pros: Favourited staff stays on top of the list, favourited staff still easier to find</p>
 </li>
 <li>
-<p>Cons: More classes will be needed = more code to be written</p>
+<p>Cons: The overall list is not 100% sorted by name</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong> Alternative 2:</strong> <code>add</code> is parsed straight from <code>SsenisubParser</code></p>
+<p><strong> Alternative 2:</strong> Sorts by name then by favourite</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Reduces the number of classes needed = less code to be written</p>
+<p>Pros: Overall list sorted wholly by name, easier to find a specific person when not known whether favourited or not</p>
 </li>
 <li>
-<p>Cons: Poor modularization for commands</p>
+<p>Cons: Favourited person scattered all over in the list, defeats the purpose of having favourited staff</p>
 </li>
 </ul>
 </div>
@@ -1340,113 +1255,55 @@ any field, or field with invalid input, a <code>ParseException</code> would be t
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.7. [Proposed] Data Encryption</a></h3>
-<div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.8. Logging</a></h3>
-<div class="paragraph">
-<p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.9, &#8220;Configuration&#8221;</a>)</p>
-</li>
-<li>
-<p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
-</li>
-<li>
-<p>Currently log messages are output through: <code>Console</code> and to a <code>.log</code> file.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Logging Levels</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>SEVERE</code> : Critical problem detected which may possibly cause the termination of the application</p>
-</li>
-<li>
-<p><code>WARNING</code> : Can continue, but with caution</p>
-</li>
-<li>
-<p><code>INFO</code> : Information showing the noteworthy actions by the App</p>
-</li>
-<li>
-<p><code>FINE</code> : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.9. Configuration</a></h3>
-<div class="paragraph">
-<p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="unlock-feature-coming-in-v2-0"><a class="link" href="#unlock-feature-coming-in-v2-0">3.10. Unlock Feature (coming in v2.0)</a></h3>
+<h3 id="sort-by-department-feature"><a class="link" href="#sort-by-department-feature">3.7. Sort By Department Feature</a></h3>
 <div class="sect3">
-<h4 id="introduction-5"><a class="link" href="#introduction-5">3.10.1. Introduction</a></h4>
+<h4 id="introduction-6"><a class="link" href="#introduction-6">3.7.1. Introduction</a></h4>
 <div class="paragraph">
-<p>We have implemented an unlock command that focuses on the <code>Storage</code> component. An <code>UnlockCommand</code> class is added
-and an <code>UnlockEvent</code> event is also added.</p>
+<p>This sort by department command is a further enhancement to the sort command that also focuses on the <code>Logic</code> component. A <code>SortDeptCommand</code> class is added.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.10.2. Current Implementation</a></h4>
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.7.2. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The <code>unlock</code> command allows changes made to be saved to SSENISUB.</p>
+<p>This <code>sortDept</code> command sorts the staff list by department in lexicographical order.</p>
 </div>
 <div class="paragraph">
-<p>Without the correct (for now hardcoded) password, all the changes made (add, edit, delete)during the session
-will not be saved and will not be shown once the window is closed and reopened.</p>
-</div>
-<div class="paragraph">
-<p>The following activity diagram shows how the current <code>Unlock</code> command works:</p>
+<p>Given below is a sequence diagram that shows how the sortDept command works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UnlockActivityDiagram.png" alt="UnlockActivityDiagram" height="650">
+<img src="images/SortDeptSequenceDiagram.png" alt="SortDeptSequenceDiagram" width="800">
 </div>
-</div>
-<div class="paragraph">
-<p>Figure 3.8.2.1 Activity Diagram for <code>unlock</code> command</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.10.3. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.7.3. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="implementation-of-unlock"><a class="link" href="#implementation-of-unlock">Implementation of unlock</a></h5>
+<h5 id="implementation-of-sortdept-command"><a class="link" href="#implementation-of-sortdept-command">Implementation of sortDept command</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong> Alternative 1 (current choice):</strong> Unlocking is handled as an event rather than a command.</p>
+<p><strong> Alternative 1 (current choice):</strong> Sorts by department then by favourite then by name</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Unlocking can be done at any time and event handler is used</p>
+<p>Pros: Easier to go through the different departments without a hassle</p>
 </li>
 <li>
-<p>Cons: Does not resemble a real unlocking function, minimal functionality</p>
+<p>Cons: Favourited staff does not stay on top of the list</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong> Alternative 2:</strong> Unlocking is a command that overrides all other commands</p>
+<p><strong> Alternative 2:</strong> Sorts by favourite then by department then by name</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Makes more sense as an unlock function</p>
+<p>Pros: Favourited staff stay on top of the list</p>
 </li>
 <li>
-<p>Cons: Harder to implement</p>
+<p>Cons: The main purpose of sorting by department is to group the staff by the different department, so there is no point in putting the favourites on top of the list</p>
 </li>
 </ul>
 </div>
@@ -1457,21 +1314,180 @@ will not be saved and will not be shown once the window is closed and reopened.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="favourite-feature"><a class="link" href="#favourite-feature">3.11. Favourite Feature</a></h3>
+<h3 id="sort-by-rating-from-highest-to-lowest-feature"><a class="link" href="#sort-by-rating-from-highest-to-lowest-feature">3.8. Sort By Rating From Highest To Lowest Feature</a></h3>
 <div class="sect3">
-<h4 id="introduction-6"><a class="link" href="#introduction-6">3.11.1. Introduction</a></h4>
+<h4 id="introduction-7"><a class="link" href="#introduction-7">3.8.1. Introduction</a></h4>
+<div class="paragraph">
+<p>This sort by rating command is a further enhancement to the sort command that also focuses on the <code>Logic</code> component. A <code>SortRatingDownCommand</code> class is added.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">3.8.2. Current Implementation</a></h4>
+<div class="paragraph">
+<p>This <code>sortRatingDown</code> command sorts the staff list by rating from highest to lowest.</p>
+</div>
+<div class="paragraph">
+<p>Given below is a sequence diagram that shows how the sortRatingDown command works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SortRatingDownSequenceDiagram.png" alt="SortRatingDownSequenceDiagram" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.8.3. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="implementation-of-sortratingdown-command"><a class="link" href="#implementation-of-sortratingdown-command">Implementation of sortRatingDown command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice):</strong> Sorts by rating down then by favourite then by name</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Staff list is sorted wholly by their ratings, easier to process for the case of staff performance review as being favourited or not should not affect its rating ranking</p>
+</li>
+<li>
+<p>Cons: Favourited staff does not stay on top of the list</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2:</strong> Sorts by favourite then by rating down then by name</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Favourited staff stay on top of the list</p>
+</li>
+<li>
+<p>Cons: As rating by rating is intended for the use of staff performance review, it would not be helpful to do it this way</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="the-use-of-sortratingdown-when-command-alias-code-sortrating-code-is-called"><a class="link" href="#the-use-of-sortratingdown-when-command-alias-code-sortrating-code-is-called">The use of sortRatingDown when command alias <code>sortRating</code> is called</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice):</strong> Inputting sortRating sorts the staff list by rating from highest to lowest</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This alternative is chosen as it is believed that there are more cases that make use of sorting from highest rating, e.g. job promotion review, performance-related additional wage</p>
+</li>
+<li>
+<p>Cons: Some people might expect the default sort by rating to sort the list from lowest to highest</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2:</strong> Inputting sortRating sorts the staff list by rating from lowest to highest</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: There are cases where sort rating from lowest is needed, e.g. the need to let go of staff due to budget cuts</p>
+</li>
+<li>
+<p>Cons: Some people might expect the default sort by rating to sort the list from highest to lowest</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sort-by-rating-from-lowest-to-highest-feature"><a class="link" href="#sort-by-rating-from-lowest-to-highest-feature">3.9. Sort By Rating From Lowest To Highest Feature</a></h3>
+<div class="sect3">
+<h4 id="introduction-8"><a class="link" href="#introduction-8">3.9.1. Introduction</a></h4>
+<div class="paragraph">
+<p>This sort by rating command is a further enhancement to the sort command that also focuses on the <code>Logic</code> component. A <code>SortRatingDownCommand</code> class is added.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">3.9.2. Current Implementation</a></h4>
+<div class="paragraph">
+<p>This <code>sortRatingUp</code> command sorts the staff list by rating from lowest to highest.</p>
+</div>
+<div class="paragraph">
+<p>Given below is a sequence diagram that shows how the sortRatingUp command works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SortRatingUpSequenceDiagram.png" alt="SortRatingUpSequenceDiagram" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">3.9.3. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="implementation-of-sortratingup-command"><a class="link" href="#implementation-of-sortratingup-command">Implementation of sortRatingUp command</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice):</strong> Sorts by rating up then by favourite then by name</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Staff list is sorted wholly by their ratings, easier to process for the case of staff performance review as being favourited or not should not affect its rating ranking</p>
+</li>
+<li>
+<p>Cons: Favourited staff does not stay on top of the list</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2:</strong> Sorts by favourite then by rating up then by name</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Favourited staff stay on top of the list</p>
+</li>
+<li>
+<p>Cons: As rating by rating is intended for the use of staff performance review, it would not be helpful to do it this way</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="favourite-feature"><a class="link" href="#favourite-feature">3.10. Favourite Feature</a></h3>
+<div class="sect3">
+<h4 id="introduction-9"><a class="link" href="#introduction-9">3.10.1. Introduction</a></h4>
 <div class="paragraph">
 <p>We have implemented a favourite command that focuses on the <code>Logic</code> component. A 'FavouriteCommand` class is added.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.11.2. Current Implementation</a></h4>
+<h4 id="current-implementation-10"><a class="link" href="#current-implementation-10">3.10.2. Current Implementation</a></h4>
 <div class="paragraph">
 <p>This <code>favourite</code> command allows contacts to be added to a favourite list and moves the contact to the top of the list.</p>
 </div>
+<div class="paragraph">
+<p>Given below is a sequence diagram that shows how the favourite command works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/FavouriteSequenceDiagram.png" alt="FavouriteSequenceDiagram" width="800">
+</div>
+</div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.11.3. Design Considerations</a></h4>
+<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">3.10.3. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="implementation-of-favourite-command"><a class="link" href="#implementation-of-favourite-command">Implementation of favourite command</a></h5>
 <div class="ulist">
@@ -1508,23 +1524,31 @@ will not be saved and will not be shown once the window is closed and reopened.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="unfavourite-feature"><a class="link" href="#unfavourite-feature">3.12. Unfavourite Feature</a></h3>
+<h3 id="unfavourite-feature"><a class="link" href="#unfavourite-feature">3.11. Unfavourite Feature</a></h3>
 <div class="sect3">
-<h4 id="introduction-7"><a class="link" href="#introduction-7">3.12.1. Introduction</a></h4>
+<h4 id="introduction-10"><a class="link" href="#introduction-10">3.11.1. Introduction</a></h4>
 <div class="paragraph">
-<p>We have implemented an unfavourite command that focuses on the <code>Logic</code> component. An 'UnfavouriteCommand` class is added.</p>
+<p>As we have implemented a favourite command, we also have implemented an unfavourite command that focuses on the <code>Logic</code> component. An 'UnfavouriteCommand` class is added.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">3.12.2. Current Implementation</a></h4>
+<h4 id="current-implementation-11"><a class="link" href="#current-implementation-11">3.11.2. Current Implementation</a></h4>
 <div class="paragraph">
 <p>This <code>unfavourite</code> command allows contacts to be removed from the favourite list.</p>
 </div>
+<div class="paragraph">
+<p>Given below is a sequence diagram that shows how the unfavourite command works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UnfavouriteSequenceDiagram.png" alt="UnfavouriteSequenceDiagram" width="800">
+</div>
+</div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">3.12.3. Design Considerations</a></h4>
+<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">3.11.3. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="implementation-of-unfavourite-action"><a class="link" href="#implementation-of-unfavourite-action">Implementation of unfavourite action</a></h5>
+<h5 id="implementation-of-unfavourite-command"><a class="link" href="#implementation-of-unfavourite-command">Implementation of unfavourite command</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1559,85 +1583,352 @@ will not be saved and will not be shown once the window is closed and reopened.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="salary-ot-hours-ot-rate-and-pay-deductibles-for-staff"><a class="link" href="#salary-ot-hours-ot-rate-and-pay-deductibles-for-staff">3.13. Salary, OT Hours, OT Rate and Pay Deductibles For Staff</a></h3>
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.12. Undo/Redo feature</a></h3>
 <div class="sect3">
-<h4 id="introduction-8"><a class="link" href="#introduction-8">3.13.1. Introduction</a></h4>
+<h4 id="current-implementation-12"><a class="link" href="#current-implementation-12">3.12.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>We have introduced four new fields to a staff namely the salary, overtime(OT) hours, OT rate and Pay deductibles
-for a staff. This is to allow the HR department of the company to keep track of individual staff&#8217;s details.</p>
+<p>The undo/redo mechanism is facilitated by <code>VersionedSsenisub</code>.
+It extends <code>SSENISUB</code> with an undo/redo history, stored internally as an <code>SsenisubStateList</code> and <code>currentStatePointer</code>.
+Additionally, it implements the following operations:</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">3.13.2. Current Implementation</a></h4>
-<div class="paragraph">
-<p>The current implementation of this feature is embedded into a Person object together with the other information
-that was originally in the Person object. Prefixes for the respective fields were also created to allow the HR user
-to edit the necessary information whenever needed.</p>
-</div>
-<div class="paragraph">
-<p>A newly added staff into SSENISUB would be assigned the default values of 0 for all four fields. This is to better
-allow the HR staff to manage the information of the staff. Naturally, when a person first joins the company, he would
-not have raked up any OT hours and the rate is dependent on the job of the individual.</p>
-</div>
-<div class="paragraph">
-<p>Should the user now want to edit a staff&#8217;s salary, OT hours, OT rate or pay deductibles, the user can now simply
-input the prefixes followed by the numerals of each field to edit in the edit command. The fields would then be
-edited depending if the prefixes were there or not (similar to the edit command).</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">3.13.3. Design Considerations</a></h4>
 <div class="ulist">
 <ul>
 <li>
-<p><strong> Alternative 1 (First Implementation):</strong> Merging the OT hours, OT rate and pay deductibles within a Salary class</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easier to calculate net pay</p>
+<p><code>VersionedSsenisub#commit()</code>&#8201;&#8212;&#8201;Saves the current SSENISUB state in its history.</p>
 </li>
 <li>
-<p>Cons: Harder to implement and would result in many conflicts within the software itself. Harder to debug</p>
+<p><code>VersionedSsenisub#undo()</code>&#8201;&#8212;&#8201;Restores the previous SSENISUB state from its history.</p>
+</li>
+<li>
+<p><code>VersionedSsenisub#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone SSENISUB state from its history.</p>
 </li>
 </ul>
 </div>
-</li>
-</ul>
+<div class="paragraph">
+<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitSsenisub()</code>, <code>Model#undoSsenisub()</code> and <code>Model#redoSsenisub()</code> respectively.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user launches the application for the first time. The <code>VersionedSsenisub</code> will be initialized with the initial SSENISUB state, and the <code>currentStatePointer</code> pointing to that single SSENISUB state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/FirstImplementation.png" alt="FirstImplementation" height="450">
+<img src="images/UndoRedoStartingStateListDiagram.png" alt="UndoRedoStartingStateListDiagram" width="800">
 </div>
 </div>
 <div class="paragraph">
-<p>Figure 3.9.3.1 Idea of First Implementation</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 2 (Current Implementation):</strong> Separating out each field to their own classes</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easier to implement and allows for more flexibility if the fields are required to be computed/used for other
-information, easier to identify issues when something goes wrong</p>
-</li>
-<li>
-<p>Cons: Does not seem intuitive to separate it out since OT hours, OT rate and pay deductibles are used to compute salary</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th staff in SSENISUB. The <code>delete</code> command calls <code>Model#commitSsenisub()</code>, causing the modified state of SSENISUB after the <code>delete 5</code> command executes to be saved in the <code>SsenisubStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted address book state.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SecondImplementation.png" alt="SecondImplementation" height="450">
+<img src="images/UndoRedoNewCommand1StateListDiagram.png" alt="UndoRedoNewCommand1StateListDiagram" width="800">
 </div>
 </div>
 <div class="paragraph">
-<p>Figure 3.9.3.2 Idea of Second Implementation</p>
+<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new staff. The <code>add</code> command also calls <code>Model#commitSsenisub()</code>, causing another modified address book state to be saved into the <code>SsenisubStateList</code>.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoRedoNewCommand2StateListDiagram.png" alt="UndoRedoNewCommand2StateListDiagram" width="800">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If a command fails its execution, it will not call <code>Model#commitSsenisub()</code>, so SSENISUB state will not be saved into the <code>SsenisubStateList</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 4. The user now decides that adding the staff was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoSsenisub()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores SSENISUB to that state.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoRedoExecuteUndoStateListDiagram.png" alt="UndoRedoExecuteUndoStateListDiagram" width="800">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the <code>currentStatePointer</code> is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The <code>undo</code> command uses <code>Model#canUndoSsenisub()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the undo operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoRedoSequenceDiagram.png" alt="UndoRedoSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoSsenisub()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores SSENISUB to that state.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the <code>currentStatePointer</code> is at index <code>SsenisubStateList.size() - 1</code>, pointing to the latest address book state, then there are no undone address book states to restore. The <code>redo</code> command uses <code>Model#canRedoSsenisub()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify SSENISUB, such as <code>list</code>, will usually not call <code>Model#commitSsenisub()</code>, <code>Model#undoSsenisub()</code> or <code>Model#redoSsenisub()</code>. Thus, the <code>SsenisubStateList</code> remains unchanged.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoRedoNewCommand3StateListDiagram.png" alt="UndoRedoNewCommand3StateListDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitSsenisub()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>SsenisubStateList</code>, all address book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoRedoNewCommand4StateListDiagram.png" alt="UndoRedoNewCommand4StateListDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarizes what happens when a user executes a new command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoRedoActivityDiagram.png" alt="UndoRedoActivityDiagram" width="650">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-11"><a class="link" href="#design-considerations-11">3.12.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Saves the entire address book.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: May have performance issues in terms of memory usage.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the staff being deleted).</p>
+</li>
+<li>
+<p>Cons: We must ensure that the implementation of each individual command are correct.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-the-undo-redo-commands"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands">Aspect: Data structure to support the undo/redo commands</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of address book states.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.</p>
+</li>
+<li>
+<p>Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>VersionedSsenisub</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Use <code>HistoryManager</code> for undo/redo</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.</p>
+</li>
+<li>
+<p>Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as <code>HistoryManager</code> now needs to do two different things.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="lock-and-unlock-feature-coming-in-v2-0"><a class="link" href="#lock-and-unlock-feature-coming-in-v2-0">3.13. Lock and Unlock Feature (coming in v2.0)</a></h3>
+<div class="sect3">
+<h4 id="introduction-11"><a class="link" href="#introduction-11">3.13.1. Introduction</a></h4>
+<div class="paragraph">
+<p>We will implement an unlock command that focuses on the <code>Storage</code> component. An <code>UnlockCommand</code> class is added
+and an <code>UnlockEvent</code> event is also added.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-13"><a class="link" href="#current-implementation-13">3.13.2. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The <code>unlock</code> command allows changes made to be saved to SSENISUB.</p>
+</div>
+<div class="paragraph">
+<p>Without the correct (for now hardcoded) password, all the changes made (add, edit, delete)during the session
+will not be saved and will not be shown once the window is closed and reopened.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram shows how the current <code>Unlock</code> command works:</p>
+</div>
+<div class="paragraph">
+<p>Given below is an activity diagram that shows how the unlock command is intended to work:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UnlockActivityDiagram.png" alt="UnlockActivityDiagram" height="650">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-12"><a class="link" href="#design-considerations-12">3.13.3. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="implementation-of-unlock"><a class="link" href="#implementation-of-unlock">Implementation of unlock</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong> Alternative 1 (current choice):</strong> Unlocking is handled as an event rather than a command.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Unlocking can be done at any time and event handler is used</p>
+</li>
+<li>
+<p>Cons: Does not resemble a real unlocking function, minimal functionality</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2:</strong> Unlocking is a command that overrides all other commands</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Makes more sense as an unlock function</p>
+</li>
+<li>
+<p>Cons: Harder to implement</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-login-feature"><a class="link" href="#proposed-login-feature">3.14. [Proposed] Login Feature</a></h3>
+<div class="sect3">
+<h4 id="introduction-12"><a class="link" href="#introduction-12">3.14.1. Introduction</a></h4>
+<div class="paragraph">
+<p>The login feature will be implemented together with an authorization level feature. Based on the login credentials, the staff
+using the SSENISUB will have varying levels of access to the various features offered.</p>
+</div>
+<div class="paragraph">
+<p>The idea and motivation behind this is that as we plan for SSENISUB to be used as a central database and can be used by any
+staff, not all commands and features should be utilized by a typical staff, such as <code>delete</code>. Only a HR Manager should have the
+authorization to be able to <code>delete</code> or <code>add</code> staff.</p>
+</div>
+<div class="paragraph">
+<p>With the implementation of authorization levels, we will then be able to categorize the other features based on authority required
+to access them, and also affect the visibility state of private information.</p>
+</div>
+<div class="paragraph">
+<p>A Logout feature will also be implemented for the case of a shared device, which multiple staff can be using throughout the day.</p>
+</div>
+<div class="paragraph">
+<p>Given below is an activity diagram that shows how this feature works when a user wants to use the <code>Delete</code> command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LoginLogoutActivityDiagram.png" alt="LoginLogoutActivityDiagram" width="800">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.15. [Proposed] Data Encryption</a></h3>
+<div class="paragraph">
+<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.16. Logging</a></h3>
+<div class="paragraph">
+<p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.17, &#8220;Configuration&#8221;</a>)</p>
+</li>
+<li>
+<p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
+</li>
+<li>
+<p>Currently log messages are output through: <code>Console</code> and to a <code>.log</code> file.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Logging Levels</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>SEVERE</code> : Critical problem detected which may possibly cause the termination of the application</p>
+</li>
+<li>
+<p><code>WARNING</code> : Can continue, but with caution</p>
+</li>
+<li>
+<p><code>INFO</code> : Information showing the noteworthy actions by the App</p>
+</li>
+<li>
+<p><code>FINE</code> : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.17. Configuration</a></h3>
+<div class="paragraph">
+<p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
 </div>
 </div>
@@ -2997,75 +3288,6 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>Ssenisub</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-delete-person" class="discrete">Use case: delete person</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>User requests to list persons</p>
-</li>
-<li>
-<p>SSENISUB shows a list of persons</p>
-</li>
-<li>
-<p>User requests to delete a specific person in the list</p>
-</li>
-<li>
-<p>SSENISUB deletes the person</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a. The list is empty.</p>
-<div class="paragraph">
-<p>Use case ends.</p>
-</div>
-</li>
-<li>
-<p>3a. The given index is invalid.</p>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>3a1. SSENISUB shows an error message.</p>
-<div class="paragraph">
-<p>Use case resumes at step 2.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-view-personal-ratings" class="discrete">Use case: view personal ratings</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Staff logs into SSENISUB</p>
-</li>
-<li>
-<p>Staff inputs keyword to view his own ratings</p>
-</li>
-<li>
-<p>SSENISUB displays the current user’s ratings and feedback (if any)</p>
-<div class="paragraph">
-<p>Use case ends</p>
-</div>
-</li>
-</ol>
-</div>
 <h3 id="use-case-view-help-page" class="discrete">Use case: view help page</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -3085,98 +3307,6 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </li>
 </ol>
-</div>
-<h3 id="use-case-undo-last-action" class="discrete">Use case: undo last action</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>User does some action on SSENISUB</p>
-</li>
-<li>
-<p>User enters the command to undo the last action made</p>
-</li>
-<li>
-<p>SSENISUB undo last action and tells user that previous action has been undone</p>
-<div class="paragraph">
-<p>Use case ends</p>
-</div>
-</li>
-</ol>
-</div>
-<h3 id="use-case-edit-a-staff-information" class="discrete">Use case: edit a staff information</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>HR staff logs in to SSENISUB</p>
-</li>
-<li>
-<p>HR staff searches for the staff to edit and selects it</p>
-</li>
-<li>
-<p>HR staff makes the necessary changes to the staff</p>
-</li>
-<li>
-<p>SSENISUB confirms with the HR staff the changes</p>
-</li>
-<li>
-<p>HR staff confirms and the changes are made</p>
-<div class="paragraph">
-<p>Use case ends</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>2a.  No staff are being displayed by SSENISUB</p>
-<div class="paragraph">
-<p>Use case ends</p>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-search-for-staff" class="discrete">Use case: search for staff</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Staff logs in to SSENISUB</p>
-</li>
-<li>
-<p>Staff inputs the keyword to search followed by certain keywords pertaining to the staff.</p>
-</li>
-<li>
-<p>SSENISUB displays the list of staff that matches the keywords supplied.</p>
-<div class="paragraph">
-<p>Use case ends</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>3a. SSENISUB shows no staff with the matching keywords</p>
-<div class="paragraph">
-<p>Use case ends</p>
-</div>
-</li>
-</ul>
 </div>
 <h3 id="use-case-add-staff" class="discrete">Use case: add staff</h3>
 <div class="paragraph">
@@ -3220,6 +3350,184 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="paragraph">
 <p>Information of User gets sent to higher up in charge</p>
 </div>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-edit-a-staff-information" class="discrete">Use case: edit a staff information</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>HR staff logs in to SSENISUB</p>
+</li>
+<li>
+<p>HR staff searches for the staff to edit and selects it</p>
+</li>
+<li>
+<p>HR staff makes the necessary changes to the staff</p>
+</li>
+<li>
+<p>SSENISUB confirms with the HR staff the changes</p>
+</li>
+<li>
+<p>HR staff confirms and the changes are made</p>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a.  No staff are being displayed by SSENISUB</p>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-delete-staff" class="discrete">Use case: delete staff</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to list staff</p>
+</li>
+<li>
+<p>SSENISUB shows a list of staff</p>
+</li>
+<li>
+<p>User requests to delete a specific staff in the list</p>
+</li>
+<li>
+<p>SSENISUB deletes the staff</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The list is empty.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+<li>
+<p>3a. The given index is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. SSENISUB shows an error message.</p>
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-remove-staff" class="discrete">Use case: remove staff</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>HR staff logs in to SSENISUB</p>
+</li>
+<li>
+<p>HR staff searches for the particular staff to remove</p>
+</li>
+<li>
+<p>HR inputs command to remove the staff</p>
+</li>
+<li>
+<p>SSENISUB confirms with the HR staff before removing the staff</p>
+</li>
+<li>
+<p>SSENISUB removes the staff and displays a success message</p>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a. The staff cannot be found</p>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-give-staff-feedback" class="discrete">Use case: give staff feedback</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Manager logs in to SSENISUB</p>
+</li>
+<li>
+<p>Manager requests to look for staff</p>
+</li>
+<li>
+<p>SSENISUB shows a list of staff</p>
+</li>
+<li>
+<p>Manager requests to update feedback for a particular staff</p>
+</li>
+<li>
+<p>SSENISUB updates feedback of staff</p>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a. The list is empty, receives warning</p>
+<div class="paragraph">
+<p>Use case ends     </p>
+</div>
+</li>
+<li>
+<p>4a. The given index is invalid, SSENISUB shows an error message</p>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
+</li>
+<li>
+<p>4b. The given feedback contains profanity, SSENISUB shows an error message and the profanity found</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
@@ -3271,26 +3579,40 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-give-staff-feedback" class="discrete">Use case: Give staff feedback</h3>
+<h3 id="use-case-view-personal-ratings" class="discrete">Use case: view personal ratings</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Manager logs in to SSENISUB</p>
+<p>Staff logs into SSENISUB</p>
 </li>
 <li>
-<p>Manager requests to look for staff</p>
+<p>Staff inputs keyword to view his own ratings</p>
 </li>
 <li>
-<p>SSENISUB shows a list of staff</p>
+<p>SSENISUB displays the current user’s ratings and feedback (if any)</p>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
+</li>
+</ol>
+</div>
+<h3 id="use-case-search-for-staff" class="discrete">Use case: search for staff</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Staff logs in to SSENISUB</p>
 </li>
 <li>
-<p>Manager requests to update feedback for a particular staff</p>
+<p>Staff inputs the keyword to search followed by certain keywords pertaining to the staff.</p>
 </li>
 <li>
-<p>SSENISUB updates feedback of staff</p>
+<p>SSENISUB displays the list of staff that matches the keywords supplied.</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
@@ -3303,58 +3625,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a. The list is empty, receives warning</p>
-<div class="paragraph">
-<p>Use case ends     </p>
-</div>
-</li>
-<li>
-<p>4a. The given index is invalid, SSENISUB shows an error message</p>
-<div class="paragraph">
-<p>Use case ends</p>
-</div>
-</li>
-<li>
-<p>4b. The given feedback contains profanity, SSENISUB shows an error message and the profanity found</p>
-<div class="paragraph">
-<p>Use case ends</p>
-</div>
-</li>
-</ul>
-</div>
-<h3 id="use-case-remove-staff" class="discrete">Use case: remove staff</h3>
-<div class="paragraph">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>HR staff logs in to SSENISUB</p>
-</li>
-<li>
-<p>HR staff searches for the particular staff to remove</p>
-</li>
-<li>
-<p>HR inputs command to remove the staff</p>
-</li>
-<li>
-<p>SSENISUB confirms with the HR staff before removing the staff</p>
-</li>
-<li>
-<p>SSENISUB removes the staff and displays a success message</p>
-<div class="paragraph">
-<p>Use case ends</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none">
-<ul class="none">
-<li>
-<p>3a. The staff cannot be found</p>
+<p>3a. SSENISUB shows no staff with the matching keywords</p>
 <div class="paragraph">
 <p>Use case ends</p>
 </div>
@@ -3396,6 +3667,26 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </li>
 </ul>
+</div>
+<h3 id="use-case-undo-last-action" class="discrete">Use case: undo last action</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User does some action on SSENISUB</p>
+</li>
+<li>
+<p>User enters the command to undo the last action made</p>
+</li>
+<li>
+<p>SSENISUB undo last action and tells user that previous action has been undone</p>
+<div class="paragraph">
+<p>Use case ends</p>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -3530,7 +3821,39 @@ Timestamp in the status bar remains the same.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-staff"><a class="link" href="#selecting-a-staff">G.3. Selecting a staff</a></h3>
+<h3 id="deleting-a-staff"><a class="link" href="#deleting-a-staff">G.3. Deleting a staff</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting a staff while all staff are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all staff using the <code>list</code> command. Multiple staff in the list.</p>
+</li>
+<li>
+<p>Test case: <code>delete 1</code><br>
+Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>delete 0</code><br>
+Expected: No staff is deleted. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><em>{ more test cases &#8230;&#8203; }</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="selecting-a-staff"><a class="link" href="#selecting-a-staff">G.4. Selecting a staff</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3568,7 +3891,7 @@ list size)<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="finding-staff"><a class="link" href="#finding-staff">G.4. Finding staff</a></h3>
+<h3 id="finding-staff"><a class="link" href="#finding-staff">G.5. Finding staff</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3614,39 +3937,93 @@ Expected: Error message is shown in the command result panel.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-staff"><a class="link" href="#deleting-a-staff">G.5. Deleting a staff</a></h3>
+<h3 id="favouriting-a-staff"><a class="link" href="#favouriting-a-staff">G.6. Favouriting a staff</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Deleting a staff while all staff are listed</p>
+<p>Favourite a staff while all staff are listed</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all staff using the <code>list</code> command. Multiple staff in the list.</p>
+<p>Prerequisites: List all staff using the <code>list</code> or <code>sort</code> command. Multiple staff in the list.</p>
 </li>
 <li>
-<p>Test case: <code>delete 1</code><br>
-Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
+<p>Test case: <code>fav 3</code><br>
+Expected: Third contact is moved to the top of the list. Once on top of the list, the name of the staff changes color to yellow and a star is added next to it in the list panel on the left.</p>
 </li>
 <li>
-<p>Test case: <code>delete 0</code><br>
-Expected: No staff is deleted. Error details shown in the status message. Status bar remains the same.</p>
+<p>Test case: <code>fav 0</code><br>
+Expected: No staff is favourited. Error details shown in the status message. Status bar remains the same.</p>
 </li>
 <li>
-<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
+<p>Other incorrect favourite commands to try: <code>fav</code>, <code>fav x</code> (where x is larger than the list size)<br>
 Expected: Similar to previous.</p>
 </li>
 </ol>
 </div>
 </li>
+<li>
+<p>Favouriting a staff that is already favourited</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all staff using the <code>list</code> or <code>sort</code> command. Multiple staff in the list. First staff in the list favourited.</p>
+</li>
+<li>
+<p>Test case: <code>fav 1</code><br>
+Expected: Staff is already favourited. Error details shown in the status message. Status bar remains the same.</p>
+</li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.6. Saving data</a></h3>
+<h3 id="unfavouriting-a-staff"><a class="link" href="#unfavouriting-a-staff">G.7. Unfavouriting a staff</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Unfavourite a staff while all staff are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all staff using the <code>list</code> or <code>sort</code> command. Multiple staff in the list. One or more staff is favourited.</p>
+</li>
+<li>
+<p>Test case: <code>unfav 1</code><br>
+Expected: First contact is moved back from the top of the list. The name of the staff changes color back from yellow and the star next to it is removed in the list panel on the left.</p>
+</li>
+<li>
+<p>Test case: <code>unfav 0</code><br>
+Expected: No staff is unfavourited. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect unfavourite commands to try: <code>unfav</code>, <code>unfav x</code> (where x is larger than the list size)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Unfavouriting a staff that is already not favourited</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all staff using the <code>list</code> or <code>sort</code> command. Multiple staff in the list. No staff in the list already favourited.</p>
+</li>
+<li>
+<p>Test case: <code>unfav 3</code><br>
+Expected: Staff is already unfavourited. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-data"><a class="link" href="#saving-data">G.8. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3666,4 +4043,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 10:22:32 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 12:32:04 UTC</div></div></div></body></html>
