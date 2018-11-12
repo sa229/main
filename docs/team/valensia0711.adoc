@@ -46,36 +46,38 @@ e.g. sort by rating command would sort the list by rating then by favourite then
 ** Project management:
 *** Checked `v1.1` - `v1.4` (4 releases) before its release
 ** Enhancements to existing features:
-*** Designed SSENISUB.png used in the UI right side: https://github.com/CS2103-AY1819S1-T13-2/main/pull/42
+*** Designed SSENISUB.png used in the UI right side: https://github.com/CS2103-AY1819S1-T13-2/main/pull/42[#42]
 ** Bug fixes:
-*** Fixed bugs in favourite/unfavourite command related to undo/redo command: https://github.com/CS2103-AY1819S1-T13-2/main/pull/100
+*** Fixed bugs in favourite/unfavourite command related to undo/redo command: https://github.com/CS2103-AY1819S1-T13-2/main/pull/100[#100]
 ** UI changes:
-*** Edited person list card UI for favourite/unfavourite command: https://github.com/CS2103-AY1819S1-T13-2/main/pull/76
-*** Edited staff panel UI: https://github.com/CS2103-AY1819S1-T13-2/main/pull/122
+*** Edited person list card UI for favourite/unfavourite command: https://github.com/CS2103-AY1819S1-T13-2/main/pull/76[#76]
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com/CS2103-AY1819S1-T13-2/main/pull/123
+*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com/CS2103-AY1819S1-T13-2/main/pull/123[#123]
 *** Updated existing contents of the User Guide:
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/16,
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/64,
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/67,
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/123
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/16[#16],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/64[#64],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/67[#67],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/123[#123]
+*** Did cosmetic tweaks to existing contents of the Developer Guide: https://github.com/CS2103-AY1819S1-T13-2/main/pull/138[#138]
 *** Updated existing contents of the Developer Guide:
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/40,
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/49,
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/67
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/40[#40],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/49[#49],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/67[#67],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/138[#138],
 ** Community:
 *** PRs reviewed:
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/13,
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/36,
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/40,
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/47,
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/50,
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/53,
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/58,
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/65,
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/109,
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/120,
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/121
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/13[#13],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/36[#36],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/40[#40],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/47[#47],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/50[#50],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/53[#53],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/58[#58],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/65[#65],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/109[#109],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/120[#120],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/121[#121],
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/133[#133]
 *** Reported bugs and suggestions for other teams in the class:
 https://github.com/CS2103-AY1819S1-T12-3/main/issues/153[1]
 https://github.com/CS2103-AY1819S1-T12-3/main/issues/155[2]
@@ -110,6 +112,20 @@ include::../UserGuide.adoc[tag=unfavourite]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
+include::../DeveloperGuide.adoc[tag=sortcommand]
+
+include::../DeveloperGuide.adoc[tag=sortdeptcommand]
+
+include::../DeveloperGuide.adoc[tag=sortratingdowncommand]
+
+include::../DeveloperGuide.adoc[tag=sortratingupcommand]
+
 include::../DeveloperGuide.adoc[tag=favouritecommand]
 
+include::../DeveloperGuide.adoc[tag=lockunlockcommand]
+
 include::../DeveloperGuide.adoc[tag=unfavouritecommand]
+
+include::../DeveloperGuide.adoc[tag=FavouriteStaffTC]
+
+include::../DeveloperGuide.adoc[tag=UnfavouriteStaffTC]
