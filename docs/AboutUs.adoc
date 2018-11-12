@@ -10,7 +10,7 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 
 == Project Team
 
-=== Daniel Khoo
+=== Khoo Jin Zheng Daniel
 image::dankhoo.png[width="150", align="left"]
 {empty}[https://github.com/DanKhoo[github]] [<<dankhoo#, portfolio>>]
 
@@ -26,7 +26,7 @@ Role: Developer +
 
 '''
 
-=== Terence Goh
+=== Goh Yang Yu, Terence
 image::iamrence.png[width="150", align="left"]
 {empty}[https://github.com/IamRENCE[github]] [<<iamrence#, portfolio>>]
 
@@ -42,7 +42,7 @@ Role: Developer +
 
 '''
 
-=== Ashburn Tan Yuxuan
+=== Tan Yuxuan
 image::abtyx.png[width="150", align="left"]
 {empty}[https://github.com/abtyx[github]] [<<abtyx#, portfolio>>]
 
