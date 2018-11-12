@@ -1695,6 +1695,26 @@ characters or names that are not in SSENISUB) +
    Expected: Error message is shown in the command result panel.
 // end::FindingStaffTC[]
 
+// tag::FavouriteStaffTC[]
+=== Favouriting a staff
+
+. Favourite a staff while all staff are listed
+
+.. Prerequisites: List all staff using the `list` or `sort` command. Multiple staff in the list.
+.. Test case: `fav 3` +
+   Expected: Third contact is moved to the top of the list. Once on top of the list, the name of the staff changes color to yellow and a star is added next to it in the list panel on the left.
+.. Test case: `fav 0` +
+   Expected: No staff is deleted. Error details shown in the status message. Status bar remains the same.
+.. Other incorrect favourite commands to try: `fav`, `fav x` (where x is larger than the list size) +
+   Expected: Similar to previous.
+
+. Favouriting a staff that is already favourited
+
+.. Prerequisites: List all staff using the `list` or `sort` command. Multiple staff in the list. First staff in the list already favourited.
+.. Test case: `fav 1` +
+   Expected: Staff is already favourited. Error details shown in the status message. Status bar remains the same.
+//end::FavouriteStaffTC[]
+
 === Saving data
 
 . Dealing with missing/corrupted data files
