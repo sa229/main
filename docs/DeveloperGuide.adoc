@@ -1374,43 +1374,6 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 (For all use cases below, the *System* is the `Ssenisub` and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
-=== Use case: delete person
-
-*MSS*
-
-1.  User requests to list persons
-2.  SSENISUB shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  SSENISUB deletes the person
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 2a. The list is empty.
-+
-Use case ends.
-
-* 3a. The given index is invalid.
-+
-[none]
-** 3a1. SSENISUB shows an error message.
-+
-Use case resumes at step 2.
-
-[discrete]
-=== Use case: view personal ratings
-
-*MSS*
-
-1. Staff logs into SSENISUB
-2. Staff inputs keyword to view his own ratings
-3. SSENISUB displays the current user’s ratings and feedback (if any)
-+
-Use case ends
-
-[discrete]
 === Use case: view help page
 
 *MSS*
@@ -1418,53 +1381,6 @@ Use case ends
 1. A user logs into SSENISUB
 2. User keys in the keyword to display the help page
 3. SSENISUB displays the help page
-+
-Use case ends
-
-[discrete]
-=== Use case: undo last action
-
-*MSS*
-
-1. User does some action on SSENISUB
-2. User enters the command to undo the last action made
-3. SSENISUB undo last action and tells user that previous action has been undone
-+
-Use case ends
-
-[discrete]
-=== Use case: edit a staff information
-
-*MSS*
-
-1. HR staff logs in to SSENISUB
-2. HR staff searches for the staff to edit and selects it
-3. HR staff makes the necessary changes to the staff
-4. SSENISUB confirms with the HR staff the changes
-5. HR staff confirms and the changes are made
-+
-Use case ends
-
-*Extensions*
-[none]
-* 2a.  No staff are being displayed by SSENISUB
-+
-Use case ends
-
-[discrete]
-=== Use case: search for staff
-
-*MSS*
-
-1. Staff logs in to SSENISUB
-2. Staff inputs the keyword to search followed by certain keywords pertaining to the staff.
-3. SSENISUB displays the list of staff that matches the keywords supplied.
-+
-Use case ends
-
-*Extensions*
-[none]
-* 3a. SSENISUB shows no staff with the matching keywords
 +
 Use case ends
 
@@ -1496,30 +1412,71 @@ Information of User gets sent to higher up in charge
 Use case ends
 
 [discrete]
-=== Use case: rate staff
+=== Use case: edit a staff information
 
 *MSS*
 
-1. Manager logs in to SSENISUB
-2. Manager requests to look for staff
-3. SSENISUB shows a list of staff
-4. Manager requests to update review of a particular staff
-5. SSENISUB updates review of staff
+1. HR staff logs in to SSENISUB
+2. HR staff searches for the staff to edit and selects it
+3. HR staff makes the necessary changes to the staff
+4. SSENISUB confirms with the HR staff the changes
+5. HR staff confirms and the changes are made
 +
 Use case ends
 
 *Extensions*
 [none]
-* 3a. The list is empty, receives warning
-+
-Use case ends     
-
-* 4a. The given index is invalid, SSENISUB shows an error message
+* 2a.  No staff are being displayed by SSENISUB
 +
 Use case ends
 
 [discrete]
-=== Use case: Give staff feedback
+=== Use case: delete staff
+
+*MSS*
+
+1.  User requests to list staff
+2.  SSENISUB shows a list of staff
+3.  User requests to delete a specific staff in the list
+4.  SSENISUB deletes the staff
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The list is empty.
++
+Use case ends.
+
+* 3a. The given index is invalid.
++
+[none]
+** 3a1. SSENISUB shows an error message.
++
+Use case resumes at step 2.
+
+[discrete]
+=== Use case: remove staff
+
+*MSS*
+
+1. HR staff logs in to SSENISUB
+2. HR staff searches for the particular staff to remove
+3. HR inputs command to remove the staff
+4. SSENISUB confirms with the HR staff before removing the staff
+5. SSENISUB removes the staff and displays a success message
++
+Use case ends
+
+*Extensions*
+[none]
+* 3a. The staff cannot be found
++
+Use case ends
+
+[discrete]
+=== Use case: give staff feedback
 
 *MSS*
 
@@ -1546,21 +1503,53 @@ Use case ends
 Use case ends
 
 [discrete]
-=== Use case: remove staff
+=== Use case: rate staff
 
 *MSS*
 
-1. HR staff logs in to SSENISUB
-2. HR staff searches for the particular staff to remove
-3. HR inputs command to remove the staff
-4. SSENISUB confirms with the HR staff before removing the staff
-5. SSENISUB removes the staff and displays a success message
+1. Manager logs in to SSENISUB
+2. Manager requests to look for staff
+3. SSENISUB shows a list of staff
+4. Manager requests to update review of a particular staff
+5. SSENISUB updates review of staff
 +
 Use case ends
 
 *Extensions*
 [none]
-* 3a. The staff cannot be found
+* 3a. The list is empty, receives warning
++
+Use case ends     
+
+* 4a. The given index is invalid, SSENISUB shows an error message
++
+Use case ends
+
+[discrete]
+=== Use case: view personal ratings
+
+*MSS*
+
+1. Staff logs into SSENISUB
+2. Staff inputs keyword to view his own ratings
+3. SSENISUB displays the current user’s ratings and feedback (if any)
++
+Use case ends
+
+[discrete]
+=== Use case: search for staff
+
+*MSS*
+
+1. Staff logs in to SSENISUB
+2. Staff inputs the keyword to search followed by certain keywords pertaining to the staff.
+3. SSENISUB displays the list of staff that matches the keywords supplied.
++
+Use case ends
+
+*Extensions*
+[none]
+* 3a. SSENISUB shows no staff with the matching keywords
 +
 Use case ends
 
@@ -1582,6 +1571,17 @@ Use case ends
 +
 Use case ends
 [none]
+
+[discrete]
+=== Use case: undo last action
+
+*MSS*
+
+1. User does some action on SSENISUB
+2. User enters the command to undo the last action made
+3. SSENISUB undo last action and tells user that previous action has been undone
++
+Use case ends
 
 [appendix]
 == Non Functional Requirements
