@@ -12,8 +12,8 @@ image::Ui.png[width="600"]
 This project portfolio serves to document my contributions to SSENISUB, a CS2103 (Software Engineering)
 project, as part of my Computer Science curriculum in National University of Singapore (NUS).
 
-SSENISUB is an business management application which is used for managing employees' information within an organisation.
-Its name is inspired from the the word "business", and is simply a palindrome of it. It is morphed from the given
+SSENISUB is a business management application which is used for managing employees' information within an organisation.
+Its name is inspired from the word "business", and is simply a palindrome of it. It is morphed from the given
 `addressbook-level4` application as its base. The user interacts with it mainly using a
 Command Line Interface (CLI). In conjunction with the CLI, a Graphical User Interface (GUI) is used to make it more
 user-friendly, supported by coloured text and symbols. This application is written in Java with about 15 kLoC,
@@ -36,8 +36,8 @@ face of the application.
 his/her employees' performance, which is especially important during the *year-end performance review*. It potentially
 affects how much bonus or credit is given to the staff in the organisation.
 ** Highlights: This enhancement looks similar to the add and edit command, but has to be made to *execute asynchronous* to
-these commands. In future releases, where users of different level of authorisations are allowed to use different commands,
-this command would only be accessible to managers (or direct superiors). The reason is because they have the right to and are in
+these commands. In future releases, where users of different levels of authorisation are allowed to use different commands,
+this command would only be accessible to managers (or direct superiors). The reason is that they have the right to and are in
 the best position to give any rating to their staff.
 
 * *Major enhancement 2*: added *the ability to give feedback to staff* stored inside the application
@@ -76,25 +76,25 @@ to base the runtime on input length or the number of profanities to be rejected.
 * *Other contributions*:
 
 ** Project management:
-*** Checked `v1.1` - `v1.4` (4 releases) before team member released them on GitHub
+*** Checked `v1.1` - `v1.4` (4 releases) before they got released them on GitHub.
 ** Enhancements to existing features:
 *** Updated the application icon
-(Pull request https://github.com/CS2103-AY1819S1-T13-2/main/pull/42[#42])
+(Pull request https://github.com/CS2103-AY1819S1-T13-2/main/pull/42[#42]).
 *** Wrote additional tests for existing features to increase coverage from 93.4% to 93.6%
-(Pull request https://github.com/CS2103-AY1819S1-T13-2/main/pull/58[#58])
+(Pull request https://github.com/CS2103-AY1819S1-T13-2/main/pull/58[#58]).
 ** Bug fixes:
-*** Fixed bugs in the rate and feedback command that allowed for inputs that should have been rejected
-(Pull request https://github.com/CS2103-AY1819S1-T13-2/main/pull/58[#58])
+*** Fixed bugs commands that allowed for inputs that otherwise should have been rejected
+(Pull request https://github.com/CS2103-AY1819S1-T13-2/main/pull/58[#58]).
 *** Fixed overall UI/code bug where "Address Book"/"AddresBook" is displayed or used instead of our application "SSENISUB"
-(Pull request https://github.com/CS2103-AY1819S1-T13-2/main/pull/107[#107])
+(Pull request https://github.com/CS2103-AY1819S1-T13-2/main/pull/107[#107]).
 ** Documentation:
 *** Updated existing contents of the User Guide:
 https://github.com/CS2103-AY1819S1-T13-2/main/pull/101[#101],
 https://github.com/CS2103-AY1819S1-T13-2/main/pull/102[#102],
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/109[#109]
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/109[#109].
 *** Updated existing contents of the Developer Guide:
 https://github.com/CS2103-AY1819S1-T13-2/main/pull/29[#29],
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/109[#109]
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/109[#109].
 ** Community:
 *** PRs reviewed:
 https://github.com/CS2103-AY1819S1-T13-2/main/pull/12[#12],
@@ -109,11 +109,11 @@ https://github.com/CS2103-AY1819S1-T13-2/main/pull/100[#100],
 https://github.com/CS2103-AY1819S1-T13-2/main/pull/103[#103],
 https://github.com/CS2103-AY1819S1-T13-2/main/pull/104[#104],
 https://github.com/CS2103-AY1819S1-T13-2/main/pull/106[#106],
-https://github.com/CS2103-AY1819S1-T13-2/main/pull/108[#108]
+https://github.com/CS2103-AY1819S1-T13-2/main/pull/108[#108].
 *** Reported bugs and suggestions for other teams in the class
 (examples:  https://github.com/CS2103-AY1819S1-F11-3/main/issues/184[1],
 https://github.com/CS2103-AY1819S1-F11-3/main/issues/198[2],
-https://github.com/CS2103-AY1819S1-F11-3/main/issues/200[3])
+https://github.com/CS2103-AY1819S1-F11-3/main/issues/200[3]).
 
 == Contributions to the User Guide
 
