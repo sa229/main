@@ -456,7 +456,7 @@ input contains any profanities inside.
 * **Alternative 1 (current choice):** Check every substring of the input to see if it matches any profanity-to-reject
 within the HashMap.
 ** Pros: **O(1)** runtime per substring when checking whether a particular substring of the input.
-** Cons: Runs for **O(n!)** time, where n is the number of characters in the input.
+** Cons: Runs for **O(n²)** time, where n is the number of characters in the input.
 *** While this may look daunting, we have a character input limit on `Person` attributes (feedback included) of 50.
 As such, there is an imposed upper bound on the performance time, preventing any significant decline in performance.
 *** Also, one optimisation method implemented (mentioned in <<Feedback-Features, Feedback noteworthy features>>) is
