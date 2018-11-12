@@ -653,6 +653,10 @@ We have implemented a favourite command that focuses on the `Logic` component. A
 
 This `favourite` command allows contacts to be added to a favourite list and moves the contact to the top of the list.
 
+Given below is a sequence diagram shows how the favourite command works:
+
+image::FavouriteSequenceDiagram.png[width="800"]
+
 ==== Design Considerations
 
 ===== Implementation of favourite command
@@ -671,16 +675,20 @@ This `favourite` command allows contacts to be added to a favourite list and mov
 
 ==== Introduction
 
-We have implemented an unfavourite command that focuses on the `Logic` component. An 'UnfavouriteCommand` class is added.
+As we have implemented a favourite command, we also have implemented an unfavourite command that focuses on the `Logic` component. An 'UnfavouriteCommand` class is added.
 
 
 ==== Current Implementation
 
 This `unfavourite` command allows contacts to be removed from the favourite list.
 
+Given below is a sequence diagram shows how the unfavourite command works:
+
+image::UnfavouriteSequenceDiagram.png[width="800"]
+
 ==== Design Considerations
 
-===== Implementation of unfavourite action
+===== Implementation of unfavourite command
 * ** Alternative 1 (current choice):** Using a separate unfavourite command
 ** Pros: Clear use of command
 ** Cons: Adds yet another command to command list
@@ -690,6 +698,127 @@ This `unfavourite` command allows contacts to be removed from the favourite list
 ** Cons: Ambiguous use of this feature as the command is a favourite command
 
 // end::unfavouritecommand[]
+
+// tag::sortcommand[]
+=== Sort Feature
+
+==== Introduction
+
+We have implemented a sort command that focuses on the `Logic` component. A `SortCommand` class is added.
+
+==== Current Implementation
+
+This `sort` command sorts the staff list by name in lexicographical order.
+
+Given below is a sequence diagram shows how the sort command works:
+
+image::SortSequenceDiagram.png[width="800"]
+
+==== Design Considerations
+
+===== Implementation of sort command
+* ** Alternative 1 (current choice):** Sorts by favourite then by name
+** Pros: Favourited staff stays on top of the list, favourited staff still easier to find
+** Cons: The overall list is not 100% sorted by name
+
+* ** Alternative 2:** Sorts by name then by favourite
+** Pros: Overall list sorted wholly by name, easier to find a specific person when not known whether favourited or not
+** Cons: Favourited person scattered all over in the list, defeats the purpose of having favourited staff
+
+// end::sortcommand[]
+
+// tag::sortdeptcommand[]
+=== Sort By Department Feature
+
+==== Introduction
+
+This sort by department command is a further enhancement to the sort command that also focuses on the `Logic` component. A `SortDeptCommand` class is added.
+
+==== Current Implementation
+
+This `sortDept` command sorts the staff list by department in lexicographical order.
+
+Given below is a sequence diagram shows how the sortDept command works:
+
+image::SortDeptSequenceDiagram.png[width="800"]
+
+==== Design Considerations
+
+===== Implementation of sortDept command
+* ** Alternative 1 (current choice):** Sorts by department then by favourite then by name
+** Pros: Easier to go through the different departments without a hassle
+** Cons: Favourited staff does not stay on top of the list
+
+* ** Alternative 2:** Sorts by favourite then by department then by name
+** Pros: Favourited staff stay on top of the list
+** Cons: The main purpose of sorting by department is to group the staff by the different department, so there is no point in putting the favourites on top of the list
+
+// end::sortdeptcommand[]
+
+// tag::sortratingdowncommand[]
+=== Sort By Rating From Highest To Lowest Feature
+
+==== Introduction
+
+This sort by rating command is a further enhancement to the sort command that also focuses on the `Logic` component. A `SortRatingDownCommand` class is added.
+
+==== Current Implementation
+
+This `sortRatingDown` command sorts the staff list by rating from highest to lowest.
+
+Given below is a sequence diagram shows how the sortRatingDown command works:
+
+image::SortRatingDownSequenceDiagram.png[width="800"]
+
+==== Design Considerations
+
+===== Implementation of sortRatingDown command
+* ** Alternative 1 (current choice):** Sorts by rating down then by favourite then by name
+** Pros: Staff list is sorted wholly by their ratings, easier to process for the case of staff performance review as being favourited or not should not affect its rating ranking
+** Cons: Favourited staff does not stay on top of the list
+
+* ** Alternative 2:** Sorts by favourite then by rating down then by name
+** Pros: Favourited staff stay on top of the list
+** Cons: As rating by rating is intended for the use of staff performance review, it would not be helpful to do it this way
+
+===== The use of sortRatingDown when command alias `sortRating` is called
+* ** Alternative 1 (current choice):** Inputting sortRating sorts the staff list by rating from highest to lowest
+** Pros: This alternative is chosen as it is believed that there are more cases that make use of sorting from highest rating, e.g. job promotion review, performance-related additional wage
+** Cons: Some people might expect the default sort by rating to sort the list from lowest to highest
+
+* ** Alternative 2:** Inputting sortRating sorts the staff list by rating from lowest to highest
+** Pros: There are cases where sort rating from lowest is needed, e.g. the need to let go of staff due to budget cuts
+** Cons: Some people might expect the default sort by rating to sort the list from highest to lowest
+
+// end::sortratingdowncommand[]
+
+// tag::sortratingupcommand[]
+=== Sort By Rating From Lowest To Highest Feature
+
+==== Introduction
+
+This sort by rating command is a further enhancement to the sort command that also focuses on the `Logic` component. A `SortRatingDownCommand` class is added.
+
+==== Current Implementation
+
+This `sortRatingUp` command sorts the staff list by rating from lowest to highest.
+
+Given below is a sequence diagram shows how the sortRatingUp command works:
+
+image::SortRatingUpSequenceDiagram.png[width="800"]
+
+==== Design Considerations
+
+===== Implementation of sortRatingUp command
+* ** Alternative 1 (current choice):** Sorts by rating up then by favourite then by name
+** Pros: Staff list is sorted wholly by their ratings, easier to process for the case of staff performance review as being favourited or not should not affect its rating ranking
+** Cons: Favourited staff does not stay on top of the list
+
+* ** Alternative 2:** Sorts by favourite then by rating up then by name
+** Pros: Favourited staff stay on top of the list
+** Cons: As rating by rating is intended for the use of staff performance review, it would not be helpful to do it this way
+
+// end::sortratingupcommand[]
 
 // tag::salaryfunction[]
 === Salary, OT Hours, OT Rate and Pay Deductibles For Staff
