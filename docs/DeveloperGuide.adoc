@@ -686,7 +686,7 @@ This `unfavourite` command allows contacts to be removed from the favourite list
 
 // end::unfavouritecommand[]
 
-//tag::Salary, OT Hours, OT Rate and Pay Deductibles For Staff[]
+// tag::salaryfunction[]
 === Salary, OT Hours, OT Rate and Pay Deductibles For Staff
 
 ==== Introduction
@@ -723,7 +723,7 @@ Figure 3.9.3.1 Idea of First Implementation
 image::SecondImplementation.png[height="450"]
 Figure 3.9.3.2 Idea of Second Implementation
 
-// end::Salary, OT Hours, OT Rate and Pay Deductibles For Staff[]
+// end::salaryfunction[]
 == Documentation
 
 We use asciidoc for writing documentation.
